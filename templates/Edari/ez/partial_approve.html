@@ -1,0 +1,77 @@
+<div flex style="text-align: center; border: 1px solid #bababa;">
+    <div style="text-align: center; background-color: #1c1c69; color: white; padding: 12px;">
+        {{ title }}
+    </div>
+    <div layout="row" style="padding: 12px; ">
+        <img style="height: 75px;border-radius: 50%;margin-left: 12px;"
+             ng-src="//ez.desc.approvers.{{ keyname }}.avatar//" alt="">
+        {% if approvestep == 5 %}
+            <img style="height: 75px;border-radius: 50%;margin-left: 12px;"
+                 ng-src="//ez.desc.approvers.pos_masoole_edari.avatar//" alt="">
+        {% endif %}
+        <div flex="" layout="column">
+            <div>
+                //ez.desc.approvers.{{ keyname }}.profileName//
+                {% if approvestep == 5 %}
+                    یا
+                    //ez.desc.approvers.pos_masoole_edari.profileName//
+
+                {% endif %}
+            </div>
+            <div>
+                //ez.desc.approvers.{{ keyname }}.chartName//
+                {% if approvestep == 5 %}
+                    یا
+                    //ez.desc.approvers.pos_masoole_edari.chartName//
+                {% endif %}
+            </div>
+            <div style="text-align: center">
+                <md-button class="md-primary md-raised" ng-click="approve({{ approvestep }})"
+                           ng-show="ez.desc.approvers.{{ keyname }}['approved'] == undefined">
+                    تایید
+                    {% if approvestep == 5 %}
+                        منابع انسانی
+                    {% endif %}
+                </md-button>
+                <span ng-show="ez.desc.approvers.{{ keyname }}['approved'] != undefined" style="    background-color: #bfffbf;
+    font-size: 13px;
+    padding: 6px;
+    margin: 7px;
+    border: 1px solid #96de96;">
+                امضا شده است در تاریخ
+                //ez.desc.approvers.{{ keyname }}['approved_date'] | jalaliDate:'jYYYY/jMM/jDD - hh:mm' //
+            </span>
+
+
+                {% if approvestep == 5 %}
+
+                    <md-button class="md-primary md-raised" ng-click="approve(6)">
+                        تایید مسئول اداری
+                    </md-button>
+
+                {% endif %}
+
+                <md-button class="md-raised" ng-click="comment({{ approvestep }})">کامنت</md-button>
+            </div>
+
+            {% if approvestep == 5 %}
+                با این تایید ، اضافه کاری های وارد شده بصورت خودکار در دنیای پردازش ثبت می شوند
+            {% endif %}
+
+        </div>
+
+    </div>
+    <div ng-show="ez.desc.approvers.{{ keyname }}['comments']">
+        <div ng-repeat="item in ez.desc.approvers.{{ keyname }}['comments']" layout="row" style="border: 1px solid #afafaf;
+    padding: 5px;
+    margin: 5px;">
+            <div flex style="text-align: right"> // item.comment //</div>
+
+
+            <div style="font-size: 12px; color: gray">
+                // item.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+            </div>
+
+        </div>
+    </div>
+</div>

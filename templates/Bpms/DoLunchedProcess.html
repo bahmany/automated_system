@@ -1,0 +1,77 @@
+{% load translators %}
+
+
+<div class="bpms-form-container" style="float: none;margin: 0 auto;" ng-controller="DoLunchedProcessCtrl"
+     id="DoLunchedProcessCtrl">
+    <form novalidate
+          class="form"
+          name="myForm"
+          ng-submit="completeIt(myForm)">
+
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                <h3>//lunchedPData.curAndPrevSteps.current//</h3>
+                <span flex></span>
+                <h6 style="text-align: left;line-height: 14px;">//lunchedPData.positionName// <br/>
+                    <small style="font-weight: normal; font-size: 11px;">(//lunchedPData.chartTitle//)</small>
+                </h6>
+            </div>
+        </md-toolbar>
+        <md-content class="shadower">
+
+            <md-progress-linear md-mode="indeterminate" ng-if="pleasewaitform"></md-progress-linear>
+
+            <div fg-form
+                 fg-form-data="sendingData.formData"
+                 fg-schema="formSchema">
+            </div>
+
+            <div id="qrcode"></div>
+
+
+        </md-content>
+        <md-toolbar class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <md-button class="md-raised md-default" ui-sref="inbox-process-dashboard()">
+                    انصراف
+                    <md-icon md-font-icon="fa fa-times"></md-icon>
+                </md-button>
+                <md-button class="md-raised md-default" ng-click="justSaveIt()">
+                    ذخیره
+                    <md-icon md-font-icon="fa fa-save"></md-icon>
+                </md-button>
+
+                <md-button class="md-raised md-default">
+                    چاپ
+                    <md-icon md-font-icon="fa fa-print"></md-icon>
+                </md-button>
+
+                <span flex></span>
+
+                <md-button class="md-raised md-primary" id="sendjob" type="submit">
+                    تایید و ارسال
+                    <md-icon md-font-icon="fa fa-check"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+    </form>
+
+</div>
+
+
+<style>
+
+    {#                    @media print {#}
+    {#                        * {#}
+    {#                            display: none ;#}
+    {#                        }#}
+    {##}
+    {#                        #DoLunchedProcessCtrl, #DoLunchedProcessCtrl * {#}
+    {#                            display: block;#}
+    {#                        }#}
+    {#                    }#}
+
+    label.lbamflabel {
+        display: none;
+    }
+</style>

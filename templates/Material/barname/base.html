@@ -1,0 +1,132 @@
+<div ng-controller="MaterialBarnameCtrl" id="MaterialBarnameCtrl">
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+            <div>
+                <h2 class="md-toolbar-tools">برنامه ریزی و تولید</h2>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <div>
+        <table class="table mini table-bordered table-striped" style="direction: rtl">
+            <thead>
+            <tr>
+                <th>از تاریخ</th>
+                <th>تا تاریخ</th>
+                <th>میزان روز</th>
+                <th>سالم</th>
+                <th colspan="2">کیفیت</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="input-ltr"><input dir="ltr" ng-model="search.start_date" type="text"
+                                             placeholder="13xx/xx/xx"></td>
+                <td class="input-ltr"><input dir="ltr" ng-model="search.end_date" type="text" placeholder="13xx/xx/xx">
+                </td>
+                <td class="input-ltr">
+                    <select name="select_arrow" id="" ng-model="search.days_arrow">
+                        <option value="1">مساوی</option>
+                        <option value="2">بزرگتر</option>
+                        <option value="3">کوچکتر</option>
+                        <option value="4">بین</option>
+                    </select>
+                    <span ng-show="search.days_arrow == '4'">از</span>
+                    <input type="number" ng-model="search.day1">
+                    <span ng-show="search.days_arrow == '4'">تا</span>
+                    <input type="number" ng-model="search.day2" ng-show="search.days_arrow == '4'">
+
+                </td>
+                <td class="input-ltr">
+                    سالم<input type="checkbox" ng-model="search.correct">
+                </td>
+                <td class="input-ltr">
+                    ضایعات<input type="checkbox" ng-model="search.scrap">
+                </td>
+                <td class="input-ltr">
+                    قرنطینه<input type="checkbox" ng-model="search.scrap_and_store">
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="make-all-ltr">
+         <table id="divTableBarcode" class="stripe" style="font-size: 12px; text-align: center;" dir="rtl">
+
+        </table>
+
+        <div layout="row">
+            <div flex="30">
+                <div layout="row" layout-align="center center" class="spacer">
+                    <h3>66</h3>
+                </div>
+                <canvas class="chart chart-bar"
+                        chart-data="data66"
+                        chart-labels="labels66"
+                        chart-series="series66"
+                ></canvas>
+            </div>
+            <div flex="30">
+                <div layout="row" layout-align="center center" class="spacer">
+                    <h3>65</h3>
+                </div>
+                <canvas class="chart chart-bar"
+                        chart-data="data65"
+                        chart-labels="labels65"
+                        chart-series="series65"
+                ></canvas>
+            </div>
+        </div>
+
+        <div class="spacer">
+            <table class="table mini table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>تعداد</th>
+                    <th>کیلوگرم</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>//barcodes.pageInfo[0].coil_count//</td>
+                    <td>//barcodes.pageInfo[0].vazn//</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+
+
+
+    </div>
+
+    <div ng-show="basket.length > 0" style="position: fixed;
+    z-index: 79;
+    left: 20px;
+    bottom: 20px;">
+        <md-button
+                ng-click="OpenBasket($event)"
+                class="md-icon-button md-raised"
+                   style="font-size: 25px;
+    background-color: rgb(154 103 18);
+    color: white;
+    height: 60px;
+    width: 60px;"
+
+        >
+            <md-icon md-font-icon="fa fa-shopping-cart" style="color: rgb(255 255 255);"></md-icon>
+            <span>//basket.length//</span>
+        </md-button>
+    </div>
+
+</div>

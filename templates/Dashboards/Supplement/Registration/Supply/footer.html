@@ -1,0 +1,15 @@
+<md-toolbar class="md-hue-1">
+    <div class="md-toolbar-tools">
+        <md-button class="md-raised md-default"
+                   ng-disabled="(currentStep == 0)"
+                   ng-click="GoToPrevStep()">
+            مرحله قبل
+        </md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary"
+                   ng-disabled="(provider.type_of_provider == null)"
+                   ng-click="GoToNextStep()">
+            مرحله بعد
+        </md-button>
+    </div>
+</md-toolbar>

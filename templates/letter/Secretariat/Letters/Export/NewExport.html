@@ -1,0 +1,142 @@
+{% load translators %}
+<div ng-controller="ExportCtrl">
+
+
+    {% include "letter/Secretariat/Letters/Partials/ModalImportedCompaniesList.html" with SelectCompanyToImportedFunction="SelectCompany" %}
+    {% include "letter/Secretariat/Letters/Partials/ModalImportedPositionList.html" %}
+    {% include "letter/Secretariat/Letters/Partials/wait_layer.html" %}
+
+
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            وایرایش / ایجاد نامه صادره
+        </div>
+
+    </md-toolbar>
+
+    <form style="background-color: white" name="latterExportFrm">
+        <div class="shadower">
+            {% include 'letter/Secretariat/Letters/Partials/Companies.html' with  title='انتخاب دریافت کننده ی نامه' tableLastCol='نام شخص دریافت کننده'  ImportCompanyModels="ExportLetter.exp.export.companyRecievers"  showdelete="true" %}
+            {% include 'letter/Secretariat/Letters/Partials/Roonevesht.html' with  title='انتخاب دریافت کننده های رونوشت' model="ExportLetter.exp.export.hameshRecievers" SelectPerson="RemoveMember" %}
+            <div layout-padding="">
+
+
+                <md-input-container class="md-block">
+                    <label>موضوع نامه ی صادره</label>
+                    <input type="text" id="ExportLetter_subject" ng-model="ExportLetter.subject" ng-required="true">
+                </md-input-container>
+                <div layout-gt-md="row">
+                    <md-input-container flex-gt-md>
+                        <label>تاریخ ارسال</label>
+                        <input type="text"
+                               ng-model="ExportLetter.exp.dateOfSent"
+                               ui-mask="9999/99/99"
+                               style="direction: ltr!important;"
+                               model-view-value="true"
+                               id="txt_dateOfSent"
+                        />
+                    </md-input-container>
+                    <div flex-gt-md="5" hide-xs hide-sm></div>
+                    <md-input-container flex-gt-md>
+                        <label>ساعت ارسال</label>
+                        <input id="ExportLetter_subject" type="text" ng-model="ExportLetter.exp.timeOfSent"
+                               ui-mask="99:99" dir="ltr" model-view-value="true"
+                               style="direction: ltr!important;"/>
+                    </md-input-container>
+                    <div flex-gt-md="5" hide-xs hide-sm></div>
+                    <md-input-container flex-gt-md>
+                        <label>تعداد ضمایم</label>
+                        <input id="ExportLetter_exp_attsCount" ng-model="ExportLetter.exp.attsCount"/>
+                    </md-input-container>
+                    <div flex-gt-md="5" hide-xs hide-sm></div>
+                    <md-input-container flex-gt-md>
+                        <label>نحوه ارسال</label>
+                        <input id="ExportLetter_exp_sentType" ng-model="ExportLetter.exp.sentType"/>
+                    </md-input-container>
+                </div>
+                <div layout-gt-md="row">
+                    <md-input-container flex-gt-md class="md-block">
+                        <label>پانوشت امضا</label>
+                        <textarea ng-model="ExportLetter.exp.signText" id="ExportLetter_exp_signText"></textarea>
+                    </md-input-container>
+
+
+                    <div flex-gt-md="5" hide-xs hide-sm></div>
+
+
+                    <md-contact-chips flex-gt-md="40"
+                                      ng-model="asyncContacts"
+                                      md-contacts="delayedQuerySearch($query)"
+                                      md-contact-name="name"
+                                      md-require-match="true"
+                                      md-highlight-flags="i"
+                                      filter-selected="filterSelected"
+                                      placeholder="کلمات کلیدی یا تگ">
+                    </md-contact-chips>
+
+                    <a ng-click="AddNewTag()" flex-gt-md layout-align="center center" layout="row">
+                        (تگ جدید)
+                    </a>
+                </div>
+
+
+                <md-input-container class="md-block">
+                    <label>پابرگی</label>
+                    <textarea ng-model="ExportLetter.exp.footerText" id="ExportLetter_exp_footerText"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>نوشتار سربرگ</label>
+                    <textarea ng-model="ExportLetter.exp.headerText" id="ExportLetter_exp_headerText"></textarea>
+                </md-input-container>
+                <div>متن نامه صادره *</div>
+                <div>
+                    <textarea ckeditor="editorOptions" ng-model="ExportLetter.body"></textarea>
+                </div>
+
+                <div>
+                    <md-subheader class="md-no-sticky subheader-inbox">
+                        آپلود سایر فایل های ضمیمه
+                    </md-subheader>
+                    <md-divider></md-divider>
+                    <div>
+                        {% load fileuploader_tags %}
+                        {% FileUploader width='100%' readonly="false" %}
+                    </div>
+                </div>
+
+                {#                <div>فایل های ضمیمه</div>#}
+                {#                <div>#}
+                {#                    {% include "share/filecloud/PreviewWithEdit.html" %}#}
+                {#                </div>#}
+                {#                <div>سرویس فایل ها</div>#}
+                {#                <div>#}
+                {#                    {% include "share/filecloud/FilesCloud.html" %}#}
+                {##}
+                {#                </div>#}
+
+
+            </div>
+            <md-toolbar class="md-hue-3">
+                <div class="md-toolbar-tools">
+                    <span flex></span>
+                    <md-button class="md-raised md-primary"
+                               ng-disabled="latterExportFrm.$invalid"
+                               ng-click="SaveRemoveDraft()">
+                        ثبت نهایی و حذف پیش نویس
+                    </md-button>
+                    <md-button class="md-raised" ng-disabled="latterExportFrm.$invalid" ng-click="Save()">
+                        ثبت نهایی و نگهداری از پیش نویس
+                    </md-button>
+                    <md-button class="md-raised" ng-click="SaveAsDraft()">ذخیره پیش نویس</md-button>
+
+                </div>
+            </md-toolbar>
+
+
+        </div>
+
+
+    </form>
+
+
+</div>

@@ -1,0 +1,18 @@
+<md-toolbar class="md-hue-3">
+    <div class="md-toolbar-tools">
+        <span flex></span>
+        <md-button class="md-raised"
+
+
+                   ng-click="{{ cancelClickFunc }}">انصراف
+        </md-button>
+
+        <md-button class="md-raised md-primary"
+                   type="submit"
+                   ng-disabled="{{ formName }}.$invalid"
+                   ng-click="{{ postClickFunc }}">ثبت
+        </md-button>
+
+
+    </div>
+</md-toolbar>

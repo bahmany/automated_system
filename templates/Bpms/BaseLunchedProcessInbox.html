@@ -1,0 +1,80 @@
+{% load translators %}
+
+<div layout-gt-xs="row" ng-controller="lunchedProcessInboxCtrl" id="lunchedProcessInboxCtrl">
+    <div flex-gt-xs="25">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                <h4>کارتابل فعالیت ها</h4>
+                <span flex></span>
+                <md-button ui-sref="inbox-process-new()" class="md-icon-button md-raised" aria-label="Favorite">
+                    <md-icon md-font-icon="fa fa-plus"></md-icon>
+                    <md-tooltip>شروع فرایند</md-tooltip>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content>
+            <p ng-if="data.count==0" style="text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 17px;
+    color: #5cba5c;">شما کاری برای انجام دادن ندارید.</p>
+            <md-list flex>
+                <md-list-item class="md-3-line"
+                              ng-class-odd="'odd'" ng-class-even="'even'"
+                              ng-class="{'active':item.id == selectedLunchedProcessId}"
+                              ng-repeat="item in data.results"
+                              ng-click="doJob(item.id, item)">
+
+                    <img ng-src="//item.prevPerformer.avatar.replace('thmum50CC_','')//"
+                         ng-if="item.prevPerformer.avatar"
+                         class="bpmn-prev-perfomer-avatar-img md-avatar" tooltip="ارجاع کننده">
+                    <img src="/static/images/text_document.png" ng-if="!item.prevPerformer.avatar"
+                         class="bpmn-prev-perfomer-avatar-img  md-avatar" class="md-avatar" tooltip="ارجاع کننده">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>//item.curAndPrevSteps.current//
+                            <small>(//item.bpmnName//)</small>
+                            <span flex></span>
+                            <span ng-if="inboxBAMDanger(item.curAndPrevSteps.selectedBAMDate)==1"
+                                  title="مهلت انجام کار"
+                                  class="col-md-3 pull-right pltr"><span
+                                    class="label label-danger">مهلت گذشته</span></span>
+                            <span ng-if="inboxBAMDanger(item.curAndPrevSteps.selectedBAMDate)==2"
+                                  title="مهلت انجام کار" class="col-md-3 pull-right pltr"><span
+                                    class="label label-warning">//item.curAndPrevSteps.selectedBAMDate | jalaliDateFromNow//</span>
+                                </span>
+                            <span ng-if="inboxBAMDanger(item.curAndPrevSteps.selectedBAMDate)==3"
+                                  title="مهلت انجام کار" class="col-md-3 pull-right pltr"><span
+                                    class="label label-danger">//item.curAndPrevSteps.selectedBAMDate | jalaliDateFromNow//</span>
+                                </span>
+                        </h3>
+                        <h4 tooltip="ارجاع کننده" layout-gt-md="row">
+                            <span ng-if="item.prevPerformer.name">//item.prevPerformer.name// - //item.prevPerformer.chartTitle// </span>
+                            <span ng-if="!item.prevPerformer.name">سیستم</span>
+                            <small tooltip="تاریخ ارجاع" layout-align="end">(//::item.comeToInbox | jalaliDateFromNow//)
+                            </small>
+                        </h4>
+                        <p layout="row">
+                            <span tooltip="شروع کننده فرآیند">//item.positionName// </span>
+                            <span flex></span>
+                            <md-button ng-click="$event.stopPropagation();viewBpmnDiagram(item.id, item);"
+                                       class="md-icon-button click-enable md-primary">
+                                <md-icon md-font-icon="fa fa-sitemap"></md-icon>
+                                <md-tooltip>مشاهد مسیر</md-tooltip>
+                            </md-button>
+                            <md-button
+                                    ng-click="$event.stopPropagation();destroyProcess(item);"
+                                    class="md-icon-button click-enable md-warn">
+                                <md-icon md-font-icon="fa fa-trash"></md-icon>
+                                <md-tooltip>حذف فرآیند</md-tooltip>
+                            </md-button>
+                        </p>
+                    </div>
+
+
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+    <div flex-gt-xs ui-view style="overflow-x: hidden; overflow-y: auto"></div>
+
+</div>

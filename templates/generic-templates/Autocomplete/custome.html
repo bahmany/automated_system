@@ -1,0 +1,53 @@
+<md-autocomplete
+        ng-disabled="{{ modelname }}_isDisabled"
+        md-no-cache="{{ modelname }}_noCache"
+        md-selected-item="{{ modelname }}_selectedItem"
+        md-search-text-change="{{ modelname }}_searchTextChange({{ modelname }}_searchText)"
+        md-search-text="{{ modelname }}_searchText"
+        md-selected-item-change="{{ modelname }}_selectedItemChange(item)"
+        md-items="item in {{ modelname }}_querySearch({{ modelname }}_searchText)"
+        md-item-text="item.{{ displayKey }}"
+        md-min-length="0"
+        md-require-match
+        required
+        placeholder="{{ placeholder }}"
+        md-menu-class="autocomplete-custom-template">
+    <md-item-template>
+          <span class="item-title">
+            <md-icon md-font-icon="fa {{ icon }}"></md-icon>
+            <span> // item.{{ modelOfValue1 }} // </span>
+          </span>
+        <span class="item-metadata">
+
+            <span>
+              <strong>//item.{{ modelOfValue2 }} //</strong>
+            </span>
+
+          </span>
+    </md-item-template>
+</md-autocomplete>
+
+<style>
+    .autocomplete-custom-template li {
+        border-bottom: 1px solid #ccc;
+        height: auto;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        white-space: normal;
+    }
+
+    .autocomplete-custom-template li:last-child {
+        border-bottom-width: 0;
+    }
+
+    .autocomplete-custom-template .item-title,
+    .autocomplete-custom-template .item-metadata {
+        display: block;
+        line-height: 2;
+    }
+
+    .autocomplete-custom-template .item-title md-icon {
+        height: 18px;
+        width: 18px;
+    }
+</style>

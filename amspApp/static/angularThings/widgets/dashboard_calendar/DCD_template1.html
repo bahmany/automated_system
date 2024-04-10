@@ -1,0 +1,161 @@
+<div>
+
+    <div flex class="cal-events fade-in-out" ng-hide="showCal" style="width: 100%">
+
+        <md-toolbar flex class="md-hue-1">
+            <div class="md-toolbar-tools">
+                <h3>فعالیت ها من
+                    <small>در //selectedStr// - //selectedDay//</small>
+                </h3>
+                <span flex></span>
+                <md-button class="md-fab md-mini md-button md-ink-ripple">
+                    <md-icon md-font-icon="fa fa-plus" ng-click="AddNewCalItem()"></md-icon>
+                </md-button>
+                <md-button class="md-mini md-button md-ink-ripple" ng-click="showCalc()">
+                    برگشت
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content class="shadower">
+            <form class="add-new-cal-item" style="display: none" name="CalForm">
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>زمان شروع</label>
+                        <input id="ExportLetter_subject"
+                               ui-mask="1399/99/99 99:99" dir="ltr" model-view-value="true"
+                               style="direction: ltr!important;" ng-required="true"
+                               type="text" ng-model="CalendarItem.startDate"/>
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm></div>
+                    <md-input-container flex>
+                        <label>زمان پایان</label>
+                        <input id="ExportLetter_subject"
+                               ui-mask="1399/99/99 99:99" dir="ltr" model-view-value="true"
+                               style="direction: ltr!important;"
+                               type="text" ng-model="CalendarItem.endDate"/>
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block">
+                    <label>عنوان</label>
+                    <input id="ExportLetter_subject"
+                           type="text" ng-model="CalendarItem.title" ng-required="true"/>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>شرح</label>
+                    <textarea id="ExportLetter_subject"
+                              type="text" ng-model="CalendarItem.detail"> </textarea>
+                </md-input-container>
+
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>درصد پیشرفت</label>
+                        <input id="ExportLetter_subject" min="0" max="100"
+                               type="number" ng-model="CalendarItem.progress"/>
+                        <md-tooltip>عدد بین صفر تا ۱۰۰</md-tooltip>
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm></div>
+                    <md-input-container flex>
+                        <label for="">نوع فیلد</label>
+                        <md-select ng-model="CalendarItem.priority">
+                            <md-option value=1>عادی</md-option>
+                            <md-option value=2>ویژه</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div>
+                    <div ng-repeat="item in itemsErr.message" style="color: red;padding: 12px;">
+                        //item.fieldName// - //item.message//
+                    </div>
+                </div>
+                <md-toolbar class="md-hue-3">
+                    <div class="md-toolbar-tools">
+                        <span flex=""></span>
+                        <button class="md-raised md-primary md-button"
+                                type="button"
+                                ng-disabled="CalForm.$invalid"
+                                ng-click="save()"
+                                aria-label="ذخیره">
+                            ذخیره
+                        </button>
+                        <button class="md-raised  md-button"
+                                type="button"
+                                ng-click="delete()"
+                                aria-label="ذخیره">
+                            حذف
+                        </button>
+                        <button class="md-raised  md-button"
+                                type="button"
+                                ng-click="cancel()"
+                                aria-label="ذخیره">
+                            انصراف
+                        </button>
+                    </div>
+                </md-toolbar>
+            </form>
+
+
+            <md-list class="list-cal-items" flex>
+
+
+                <div layout="row" layout-align="start center">
+                    <md-button class="md-icon-button" ng-click="GoToPage(CalendarItems.next)"
+                               ng-disabled="CalendarItems.next == null">
+                        <md-icon md-font-icon="fa fa-chevron-right"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="GoToPage(CalendarItems.previous)"
+                               ng-disabled="CalendarItems.previous == null">
+                        <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+                    </md-button>
+
+                    <span flex=""></span>
+                    //CalendarItems.count//
+                </div>
+
+
+                <md-list-item ng-class="{'alert-item-in': item.priority == 2, 'alert-item-done':item.finished}"
+                              class="md-2-line"
+                              ng-repeat="item in CalendarItems.results track by $index"
+                              ng-click="edit(item)">
+                    <div>
+                        <md-icon md-font-icon="fa fa-calendar mrb-avatar" alt="//item.title//"/>
+                    </div>
+
+
+                    <div class="md-list-item-text">
+                        <h3>//item.title//</h3>
+                        <p>
+                            //item.startDate | jalaliDate:'jMM/jDD'//
+                            <span ng-if="item.endDate"> الی </span>
+                            <span ng-if="item.endDate">//item.endDate | jalaliDate:'jMM/jDD'//
+
+                        </span>
+                        </p>
+                    </div>
+                    <div>
+                        <md-buton ng-if="!item.finished" class="md-icon-button md-primary" ng-click="finished(item.id)">
+                            <md-icon md-font-icon="fa fa-check" alt="//item.title//"/>
+                            <md-tooltip>انجام شد</md-tooltip>
+                        </md-buton>
+                        <md-buton ng-if="item.finished" class="md-icon-button md-primary" ng-click="unfinished(item.id)">
+                            <md-icon md-font-icon="fa fa-calendar" alt="//item.title//"/>
+                            <md-tooltip>تکمیل نشده</md-tooltip>
+                        </md-buton>
+
+                    </div>
+                    <md-divider></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-content>
+
+
+    </div>
+
+    <table class="cal-cal fade-in-out" ng-show="showCal" style="width: 100%">
+        <tr>
+            <td id="flat_calendar"></td>
+        </tr>
+    </table>
+
+
+</div>

@@ -1,0 +1,70 @@
+{% load translators %}
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <td>PosID</td>
+        <td>Username</td>
+        <td>UserID</td>
+        <td>Email</td>
+        <td>CellNo</td>
+        <td>کدپرسلی</td>
+        <td>تاریخ ثبت نام</td>
+        <td>تاریخ سمت دهی</td>
+        <td>نام</td>
+        <td>سمت ****ی</td>
+        <td>شرکت جاری</td>
+        <td>تعداد نامه ها</td>
+        <td>تعداد فرآیندها</td>
+        <td></td>
+
+    </tr>
+    <tr>
+        <td colspan="10" ng-if="isLoadingChartRow">
+            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in PositionsList track by $index" ng-class-odd="'odd'" ng-class-even="'even'">
+
+        <td>//item.positionID//</td>
+        <td>//item.username//</td>
+        <td>//item.userID//</td>
+        <td>//item.email//</td>
+
+        <td>//item.cellphone//
+            <a ng-click="ChangeCell(item)">
+                (تغییر)
+            </a>
+        </td>
+        <td>//item.personnel_code//
+
+            <a ng-click="ChangePersCode(item)">
+                (تغییر)
+            </a>
+
+        </td>
+
+        <td>//item.date_joined | jalaliDate:'jYYYY/jMM/jDD'//</td>
+        <td>//item.post_date | jalaliDate:'jYYYY/jMM/jDD'//</td>
+        <td>
+            //item.profileName//
+            <a ng-if="!item.profileName" ng-click="showSetUsername(item)">(اختصاص)</a>
+            <a ng-if="item.profileName"  ng-click="ChangeProfileName(item)">
+                (تغییر)
+            </a>
+        </td>
+        <td>//item.chartName//
+            <a ng-click="OpenChartModalForChange(item)">
+                (تغییر)
+            </a>
+        </td>
+        <td>//item.companyName//</td>
+        <td>//item.inboxCount//</td>
+        <td>//item.processCount//</td>
+        <td><a ng-if="item.inboxCount == 0 && item.processCount == 0 && !item.profileName"
+               ng-click="deletePosition(item, $index)">حذف</a></td>
+    </tr>
+    </tbody>
+</table>

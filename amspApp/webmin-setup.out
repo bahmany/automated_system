@@ -1,0 +1,31 @@
+***********************************************************************
+*            Welcome to the Webmin setup script, version 1.860        *
+***********************************************************************
+Webmin is a web-based interface that allows Unix-like operating
+systems and common Unix services to be easily administered.
+
+Installing Webmin in /usr/share/webmin ...
+
+***********************************************************************
+Webmin uses separate directories for configuration files and log files.
+Unless you want to run multiple versions of Webmin at the same time
+you can just accept the defaults.
+
+Config file directory [/etc/webmin]: Found existing Webmin configuration in /etc/webmin
+
+
+Creating start and stop scripts..
+..done
+
+Updating config files..
+..done
+
+Configuring Webmin to start at boot time..
+..done
+
+Changing ownership and permissions ..
+..done
+
+Running postinstall scripts ..
+..done
+

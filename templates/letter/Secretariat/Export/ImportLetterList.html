@@ -1,0 +1,164 @@
+{% load translators %}
+
+<div class="inbox-list">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+<span>
+    لیست نامه های وارده
+</span>
+        </div>
+    </md-toolbar>
+    <div layout="column" class="shadower">
+
+
+        {% include "letter/Secretariat/Export/ModalImportedPositionListSendAgain.html" %}
+
+        <div layout-gt-md="row">
+            <div flex="20">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>{{ 'Start date'|translate }}</label>
+                    <input name="social" ng-model="filter.startDate" style="direction: ltr!important;"
+                           ng-pattern="/^[0-9]{4}/[0-9]{2}/[0-9]{2}$/"/>
+
+                    <div style="direction: ltr!important;" class="hint">13##/##/##</div>
+                </md-input-container>
+
+            </div>
+            <div flex="20">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>{{ 'End date'|translate }}</label>
+                    <input name="social" ng-model="filter.endDate" style="direction: ltr!important;"
+                           ng-pattern="/^[0-9]{4}/[0-9]{2}/[0-9]{2}$/"/>
+
+                    <div style="direction: ltr!important;" class="hint">13##/##/##</div>
+                </md-input-container>
+
+            </div>
+            <div flex="25">
+                <md-chips ng-model="filter.selectedCompanies" flex="100"
+                          md-autocomplete-snap
+                          md-transform-chip="transformCompanyChip($chip)"
+                          md-require-match="autocompleteDemoRequireMatch">
+                    <md-autocomplete
+                            md-selected-item="selectedCompanyItem"
+                            md-search-text="searchCompanyText"
+                            md-items="item in queryCompanySearch(searchCompanyText)"
+                            md-item-text="item.name"
+                            placeholder="{{ 'Search for a companies'|translate }}">
+                        <span md-highlight-text="searchCompanyText">// item.name //</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                            <span>
+                              <strong>//$chip.name//</strong>
+                            </span>
+                    </md-chip-template>
+                </md-chips>
+            </div>
+            <div flex="45">
+                <md-input-container >
+                    <label>{{ 'Search Text'|translate }}</label>
+                    <input ng-model="filter.searchString">
+                </md-input-container>
+
+                <md-button class="md-icon-button" aria-label="mrb" ng-click="ChangeFilterStar()">
+                    <md-icon md-font-icon="fa fa-star"
+                             ng-class="{'dark-star':!filter.starred, 'star-selected':filter.starred}">
+                    </md-icon>
+                </md-button>
+            </div>
+        </div>
+
+
+        <div>
+            {% load tables_tags %}
+            {% tablePagination main_model_name="ExportletterList" table_search_watch_model_name="filter.searchString" table_go_to_page_func_name="GoToPage" table_handle_pagination_func_name="HandleImportTablePagination" table_info_model_name="Table" %}
+
+            <md-progress-linear md-mode="indeterminate" ng-if="waitForLoading"></md-progress-linear>
+        </div>
+
+        <div layout-gt-md="row" layout-wrap layout-align="center center">
+            <div ng-repeat="item in ExportletterList.results track by $index"
+                 layout="column"
+                 flex="45"
+                 layout-margin
+                 style="height: 220px;padding: 5px;background-color: rgb(238,238,238);border-radius: 5px;  text-align: justify">
+                <div layout="row" style="height: 200px;overflow: hidden;">
+                    <div>
+                        <img ng-src="//item.letter.cover//" alt="//item.letter.subject//" style="height: 100%;">
+                    </div>
+                    <div flex="" style="margin: 0 9px;">
+                        <h3 style="color: green" layout="row" layout-align="start center">
+
+                            <small>
+                                موضوع نامه :‌
+                            </small>
+
+
+                            //item.letter.subject//
+
+                            <span flex></span>
+                            <small>
+                                //item.letter.sign//
+                            </small>
+
+                        </h3>
+                        <div>
+                            <small>
+                                ارسال کننده :
+                            </small>
+                            <span ng-repeat="it in item.letter.company_rec">
+                            //it.name//
+
+                        </span>
+                        </div>
+                        <div>
+                            <small>
+                                تاریخ نامه :
+                            </small>
+                            // item.letter.exp.dateOfSent // //item.letter.exp.howtorec//
+                        </div>
+                        <div>
+                            <small>
+                                تاریخ ثبت :
+                            </small>
+                            //item.dateOfObservable | jalaliDate:'jYYYY/jMM/jDD hh:mm:ss' //
+                        </div>
+                        <div>
+                            <small>
+                                ثبت کننده :
+                            </small>
+                            // item.sender.profileName // (//item.sender.chartName//)
+
+                        </div>
+                        <div>
+                            <small>
+                                دریافت کننده های رونوشت :‌
+                            </small>
+                            <span ng-repeat="it in item.letter.exp.export.hameshRecievers">
+                            //it.profileName// (//it.chartName//)
+                        </span>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div style="height: 20px;" layout="row" layout-align="center center">
+                    <md-button class="md-icon-button" aria-label="mrb"
+                               ng-click="ChangeStar(item);$event.stopPropagation()">
+                        <md-icon md-font-icon="fa fa-star"
+                                 ng-class="{'dark-star':!item.star, 'star-selected':item.star}">
+                        </md-icon>
+                    </md-button>
+                    |
+                    <md-button ui-sref="importPreview({importid: item.id})">مشاهده</md-button>
+                    |
+                    <md-button ng-click="SendAgainImported(item)">ارجاع</md-button>
+                    |
+                    <md-button ng-click="Download(item.letter.exp.cover);">دانلود کاور</md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

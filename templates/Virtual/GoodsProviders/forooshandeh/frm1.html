@@ -1,0 +1,196 @@
+<h4>اطلاعات فروشنده</h4>
+<hr>
+<form name="frm_frm1">
+    <div>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">نام فارسی تامین کننده / شرکت</label>
+                        <input type="text" ng-model="provider.frm1.name" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2">
+                </div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">نام تجاری / برند</label>
+                        <input type="text" ng-model="provider.frm1.brandname">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2">
+                </div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">نام قبلی</label>
+                        <input type="text" ng-model="provider.frm1.prevname">
+                    </md-input-container>
+                </div>
+            </div>
+
+
+        </div>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">شناسه ملی</label>
+                        <input type="text" ng-model="provider.frm1.mellicode">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">کد اقتصادی</label>
+                        <input type="text" ng-model="provider.frm1.economicCode">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">شماره ثبت</label>
+                        <input type="text" ng-model="provider.frm1.regno">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ تاسیس</label>
+                        <input type="text" ng-model="provider.frm1.trikheTasis">
+                    </md-input-container>
+                </div>
+
+            </div>
+        </div>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نوع شرکت</label>
+                        <md-select ng-model="provider.frm1.companyType">
+                            <md-option value>
+                                نامشخص
+                            </md-option>
+                            <md-option value="سهامی خاص">
+                                سهامی خاص
+                            </md-option>
+                            <md-option value="سهامی عام">
+                                سهامی عام
+                            </md-option>
+                            <md-option value="با مسئولیت محدود">
+                                با مسئولیت محدود
+                            </md-option>
+                            <md-option value="تعاونی">
+                                تعاونی
+                            </md-option>
+                            <md-option value="غیره">
+                                غیره
+                            </md-option>
+
+
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3">
+
+                </div>
+                <div flex-gt-xs="70">
+                    <md-input-container class="md-block">
+                        <label for="">توضیحات</label>
+                        <input type="text" ng-model="provider.frm1.exp">
+                    </md-input-container>
+                </div>
+            </div>
+
+
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نام واحد صنفی محل فعالیت</label>
+                        <input type="text" ng-model="provider.frm1.senf">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">شماره پروانه کسب</label>
+                        <input type="text" ng-model="provider.frm1.parvanehKasb">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">مرجع اعطا کننده</label>
+                        <input type="text" ng-model="provider.frm1.marja">
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ صدور پروانه کسب</label>
+                        <input type="text" ng-model="provider.frm1.tarkheSodooreParvaneh">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ انقضا پروانه کسب</label>
+                        <input type="text" ng-model="provider.frm1.tarikheEnghezaParvaneh">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نام صاحب پروانه کسب</label>
+                        <input type="text" ng-model="provider.frm1.nsmeSahebeParvaneh">
+                    </md-input-container>
+                </div>
+            </div>
+
+
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نوع مالکیت</label>
+                        <md-select ng-model="provider.frm1.noeMalekiat">
+                            <md-option value>
+                                نامشخص
+                            </md-option>
+                            <md-option value="خصوصی">
+                                خصوصی
+                            </md-option>
+                            <md-option value="دولتی">
+                                دولتی
+                            </md-option>
+                            <md-option value="عمومی">
+                                عمومی
+                            </md-option>
+                            <md-option value="تحت پوشش">
+                                تحت پوشش
+                            </md-option>
+                            <md-option value="غیره">
+                                غیره
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3">
+
+                </div>
+                <div flex-gt-xs="70">
+                    <md-input-container class="md-block">
+                        <label for="">توضیحات</label>
+                        <input type="text" ng-model="provider.frm1.expNoeMalekiat">
+                    </md-input-container>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <span style="display: none">
+        //frm1_invalid = frm_frm1.$invalid//
+    </span>
+
+</form>

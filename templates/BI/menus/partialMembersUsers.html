@@ -1,0 +1,54 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar class="_md _md-toolbar-transitions">
+            <div class="md-toolbar-tools">
+                <h2>گروه های عضو</h2>
+                <span flex="" class="flex"></span>
+            </div>
+        </md-toolbar>
+
+
+        <md-dialog-content>
+            <div class="md-dialog-content" style="width: 600px;">
+                {#                <div>#}
+                {#                    <md-input-container class="md-block" style="margin-bottom: 0;">#}
+                {#                        <label for="">جستجو</label>#}
+                {#                        <input type="text" ng-model="positionListSearch" placeholder="جستجو..." ng-model-options="{bounce:1000}">#}
+                {#                    </md-input-container>#}
+                {#                </div>#}
+
+                <div layout="row">
+                    <div flex="50" layout-padding="">
+
+                        <h5 style="border-bottom: 1px solid gray;">لیست کاربران</h5>
+                        <div layout-padding="" style="height: 200px; overflow-x: hidden; overflow-y: scroll;">
+                            <div ng-click="addToPositions(position)" ng-repeat="position in PositionsList"
+                                 style="font-size: 12px; border-bottom: 1px solid gray; padding: 5px;">
+                                //position.profileName// - //position.chartName//
+                            </div>
+                        </div>
+                    </div>
+                    <div flex="50" layout-padding="">
+                        <h5 style="border-bottom: 1px solid gray;">اعضای ثبت شده</h5>
+                        <div layout-padding="" style="height: 200px; overflow-x: hidden; overflow-y: scroll;">
+                            <div ng-click="removeFromList(position)"
+                                 ng-repeat="position in __selectedMenu.users_allowed"
+                                 style="font-size: 12px; border-bottom: 1px solid gray; padding: 5px;">
+                                //position.profileName// - //position.chartName//
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </md-dialog-content>
+
+
+        <md-dialog-actions layout="row">
+
+            <md-button class="md-primary md-raised" ng-click="savemember()">ثبت</md-button>
+
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

@@ -1,0 +1,65 @@
+<div ng-controller="BISqlsCtrl">
+
+            <md-toolbar class="md-hue-2" style="background-color: rgb(0 0 0 / 54%);">
+        <div class="md-toolbar-tools" layout="row">
+            <h5>
+فرخوانی ها            </h5>
+            <div flex>
+
+            </div>
+            <md-button class="md-icon-button" aria-label="Settings" ui-sref="bi-datasources-design({id:'0'})">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+
+{#    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">#}
+{#        <div layout="row">#}
+{#            <md-toolbar-filler layout-align="center center" layout="row" style="background-color: rgb(139 159 175)">#}
+{#            </md-toolbar-filler>#}
+{##}
+{#            <div>#}
+{#                <h2 class="md-toolbar-tools">#}
+{#                    فرخوانی ها#}
+{#                </h2>#}
+{##}
+{#                <div>#}
+{##}
+{#                    <md-button class="md-raised" ui-sref="bi-datasources-design({id:0})">#}
+{#                        فراخوانی جدید#}
+{##}
+{#                    </md-button>#}
+{##}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </md-toolbar>#}
+    <div class="shadower" layout="row" layout-wrap="">
+        <div ng-repeat="sql in sqls"
+             style="width: 150px; height: 150px; margin: 3px; padding: 3px; border: 1px solid gainsboro; overflow: hidden"
+             layout="row"
+             layout-align="center center">
+            <div style="font-size: 12px; text-align: center">
+                <div>
+                    <div>
+                        //sql.sqlTitle//
+                    </div>
+
+                </div>
+                <div>
+                    <div>
+                        <md-button class="md-raised" ui-sref="bi-datasources-design({id:sql.id})">ورود به فراخوانی
+                        </md-button>
+
+                    </div>
+
+                    <a ng-click="deleteBISql($even, item)"> حذف </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

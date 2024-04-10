@@ -1,0 +1,102 @@
+{% load translators %}
+
+
+<div class="letterHistory shadower" style="display: none">
+
+    <div layout="row">
+        <span flex></span>
+        <md-button class="md-raised md-default" ng-click="BackToInbox()">
+            بازگشت
+        </md-button>
+    </div>
+
+        <div ng-if="isHistoryProccessing" class="fader">
+            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </div>
+    <table class="table mini table-has-border">
+        <thead>
+        <tr>
+
+            <th>ردیف</th>
+            <th>نوع</th>
+            <th>توضیح</th>
+            <th>تاریخ مشاهده</th>
+            <th>مشاهده</th>
+            <th>حذف</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in letterHistory.RAW track by $index" ng-class-odd="'odd'" ng-class-even="'even'">
+            <td scope="row">//$index+1//
+            </td>
+            <td>
+                <span ng-if="item.itemType == 2">ثبت اولیه</span>
+                <span ng-if="item.itemMode == 2">رونوشت خودکار</span>
+                <span ng-if="item.itemActivityMode == 1">ارسال</span>
+                <span ng-if="item.itemActivityMode == 2">پاسخ</span>
+                <span ng-if="item.itemActivityMode == 3">ارجاع</span>
+            </td>
+            <td ng-bind-html="item.message | to_trusted">
+
+            </td>
+            <td>//item.recieverDetail.seenDate | jalaliDate:'jYY/jMM/jDD - hh:mm'//</td>
+            <td>
+                <span ng-if="!item.recieverDetail.seen">خیر</span>
+                <span ng-if="item.recieverDetail.seen">بلی</span>
+
+            </td>
+            <td>
+                <a ng-if="item.can_remove && item.itemMode != 2"
+                   ng-click="RemoveFromRecInbox(item)">حذف از کارتابل</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+    <div>
+        <script type="text/ng-template" id="history_render.html">
+            <ul>
+                <div>
+                    <div>
+                        <i class="fa fa-envelope" ng-if="!item.recieverDetail.seen"></i>
+                        //item.recieverDetail.name// - //item.recieverDetail.chart//
+                        <span> (//item.recieverDetail.dateOfObservable | jalaliDate:'jYY/jMM/jDD - hh:mm' //) </span>
+                        <span ng-if="item.recieverDetail.seen"> - (//item.recieverDetail.date | jalaliDate:'jYY/jMM/jDD - hh:mm' //) <i
+                                class="fa fa-eye"></i></span>
+
+                        <a ng-if="item.can_remove && item.itemMode != 2"
+                           ng-click="RemoveFromRecInbox(item)">{{ 'remove it'|translate }}</a>
+
+                    </div>
+
+
+                </div>
+
+                <li ng-repeat="item in item.children" ng-include="'history_render.html'">
+                </li>
+            </ul>
+        </script>
+        <ul>
+            <li>
+                <div>
+                    //letterHistory.recieverDetail.name// -
+                    //letterHistory.recieverDetail.chart//
+                </div>
+
+                <div ng-repeat="item in letterHistory.children"
+                     ng-include="'history_render.html'">
+
+                </div>
+        </ul>
+
+        </li>
+        </ul>
+
+
+    </div>
+</div>

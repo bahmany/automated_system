@@ -1,0 +1,137 @@
+{% load translators %}
+
+<div style="height: 800px;" id="bpmnModelerCtrl" ng-controller="bpmnModelerCtrl">
+    <form name="frmNewBpmn">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                ساخت فرآیند جدید
+
+
+            </h2>
+                            <span flex></span>
+                <md-button  ui-sref="process">بازگشت</md-button>
+        </div>
+    </md-toolbar>
+    <div class="shadower" layout="column">
+        <div layout="row">
+            <md-input-container flex="50">
+                <label for="">نام فرآیند</label>
+                    <input name="name" type="text"
+                           required=""
+                           ng-model="bpmn.name">
+            </md-input-container>
+            <md-input-container flex="50">
+                <label for="">توضیحات</label>
+                    <input name="name" type="text"
+                           required=""
+                           ng-model="bpmn.description">
+            </md-input-container>
+        </div>
+        <div>
+            <div class="conter-wrapper clearfix">
+                <link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/css/diagram-js.css"/>
+                <link rel="stylesheet"
+                      href="/static/bower_components/bpmn-modeler2/vendor/bpmn-font/css/bpmn-embedded.css"/>
+                <link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/css/app.css"/>
+                <div class="col-md-5" style="margin: 124px auto;float: none;" id="start-edite-div">
+                    <span id="start-edite" class="btn btn-info btn-block btn-rounded"
+                          style="margin: 0 auto;font-size: 15px;">شروع طراحی</span>
+                </div>
+                <div class="content" id="js-drop-zone">
+
+                    <div class="canvas" id="js-canvas"></div>
+                </div>
+
+
+                <script src="/static/bower_components/bpmn-modeler2/index.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('.fit-height').css('height', window.innerHeight - 200 + 'px').css('overflow-y', 'scroll').css('overflow-x', 'hidden');
+
+                    });
+                </script>
+            </div>
+        </div>
+
+    </div>
+
+    <md-toolbar class="md-hue-3">
+        <div class="md-toolbar-tools">
+            <span flex></span>
+
+            <md-button class="md-raised md-default"
+                       ui-sref="process({companyid:companyId})">
+                انصراف
+                                <md-icon md-font-icon="fa fa-times"></md-icon>
+
+            </md-button>
+            <md-button ng-disabled="frmNewBpmn.$invalid"  id="js-download-diagram" class="md-raised md-default">
+                دانلود دیاگرام
+                <md-icon md-font-icon="fa fa-download"></md-icon>
+            </md-button>
+            <md-button ng-disabled="frmNewBpmn.$invalid" id="js-save-diagram" class="md-raised md-primary">
+                ذخیره دیاگرام
+                <md-icon md-font-icon="fa fa-save"></md-icon>
+            </md-button>
+        </div>
+
+    </md-toolbar>
+    </form>
+
+{#    <div class="panel panel-default">#}
+{#        <div class="panel-heading" style="padding-bottom: 3px;">#}
+{#            <h3 class="panel-title clearfix">#}
+{##}
+{##}
+{##}
+{#                <div class="form-group col-md-2 pull-right">#}
+{#                    <div class=" btn-group-justified ">#}
+{##}
+{##}
+{#                        <a id="js-save-diagram" class="btn btn-small btn-success fa fa-save" href#}
+{#                           title="ذخیره دیاگرام">#}
+{#                        </a>#}
+{#                        <a id="js-download-diagram" class="btn btn-small btn-primary fa fa-download" href#}
+{#                           title="دانلود دیاگرام">#}
+{#                        </a>#}
+{#                        <a class="btn btn-small btn-danger fa fa-times" href#}
+{#                           ui-sref="company.process({companyid:companyId})">#}
+{##}
+{#                        </a>#}
+{##}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{##}
+{##}
+{#            </h3>#}
+{##}
+{#        </div>#}
+{#        <div class="panel-body clearfix">#}
+{##}
+{##}
+{#        </div>#}
+{#    </div>#}
+</div>
+
+
+<style>
+    {#    .djs-element.djs-shape:not(.djs-connection) .djs-visual > rect:nth-child(1) {#}
+    {#    fill: rgba(13, 172, 245, 0.77) !important;#}
+    {#    stroke: #084E77;#}
+    {# } #}
+    .djs-element.djs-shape:not(.djs-connection) .djs-visual > polygon:nth-child(1) {
+        fill: #fec107 !important;
+        stroke: #96740F !important;
+    }
+
+    .djs-element.djs-connection:not(.djs-shape) .djs-visual > path:nth-child(1) {
+        stroke: #77848C !important;
+    }
+
+    .djs-element.djs-shape:not(.djs-connection) .djs-visual > circle:nth-child(1) {
+        fill: #de6764 !important;
+    }
+</style>

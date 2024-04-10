@@ -1,0 +1,102 @@
+{% load translators %}
+<div ng-controller="PaymentController">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+لیست استاراژی ها                </div>
+                <div class="panel-body">
+                    <div class="row">
+
+                        <table style="width: 100%">
+
+                            <tr>
+                                <td style="width: 25px;">
+                                    <a class="btn btn-default" ng-click="GoToPage(Payments.next)"
+                                       ng-disabled="!(Payments.next)">
+                                        <i class="fa fa-angle-right"></i>
+                                    </a></td>
+                                <td style="width: 25px;">
+                                    <a class="btn btn-default" ng-click="GoToPage(Payments.previous)"
+                                       ng-disabled="!(Payments.previous)">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a></td>
+                                <td><input ng-model="filter.s" type="text" style="width: 100%;"/></td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                    <div class="row with-border" ng-repeat="item in Payments.results">
+                        <h3>//item.Title//</h3>
+
+                        <p>//item.TypeOfPayment//</p>
+
+                        <p>//item.days// - //item.StorageMb//</p>
+                        <p>//item.CostPerUser// - //item.daysOfTrial//</p>
+
+                        <p style="text-align: left">
+
+                            <a ng-click="Edit(item)">ویرایش</a>|
+                            <a>حذف</a>|
+                            <a>غیر فعال سازی</a>
+
+                        </p>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-9 make-center">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+ایجاد استراتژی فروش                            </div>
+                            <div class="panel-body">
+
+                                <form name="{{ form.form_name }}"
+                                      class="frmPaymentRegisterFrm"
+                                      id="frmPaymentRegister"
+                                      novalidate>
+                                    <csrf-token></csrf-token>
+                                    {% csrf_token %}
+                                    <fieldset>
+                                        {{ form.as_div }}
+                                    </fieldset>
+
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-md-12 text-left">
+
+                                            <button type="button"
+                                                    class="btn btn-primary"
+                                                    ng-click="Payment = {}">لغو
+                                            </button>
+                                            <button type="submit"
+                                                    class="btn btn-primary"
+                                                    id="sendForm"
+                                                    ng-disabled="{{ form.form_name }}.$invalid"
+                                                    ng-click="submit()">ثبت نام <i
+                                                    class="fa fa-save sendFormIcon "></i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+</div>

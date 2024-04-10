@@ -1,0 +1,96 @@
+<h4>مرحله دوازدهم - استاندارد های ****ی ،نظامنامه يا گواهی نامه های مديريت : </h4>
+<hr>
+<div>
+    <div layout="column">
+
+
+        <form action="" name="form_step12">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">شرح استاندارد های ****ی / گواهی نامه يا نظامنامه</label>
+                        <input type="text" ng-model="provider.step12.sharh" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نامه موسسه صادر کننده</label>
+                        <input type="text" ng-model="provider.step12.nameMoasseh">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نام گواهی نامه ملی / بین المللی</label>
+                        <input type="text" ng-model="provider.step12.nameGovahi">
+                    </md-input-container>
+                </div>
+
+
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاريخ دريافت</label>
+                        <input type="text" ng-model="provider.step12.tarikheDaryaft" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاريخ انقضاء</label>
+                        <input type="text" ng-model="provider.step12.tarikheEngheza">
+                    </md-input-container>
+                </div>
+
+            </div>
+
+
+            <div layout-gt-xs="row">
+                <span flex></span>
+                <md-button ng-click="addTostep12()"
+                           ng-disabled="form_step12.$invalid"
+                           class="md-raised md-default">
+                    اضافه به لیست
+                </md-button>
+            </div>
+
+        </form>
+
+        <div>
+            <table class="sp-table">
+                <thead>
+                <tr>
+                    <th>نام</th>
+                    <th>مدرك</th>
+                    <th>رشته</th>
+                    <th>سابقه</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.step12_list">
+                    <td>//it.name//</td>
+                    <td>//it.madrak//</td>
+                    <td>//it.reshteh//</td>
+                    <td>//it.sabghe//</td>
+                    <td>
+                        <md-button class="md-primary md-default" ng-click="removestep12($index)">حذف</md-button>
+                    </td>
+                </tr>
+
+                <tr ng-if="provider.step12_list.length == 0">
+                    <td colspan="5">
+                        لیست استانداردهای ****ی خالی است
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>

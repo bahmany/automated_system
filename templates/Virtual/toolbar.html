@@ -1,0 +1,50 @@
+<div layout="row" class="navbar" layout-align="start center" layout-padding=""
+     style='background-image: url("/static/images/hamkari/back_menu.jpg");background-size: cover; background-position: center bottom;color: white'>
+
+    {% if not login %}
+
+        <span>خوش آمدید</span>
+        <md-button ui-sref="register">در سامانه ثبت نام کنید
+            <i style="padding-right: 5px;color: gray;" class="fa fa-user-plus"></i>
+        </md-button>
+        <span flex></span>
+        <md-button ui-sref="register"> ثبت نام
+            <i style="padding-right: 5px;color: gray;" class="fa fa-user-plus"></i>
+        </md-button>
+        <md-button ui-sref="login">ورود
+            <i style="padding-right: 5px;color: gray;" class="fa fa-sign-in"></i>
+        </md-button>
+
+    {% else %}
+        <md-button ui-sref="introduction">
+        <i class="fa fa-home" style="padding-left: 12px;"></i>
+            {{ profile.extra.Name }} عزیز به قسمت همکاری
+            {{ company.extra.name }}
+
+            خوش آمدید
+        </md-button>
+
+
+        {% if rank != -1 %}
+
+        |
+        <md-button href="/reg/#/home/profile/step1">
+        <i class="fa fa-list" style="padding-left: 12px;"></i>
+        تکمیل سوابق شغلی
+            -
+        امتیاز سوابق
+        {{ rank }}
+        از ۱۰۰
+        </md-button>
+{% endif %}
+
+        <span flex></span>
+        <md-button href="/reg/#/login">
+            <i style="padding-right: 15px;padding-left: 15px;color: white;" class="fa fa-sign-out"></i>
+
+            خروج
+        </md-button>
+
+    {% endif %}
+
+</div>

@@ -1,0 +1,77 @@
+{% load translators %}
+<div layout-gt-md="row"
+     flex ng-controller="messageProcessCtrl"
+     id="messageProcessCtrl">
+    <div flex-gt-md="33" flex class="myInbox">
+        <md-content>
+            <md-toolbar class="md-hue-1">
+                <div class="md-toolbar-tools">
+                    <h3>{{ 'messagesAndResults'|translate }}</h3>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+            <p ng-if="data.count==0" style="text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 17px;
+    color: #5cba5c;">شما هیچ پیامی ندارید.</p>
+            <md-list flex>
+                <md-list-item class="md-2-line"
+                              ng-class="{'active':item.id == selectedMsgProcessId}"
+                              ng-repeat="item in data.results"
+                              ng-click="retrieveMessageProcess(item.id,item)"
+{#                              onclick="$('.lp-inbox-item').removeClass('active');$(this).addClass('active');"#}
+                        >
+                    <div class="md-list-item-text" layout="column">
+                        <div layout="row">
+                            <div flex="15">
+                                <img ng-src="//item.prevPerformer.avatar//"
+                                     ng-if="(item.performerDetail.avatar)&&(item.formData.isDeleted!=1)"
+                                     class="bpmn-prev-perfomer-avatar-img" title="ارسال کننده">
+                                <img src="/static/images/text_document.png"
+                                     ng-if="(!item.performerDetail.avatar)&&(item.formData.isDeleted!=1)"
+                                     class="bpmn-prev-perfomer-avatar-img" title="ارسال کننده">
+                                <img src="/static/images/text_document.png" ng-if="item.formData.isDeleted"
+                                     class="bpmn-prev-perfomer-avatar-img">
+                                <span class="unseen-circle" ng-if="!item.seen"></span>
+                            </div>
+                            <div flex="85">
+                                <h3 layout-gt-sm="row" layout-align="start center">
+                                    <span>//item.bpmnName//</span>
+
+                                </h3>
+                                <h4 tooltip="ارجاع کننده" layout-gt-md="row">
+                                    <span ng-if="item.prevPerformer.name" flex-gt-md="70">//item.performerDetail.name// - //item.performerDetail.chartTitle// </span>
+                                    <span ng-if="!item.prevPerformer.name" flex-gt-md="70">سیستم</span>
+                                    {#                                    <span flex></span>#}
+                                    <small tooltip="تاریخ دریافت" layout-align="end" flex-gt-md="30">
+                                        (//::item.postDate | jalaliDateFromNow//)
+                                    </small>
+                                </h4>
+
+                                <p title="عنوان پیام">//item.name//</p>
+
+                            </div>
+
+                        </div>
+                        <p layout="row" layout-align="start center">
+                                <span tooltip="شروع کننده فرآیند" flex-gt-md="65">//item.positionName//<small
+                                        tooltip="تاریخ شروع فرآیند">(//::item.startProcessDate | jalaliDateFromNow//)
+                                </small></span>
+
+                            <span flex></span>
+
+                        </p>
+
+                    </div>
+                    <md-divider></md-divider>
+
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+    <div flex-gt-md="65" flex ui-view></div>
+
+</div>
+
+

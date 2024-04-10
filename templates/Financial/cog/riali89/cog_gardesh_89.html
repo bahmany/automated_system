@@ -1,0 +1,126 @@
+<div ng-controller="Gardesh89Ctrl">
+
+    <div class="spacer">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h4>محاسبه گردش چاپ و لاک
+                </h4>
+                <span flex></span>
+                <md-button loading="در حال محاسبه ..."
+                           notloading="مرحله اول : محاسبه گردش" disableonrequest
+                           class="md-raised" ng-click="StartGardeshProcess()"></md-button>
+
+            </div>
+        </md-toolbar>
+{#        <div class="alert alert-danger" ng-show="bugs.length > 0" style="overflow: scroll">#}
+        <div class="alert alert-danger" ng-show="false" style="overflow: scroll">
+            <table style="width: 100%; font-size: 12px; background-color: white"
+                   class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>کد کالا</th>
+                    <th>کد ارتباطی</th>
+                    <th>نوع ارور</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in bugs">
+                    <td>//item.coil77//</td>
+                    <td>//item.link//</td>
+                    <td>//item.bug_reason//</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+        <table id="divTablecog_89" style="min-width: 3501px;font-size: 12px; text-align: center"
+               dir="rtl"></table>
+    </div>
+</div>
+
+{#        <div class="row">#}
+{#            <div class="col-12">#}
+{#                <div class="card">#}
+{#                    <div class="card-body">#}
+{#                        <h1>محاسبه گردش چاپ و لاک</h1>#}
+{#                        <div class="docs-lead">#}
+{#                            <ul>#}
+{#                                موارد مهم :#}
+{#                                <li>#}
+{#                                    اختلاف هایی در محاسبه ی وجود دارد#}
+{#                                </li>#}
+{#                            </ul>#}
+{##}
+{##}
+{#                        </div>#}
+{##}
+{##}
+{#                        <nav class="navbar navbar-expand-lg navbar-light bg-light">#}
+{#                            <a class="navbar-brand">عملیات</a>#}
+{#                            <md-button class="navbar-toggler" type="md-button" data-toggle="collapse"#}
+{#                                       data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"#}
+{#                                       aria-expanded="false" aria-label="Toggle navigation">#}
+{#                                <span class="navbar-toggler-icon"></span>#}
+{#                            </md-button>#}
+{#                            <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+{#                                <ul class="navbar-nav mr-auto">#}
+{#                                    <li class="nav-item active">#}
+{#                                        <md-button loading="در حال محاسبه ..."#}
+{#                                                   notloading="مرحله اول : محاسبه گردش" disableonrequest#}
+{#                                                   class="" ng-click="StartGardeshProcess()"></md-button>#}
+{#                                    </li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{##}
+{#                        </nav>#}
+{##}
+{#                        <div dir="rtl" style="text-align: right">#}
+{#                            <p>#}
+{#                            <h3>اطلاعات</h3>#}
+{#                            <ul>#}
+{#                                <li>#}
+{##}
+{#                                    کل خرید قلع برای سال#}
+{#                                    <strong style="color: darkgreen; text-decoration: underline">#}
+{#                                        //ghal.saleMali//#}
+{#                                    </strong>#}
+{#                                    مبلغ#}
+{#                                    <strong style="color: darkgreen; text-decoration: underline">//ghal.details.majmoo_mablagh_sadereh#}
+{#                                        * -1#}
+{#                                        | number//</strong>#}
+{#                                    ریال و#}
+{#                                    <strong style="color: darkgreen; text-decoration: underline">//ghal.details.majmoo_meghdar_sadereh#}
+{#                                        |#}
+{#                                        number//</strong>#}
+{#                                    کیلو است#}
+{#                                    میزان ورق قلع اندود تولید شدن#}
+{#                                    <strong style="color: darkgreen; text-decoration: underline">#}
+{#                                        //ghal.total_kilo_tolid| number//#}
+{#                                    </strong>#}
+{#                                    کیلو بوده و میزان تخصیص میانگین موزون قلع به ورق های تولید شده#}
+{#                                    <strong style="color: darkgreen; text-decoration: underline">#}
+{#                                        //( ghal.details.majmoo_mablagh_sadereh / ghal.total_kilo_tolid )* -1| number//#}
+{#                                    </strong>#}
+{#                                    ریال#}
+{#                                    است#}
+{##}
+{#                                </li>#}
+{#                            </ul>#}
+{#                            </p>#}
+{#                        </div>#}
+{##}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div>#}
+{#            <md-button class="btn btn-success" ng-click="StartGardeshProcess()">محاسبه گردش</md-button>#}
+{#        </div>#}
+
+
+{#</table>#}
+
+{#    </div>#}

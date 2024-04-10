@@ -1,0 +1,160 @@
+{% load translators %}
+
+<div flex ng-controller="DMSEditCtrl">
+
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            ایجاد یا ویرایش سند
+        </div>
+    </md-toolbar>
+
+    <div class="shadower">
+        <div layout-gt-md="row">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label for="">عنوان سند</label>
+                <input name="name" type="text" ng-model="editDMS.name" placeholder="عنوان سند" ng-required="">
+                <div class="alert alert-warning   alert-dismissable " role="alert"
+                     style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                     ng-repeat="(key,val) in errors" ng-if="key == 'name'">
+
+                    <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label for="">کد سند</label>
+                <input name="docCode" type="text" ng-model="editDMS.docCode" placeholder="کد سند">
+                <div class="alert alert-warning alert-dismissable" role="alert"
+                     style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                     ng-repeat="(key,val) in errors" ng-if="key == 'docCode'">
+
+                    <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+            </md-input-container>
+        </div>
+        <div layout-gt-md="row">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label for="">نوع سند</label>
+                <md-select name="docType" ng-model="editDMS.docType">
+                    <md-option ng-value="">{{ 'select your docType'|translate }}...</md-option>
+
+                    <md-option ng-value="obj.id" ng-repeat="obj in docdata.docType">//obj.name//</md-option>
+
+                </md-select>
+                <div class="alert alert-warning   alert-dismissable " role="alert"
+                     style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                     ng-repeat="(key,val) in errors" ng-if="key == 'docType'">
+
+                    <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label for="">حوزه</label>
+                <md-select name="docZone" ng-model="editDMS.docZone">
+                    <md-option ng-value="">{{ 'select your docZone'|translate }}...</md-option>
+                    <md-option ng-value="obj.id" ng-repeat="obj in docdata.docZone">//obj.name//</md-option>
+                </md-select>
+                <div class="alert alert-warning   alert-dismissable " role="alert"
+                     style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                     ng-repeat="(key,val) in errors" ng-if="key == 'docZone'">
+
+                    <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+            </md-input-container>
+
+        </div>
+
+        <div layout-gt-md="row">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label for="">فرمت</label>
+
+                <md-select name="docFormat" ng-model="editDMS.docFormat">
+                    <md-option ng-value="">{{ 'select your docFormat'|translate }}...</md-option>
+                    <md-option ng-value="obj.id" ng-repeat="obj in docdata.docFormat">
+                        //obj.name//
+                    </md-option>
+                </md-select>
+                <div class="alert alert-warning   alert-dismissable " role="alert"
+                     style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                     ng-repeat="(key,val) in errors" ng-if="key == 'docFormat'">
+
+                    <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label for="">واحد مرتبط</label>
+
+                <md-select name="docRelated" ng-model="editDMS.docRelated">
+                    <md-option ng-value="">{{ 'select your docRelated'|translate }}...</md-option>
+                    <md-option ng-value="obj.id" ng-repeat="obj in docdata.docRelated">
+                        //obj.name//
+                    </md-option>
+                </md-select>
+                <div class="alert alert-warning   alert-dismissable " role="alert"
+                     style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                     ng-repeat="(key,val) in errors" ng-if="key == 'docRelated'">
+                    <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+            </md-input-container>
+        </div>
+
+        <div layout-gt-md="row">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label for="">کد واحد</label>
+
+                <md-select name="docModel" ng-model="editDMS.docModel">
+                    <md-option ng-value="">{{ 'select your docModel'|translate }}...</md-option>
+                    <md-option ng-value="obj.id" ng-repeat="obj in docdata.docModel">
+                        //obj.name//
+                    </md-option>
+                </md-select>
+                <div class="alert alert-warning   alert-dismissable " role="alert"
+                     style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                     ng-repeat="(key,val) in errors" ng-if="key == 'docModel'">
+
+                    <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+            </md-input-container>
+
+            <md-checkbox class="md-block" flex-gt-xs ng-model="editDMS.visible" checked="checked">
+                قابل مشاهده
+            </md-checkbox>
+        </div>
+
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>نام</th>
+                    <th>تاریخ</th>
+                    <th>پیش فرض</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="itm in editDMS.allFiles">
+                    <td>//itm.name//</td>
+                    <td>//itm.date | jalaliDate:'jYYYY/jMM/jDD'//</td>
+                    <td><input type="checkbox" ng-model="itm.isCurr" ng-change="fixCheckCurr(itm.dir)"/></td>
+                    <td><a href="/api/v1/file/upload?q=//itm.dir//">دانلود</a></td>
+                    <td>
+                        <div class="btn btn-xs btn-danger" ng-click="editDMS.allFiles.splice($index,1)"><i
+                                class="fa fa-trash"></i></div>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>
+                        <div class="btn btn-medium btn-primary" ngf-select="upload($files)">
+                            <i ng-if="pleaseWait == false" class="fa fa-plus"></i>
+                            <i ng-if="pleaseWait == true" class="fa fa-spinner fa-spin"></i>
+
+
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="newJob"
+             style="background-color: rgb(60, 162, 224); padding: 4px; cursor: pointer; text-align: center;color:white;padding-top:10px;padding-bottom: 10px; "
+             ng-click="updateDMS(editDMS.id)" class="btn btn-block">ذخیره سند
+        </div>
+
+
+    </div>
+
+
+</div>

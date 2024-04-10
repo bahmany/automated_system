@@ -1,0 +1,72 @@
+{% load translators %}
+<div class="shadower" ng-controller="FirstIntroCtrl">
+    <div layout="column">
+        <div layout="column" style="text-align: center">
+            <h4 style="font-size: 27px;">
+
+انتخاب لوگوی شرکت و آواتار
+            </h4>
+        </div>
+        <md-divider></md-divider>
+        <div layout-gt-sm="row">
+            <div flex="45">
+                <div>
+                    <h3>انتخاب لوگوی شرکت یا گروه</h3>
+                    <md-divider></md-divider>
+                    <p style="text-align: justify">
+در این قسمت برای شرکت خود لوگویی را انتخاب نمایید. توجه داشته باشید لوگوی شما
+                        در محل های زیادی مشاهده خواهد شد و بهتر است لوگو را در سیستم بارگزاری کرده و سپس از امکانات سیستم استفاده نمایید
+                        در تمامی گزارش ها و چاپ ها و آگهی ها لوگوی شما زیبایی صفحاتتان دوچندان خواهد کرد
+                    </p>
+                </div>
+                <div layout="row" layout-align="center center" layout-padding="">
+
+                    {% load img_with_uploader_tags %}
+                    {% ImageWithUploader defaultEmptyAvatarUrl="/static/images/avatar_empty.png" modelName="pic.companyLogo" controllerName="FirstIntroCtrl" imageContainerSize="col-md-4 profile-pic" imageContainerOtherCss="width: 200px;height: 250px;float:none;  background-color: #3e3e3e;" other="data-step='2' data-intro='upload your image'" %}
+
+                </div>
+
+            </div>
+            <span flex="10"></span>
+            <div flex="45">
+                <div>
+                    <h3>انتخاب عکس پروفایل </h3>
+                    <md-divider></md-divider>
+                    <p style="text-align: justify">
+در راهسون عکس پروفایل از اهمیت ویژه ای برخوردار است. عکس شما در محل های مختلفی نمایش پیدا میکند.
+                        در ارسال نامه ، در گردش کار ، در مرور پروفایل و یا امکانات جامعه مجازی عکس شما قرار خواهد گرت
+                        و سایر کاربران نیز راحت تر می توانند با شما ارتباط برقرار کنند.
+                        ضمنا پروفایل شما همراه با همین عکس در سیستم نمایش داده خواهد شد.
+                    </p>
+                </div>
+                <div layout="row" layout-align="center center" layout-padding="">
+                    {% load img_with_uploader_tags %}
+                    {% ImageWithUploader defaultEmptyAvatarUrl="/static/images/avatar_empty.png" modelName="pic.avatar" controllerName="FirstIntroCtrl" imageContainerSize="col-md-4 profile-pic" imageContainerOtherCss="width: 200px;height: 250px;float:none;  background-color: #3e3e3e;" other="data-step='2' data-intro='upload your image'" %}
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools" layout-align="center center">
+
+                <span ng-if="isUploading">
+                    لطفا صبر کنید در حال انتقال فایل
+                    <i class="fa fa-spinner fa-spin"></i>
+                </span>
+
+                <md-button  ng-if="!(isUploading)" class="md-raised md-primary" ng-click="nextAndSave()">
+                    <md-icon md-font-icon="fa fa-arrow-right"></md-icon>
+
+                    تایید و مرحله ی پایانی
+
+                </md-button>
+            </div>
+        </md-toolbar>
+    </div>
+</div>

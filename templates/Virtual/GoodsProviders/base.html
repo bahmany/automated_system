@@ -1,0 +1,69 @@
+{% load translators %}
+<div layout="column" ng-controller="GoodsProvidersCtrl" class="reg_fist_main_container register"
+     style="width: 90%!important;">
+    <h2>ثبت نام تامین کنندگان</h2>
+    <hr>
+
+
+    <div id="div_reg" layout-gt-xs="row">
+
+        <div flex-gt-xs="20" ng-show="currentStep != 0">
+            <div style="    border-left: solid 2px gray;    margin-left: 16px;">
+
+                <div ng-repeat="index in pages_order[typeOfMenu]"
+                     ng-class="{'right-has-border': currentStep ==  menuTitles.indexOf(menuTitles[index])}"
+                     ng-class-odd="odd"
+                     ng-class-even="even"
+                     class="hamkari-left-menu"
+                     ng-click="">
+                    <span>مرحله //$index+1// - </span><span>//menuTitles[index]//</span>
+                </div>
+
+            </div>
+        </div>
+        <div flex-gt-xs>
+            <div>
+                <div ng-show="(currentStep == 0)" class=" right-of-sep">
+                    {% include "Virtual/GoodsProviders/forooshandeh/frm0_SelectType.html" %}
+
+                </div>
+                {% for i in frmNumbs %}
+                    <div ng-show="(currentStep == {{ i }})" class="right-of-sep">
+                        {% include "Virtual/GoodsProviders/forooshandeh/frm"|add:i|add:".html" %}
+                    </div>
+                {% endfor %}
+
+
+            </div>
+            <md-toolbar class="md-hue-1">
+                <div class="md-toolbar-tools">
+                    <md-button class="md-raised md-default"
+                               ng-disabled="(currentStep == 0)"
+                               ng-click="GoToPrevStep()">
+                        مرحله قبل
+                    </md-button>
+                    <span flex></span>
+                    <md-button class="md-raised md-primary"
+                               ng-disabled="(provider.type_of_provider == null)"
+                               ng-click="GoToNextStep()">
+                        مرحله بعد
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+        </div>
+    </div>
+
+    <div id="div_result" style="text-align: center; display: none">
+        <h1>با تشکر از ثبت نام شما</h1>
+        <div>
+            تامین کننده ی گرامی شما به عضویت لیست تامین کنندگان شرکت صنایع **** **** **** در آمده اید
+        </div>
+        <h1 style="    font-weight: bold;    color: green;">//result.extra.gen_code//</h1>
+        <div>کد بالا را یادداشت نمایید - این کد جهت شناسایی شما در سامانه ی های بانک اطلاعاتی ماست</div>
+        <div>با تشکر - واحد بازرگانی
+
+        </div>
+    </div>
+
+</div>

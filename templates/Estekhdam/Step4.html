@@ -1,0 +1,82 @@
+{% load staticfiles %}
+{% load sekizai_tags %}
+{% load i18n %}
+<fieldset>
+    <div class="row">
+        <section class="col col-2" >
+            <label>نام دوره<span style="color: #d12210">(*)</span></label>
+            <label class="input">
+                <input type="text" ng-model="Doreh.WorkshopName">
+            </label>
+        </section>
+        <section class="col col-2">
+            <label>{% trans 'Year of Workshop' %}</label>
+            <label class="input">
+                <input type="text" ng-model="Doreh.YearOfWorkshop" id="txtYearOfWorkshop">
+            </label>
+        </section>
+        <section class="col col-2">
+            <label>{% trans 'Institute' %}</label>
+            <label class="input">
+                <input type="text" ng-model="Doreh.Institute">
+            </label>
+        </section>
+        <section class="col col-2">
+            <label>{% trans 'TimeAmount' %}</label>
+            <label class="input">
+                <input type="text" ng-model="Doreh.TimeAmount">
+            </label>
+        </section>
+        <section class="col col-2">
+            <label>عنوان گواهینامه</label>
+            <label class="input">
+                <input type="text" ng-model="Doreh.HaveCertificate">
+            </label>
+        </section>
+        <section class="col col-2">
+            <label>{% trans 'Kind of Knowing' %}</label>
+            <label class="input">
+                <input type="text" ng-model="Doreh.KindOfKnowing">
+            </label>
+        </section>
+    </div>
+    <section>
+        <label></label>
+        <label class="input">
+            <a class="btn btn-success" ng-click="DorehsAddToList(Doreh)">{% trans 'Add To List' %}<i class="fa fa-plus-square "></i></a>
+        </label>
+    </section>
+    <section>
+        <table class="table-responsive table table-bordered table-striped">
+            <thead>
+            <tr>
+                <td>نام دوره</td>
+                <td>سال برگزاری</td>
+                <td>{% trans 'Institute' %}</td>
+                <td>{% trans 'Time Amount' %}</td>
+                <td>عنوان گواهینامه</td>
+                <td>{% trans 'Kind of Knowing' %}</td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in Estekhdam.Dorehs track by $index">
+                <td>// item.WorkshopName //</td>
+                <td>// item.DateOfWorkshop //</td>
+                <td>// item.Institute //</td>
+                <td>// item.TimeAmount //</td>
+                <td>// item.HaveCertificate //</td>
+                <td>// item.KindOfKnowing //</td>
+                <td><a class="btn btn-default" ng-click="Estekhdam.Dorehs.splice($index,1)">{% trans 'Remove' %}</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7" style="text-align: center" ng-show="!Estekhdam.Dorehs.length">
+                    {% trans 'There is no data' %}
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </section>
+</fieldset>

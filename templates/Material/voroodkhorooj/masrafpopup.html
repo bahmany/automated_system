@@ -1,0 +1,63 @@
+<md-dialog aria-label="Mango (Fruit)" flex="70">
+    <form name="frmPart">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    مصرف
+                </h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row">
+                    <div flex="45">
+                        <md-input-container class="md-block">
+                            <label for="">شماره سند همکاران</label>
+                            <input name="shomarehSanad" type="number"
+                                   ng-model="masraf.hamkaranSanad"
+                                   required>
+                        </md-input-container>
+
+                    </div>
+
+                    <div flex></div>
+
+                    <div flex="45">
+                        <md-input-container class="md-block">
+                            <label for="">میزان</label>
+                            <input name="name" type="number"
+                                   ng-model="masraf.mizan"
+                                   required>
+                        </md-input-container>
+
+                    </div>
+
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="confirmCancel()">
+                انصراف
+            </md-button>
+
+
+            <span flex></span>
+            <md-button ng-show="!(PART.Serial)"
+                       class="md-raised md-primary"
+                       ng-click="confirm()"
+                       ng-disabled="frmPart.$invalid">
+                ثبت
+            </md-button>
+
+
+        </md-dialog-actions>
+
+
+    </form>
+
+
+</md-dialog>

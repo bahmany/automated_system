@@ -1,0 +1,64 @@
+{% load translators %}
+
+<div id="modal_add_new_year" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+
+     ایجاد / ویرایش دوره زمانی و یا سال
+
+                </h4>
+            </div>
+            <form id="frmPostYear" name="frmPostYear">
+                <div class="modal-body">
+                    <h1 class="md-title">
+
+                        لطفا مشخصات دوره زمانی و یا سال تقویم خود را وارد نمایید
+
+                    </h1>
+                    <div layout="column">
+            <div layout-gt-xs="row">
+                <md-input-container flex-gt-xs="45">
+                    <label for="">از تاریخ</label>
+                    <input type="text" class="picker" style="direction: ltr;padding-left: 21px;" ui-mask="9999/99/99"
+                           model-view-value="true"
+                           ng-model="year.startDate" ng-required="true">
+                </md-input-container>
+                <span flex-gt-xs="10"></span>
+                <md-input-container flex-gt-xs="45">
+                    <label for="">تا تاریخ</label>
+                    <input type="text" class="picker" style="direction: ltr;padding-left: 21px;" ui-mask="9999/99/99"
+                           model-view-value="true"
+                           ng-model="year.endDate" ng-required="true">
+                </md-input-container>
+            </div>
+
+            <md-input-container class="md-block">
+                <label for="">عنوان دوره</label>
+                <input type="text" ng-required="true" ng-model="year.title">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">توضیحات</label>
+                <input type="text" ng-required="false" ng-model="year.desc">
+            </md-input-container>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal"
+                            ng-disabled="frmPostYear.$invalid"
+                            ng-click="Post()">ثبت
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<h4>حسن سابقه</h4>
+<hr>
+<form action="" name="frm_frm14">
+
+    <div layout="column">
+
+        <div layout-gt-xs="row">
+
+
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام شرکت ارائه دهنده رضایت نامه</label>
+                    <input type="text" ng-model="provider.frm14.nameSherkat" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تاریخ دریافت رضایتنامه</label>
+                    <input type="text" ng-model="provider.frm14.tarikheDaryaft"                               ui-mask="9999/99/99" dir="ltr"
+>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">موضوع قرارداد فروش / خدمت</label>
+                    <input type="text" ng-model="provider.frm14.mozooGharadad">
+                </md-input-container>
+            </div>
+
+
+        </div>
+
+        <div layout-gt-xs="row">
+            <span flex></span>
+            <md-button class="md-default md-raised"
+                       ng-click="addTofrm('14')"
+                       ng-disabled="frm_frm14.$invalid">
+                اضافه به لیست
+            </md-button>
+        </div>
+
+        <div>
+            <table class="sp-table table table-bordered">
+                <thead>
+                <tr>
+                    <th>نام</th>
+                    <th>تاریخ دریافت</th>
+                    <th>موضوع</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.frm14_list">
+                    <td>//it.nameSherkat//</td>
+                    <td>//it.tarikheDaryaft//</td>
+                    <td>//it.mozooGharadad//</td>
+                    <td>
+                        {% include "Dashboards/Supplement/Registration/Supply/fileViewTdTable.html" with nm="it" %}
+                        <a ng-click="removefrm('7',$index)">حذف</a></td>
+                </tr>
+
+                <tr ng-if="provider.frm14_list.length == 0">
+                    <td colspan="4">
+                        لیست حسن سابقه خالی است
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div>
+        <ul>توضیحات : ارائه مستندات لازم در زمینه رضایت مشتریان پیشین الزامی می باشد
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='14' inputid='1' label="ضمائم" %}
+        </ul>
+    </div>
+    {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm14" %}
+
+
+</form>
+

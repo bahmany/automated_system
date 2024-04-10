@@ -1,0 +1,97 @@
+<div ng-controller="TataaboghCtrl">
+    <md-content>
+
+        {% include "Sales/_share/header.html" with pageName="تطابق نیاز با مشتری" %}
+
+
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="30">
+                <div>
+                    {% load pager_navigator_tags %}
+                    {% pagerNavigatorForSpacial style="text-center" listname="tatboghCustomers" search_ng_model="tatboghCustomersSearchText" PageTo="tatboghCustomersPageTo" %}
+                </div>
+
+                <div>
+                    <div ng-click="tatboghsetTataboghCustomer(tatboghcustomer)"
+                         class="inbox-item"
+                         ng-class-odd="'odd'"
+                         ng-class-even="'even'"
+                         ng-repeat="tatboghcustomer in tatboghCustomers.results">
+                    <span>
+                        //tatboghcustomer.name//-//tatboghcustomer.hamkaranCode//
+
+                    </span>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div flex-gt-xs="70" layout-gt-xs="column" layout-padding="">
+
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>
+                            <md-checkbox ng-model="bindfilter.sath">سطح</md-checkbox>
+                        </th>
+
+                        <th>
+                            <md-checkbox ng-model="bindfilter.temper">تمپر</md-checkbox>
+                        </th>
+                        <th>
+                            <md-checkbox ng-model="bindfilter.arz">عرض</md-checkbox>
+                        </th>
+
+                        <th>
+                            <md-checkbox ng-model="bindfilter.zekhamat">ضخامت</md-checkbox>
+                        </th>
+
+
+                        {#                <th>#}
+                        {#                    <md-checkbox ng-model="bindfilter.tool">طول</md-checkbox>#}
+                        {#                </th>#}
+                        <th>فاکتور</th>
+                        <th>موجودی</th>
+                        <th>در راه</th>
+                    </tr>
+                    </thead>
+
+                    <tbody md-body>
+                    <tr ng-repeat="item in tatabogByCustomer.factors | orderBy: myOrder">
+                        <td>
+                            <span ng-if="item.sath == 2">Stone</span>
+                            <span ng-if="item.sath == 1">Bright</span>
+                        </td>
+                        <td>//item.TEMPER//</td>
+                        <td>//item.arz//</td>
+                        <td>//item.zekhamat//</td>
+                        {#                <td>//item.tool//</td>#}
+                        <td>//item.sumQty | number //</td>
+                        <td>//item.mojoodi | number //</td>
+                        <td>//item.future | number //</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+        {#        <div id="divSelectProfile">#}
+        {##}
+        {#            <md-content layout-padding>#}
+        {#                <div>#}
+        {##}
+        {##}
+        {#                </div>#}
+        {#            </md-content>#}
+        {##}
+        {#        </div>#}
+
+
+    </md-content>
+
+
+</div>

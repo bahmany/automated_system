@@ -1,0 +1,60 @@
+<div ng-controller="UserShareCtrl">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            به اشتراک گذاری آمار
+        </div>
+    </md-toolbar>
+    <md-content class="shadower">
+        <h3>
+            //staticTmpl.name//
+            <small>//staticTmpl.desc//</small>
+
+        </h3>
+
+        <md-list flex>
+            <md-list-item ng-repeat="item in staticTmpl.publishedUsersDetail" ng-click="null">
+                <img class="md-avatar" ng-src="//item.avatar//">
+
+                <div>
+                    <md-checkbox ng-model="item.canEdit" aria-label="Checkbox 1">
+                        مجوز ثبت
+                        - //item.profileName// (//item.chartName//)
+                    </md-checkbox>
+
+                </div>
+
+                <span flex=""></span>
+                <md-button class="md-icon-button" ng-click="removeUser(item)">
+                    <md-icon md-font-icon="fa fa-trash"></md-icon>
+                </md-button>
+                <md-divider></md-divider>
+
+            </md-list-item>
+
+            <md-list-item>
+                <div>
+
+                {% load autocompletePerson_tags %}
+                {% AutocompleteMemberTag modelname="person" %}
+                </div>
+                <div>
+                <md-button class="md-raised" ng-click="addTo(person)">
+                    اضافه به اشتراک
+                </md-button></div>
+
+
+            </md-list-item>
+        </md-list>
+
+
+        <md-toolbar class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span flex></span>
+                <md-button class="md-primary md-raised" ng-click="updateTmpl()">ثبت</md-button>
+
+            </div>
+        </md-toolbar>
+
+
+    </md-content>
+</div>

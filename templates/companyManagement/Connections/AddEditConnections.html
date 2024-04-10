@@ -1,0 +1,84 @@
+{% load translators %}
+
+<form id="add_edit_connections" style="display: none" name="add_edit_connections">
+    <md-toolbar class="md-hue-4">
+        <div class="md-toolbar-tools">
+            ایجاد ارتباط جدید
+        </div>
+
+    </md-toolbar>
+
+    <div layout-padding>
+
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Database Engine</label>
+                <md-select ng-model="Connection.databaseEngine" required>
+                    <md-option value="mssql">
+                        MSSQL
+                    </md-option>
+                    <md-option value="oracle">
+                        Oracle - not implemented
+                    </md-option>
+                    <md-option value="MySQL">
+                        MySql - not implemented
+                    </md-option>
+                    <md-option value="Postgres">
+                        Postgres - not implemented
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Connection Type (MSSQL)</label>
+                <md-select ng-model="Connection.connectionType" required>
+                    <md-option value="ssl">
+                        Secure with SSL
+                    </md-option>
+                    <md-option value="nossl">
+                        Normal - Secure less
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Host Address</label>
+                <input ng-model="Connection.hostAddress">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Port</label>
+                <input ng-model="Connection.hostPort" ng-init="Connection.hostPort='1433'">
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Instance Name</label>
+                <input ng-model="Connection.hostInstanceName">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Username</label>
+                <input ng-model="Connection.username">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Password</label>
+                <input ng-model="Connection.password" type="password">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Database Name</label>
+                <input ng-model="Connection.databaseName">
+            </md-input-container>
+        </div>
+
+
+    </div>
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <span flex></span>
+            <md-button class="md-raised md-default" ng-click="cancel()">انصراف</md-button>
+            <md-button class="md-raised md-primary" ng-click="post()">ذخیره</md-button>
+
+        </div>
+
+    </md-toolbar>
+
+
+    </md-toolbar>
+</form>

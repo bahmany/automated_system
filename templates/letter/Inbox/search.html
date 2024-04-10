@@ -1,0 +1,23 @@
+{% load translators %}
+{% load inbox_tags %}
+
+
+
+<div layout-gt-md="row" ng-show="ShowSearchPanel">
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>{{ 'Seach name'|translate }}</label>
+        <input ng-model="filter.q1" ng-model-options="{debounce: 800}">
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>{{ 'Search other data'|translate }}</label>
+        <input ng-model="filter.q2" ng-model-options="{debounce: 800}">
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>{{ 'Start Date'|translate }}</label>
+        <input ng-model="filter.startdate" class="picker">
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>{{ 'End Date'|translate }}</label>
+        <input ng-model="filter.enddate" class="picker">
+    </md-input-container>
+</div>

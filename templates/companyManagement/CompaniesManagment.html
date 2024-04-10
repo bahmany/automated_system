@@ -1,0 +1,53 @@
+{% load translators %}
+{% load staticfiles %}
+<div class="row" ng-controller="companiesManagmentCtrl" id="companiesManagmentCtrl">
+    <div flex-gt-xs="40" style="float: none;    margin: 0 auto;">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                مدیریت شرکت ها و مجموعه ها
+                <span flex></span>
+
+                <md-button
+                        class="md-fab md-warn md-mini pull-right"
+                        ng-class="{wait: loadingComposeLetter}"
+                        aria-label="Compose"
+                        ng-click="CreateNewCompany()">
+                    <md-tooltip>
+                        {{ 'Create new company'|translate }}
+                    </md-tooltip>
+                    <md-icon md-font-icon="fa fa-plus">
+                    </md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+
+        <div class="shadower">
+
+              <md-progress-linear ng-if="pleasewait" md-mode="indeterminate"></md-progress-linear>
+
+
+            <md-list flex>
+                <md-list-item
+                        class="md-2-line"
+                        ng-class={'default-company':item.default}
+                        {#                            ui-sref="company.profile({ 'companyid': item.id })"#}
+                        ng-click="GoToCompany(item)"
+                        ng-repeat="item in Companies.results track by $index">
+                    <img ng-src="//item.logo//" class="md-avatar"/>
+
+                    <div class="md-list-item-text" layout="column">
+                        <h3>// item.name //
+                            <small class="pull-right">//item.post_date | jalaliDate:'jYYYY/jMM/jDD'//</small>
+                        </h3>
+
+                    </div>
+                </md-list-item>
+
+            </md-list>
+
+
+        </div>
+    </div>
+
+</div>

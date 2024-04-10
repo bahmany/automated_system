@@ -1,0 +1,85 @@
+<div ng-controller="OldHavalehForooshCtrl">
+    <div class="panel">
+        <div class="panel-header md-panel-controls ui-sortable-handle">
+            <h3><i class="fa fa-table" style="padding-top: 10px;"></i>حواله های فروش
+
+                <small>
+                    به دستور مدیرعامل محترم
+                    مقرر گردید تمامی کامنت ها و دستورات تولید زمانی معتبر است که
+                    دکمه تایید آن توسط کارشناسان تولید زده شده باشد و همچنین پس از ارسال به تولید دکمه
+                    اقدام به تولید نیز تایید شده باشد
+
+
+                </small>
+            </h3>
+        </div>
+        <div class="panel-content pagination2 table-responsive" layout="column">
+
+
+            <div layout="row">
+
+                <md-checkbox ng-model="showArchive">نمایش امضا شده ها</md-checkbox>
+
+
+                <input flex type="text" ng-model="searchStr"
+                       ng-model-options="{debounce: 500}"
+                       placeholder="جستجو در تمام فیلدهای حواله تحویل فروش"
+                       style=" height: 30px; font-size: 14px; padding: 3px;">
+                <span flex="10"></span>
+
+                <md-button class="md-button md-raised" ng-if="havales.first" ng-click="gotopage(havales.first)">اولین
+                </md-button>
+                <md-button class="md-button md-raised" ng-if="havales.prev" ng-click="gotopage(havales.prev)">
+                    قبلی
+                </md-button>
+                <md-button class="md-button md-raised" ng-if="havales.next" ng-click="gotopage(havales.next)">بعدی
+                </md-button>
+                <md-button class="md-button md-raised" ng-if="havales.last" ng-click="gotopage(havales.last)">آخرین
+                </md-button>
+            </div>
+
+            <div layout-gt-sm="row" layout-padding="" style="background-color: cadetblue;color: white;">
+                <div flex-gt-xs="">وضعیت</div>
+
+                <div flex-gt-xs="">حواله</div>
+                <div flex-gt-xs="">مشتری</div>
+                <div flex-gt-xs="">صدور</div>
+                <div flex-gt-xs="">کیلو - سفارش</div>
+            </div>
+
+            <div
+                    ng-repeat="item in havales.results"
+                    ng-click=""
+                    layout-padding=""
+                    ui-sref="OldHavalehForooshDetails({hfdid:item._id})"
+                    ng-class-odd="'odd'"
+                    ng-class-even="'even'">
+
+                <div layout-gt-xs="row">
+                    <div flex-gt-xs="">
+                        <span ng-if="item.commentCount != 0"><i class="fa fa-wechat"></i></span>
+                        //item.vaziat//
+                    </div>
+
+                    <div flex-gt-xs="">//item.havalehNo//</div>
+                    <div flex-gt-xs="">//item.customerName//</div>
+                    <div flex-gt-xs="">//item.tarikheSodoor//</div>
+                    <div flex-gt-xs="">//item.mizanAvaliehSefaresh | number//</div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <style>
+        .h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, .h4 .small, .h4 small, .h5 .small, .h5 small, .h6 .small, .h6 small, h1 .small, h1 small, h2 .small, h2 small, h3 .small, h3 small, h4 .small, h4 small, h5 .small, h5 small, h6 .small, h6 small {
+            font-family: Yekan, RobotoDraft, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif !important;
+        }
+    </style>
+
+</div>

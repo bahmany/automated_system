@@ -1,0 +1,162 @@
+<h4>زمینه فعالیت سازندگان</h4>
+<hr>
+<div layout="column">
+
+    <form name="frm20_form">
+
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام محصول</label>
+                    <input type="text" ng-model="provider.frm20.nameMahsool" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">برند تجاری</label>
+                    <input type="text" ng-model="provider.frm20.brand">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">واحد</label>
+                    <input type="text" ng-model="provider.frm20.vahed">
+                </md-input-container>
+            </div>
+
+
+        </div>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">ظرفیت عرضه سالانه</label>
+                    <input type="text" ng-model="provider.frm20.zarfiat">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">مدت گارانتی بر حسب ماه</label>
+                    <input type="text" ng-model="provider.frm20.garantee">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">خدمات پس از فروش بر حسب ماه</label>
+                    <input type="number" ng-model="provider.frm20.khadamMah">
+                </md-input-container>
+            </div>
+
+
+        </div>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">قابلیت ارایه مشاوره فنی در خصوص محصول / خدمت</label>
+                    <input type="number" ng-model="provider.frm20.ghabeliate">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">سابقه صادرات محصول</label>
+                    <input type="text" ng-model="provider.frm20.saderat">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام مرجع اعطا کننده استاندارد یا گواهی تست محصول</label>
+                    <input type="text" ng-model="provider.frm20.marjaa">
+                </md-input-container>
+            </div>
+        </div>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">محل تحویل کالا</label>
+                    <input type="text" ng-model="provider.frm20.mahaleTahvil">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="" layout-align="center center" layout="row">
+                <div ng-show="provider.frm20.zamineh_faaliat"
+                     style="font-size: 12px;    border: 1px solid gainsboro;    padding: 2px;    text-align: center;    background-color: rgb(245, 232, 229);    text-align: center;">
+                    <span style="font-weight: bold">زمینه فعالیت : </span>
+                    //provider.frm20.zamineh_faaliat.name// -
+                    <a href="" ng-click="openZamineh($event)">تغییر</a>
+                </div>
+                <md-button class="md-raised md-default" ng-click="openZamineh($event)"
+                           ng-show="!(provider.frm20.zamineh_faaliat)">
+                    انتخاب زمینه فعالیت ...
+                </md-button>
+
+                
+            </div>
+            
+
+        </div>
+
+
+        <div layout-gt-xs="row">
+            <span flex></span>
+            <md-button ng-click="addTofrm('20')" ng-disabled="frm20_form.$invalid" class="md-raised">
+                اضافه به لیست
+            </md-button>
+        </div>
+    </form>
+    <div>
+        <table class="sp-table table table-bordered">
+            <thead>
+            <tr>
+                <th style="text-align: center">نام محصول</th>
+                <th style="text-align: center">برند تجاری</th>
+                <th style="text-align: center">واحد</th>
+                <th style="text-align: center">ظرفیت</th>
+                <th style="text-align: center">مدت گارانتی</th>
+                <th style="text-align: center">خدمات</th>
+                <th style="text-align: center">مشاوره</th>
+                <th style="text-align: center">صادرات</th>
+                <th style="text-align: center">زمینه فعالیت</th>
+                <th style="text-align: center">محل تحویل</th>
+                <th style="text-align: center">عملیات</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="it in provider.frm20_list">
+                <td style="text-align: center">//it.nameMahsool//</td>
+                <td style="text-align: center">//it.brand//</td>
+                <td style="text-align: center">//it.vahed//</td>
+                <td style="text-align: center">//it.zarfiat//</td>
+                <td style="text-align: center">//it.garantee//</td>
+                <td style="text-align: center">//it.khadamMah//</td>
+                <td style="text-align: center">//it.ghabeliate//</td>
+                <td style="text-align: center">//it.saderat//</td>
+                <td style="text-align: center">//it.zamineh_faaliat.name//</td>
+                <td style="text-align: center">//it.mahaleTahvil//</td>
+                <td style="text-align: center">
+                    {% include "Dashboards/Supplement/Registration/Supply/fileViewTdTable.html" with nm="it" %}
+                    <a ng-click="removefrm('20',$index)">حذف</a>                </td>
+            </tr>
+            <tr ng-if="provider.frm20_list.length == 0">
+                <td colspan="10">
+                    زمینه فعالیتی وارد نشده است
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <md-input-container class="md-block">
+            <label for="">آیا امکان ارسال نمونه تستی وجود دارد ؟</label>
+            <input type="text" ng-model="provider.frm20.canSendNemooneh">
+        </md-input-container>
+    </div>
+        <div>
+        <ul>توضیحات : بروشور ، کاتالوگ و یا سایر مشخصات فنی را آپلود نمایید
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='20' inputid='1' label="ضمائم" %}
+        </ul>
+    </div>
+            {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm20" %}
+</div>

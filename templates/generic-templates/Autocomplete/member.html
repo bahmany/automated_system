@@ -1,0 +1,36 @@
+{% load translators %}
+{#<md-input-container>#}
+<table style="width: 100%">
+    <tr>
+        <td>
+            <md-autocomplete
+                    ng-disabled="false"
+                    md-no-cache="true"
+                    md-selected-item="{{ modelname }}.selectedItem"
+                    md-search-text="{{ modelname }}.searchText"
+                    md-items="item in {{ modelname }}.querySearch({{ modelname }}.searchText)"
+                    md-item-text="item.display"
+                    md-delay="100"
+                    md-min-length="0"
+                    md-floating-label="// ::'{{ caption }}'|translate//">
+                <md-item-template>
+            <span md-highlight-text="{{ modelname }}.searchText"
+                  md-highlight-flags="^i">// item.display //</span>
+                </md-item-template>
+                <md-not-found>
+                    No states matching "// person.searchText //" were found.
+                </md-not-found>
+            </md-autocomplete>
+        </td>
+        <td style="  vertical-align: top;">
+            <md-button class="md-icon-button launch mini" ng-click="{{ modelname }} = {}">
+                <md-icon md-svg-src="static/images/open-iconic-master/svg/x.svg"></md-icon>
+            </md-button>
+
+
+        </td>
+    </tr>
+</table>
+
+{#</md-input-container>#}
+

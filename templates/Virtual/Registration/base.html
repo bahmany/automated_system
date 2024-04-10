@@ -1,0 +1,164 @@
+{% load translators %}
+{% load staticfiles %}
+
+
+<html lang="en" dir="rtl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href={% static "bower_components/angular-material/angular-material.min.css" %}>
+    <link rel="stylesheet" href={% static "images/open-iconic-master/font/css/open-iconic.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/font-awesome/css/font-awesome.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/sweetalert/sweetalert.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/ckeditorAngularJs/ng-ckeditor.css" %}>
+    <link rel="stylesheet" href={% static "styles/hamkari/my.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/angular-ui-tree-master/dist/angular-ui-tree.min.css" %}>
+
+</head>
+
+<body
+        ng-app="RahsoonApp"
+        ng-cloak
+        ng-controller="loginController"
+        class="reg-login-body"
+        layout="column"
+        layout-align="center center">
+
+
+<div class="reg_fist_main_container register">
+    <form name="frmReg" id="frmReg" ng-submit="doRegister()">
+        <div layout="column">
+            <div layout="row">
+                <p class="help">
+                    <md-icon md-font-icon="fa fa-info-circle"
+                             style="    font-size: 24px;    color: rgb(97, 58, 0);">
+                    </md-icon>
+                    ثبت نام <br/>
+                    در این قسمت می توانید در سامانه همکاران ما ثبت نام نمایید <br/>
+                    *
+                    می بایست ابتدا ثبت نام نموده و پس از یادداشت نموده نام کاربری و رمز عبور خود اقدام
+                    به تکمیل پروفایل خود نمایید
+
+
+                </p>
+            </div>
+            <div ng-if="errors.__all__" style="color: red!important;">
+                <p ng-repeat="item in errors.__all__">//item|translate}}</p>
+            </div>
+            <md-input-container class="md-block" flex-gt-sm id="secStartYear">
+                <label>نام کاربری</label>
+                <input type="text"
+                       style="direction: ltr"
+                       ng-model="loginReg.username"
+                       id="username"
+                       name="username"
+                       required>
+
+                <div ng-messages="errors.username">
+                    <div ng-repeat="it in errors.username" ng-message="required">//it//</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm id="secStartYear">
+                <label>رمز عبور</label>
+                <input type="password"
+                       style="direction: ltr"
+                       ng-model="loginReg.password"
+                       id="password"
+                       name="password"
+                       required>
+
+                <div ng-messages="errors.password">
+                    <div ng-repeat="it in errors.password" ng-message="required">//it//</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm id="secStartYear">
+                <label>تکرار رمز عبور</label>
+                <input type="password"
+                       style="direction: ltr"
+                       ng-model="loginReg.passwordConfirm"
+                       id="passwordConfirm"
+                       name="passwordConfirm"
+                       compare-to="loginReg.password"
+                       required>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm id="secStartYear">
+                <label>ایمیل</label>
+                <input type="email"
+                       ng-model="loginReg.email"
+                       style="direction: ltr"
+                       id="email"
+                       name="email"
+                       required>
+
+                <div ng-messages="errors.email">
+                    <div ng-repeat="it in errors.email" ng-message="required">//it//</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm id="secStartYear">
+                <label>تکرار ایمیل</label>
+                <input type="email"
+                       ng-model="loginReg.emailConfirm"
+                       style="direction: ltr"
+                       id="emailConfirm"
+                       name="emailConfirm"
+                       compare-to="loginReg.email"
+
+                       required>
+            </md-input-container>
+        </div>
+        <div layout="column" layout-gt-sm="row" layout-align="end center">
+
+            {{ form.captcha }}
+
+            <a class="btn" ng-click="refreshCaptcha()">
+                <i class="fa fa-refresh"></i>
+            </a>
+
+            <div flex></div>
+
+            <md-button
+                    ng-disabled="frmReg.$invalid"
+                    type="submit"
+                    id="btn_submit"
+                    class="md-raised md-primary"
+{#                    ng-click="doRegister()"#}
+                    >
+                ثبت نام
+            </md-button>
+
+        </div>
+        <div>
+            <div ng-messages="errors.captcha" style="color: red!important;">
+                <p ng-repeat="it in errors.captcha">//it//</p>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script src={% static "bower_components/jquery/jquery-1.11.3.min.js" %}></script>
+<script src={% static "bower_components/jquery-ui/ui/minified/jquery-ui.min.js" %}></script>
+<script src={% static "bower_components/angular/angular.min.js" %}></script>
+{#<script src={% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}></script>#}
+<script src={% static "bower_components/angular/angular-animate.min.js" %}></script>
+<script src={% static "bower_components/angular/angular-aria.min.js" %}></script>
+<script src={% static "bower_components/angular/angular-messages.min.js" %}></script>
+<script src={% static "bower_components/angular/angular-route.min.js" %}></script>
+<script src={% static "bower_components/angular-material/angular-material.min.js" %}></script>
+
+<script src={% static "bower_components/ui-router/release/angular-ui-router.min.js" %}></script>
+<script src={% static "bower_components/angular-dragdrop-master/src/angular-dragdrop.js" %}></script>
+<script src={% static "bower_components/angular-ui-tree-master/dist/angular-ui-tree.min.js" %}></script>
+<script src={% static "bower_components/ocLazyLoad/ocLazyLoad.min.js" %}></script>
+<script src={% static "bower_components/sweetalert/sweetalert.min.js" %}></script>
+<script src={% static "bower_components/angular-translate/angular-translate.js" %}></script>
+<script src={% static "bower_components/angular-translate-loader-url/angular-translate-loader-url.js" %}></script>
+<script src={% static "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js" %}></script>
+
+<script src={% static "virtual/jobs.json.js" %}></script>
+
+<script src={% static "virtual/app.js" %}></script>
+
+
+</body>
+
+</html>

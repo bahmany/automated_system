@@ -1,0 +1,66 @@
+<div ng-controller="MorekhasiSaatiEntezamatCtrl" class="shadower">
+    <h5 md-truncate>مرخصی های ساعتی جهت تایید انتظامات</h5>
+    <div class="shadower">
+        <form ng-submit="getlist()">
+            <div layout="row" layout-align="center center">
+                <div flex-gt-lg="25" flex-lt-lg="50">
+                    <md-input-container>
+                        <label>تاریخ مورد نظر</label>
+                        <input ng-model="dateofmorekhasi" required
+                               mask="1499/99/99"
+                               dir="ltr"
+                               placeholder="مثال 1400/01/01"
+                               style="direction: ltr!important;">
+                    </md-input-container>
+                    <md-button type="submit" class="md-primary md-raised" ng-click="getlist()">فراخوانی</md-button>
+                </div>
+                <div flex layout-padding="">
+
+                </div>
+
+            </div>
+        </form>
+        <div>
+            <table class="table mini table-bordered table-striped">
+                <thead>
+                <tr>
+                    <td>کد پرسنلی</td>
+                    <td>نام</td>
+                    <td>سمت</td>
+                    <td>ساعت شروع</td>
+                    <td>ساعت پایان</td>
+                    <td>میزان</td>
+                    <td>رفت</td>
+                    <td>برگشت</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in result track by $index">
+                    <td>//item.exp.pos_vahede_darkhat.personnel_code//</td>
+                    <td>//item.exp.pos_vahede_darkhat.profileName//</td>
+                    <td>//item.exp.pos_vahede_darkhat.chartName//</td>
+                    <td>//item.exp.az//</td>
+                    <td>//item.exp.taa//</td>
+                    <td>//item.exp.mizan//</td>
+                    <td>
+                        <button ng-show="!(item.exp.exit_confirm)" ng-click="entezamat_btn(item,1, $index)">خارج شد</button>
+                        <span ng-show="item.exp.exit_confirm">//item.exp.exit_confirm_date | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</span>
+                    </td>
+                    <td>
+                        <button ng-show="!(item.exp.comeback_confirm)" ng-click="entezamat_btn(item,2, $index)">برگشت</button>
+                        <span ng-show="item.exp.comeback_confirm">//item.exp.comeback_confirm_date | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</span>
+                    </td>
+                </tr>
+
+                <tr ng-show="result.length == 0">
+                    <td colspan="8" style="text-align: center">
+                        مرخصی برای امروز صادر نشده است
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

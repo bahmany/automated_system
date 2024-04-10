@@ -1,0 +1,66 @@
+{% load translators %}
+<div class="shadower" ng-controller="FirstIntroCtrl">
+    <div layout="column">
+        <div layout="column" style="text-align: center">
+            <h4 style="font-size: 27px;">
+                انتخاب نام و توضیحاتی درباره شرکت یا گروه
+
+            </h4>
+        </div>
+        <md-divider></md-divider>
+        <div>
+            <h3>انتخاب نام شرکت</h3>
+            <md-divider></md-divider>
+            <p style="text-align: justify">
+
+                یکی از مهمترین قسمت های راهسون انتخاب نام شرکت می باشد. نام شرکت تمامی اعضای گروه را در کنار هم جمع
+                میکند. نام انتخابی شما در راهسون قابل جستجو بوده
+                و در صورتی که شما اجازه دهید قابل مشاهده خواهد بود.
+
+                در این قسمت همچنین می توانید اطلاعات مفیدی درباره ی شرکتتان نیز وارد نمایید.
+                این اطلاعات و معرفینامه در قسمت جذب و همکاری توسط مراجعینی که عضو راهسون نیستند مشاهده خواهد شد.
+
+
+            </p>
+        </div>
+
+        <div>
+            <md-input-container class="md-block">
+                <label for=""> نام شرکت / گروه </label>
+                <input type="text" ng-model="inf.name" id="txtName" required md-autofocus>
+
+            </md-input-container>
+
+            <textarea ckeditor="publicEditorOptions"
+                      ng-model="inf.intro">
+                            </textarea>
+        </div>
+
+
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools" layout-align="center center">
+
+                <span ng-if="isUploading">
+                    لطفا صبر کنید در حال انتقال فایل
+                    <i class="fa fa-spinner fa-spin"></i>
+                </span>
+
+                <md-button class="md-raised md-primary" ng-click="saveCompanyNameAndExp()">
+                    <md-icon md-font-icon="fa fa-arrow-right"></md-icon>
+
+تایید و مرحله ی بعدی
+
+                </md-button>
+            </div>
+        </md-toolbar>
+    </div>
+
+    <script>
+        $(function () {
+
+            $("#txtName").focus();
+        })
+
+
+    </script>
+</div>

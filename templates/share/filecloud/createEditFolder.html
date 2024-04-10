@@ -1,0 +1,48 @@
+{% load translators %}
+{% load staticfiles %}
+<form name="editCreateForm">
+    <md-input-container class="md-block">
+        <label for="">شاخه بالایی</label>
+        <md-select class="input-sm" id="parentFolder" required
+                   ng-model="fileFolder.parentFolder">
+
+            <md-option value="">
+                --شاخه اصلی--
+                //item.name//
+            </md-option>
+            <md-option ng-repeat="item in listFileFolders" ng-value="item.id">
+                //item.name//
+            </md-option>
+        </md-select>
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label for="selectPublic">{{ 'Privacy'|translate }}</label>
+        <md-select class="input-sm" id="selectPublic" ng-model="fileFolder.privacy">
+            <md-option value="">
+                خصوصی
+            </md-option>
+            <md-option value=1>
+                خصوصی
+            </md-option>
+            <md-option value=2>
+                عمومی
+            </md-option>
+            <md-option value=3>
+                عمومی در شرکت جاری
+            </md-option>
+        </md-select>
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label for="FolderName">{{ 'Name'|translate }}</label>
+        <input ng-model="fileFolder.name" required>
+    </md-input-container>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span flex></span>
+            <md-button ng-disabled="editCreateForm.$invalid" class="md-raised md-primary" ng-click="PostFolder()">ذخیره
+            </md-button>
+            <md-button class="md-raised" ng-click="CancelFolderEdit()">انصراف
+            </md-button>
+        </div>
+    </md-toolbar>
+</form>

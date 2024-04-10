@@ -1,0 +1,94 @@
+<md-dialog aria-label="Mango (Fruit)" flex="70">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                ویرایش یا ایجاد مذاکره
+
+                با
+                //Conv.name//-//Conv.hamkaranCode//
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <div>
+        <div>
+            {% load pager_navigator_tags %}
+            {% pagerNavigator style="text-center" listname="Customers" search_ng_model="CustomersSearchText" PageTo="CustomersPageTo" %}
+        </div>
+        <md-list flex>
+            <div style="max-height: 200px; overflow-y: scroll">
+                <md-list-item ng-click="setCustomer(customer)" ng-class-odd="'odd'"
+                              ng-class-even="'even'"
+                              class="noright" ng-repeat="customer in Customers.results">
+                    <p>
+                        //customer.name//-//customer.hamkaranCode//
+
+                    </p>
+
+
+                </md-list-item>
+
+            </div>
+        </md-list>
+
+    </div>
+
+
+    <form name="frmAddConv">
+        {#        <div style="max-height: 200px; overflow-y: scroll;">#}
+        {#            <div#}
+        {#                    ng-repeat="customer in Customers.results track by $index"#}
+        {#                    ng-class-odd="'odd'" ng-class-even="'even'"#}
+        {##}
+        {#                    ng-click="setCustomer(customer)">#}
+        {#                //customer.name//-//customer.hamkaranCode//#}
+        {#            </div>#}
+        {#        </div>#}
+        {#        <div layout-gt-sm="row">#}
+        {#            <div layout="column" flex-gt-sm="40">#}
+        {#                <md-input-container class="md-block">#}
+        {#                    <label for="">جستجوی مشتریان</label>#}
+        {#                    <input type="search" ng-model="searchCustomers" ng-model-options="{debounce: 500}">#}
+        {#                </md-input-container>#}
+        {#                <div style="max-height: 200px;min-width: 300px; overflow-y: scroll">#}
+        {##}
+        {#                </div>#}
+        {##}
+        {#            </div>#}
+        {#            <div flex-gt-sm="10">#}
+        {##}
+        {#            </div>#}
+        {##}
+        {#            <div layout="column" flex-gt-sm="40">#}
+        {##}
+        {#                <md-input-container class="md-block">#}
+        {#                    <label for="">نام مشتری</label>#}
+        {#                    <input type="text" ng-model="Conv.CustomerName" required>#}
+        {#                </md-input-container>#}
+        {#                <md-input-container class="md-block">#}
+        {#                    <label for="">کد مشتری</label>#}
+        {#                    <input type="text" ng-model="Conv.CustomerID">#}
+        {#                </md-input-container>#}
+        {##}
+        {#            </div>#}
+        {##}
+        {##}
+        {#        </div>#}
+
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="confirm()" ng-disabled="frmAddConv.$invalid">
+                ثبت
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="confirmCancel()">
+                انصراف
+            </md-button>
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

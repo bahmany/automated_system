@@ -1,0 +1,123 @@
+<div ng-controller="RialSaziAsaanBazShooEbtedayeDorehCtrl">
+    <div class="spacer">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h4>ریالی سازی ابتدای دوره آسان باز شو
+
+                </h4>
+
+            </div>
+        </md-toolbar>
+        <table id="divTableAsaanBazSho" style="text-align: right">
+
+        </table>
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h4> قیمت گذاری انبوه
+                </h4>
+            </div>
+        </md-toolbar>
+
+        <div dir="ltr">format : PartCode+space+qty+space+rial+Enter</div>
+        <div class="input-group mb-3" style="height: 300px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">متن های کپی شده</span>
+            </div>
+            <textarea dir="ltr" name="" id="" cols="30" rows="10"
+                      class="form-control" aria-label="With textarea"
+                      ng-model="bulkInsert"></textarea>
+        </div>
+
+
+    </div>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout="row">
+            <span flex></span>
+            <md-button
+                    loading="در حال محاسبه ..." notloading="ذخیره و اعمال" disableonrequest
+
+                    ng-click="postBulk()" class="md-raised">
+            </md-button>
+        </div>
+    </md-toolbar>
+
+
+{#    <div class="row">#}
+{#        <div class="col-12">#}
+{#            <div class="card">#}
+{#                <div class="card-body">#}
+{#                    <h1>ریالی سازی ابتدای دوره آسان باز شو</h1>#}
+{#                    <p class="docs-lead">#}
+{##}
+{#                    </p>#}
+{#                    <p>#}
+{##}
+{#                    </p>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#            <div class="card">#}
+{#                <div class="card-body">#}
+{#                    <h4>جدول موجودی درب های آسان باز شو</h4>#}
+{##}
+{#                    <table id="divTable77" style="text-align: right">#}
+{##}
+{#                    </table>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="card">#}
+{#                <div class="card-body">#}
+{#                    <h4>#}
+{##}
+{#                    </h4>#}
+{##}
+{#                    <table id="divTableAsaanBazSho" style="text-align: right">#}
+{##}
+{#                    </table>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="card">#}
+{#                <div class="card-body">#}
+{#                    <h4>#}
+{#                        قیمت گذاری انبوه#}
+{#                    </h4>#}
+{#                    <div dir="ltr">format : PartCode+space+qty+space+rial+Enter</div>#}
+{#                    <div class="docs-example">#}
+{#                        <div class="input-group mb-3" style="height: 300px;">#}
+{#                            <div class="input-group-prepend">#}
+{#                                <span class="input-group-text">متن های کپی شده</span>#}
+{#                            </div>#}
+{#                            <textarea dir="ltr" name="" id="" cols="30" rows="10"#}
+{#                                      class="form-control" aria-label="With textarea"#}
+{#                                      ng-model="bulkInsert"></textarea>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <nav class="navbar navbar-light bg-light justify-content-between"#}
+{#                         style="background-color: #e3f2fd;">#}
+{#                        <a class="navbar-brand"></a>#}
+{#                        <md-button#}
+{#                                loading="در حال محاسبه ..." notloading="ذخیره و اعمال" disableonrequest#}
+{##}
+{#                                type="md-button" ng-click="postBulk()" class="btn btn-brand btn-behance">#}
+{#                            <i class="fa fa-save"></i><span>ذخیره و اعمال</span>#}
+{#                        </md-button>#}
+{#                    </nav>#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+
+    {#    <div>#}
+    {#        <h3>ارسال قیمت گذاری انبود</h3>#}
+    {#        <div>format : PartCode+space+qty+space+rial</div>#}
+    {#    </div>#}
+    {#    <textarea name="" id="" cols="30" rows="10" ng-model="bulkInsert">#}
+    {#    </textarea>#}
+
+
+</div>

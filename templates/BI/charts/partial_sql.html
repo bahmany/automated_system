@@ -1,0 +1,284 @@
+<md-content class="md-padding">
+    <div class="shadower" ng-if="chart.details.sql">
+
+
+        <div style="padding: 5px; margin: 5px; border: 1px solid lightgrey; border-radius: 5px;">
+            <md-checkbox ng-model="chart.details.sql.group" aria-label="No Ink Effects"
+                         >
+                Grouping Activation
+            </md-checkbox>
+            <md-divider></md-divider>
+
+            <div layout="row">
+                <div flex="35"
+                     style="max-height: 200px; overflow-x: hidden; overflow-y: scroll; background-color: #dcdcdc">
+                    <div style="background-color: #0b2e13; padding: 6px; margin: 6px; font-size: 12px; color: lightgrey">
+                        all fields
+                    </div>
+                    <div ng-repeat="ff in chart.details.sql.table_spec"
+                         style="padding: 3px; border-bottom: 1px solid lightgrey">
+                        <md-checkbox style="margin-top: 0;margin-bottom: 0;"
+                                     ng-model="ff.is_selected_for_group"
+                                     aria-label="No Ink Effects">
+                            <span style="font-size: 12px; color: black">  //ff.COLUMN_NAME// - </span>
+                            <span
+                                    style="font-size: 12px; color: gray">(//ff.DATA_TYPE//)</span>
+                        </md-checkbox>
+                    </div>
+                </div>
+
+                <div flex="5">
+
+                </div>
+
+                <div flex
+                     ng-if="chart.details.sql.table_spec.length > 0"
+                     style="max-height: 200px; overflow-x: hidden; overflow-y: scroll; background-color: #eaf1e9">
+                    <div style="background-color: #0b2e13; padding: 6px; margin: 6px; font-size: 12px; color: lightgrey">
+                        selected fields
+                    </div>
+                    <div layout="row"
+                         style="padding: 6px; border-bottom: 1px solid lightgrey; font-size: 12px;"
+                         ng-init="ff.order = !(ff.order) ? $index+1 : ff.order "
+                         ng-repeat="ff in chart.details.sql.table_spec | filter:{is_selected_for_group:true} | orderBy:'order'">
+                        <div>//ff.COLUMN_NAME//</div>
+                        <div style="color: gray; font-size: 11px; padding-left: 5px; padding-right: 5px;"
+                             dir="ltr">
+                            (order : //ff.order//)
+                        </div>
+                        <div flex>
+
+                        </div>
+                        <div style="font-size: 12px;">
+                            <a ng-click="down(ff, $index)" style="padding: 5px; margin: 5px">down</a>|
+                            <a ng-click="up(ff, $index)" style="padding: 5px; margin: 5px">up</a> |
+                            <label style="padding: 5px; margin: 5px">Initiator <input type="checkbox"
+                                                                                      ng-model="ff.is_initiator"></label>
+                            |
+
+                            <input type="text" ng-model="ff.alias" placeholder="alias">
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div style="padding: 5px; margin: 5px; border: 1px solid lightgrey; border-radius: 5px;">
+            <md-checkbox ng-model="chart.details.sql.filter" aria-label="No Ink Effects"
+                         >
+                Filter Activation
+            </md-checkbox>
+            <md-divider></md-divider>
+
+            <div layout="row">
+                <div flex="35"
+                     style="max-height: 200px; overflow-x: hidden; overflow-y: scroll; background-color: #dcdcdc">
+                    <div style="background-color: #0b2e13; padding: 6px; margin: 6px; font-size: 12px; color: lightgrey">
+                        all fields
+                    </div>
+                    <div ng-repeat="ff in chart.details.sql.table_spec"
+                         style="padding: 3px; border-bottom: 1px solid lightgrey">
+                        <md-checkbox style="margin-top: 0;margin-bottom: 0;"
+                                     ng-model="ff.is_selected_for_filter"
+                                     aria-label="No Ink Effects">
+                            <span style="font-size: 12px; color: black">  //ff.COLUMN_NAME// - </span>
+                            <span
+                                    style="font-size: 12px; color: gray">(//ff.DATA_TYPE//)</span>
+                        </md-checkbox>
+                    </div>
+                </div>
+
+                <div flex="5">
+
+                </div>
+
+                <div flex
+                     ng-if="chart.details.sql.table_spec.length > 0"
+                     style="max-height: 200px; overflow-x: hidden; overflow-y: scroll; background-color: #eaf1e9">
+                    <div style="background-color: #0b2e13; padding: 6px; margin: 6px; font-size: 12px; color: lightgrey">
+                        selected fields
+                    </div>
+                    <div layout="row"
+                         style="padding: 6px; border-bottom: 1px solid lightgrey; font-size: 12px;"
+                         ng-repeat="ff in chart.details.sql.table_spec | filter:{is_selected_for_filter:true}"
+                         ng-init="get_distinct_value(ff)">
+                        <div>//ff.COLUMN_NAME//</div>
+                        <div style="color: gray; font-size: 11px; padding-left: 5px; padding-right: 5px;"
+                             dir="ltr">
+                            (order : //ff.DATA_TYPE//)
+                        </div>
+                        <div flex
+                             ng-if="ff.DATA_TYPE == 'varchar' || ff.DATA_TYPE == 'nvarchar' || ff.DATA_TYPE == 'char'">
+                            <div>
+                                <div ng-repeat="topping in ff.available_values">
+                                    <label>
+                                        <input type="checkbox" ng-model="topping.checked">
+                                        //topping[ff.COLUMN_NAME]// </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div flex
+                             ng-if="ff.DATA_TYPE == 'int' || ff.DATA_TYPE == 'decimal' || ff.DATA_TYPE == 'bigint' || ff.DATA_TYPE == 'decimal'">
+                            <div>
+                                <select ng-model="ff.numerial_filter_type">
+                                    <option value=1>مساوی</option>
+                                    <option value=2>بزرگتر</option>
+                                    <option value=3>کوچکتر</option>
+                                    <option value=4>بین</option>
+                                </select>
+
+                                <input type="number" ng-model="ff.value" style="width: 60px">
+                                <span ng-if="(ff.numerial_filter_type ==4)">تا</span>
+                                <input ng-if="(ff.numerial_filter_type ==4)" type="number"
+                                       ng-model="ff.value_to" style="width: 60px">
+
+                            </div>
+                        </div>
+                        <div flex ng-if="ff.DATA_TYPE == 'datetime'">
+                            <div>
+                                <input dir="ltr" type="text" mask="9999/19/39" ng-model="ff.value"
+                                       style="width: 100px">
+                                <span>تا</span>
+                                <input dir="ltr" type="text" mask="9999/19/39" ng-model="ff.value_to"
+                                       style="width: 100px">
+
+                            </div>
+                        </div>
+
+                        <div style="font-size: 12px;">
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div style="padding: 5px; margin: 5px; border: 1px solid lightgrey; border-radius: 5px;">
+            <md-checkbox ng-model="chart.details.sql.operation" aria-label="No Ink Effects">
+                Operation Activation
+            </md-checkbox>
+            <md-divider></md-divider>
+
+            <div layout="row">
+                <div flex="35"
+                     style="max-height: 200px; overflow-x: hidden; overflow-y: scroll; background-color: #dcdcdc">
+                    <div style="background-color: #0b2e13; padding: 6px; margin: 6px; font-size: 12px; color: lightgrey">
+                        all fields
+                    </div>
+                    <div ng-repeat="ff in chart.details.sql.table_spec"
+                         style="padding: 3px; border-bottom: 1px solid lightgrey">
+                        <md-checkbox style="margin-top: 0;margin-bottom: 0;"
+                                     ng-model="ff.is_selected_for_operation"
+                                     aria-label="No Ink Effects">
+                            <span style="font-size: 12px; color: black">  //ff.COLUMN_NAME// - </span>
+                            <span
+                                    style="font-size: 12px; color: gray">(//ff.DATA_TYPE//)</span>
+                        </md-checkbox>
+                    </div>
+                </div>
+
+                <div flex="5">
+
+                </div>
+
+                <div flex
+                     ng-if="chart.details.sql.table_spec.length > 0"
+                     style="max-height: 200px; overflow-x: hidden; overflow-y: scroll; background-color: #eaf1e9">
+                    <div style="background-color: #0b2e13; padding: 6px; margin: 6px; font-size: 12px; color: lightgrey">
+                        selected fields
+                    </div>
+                    <div layout="row"
+                         style="padding: 6px; border-bottom: 1px solid lightgrey; font-size: 12px;"
+                         ng-repeat="ff in chart.details.sql.table_spec | filter:{is_selected_for_operation:true}">
+                        <div>//ff.COLUMN_NAME//</div>
+                        <div style="color: gray; font-size: 11px; padding-left: 5px; padding-right: 5px;"
+                             dir="ltr">
+                            (order : //ff.DATA_TYPE//)
+                        </div>
+                        <div flex
+                             ng-if="ff.DATA_TYPE == 'varchar' || ff.DATA_TYPE == 'nvarchar' || ff.DATA_TYPE == 'char'">
+                            <div>
+                                <select ng-model="ff.operation_type">
+                                    <option value=1>count</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div flex
+                             ng-if="ff.DATA_TYPE == 'int' || ff.DATA_TYPE == 'decimal' || ff.DATA_TYPE == 'bigint' || ff.DATA_TYPE == 'decimal'">
+                            <div>
+                                <select ng-model="ff.operation_type">
+                                    <option value=1>sum</option>
+                                    <option value=2>max</option>
+                                    <option value=3>min</option>
+                                    <option value=4>count</option>
+                                    <option value=5>avg</option>
+                                </select>
+                            </div>
+                            |
+                            <input type="text" ng-model="ff.alias" placeholder="alias">
+
+                        </div>
+
+
+                        <div style="font-size: 12px;">
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div>
+            <div style="padding: 4px; margin: 4px; border: 1px solid lightgrey">
+                <md-button class="md-raised" ng-click="test_data()">
+                    فراخوانی تستی داده ها
+                </md-button>
+
+            </div>
+            <div layout="row">
+
+                <div flex="45">
+                    <div dir="ltr" style="text-align: left; ">
+                                            <textarea ui-codemirror="editorOptionsSql"
+                                                      ng-model="chart.details.sql.script.sql">
+                                </textarea>
+                    </div>
+                </div>
+                <div flex=""></div>
+                <div flex="45">
+                    <div id="tbl77"
+                         style="max-height: 300px; overflow-y: scroll; overflow-x: scroll;"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">
+        <div layout="row">
+
+            <md-button class="md-raised" ng-click="save()">
+                ذخیره
+            </md-button>
+        </div>
+    </md-toolbar>

@@ -1,0 +1,52 @@
+<div class="row" id="alert-box" style="text-align: justify; line-height: normal">
+    همکار / تامین کننده گرامی
+    <br>
+    در صورتی که با شرکت صنایع **** توان **** بعنوان تامین کننده همکاری می نمایید ، خواهشمند است
+    اقدام به
+    تکمیل فرم
+    زیر نمایید و پس از تکمیل فرم آن را در همین صفحه آپلود نمایید
+    <br>
+    <div style="text-align: left">
+        <br>
+        با سپاس
+        <br>
+        واحد بازرگانی
+
+    </div>
+</div>
+
+<h3>لطفا نوع همکاری خود را مشخص نمایید</h3>
+<md-input-container class="md-block">
+    <label for="">نوع شرکت</label>
+    <md-select ng-model="provider.type_of_provider">
+        <md-option value="فروشنده">
+            فروشنده
+        </md-option>
+        <md-option value="تامین کننده خدماتی">
+            تامین کننده خدماتی
+        </md-option>
+        <md-option value="سازنده">
+            سازنده
+        </md-option>
+    </md-select>
+</md-input-container>
+
+<div ng-if="provider.type_of_provider != null">
+    <div>
+        <ul style="    list-style-type: arabic-indic;">    <h3>مراحل پیش روی شما : </h3>
+
+            <li style="padding-right: 15px; margin-bottom: 15px;" ng-repeat="index in pages_order[typeOfMenu]">
+             <span>                تکمیل //menuTitles[index]//
+</span>
+                <div style="    margin: 3px;
+    padding: 5px;
+    background-color: #e0e0e0;
+    border-radius: 6px;
+    font-size: 12px;">
+                    <i class="fa fa-question" style="color: white; padding-right: 10px; padding-left: 10px; "></i>
+                    //menuTitlesExp[index]//</div>
+
+            </li>
+        </ul>
+    </div>
+</div>

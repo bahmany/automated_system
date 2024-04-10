@@ -1,0 +1,97 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ورود یا ثبت نام </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static "login/styles/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "login/styles/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="{% static "login/styles/form-elements.css" %}">
+    <link rel="stylesheet" href="{% static "login/styles/style.css" %}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="{% static "login/scripts/jquery-1.11.1.min.js" %}"></script>
+    <script src="{% static "login/scripts/jquery.validate.min.js" %}"></script>
+    <script src="{% static "login/scripts/additional-methods.min.js" %}"></script>
+    <script src="{% static "login/scripts/bootstrap.min.js" %}"></script>
+    <script src="{% static "login/scripts/jquery.backstretch.min.js" %}"></script>
+    <script src="{% static "login/scripts/scripts.js" %}"></script>
+
+
+</head>
+
+<body>
+
+
+<div class="top-content">
+    <div class="inner-bg">
+        <div class="container"  style=" background-color: rgba(250, 247, 251, 0.95); padding: 15px;">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1>
+سامانه جامع هوشمند مهندسی ساخت و تولید                    </h1>
+                    <div class="description">
+                        <p  style="direction: rtl">
+اتوماسیون اداری ، مدیریت فرآیندها ، مدیریت اسناد ، مدیریت هلدینگ ، جامعه مجازی و ...
+تولید شده در ایران بزرگ
+                            <br>
+
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+{% include "authentication/logins/Special_Vezarat_loginPartial.html" %}
+
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="footer-border">
+
+                </div>
+                <p>تولید شده توسط
+                    <a href="http://rahsoon.com" target="_blank"><strong>تیم راهسون</strong></a>
+                    <i class="fa fa-smile-o"></i>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+<!--[if lt IE 10]>
+            <script src="{% static "login/scripts/placeholder.js" %}"></script>
+        <![endif]-->
+
+
+</body>
+
+
+
+</html>

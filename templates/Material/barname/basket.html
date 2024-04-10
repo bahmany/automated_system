@@ -1,0 +1,116 @@
+<md-dialog aria-label="Mango (Fruit)" flex="70">
+    <form name="frmPart">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    سبد تولید
+                </h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <table class="table mini table-bordered table-striped " dir="ltr"
+                       ng-init="order.forDate= '{{ serverdate }}' ">
+                    <thead>
+                    <tr>
+                        <th>تاریخ اقدام به تولید</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td><input type="text" ng-model="order.forDate" style="width: 200px;"
+                                   placeholder="13xx/xx/xx xx:xx:xx"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table mini table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>الویت</th>
+                        <th>بارکد</th>
+                        <th>پارت کد</th>
+                        <th>آدرس</th>
+                        <th>باقیمانده</th>
+                        <th>میزان تولید</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="barcode in order.items  track by $index " ng-init="barcode.priority = $index+1">
+                        <td>
+                            <input type="number" required ng-model="barcode.priority">
+                        </td>
+                        <td>//barcode.barcode//</td>
+                        <td>//barcode.Code//</td>
+                        <td>//barcode.location//</td>
+                        <td>//barcode.baghimandeh//</td>
+                        <td>
+                            <input type="number" required ng-model="barcode.ersal_be_tolid"
+                                   ng-init="barcode.ersal_be_tolid = barcode.baghimandeh">
+                            <div ng-repeat="i in barcode.error">
+                                //i//
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div>
+                <div class="md-block">
+                    <md-button class="md-raised md-primary" ng-click="AddFileUpload()">آپلود فایل های فنی</md-button>
+                    <div id="waitForUpload">
+
+                    </div>
+                    <div ng-repeat="file in order.files" style="padding: 4px; border-bottom: 1px solid gray;">
+                        <div layout="row">
+                            <img ng-src="/api/v1/file/upload?q=thmum100_//file.name//" alt="" style="height: 25px; width: 25px;">
+                            <span style="padding-left: 12px; padding-right: 12px;">
+                                //file.filename//
+                            </span>
+                            <a style="margin-right: 15px;" href="">حذف</a>
+                            <span></span>
+
+                        </div>
+                    </div>
+
+                    <input type="file" id="UploadFile" style="display: none"
+                           multiple
+                           accept="*"
+                           name="nfileResume">
+                </div>
+            </div>
+
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <div ng-show="order.calc_error" class="danger">
+                //order.calc_error//
+            </div>
+            <md-button ng-click="confirmCancel()">
+                انصراف
+            </md-button>
+
+
+            <span flex></span>
+            <md-button
+                    class="md-raised md-primary"
+                    ng-click="confirm()"
+                    ng-disabled="frmPart.$invalid">
+                ثبت
+            </md-button>
+
+
+        </md-dialog-actions>
+
+
+    </form>
+
+
+</md-dialog>

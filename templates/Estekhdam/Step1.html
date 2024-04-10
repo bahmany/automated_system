@@ -1,0 +1,223 @@
+{% load staticfiles %}
+
+{% load i18n %}
+
+<h1 class="md-title">اطلاعات شناسایی</h1>
+
+<div layout-gt-sm="column">
+    <div class="frame firstreg">
+        <div flex-gt-sm layout-padding>
+            <div class="toolbar">
+                <span>در این مرحله اطلاعات شناسایی خود را وارد و سپس ثبت نمایید</span>
+            </div>
+            <md-content>
+
+
+
+<div layout-gt-sm="row">
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>نام</label>
+        <input type="text" ng-model="Estekhdam.Name" required>
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>نام خانوادگی</label>
+        <input type="text" ng-model="Estekhdam.Family" required>
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>نام پدر</label>
+        <input type="text" ng-model="Estekhdam.FatherName">
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>تاریخ تولد</label>
+        <input type="text" ng-model="Estekhdam.BirthDate" id="txtBirthDate" required>
+    </md-input-container>
+</div>
+<div layout-gt-sm="row">
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>محل تولد</label>
+        <input type="text" ng-model="Estekhdam.BirthPlace">
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>محل صدور شناسنامه</label>
+        <input type="text" ng-model="Estekhdam.ShenasnamehPlace">
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>شماره شناسنامه</label>
+        <input type="text" ng-model="Estekhdam.ShenasnamehCode">
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>جنسیت </label>
+        <md-select ng-model="Estekhdam.Jensiat" required="">
+            <md-option value="مرد">مرد</md-option>
+            <md-option value="زن">زن</md-option>
+        </md-select>
+    </md-input-container>
+
+</div>
+<div layout-gt-sm="row">
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>مذهب</label>
+        <md-select ng-model="Estekhdam.Mazhab">
+            <md-option value="1">شیعه</md-option>
+            <md-option value="2">سنی</md-option>
+            <md-option value="3">مسیحی</md-option>
+            <md-option value="4">سایر</md-option>
+        </md-select>
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>وضعیت تاهل</label>
+        <md-select class="input-sm" ng-model="Estekhdam.Married" required>
+            <md-option value="1">مجرد</md-option>
+            <md-option value="2">متاهل</md-option>
+        </md-select>
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>سال ازدواج</label>
+        <input type="text" ng-model="Estekhdam.MarriedYear" id="txtMarriedYear">
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>شغل همسر</label>
+        <input type="text" ng-model="Estekhdam.WifeJob">
+    </md-input-container>
+</div>
+<div layout-gt-sm="row">
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>تعداد فرزندان</label>
+        <input type="text" ng-model="Estekhdam.ChildAmount">
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>وضعیت خدمت</label>
+        <md-select ng-model="Estekhdam.Soldier" required>
+            <md-option value="1">دارای کارت پایان خدمت</md-option>
+            <md-option value="2">مشمول</md-option>
+            <md-option value="3">غایب</md-option>
+            <md-option value="4">خرید خدمت</md-option>
+            <md-option value="5">معافیت پزشکی</md-option>
+            <md-option value="6">معافیت کفالت</md-option>
+            <md-option value="7">سایر معافیت</md-option>
+            <md-option value="8">محصل</md-option>
+        </md-select>
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>کد پستی</label>
+        <input type="text" ng-model="Estekhdam.PostalCode" required>
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>تلفن منزل</label>
+        <input type="text" ng-model="Estekhdam.TelHome" required>
+    </md-input-container>
+</div>
+<div layout-gt-sm="row">
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>همراه</label>
+        <input type="text" ng-model="Estekhdam.Mobile" required>
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>تلفن محل کار</label>
+        <input type="text" ng-model="Estekhdam.TelWork">
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>تلفن ضروری</label>
+        <input type="text" ng-model="Estekhdam.TelNec">
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>وب سایت و یا وبلاگ</label>
+        <input type="text" ng-model="Estekhdam.Web">
+    </md-input-container>
+</div>
+<div layout-gt-sm="row">
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>کشور</label>
+        <input type="text" ng-init="Estekhdam.Country = 'ایران'" ng-model="Estekhdam.Country">
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>استان</label>
+        <input type="text" ng-model="Estekhdam.OstanHome">
+    </md-input-container>
+    <div flex="5" hide-xs hide-sm>
+        <!-- Spacer //-->
+    </div>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>شهر</label>
+        <input type="text" ng-model="Estekhdam.CityHome">
+    </md-input-container>
+</div>
+<md-input-container class="md-block" flex-gt-sm>
+    <label>آدرس منزل</label>
+    <input type="text" ng-model="Estekhdam.HomeAddress" required>
+</md-input-container>
+<md-input-container class="md-block" flex-gt-sm>
+    <label>آدرس محل کار</label>
+    <input type="text" ng-model="Estekhdam.WorkAddress">
+</md-input-container>
+<md-input-container class="md-block" flex-gt-sm>
+    <label>آدرس ضروری</label>
+    <input type="text" ng-model="Estekhdam.NecAddress">
+</md-input-container>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools" layout-align="end center">
+    <md-button class="md-raised" ng-click="SaveStep1()">ذخیره در سوابق</md-button>
+
+        </div>
+        </md-toolbar>
+                                            </md-content>
+
+            </div>
+
+
+    </div>
+    </div>
+
+

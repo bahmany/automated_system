@@ -1,0 +1,21 @@
+<md-button ng-if="section.state && !(section.href)"
+           ui-sref-active="active"
+           ui-sref="//section.state//"
+           ng-click="focusSection()">
+    <md-icon class="special-class" md-font-icon="//section.icon//"></md-icon>
+    <span>//section | humanizeDoc//
+
+    </span>
+    <span ng-show="globalscope.alarms.edari == section.state;">*</span>
+</md-button>
+
+<md-button ng-if="section.state && section.href"
+           href="//section.href//"
+           target="//section.target//"
+           ng-click="focusSection()">
+
+    <md-icon  class="special-class-with-link" md-font-icon="//section.icon//"></md-icon>
+    <span>//section | humanizeDoc//</span>
+
+</md-button>
+

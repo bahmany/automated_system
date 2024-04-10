@@ -1,0 +1,27 @@
+<md-toolbar class="md-hue-1" style="margin-top: 20px;">
+    <div class="md-toolbar-tools">
+        <md-button class="md-raised"
+                   id="divNextStep"
+{#                   ng-disabled="hasDiffer"#}
+                   ng-show="(!(stepNumber==1) && !(stepNumber==2) && !(stepNumber==3))"
+                   ng-click="save($event);prevStep($event)">
+               ذخیره و قبلی
+        </md-button>
+
+        <span flex></span>
+
+        <md-button class="md-raised"
+                   id="NextStep"
+{#                   ng-disabled="hasDiffer"#}
+                   ng-click="nextStep($event)">
+       ذخیره و بعدی
+        </md-button>
+
+        <span flex="5"></span>
+
+
+
+    </div>
+</md-toolbar>
+
+

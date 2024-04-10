@@ -1,0 +1,178 @@
+{% load translators %}
+
+<div ng-controller="ImportPreviewCtrl" class="sec">
+
+
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            مرور نامه
+        </div>
+    </md-toolbar>
+
+    <form id="frmImportNew" name="frmImportNew">
+        <div class="shadower">
+
+            <md-subheader class="md-no-sticky subheader-inbox">
+                شرکت ارسال کننده
+            </md-subheader>
+            <md-divider></md-divider>
+            <div>
+
+
+                <table class="table has-border">
+                    <thead>
+                    <tr>
+                        <td>نام شرکت</td>
+                        <td>نام گروه</td>
+                        <td>نام شخص ارسال کننده</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in ImportLetter.exp.export.companyRecievers">
+                        <td>
+                            //item.name//
+                        </td>
+                        <td>//item.groupname//</td>
+                        <td>
+                            //item.recieverName//
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <md-subheader class="md-no-sticky subheader-inbox">
+                انتخاب دریافت کننده های رونوشت
+            </md-subheader>
+            <md-divider></md-divider>
+            <div>
+                <table class="table has-border">
+                    <thead>
+                    <tr>
+                        <td>نام دریافت کننده</td>
+                        <td>متن هامش</td>
+                    </thead>
+                    </tr>
+                    <tbody>
+                    <tr ng-repeat="item in ImportLetter.exp.export.hameshRecievers track by $index">
+                        <td>
+                            //item.profileName//
+                        </td>
+                        <td>
+                            //item.hamesh//
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+            <div layout="column">
+                <div ng-if="ImportLetter.sign" class="row well well-sm" style="text-align:center;">
+                    <img ng-src="//ImportLetter.sign.generatedFileAddr//" alt=""/>
+                </div>
+                <div layout-gt-md="row">
+                    <md-input-container flex-gt-md="25">
+                        <label for="">تاریخ دریافت</label>
+                        <input type="text" ng-model="ImportLetter.exp.dateOfSent" ng-required="true" readonly="true"
+                               ui-mask="9999/99/99" style="direction: ltr!important;"
+                               model-view-value="true" id="txt_dateOfSent">
+                    </md-input-container>
+                    <md-input-container flex-gt-md="25">
+                        <label for="">ساعت دریافت</label>
+                        <input type="text" ng-model="ImportLetter.exp.howtorec" ng-required="true" ui-mask="99:99"
+                               readonly="true"
+                               dir="ltr"
+                               model-view-value="true"
+                               style="direction: ltr!important;">
+                    </md-input-container>
+
+                    <md-input-container flex-gt-md="25">
+                        <label for="">شماره نامه</label>
+                        <input type="text" ng-model="ImportLetter.exp.shomareh" ng-required="true" readonly="true">
+                    </md-input-container>
+
+                    <md-input-container flex-gt-md="25">
+                        <label for="">تعداد ضمائم</label>
+                        <input type="text" ng-model="ImportLetter.exp.attsCount" ng-required="true" readonly="true">
+                    </md-input-container>
+                </div>
+                <div layout-gt-md="row">
+                    <md-input-container flex-gt-md="25">
+                        <label for="">شماره نامه مرتبط</label>
+                        <input type="text" ng-model="ImportLetter.exp.relno" ng-required="true" readonly="true">
+                    </md-input-container>
+                    <div flex-gt-md="">
+                        <div>تگ ها :</div>
+                        <div>
+                            <span ng-repeat="tag in ImportLetter.tags">
+                                //tag.name//  <a ng-click="RemoveTagFromLetter(tag);ImportLetter.tags.splice($index, 1);">x</a>
+|</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div>
+                    <md-input-container class="md-block">
+                        <label for="">موضوع</label>
+                        <input type="text" ng-model="ImportLetter.subject" ng-required="true" readonly="true">
+                    </md-input-container>
+                </div>
+                <div>
+
+                    <md-input-container class="md-block">
+                        <label for="">خلاصه</label>
+                        <textarea type="text" ng-model="ImportLetter.exp.bodysummery" ng-required="true"
+                                  readonly="true"></textarea>
+                    </md-input-container>
+
+                </div>
+            </div>
+
+
+            <md-subheader class="md-no-sticky subheader-inbox">
+                کاور نامه وارده
+
+            </md-subheader>
+            <md-divider></md-divider>
+            <div>
+                <img ng-src="//ImportLetter.exp.cover//"
+                     class="col-md-4 profile-pic"
+                     style="width: 200px;height: 250px;float:none;  background-color: #3e3e3e;">
+
+            </div>
+
+            <md-subheader class="md-no-sticky subheader-inbox">
+                سایر فایل های ضمیمه
+            </md-subheader>
+            <md-divider></md-divider>
+            <div>
+                {% load fileuploader_tags %}
+                {% FileUploader width='100%' readonly="true" %}
+            </div>
+
+
+            <div class="panel panel-default panel-new-default">
+                <div layout="column" ng-if="!Pending">
+
+                    <div ng-repeat="itemxx in ImportLetter.attachments.fileAddr" class="well well-sm"
+                         style="text-align: center; width: 100px; height: 125px; padding: 3px; margin: 3px; overflow: hidden; float: right">
+                        <span class="content_right_head">//itemxx.imgInf.name//</span>
+                        <br>
+                        <img ng-src="//itemxx.imgLink//" style="width: 50px; height: 55px">
+                        <br>
+                        <small>
+                            // itemxx.imgInf.size / 1024 | number:0//kb
+                        </small>
+                        <br>
+                        <a ng-click="Download(itemxx.imgLink)">download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

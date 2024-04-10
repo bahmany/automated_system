@@ -1,0 +1,69 @@
+{% load translators %}
+{% load staticfiles %}
+
+
+<html lang="en" dir="rtl" ng-strict-di>
+<head>
+    {#    <meta name="viewport" content="width=device-width, initial-scale=1"/>#}
+    <link rel="stylesheet" href={% static "bower_components/angular-material/angular-material.min.css" %}>
+    <link rel="stylesheet" href={% static "images/open-iconic-master/font/css/open-iconic.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/font-awesome/css/font-awesome.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/sweetalert/sweetalert.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/ckeditorAngularJs/ng-ckeditor.css" %}>
+    <link rel="stylesheet" href={% static "styles/hamkari/my.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/angular-ui-tree-master/dist/angular-ui-tree.min.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.min.css" %}>
+    <link rel="stylesheet" href=href={% static "bower_components/ng-file-upload/angular-filemanager.min.css"%}>
+
+</head>
+
+<body ng-app="RahsoonApp" ng-cloak class="docs-body" layout="column">
+{% include "Virtual/toolbar.html" with rank=rank %}
+<div class="main-content" style="margin-top: 77px;" flex ui-view>
+
+</div>
+
+</body>
+<script src={% static "bower_components/jquery/jquery-1.12.4.min.js" %}></script>
+<script src={% static "bower_components/jquery-ui/ui/minified/jquery-ui.min.js" %}></script>
+    <script src={% static "bower_components/bootstrap/dist/js/popper.min.js" %}></script>
+    <script src={% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}></script>
+    <script src={% static "bower_components/bootstrap/dist/js/bootstrap.bundle.min.js" %}></script>
+    <script src={% static "bower_components/jquery.cookie.js" %}></script>
+
+    <script src={% static "bower_components/angular/angular.min.js" %}></script>
+    <script src={% static "bower_components/angular/angular-resource.min.js" %}></script>
+    <script src={% static "bower_components/angular/angular-animate.min.js" %}></script>
+    <script src={% static "bower_components/angular/angular-route.min.js" %}></script>
+    <script src={% static "bower_components/angular/angular-aria.min.js" %}></script>
+    <script src={% static "bower_components/angular/angular-messages.min.js" %}></script>
+    <script src={% static "bower_components/angular-material/angular-material.min.js" %}></script>
+
+
+{#<script src={% static "bower_components/angular/angular.min.js" %}></script>#}
+{#<script src={% static "bower_components/angular/angular-animate.min.js" %}></script>#}
+{#<script src={% static "bower_components/angular/angular-aria.min.js" %}></script>#}
+{#<script src={% static "bower_components/angular/angular-messages.min.js" %}></script>#}
+{#<script src={% static "bower_components/angular/angular-route.min.js" %}></script>#}
+{#<script src={% static "bower_components/angular-material/angular-material.min.js" %}></script>#}
+<script src={% static "bower_components/ui-router/release/angular-ui-router.min.js" %}></script>
+<script src={% static "bower_components/angular-dragdrop-master/src/angular-dragdrop.js" %}></script>
+<script src={% static "bower_components/angular-ui-tree-master/dist/angular-ui-tree.min.js" %}></script>
+<script src={% static "bower_components/ocLazyLoad/ocLazyLoad.min.js" %}></script>
+<script src={% static "bower_components/sweetalert/sweetalert.min.js" %}></script>
+<script src={% static "bower_components/angular-translate/angular-translate.js" %}></script>
+<script src={% static 'angularThings/others/fitlers/moment.js' %}></script>
+<script src={% static 'angularThings/others/fitlers/moment-jalaali.js' %}></script>
+{#<script src={% static "bower_components/angular-sanitize.min.js" %}></script>#}
+<script src={% static "bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.min.js" %}></script>
+<script src={% static "bower_components/angular-translate-loader-url/angular-translate-loader-url.js" %}></script>
+<script src={% static "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js" %}></script>
+<script src={% static "bower_components/ng-file-upload/ng-file-upload.min.js" %}></script>
+
+{#<script src={% static "virtual/docs.js" %}></script>#}
+<script src={% static "virtual/jobs.json.js" %}></script>
+
+<script src={% static "virtual/app.js" %}></script>
+
+
+</html>

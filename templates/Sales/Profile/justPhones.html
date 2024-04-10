@@ -1,0 +1,68 @@
+<div ng-controller="SalesProfilePhonesCtrl">
+    <div class="panel">
+        <div class="panel-header md-panel-controls ui-sortable-handle">
+            <h3><i class="fa fa-table" style="padding-top: 10px;"></i>شماره موبایل ها
+
+
+            </h3>
+        </div>
+        <div class="panel-content pagination2 table-responsive" layout="column">
+
+            <div layout="row">
+                <input flex type="text" ng-model="profilesSearchText"
+                       ng-model-options="{debounce: 500}"
+                       placeholder="جستجو..."
+                       style="    height: 30px;
+    font-size: 14px;
+    padding: 3px;">
+                <span flex="10"></span>
+
+                <md-button class="md-button md-raised" ng-if="mobiles.first" ng-click="gotopage(mobiles.first)">اولین </md-button>
+                <md-button class="md-button md-raised" ng-if="mobiles.previous" ng-click="gotopage(mobiles.previous)">قبلی</md-button>
+                <md-button class="md-button md-raised" ng-if="mobiles.next" ng-click="gotopage(mobiles.next)">بعدی</md-button>
+                <md-button class="md-button md-raised" ng-if="mobiles.last" ng-click="gotopage(mobiles.last)">آخرین</md-button>
+            </div>
+
+            <div>
+                <div ng-repeat="item in mobiles.results"
+                     layout-padding=""
+                     ng-class-odd="'odd'"
+                     ng-class-even="'even'">
+                    <div layout-gt-sm="row" layout-align="start center">
+                        <form name="frmMob_//item.id//" flex layout-gt-sm="row" layout-align="start center">
+
+
+                            <div flex-gt-sm>
+                                //item.name//
+                            </div>
+                            <md-input-container flex>
+                                <label>نام واسط</label>
+                                <input ng-required="true"
+                                       type="text" ng-model="item.exp.contact.name"/>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>شماره موبایل (ها)</label>
+                                <input dir="ltr" ng-required="true" type="text" ng-model="item.exp.contact.cell"/>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>ایمیل (ها)</label>
+                                <input dir="ltr"  type="text" ng-model="item.exp.contact.email"/>
+                            </md-input-container>
+                            <div>
+                                <md-button class="md-primary md-raised"
+                                           ng-click="postcell(item)"
+                                           ng-disabled="frmMob_//item.id//.$invalid">ثبت
+                                </md-button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>

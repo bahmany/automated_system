@@ -1,0 +1,85 @@
+<h4>تعداد کارکنان در مقاطع تحصیلی </h4>
+<hr>
+<div>
+    <form action="" name="form_frm90">
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">تعداد زیر دیپلم</label>
+                        <input type="number" ng-model="provider.frm9.zireDiplom" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">تعداد دیپلم</label>
+                        <input type="number" ng-model="provider.frm9.diplom" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">تعداد فوق دیپلم</label>
+                        <input type="number" ng-model="provider.frm9.fogheDiplom" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">تعداد لیسانس</label>
+                        <input type="number" ng-model="provider.frm9.lisans" required>
+                    </md-input-container>
+                </div>
+
+
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">فوق لیسانی</label>
+                        <input type="number" ng-model="provider.frm9.fogheLisanse" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">دکترا</label>
+                        <input type="number" ng-model="provider.frm9.doktora" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">حوزوی</label>
+                        <input type="number" ng-model="provider.frm9.hozavi" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">سایر</label>
+                        <input type="number" ng-model="provider.frm9.sayer" required>
+                    </md-input-container>
+                </div>
+
+            </div>
+        </div>
+
+            <div>
+        <ul>
+            توضیحات : در صورتی که فایل هایی جهت ارایه دارید آن را آپلود نمایید
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='9' inputid='1' label="لیست بیمه" %}
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='9' inputid='2' label="مدارک بیمه" %}
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='9' inputid='3' label="مدارک تحصیلی" %}
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='9' inputid='4' label="مستندات مربوط به کارکنان" %}
+        </ul>
+    </div>
+
+
+        {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm9" %}
+
+
+    </form>
+
+</div>

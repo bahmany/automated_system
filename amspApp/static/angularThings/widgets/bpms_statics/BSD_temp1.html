@@ -1,0 +1,24 @@
+<div style="width: 100%; margin: 0; padding: 0; color: white">
+    <canvas class="canvbpm" height="75px"></canvas>
+    <div layout-gt-xs="row" ng-repeat="item in statics.datasets" style="background-color: //item.backColor//; font-size: 12px; padding: 3px;">
+        <div flex-gt-xs>
+            آخرین ورودی :
+            <span>//item.exp.latest | number//</span>
+            <span>//item.exp.latestDate//</span>
+        </div>
+        <div flex-gt-xs>
+            بیشترین :‌
+            <span>//item.exp.max | number//</span>
+            <span>//item.exp.maxDate//</span>
+        </div>
+        <div flex-gt-xs>
+            کمترین :
+            <span>//item.exp.min | number//</span>
+            <span>//item.exp.minDate//</span>
+        </div>
+        <div flex-gt-xs>
+            <a ui-sref="dashboard.statics({tmplID:item.tmpl.id})" style="direction: rtl; color: white">اطلاعات بیشتر...</a>
+        </div>
+
+    </div>
+</div>

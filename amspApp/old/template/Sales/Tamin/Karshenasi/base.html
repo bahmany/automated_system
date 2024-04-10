@@ -1,0 +1,33 @@
+<div ng-controller="karshenasiCtrl" id="hahahahahaha">
+    <div dir="rtl">
+        <div class="panel">
+            <div class="panel-header md-panel-controls ui-sortable-handle">
+                <h3><i class="fa fa-table"></i>درخواست های مشتریان</h3>
+            </div>
+            <div layout="row" layout-align="start center">
+                <span flex></span>
+                <md-button class="md-raised md-primary" ng-click="addNew($event)">درخواست جدید</md-button>
+                <md-button class="md-raised md-default" href="/api/v1/salesProfileSizes/downloadExcel/">دانلود اکسل
+                </md-button>
+
+            </div>
+            <div style="display: none;">
+                {#            <div>#}
+                <button ng-click="updateFromGoogle()">بروز رسانی از گوگل</button>
+            </div>
+
+            <div class="panel-content pagination2 table-responsive">
+                <table
+{#                        class="table table-bordered bordered table-striped table-condensed datatable"#}
+{#                        ui-jq="dataTable"#}
+{#                        ui-options="dataTableOpt"#}
+                        id="table2">
+
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>

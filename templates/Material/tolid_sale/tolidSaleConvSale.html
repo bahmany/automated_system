@@ -1,0 +1,60 @@
+<div ng-controller="tolidSaleConvSaleCtrl">
+    <div class="spacer" layout="row">
+        <md-list
+                flex-gt-lg="15"
+                flex-gt-md="20"
+                flex-gt-sm="18"
+                flex-gt-xs="22">
+            <md-subheader class="md-no-sticky"
+                          layout="row"
+                          layout-align="center center">
+
+                <md-button class="md-raised md-icon-button"
+                           disabled="!(list.next)"
+                           ng-click="goto(list.next)"
+
+                >
+                    <md-icon md-font-icon="fa fa-chevron-right"></md-icon>
+                </md-button>
+                <md-button class="md-raised md-icon-button"
+                           disabled="!(list.previous)"
+                                           ng-click="goto(list.previous)">
+                    <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+                </md-button>
+                <span flex></span>
+
+                <md-button class="md-raised md-icon-button md-primary"
+                           ui-sref="material_tolid_sale_conv_sale_item({sale_item:0})">
+                    <md-icon md-font-icon="fa fa-plus"></md-icon>
+                </md-button>
+            </md-subheader>
+
+            <md-list-item
+                     ng-class-odd="'odd'" ng-class-even="'even'"
+                     ui-sref="material_tolid_sale_conv_sale_item({sale_item:'//item.id//'})"
+                    class="md-2-line" ng-repeat="item in list.results">
+                <img src="/api/v1/file/upload?q=thmum100_//item.editor_creator.positionavatar//" class="md-avatar" alt="//item.dateOfPost//" />
+                <div  class="md-list-item-text">
+                    <h3>
+                        <span>ساخت : </span>
+                        <span>//item.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</span>
+                    </h3>
+                    <p>
+                        <span>ویرایش : </span>
+                        <span>//item.desc.lastEditDate | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</span>
+                    </p>
+                </div>
+
+            </md-list-item>
+
+        </md-list>
+
+        <div
+                flex-gt-lg
+                flex-gt-md
+                flex-gt-sm
+                flex-gt-xs ui-view="">
+
+        </div>
+    </div>
+</div>

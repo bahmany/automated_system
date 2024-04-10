@@ -1,0 +1,23 @@
+            <table class="table mini table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th><a ng-click="outcomeTypeChangeOrdering('title')">عنوان</a></th>
+                    <th><a ng-click="outcomeTypeChangeOrdering('countType')">نوع</a></th>
+                    <th><a ng-click="outcomeTypeChangeOrdering('postDate')">ثبت</a></th>
+                    <th><a ng-click="outcomeTypeChangeOrdering('positionID')">ثبت کننده</a></th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="item in incomeTypes.results track by $index">
+                    <td>//item.name//</td>
+                    <td><span ng-bind="BindCountType(item.countType)"></span></td>
+                    <td>//item.postDate| jalaliDate:'jYY/jMM/jDD'//</td>
+                    <td>//item.profileName//</td>
+                    <td>
+                        <a ng-click="Edit(item)">ویرایش</a> |
+                        <a ng-click="Delete($index, item)">حذف</a>
+                    </td>
+                </tr>
+                <tbody>
+                </tbody>
+            </table>

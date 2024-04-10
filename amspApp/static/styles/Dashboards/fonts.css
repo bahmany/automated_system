@@ -1,0 +1,57 @@
+
+/*@font-face {*/
+    /*font-family: 'driod-bold';*/
+    /*src: url('/static/fonts/DroidNaskh-Bold.eot?v=4.2.0');*/
+    /*src: url('/static/fonts/DroidNaskh-Bold.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('/static/fonts/DroidNaskh-Bold.woff?v=4.2.0') format('woff'), url('/static/fonts/DroidNaskh-Bold.ttf?v=4.2.0') format('truetype'), url('/static/fonts/DroidNaskh-Bold.svg?v=4.2.0#fontawesomeregular') format('svg');*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+    /*font-family: 'droid';*/
+    /*src: url('/static/fonts/DroidNaskh-Regular?v=4.2.0');*/
+    /*src: url('/static/fonts/DroidNaskh-Regular.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('/static/fonts/DroidNaskh-Regular.woff?v=4.2.0') format('woff'), url('/static/fonts/DroidNaskh-Regular.ttf?v=4.2.0') format('truetype'), url('/static/fonts/DroidNaskh-Regular.svg?v=4.2.0#fontawesomeregular') format('svg');*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+/*}*/
+
+@font-face {
+    font-family: IRANSansWeb;
+    font-weight: 400;
+    src: url(/static/fonts/sans/e43cfbc1a67d90e910398ded8345cd32.eot);
+    src: url(/static/fonts/sans/e43cfbc1a67d90e910398ded8345cd32.eot?#iefix) format("embedded-opentype"),url(/static/fonts/sans/c6f46673e2449eb071e2c098c5190c2a.woff2) format("woff2"),url(/static/fonts/sans/df14582918ca379a280e453bb3cc6ba5.woff) format("woff"),url(/static/fonts/sans/ac22d187130d6c3433a49a1e98bfa968.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANSansWeb;
+    font-weight: 700;
+    src: url(/static/fonts/sans/1121c0520a30a7295ffe21dd3fe77a60.eot);
+    src: url(/static/fonts/sans/1121c0520a30a7295ffe21dd3fe77a60.eot?#iefix) format("embedded-opentype"),url(/static/fonts/sans/bb6a9fe5edb6791184821d992bffdcf4.woff2) format("woff2"),url(/static/fonts/sans/74e2ab212452657f2fc66bd08873884b.woff) format("woff"),url(/static/fonts/sans/7a75459b25fca9937df9110d7e049133.ttf) format("truetype")
+}
+
+
+
+span, a, td, th, tr {
+    font-family: IRANSansWeb, "Times New Roman";
+}
+
+input {
+    font-family: IRANSansWeb, "Times New Roman" !important;
+
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: IRANSansWeb, cent!important;
+    font-weight: bold;
+    color: darkblue;
+}
+
+ul li a, button, label, em, p, button, .ng-binding, timeline-heading, strong, div, option, select{
+    font-family: IRANSansWeb, RobotoDraft, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif !important;
+    letter-spacing: 0!important;
+
+}
+
+p{
+    font-family: IRANSansWeb!important;
+}

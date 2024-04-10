@@ -1,0 +1,20 @@
+{% load translators %}
+<div ng-repeat="item in groups" on-finish-render="ngRepeatFinished"
+     style="line-height: 17px; padding-right: 5px;"
+     class="inbox-dynamic-items">
+
+
+            <span style="max-width: 100px;display: inline;">//item.title// (//item.memberCount//)
+            </span>
+
+    <div style="max-width: 40px;display: none; font-size: 13px;margin-top: 3px; margin-left: 10px;"
+         class="pull-left btnss">
+        <i ng-click="editGroup(item)" class="fa fa-edit other-btn"></i>
+        <i ng-click="deleteGroup(item)" class="fa fa-trash other-btn"></i>
+    </div>
+
+</div>
+
+<div ng-if="groups.length == 0" class="well well-sm">
+{{ 'No group created - add groups to organize you letters'|translate}}
+</div>

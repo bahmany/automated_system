@@ -1,0 +1,75 @@
+<div ng-controller="QCFindingListCtrl">
+
+    {% include "QC/Finding/partial_positionlist.html" %}
+
+
+    <div>
+        {% load pager_navigator_tags %}
+        {% pagerNavigator style="text-center" listname="findings" search_ng_model="findingsSearchText" PageTo="findingsPageTo" %}
+    </div>
+    <div>
+        <md-progress-linear md-mode="indeterminate" ng-if="wait"></md-progress-linear>
+    </div>
+
+    <md-list flex>
+        <md-list-item ng-click="openFinding(finding, $event)"
+                      ng-class-odd="'odd'"
+                      ng-class-even="'even'"
+                      class="noright"
+
+                      ng-repeat="finding in findings.results">
+
+
+            <img ng-src="//finding.avatar//" class="md-avatar"/>
+            <img ng-if="finding.type == 2" ng-src="//getCurrentPerformer(finding).avatar//" class="md-avatar"/>
+
+            <md-button ng-if="finding.type == 1" class="md-fab md-mini" ng-click="SendRootCause(finding)">
+
+                <md-icon md-font-icon="fa fa-send"></md-icon>
+                <md-tooltip>درخواست تحلیل ریشه ای یا Root cause</md-tooltip>
+            </md-button>
+{#            <md-button#}
+{#                    class="md-fab md-mini md-avatar"#}
+{#                    ng-if="finding.type == 2">#}
+{#                <img style="margin-top: 0px; margin-right: -6px;"#}
+{#                     ng-src="//getCurrentPerformer(finding).avatar//"#}
+{#                />#}
+{##}
+{#                <md-tooltip>#}
+{#                    //getCurrentPerformer(finding).profileName// همکنون در حال تحلیل ریشه ای است#}
+{#                </md-tooltip>#}
+{#            </md-button>#}
+
+            <p>
+                <span>
+                    <span ng-if="finding.type == 2" style="font-size: 12px;color: red;font-weight: bold;">درخواست تحلیل ریشه ای :</span>
+                    //finding.desc.Sharh//
+
+                </span>
+                <br>
+                <span style="  font-size: 12px;color: #565656;">
+                    //finding.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+ -
+                                <span> وضعیت :
+                <span style="font-weight: bold" ng-if="finding.type == 1 ">پیش نویس</span>
+                <span style="font-weight: bold" ng-if="finding.type == 2 ">تحلیل ریشه ای
+                    (توسط :
+                    <span ng-bind="getCurrentPerformer(finding).profileName"></span>
+                    )
+                </span>
+                </span>
+
+                </span>
+
+
+            </p>
+
+
+            <md-icon ng-if="finding.isEditable" class="md-secondary" md-font-icon="fa fa-pencil"
+                     ui-sref="QCFindingPost({findingID:finding.id})"></md-icon>
+            <md-icon ng-if="finding.isEditable"  class="md-secondary" md-font-icon="fa fa-trash"
+                     ng-click="delete($event, finding)"></md-icon>
+
+        </md-list-item>
+    </md-list>
+</div>

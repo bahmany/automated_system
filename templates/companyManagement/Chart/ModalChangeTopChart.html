@@ -1,0 +1,49 @@
+{% load translators %}
+
+<div id="modal_change_top" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    تغییر سمت بالا دستی
+                //currentSelectedRAWchart.title//
+                </h4>
+            </div>
+            <div class="modal-body">
+
+                <h1 class="md-title">لطفا یکی از سمت های زیر را بعنوان سمت بالادستی انتخاب نمایید</h1>
+                <div layout="row">
+
+                    <md-input-container>
+                        <label>سمت های ****ی</label>
+                        <md-select ng-model="selectedTopChartRAW.id"
+                                   data-md-container-class="selectdemoSelectHeader"
+                                   md-on-close="clearsearchStringForRawModalTop()">
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="searchStringForRawModalTop"
+                                       type="search"
+                                       placeholder="جستجوی سمت"
+                                       class="demo-header-searchbox md-text">
+                            </md-select-header>
+                            <md-optgroup label="سمت ها">
+                                <md-option ng-value="chart.id"
+                                           ng-repeat="chart in topChartListModalRAW | filter:{title: searchStringForRawModalTop}">
+                                    // chart.title //
+                                </md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="PostTopChartRAW(selectedTopChartRAW.id)">تایید</button>
+            </div>
+        </div>
+
+    </div>
+</div>

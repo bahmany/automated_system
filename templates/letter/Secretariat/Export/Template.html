@@ -1,0 +1,121 @@
+{% load translators %}
+<div ng-controller="ExportTemplateCtrl">
+    <div layout="column" layout-padding>
+        <div class="col-md-11" style="float: none;margin: 0 auto;">
+            <div class="panel panel-default panel-new-default" style="border: 1px solid rgb(207,207,207)">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+استخراج نامه صادره
+                    </h3>
+                    <h6>ساخت فایل ورد از نامه صادره </h6>
+                </div>
+
+                <div class="panel-body">
+                    <div layout-gt-sm="row">
+                        <md-list ng-cloak flex>
+                            <md-divider></md-divider>
+                            <md-subheader class="md-no-sticky">قالب های پیش فرض</md-subheader>
+                            <md-divider></md-divider>
+                            <md-list-item>
+                                <div class="md-list-item-text" layout="column" flex>
+                                    <h4> قالب نامه A5 </h4>
+
+                                    <p style="text-align: left">
+                                        <a ng-click="PreviewDefs('a5')">
+                                            <strong>استخراج نامه</strong>
+                                        </a>
+                                        |
+                                        <a ng-click="Download('a5')">
+دانلود قالب
+                                        </a>
+                                    </p>
+                                </div>
+                            </md-list-item>
+                            <md-divider></md-divider>
+
+                            <md-list-item>
+                                <div class="md-list-item-text" layout="column" flex>
+                                    <h4> قالب نامه A4 </h4>
+
+                                    <p style="text-align: left">
+                                        <a ng-click="PreviewDefs('a4')">
+                                            <strong>استخراج نامه</strong>
+                                        </a>
+                                        |
+                                        <a ng-click="Download('a4')">
+                                            دانلود قالب
+                                        </a>
+                                    </p>
+                                </div>
+                            </md-list-item>
+                            <md-divider></md-divider>
+                            <md-subheader class="md-no-sticky">{{ 'Add / Edit Templates'|translate}}</md-subheader>
+                            <md-divider></md-divider>
+                            <md-list-item>
+                                <div class="md-list-item-text" layout="column" flex>
+                                    <md-input-container>
+                                        <label>نام الگو</label>
+                                        <input required ng-model="Template.name">
+
+                                        <div flex style="text-align: left">
+                                            <i class="fa fa-asterisk" style="color: #ff0000" ng-if="!(UploadedFile.name)"></i>
+                                            <a ngf-select="upload($files)">
+                                                <strong>جهت آپلود نمودن الگو کلیک کنید</strong>
+                                            </a>
+                                            <i class="fa fa-check" style="color: #008000" ng-if="UploadedFile.name"></i>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </md-list-item>
+                            <md-list-item>
+                                <div layout="row" layout-align="end center" flex="100" style="max-height: 100px">
+                                    <md-button ng-click="Clear()" class="md-raised md-default">
+                                        انصراف
+                                    </md-button>
+                                    <md-button ng-click="Post()" class="md-raised md-primary">
+                                        ثبت
+                                    </md-button>
+                                </div>
+
+                            </md-list-item>
+                            <br>
+                            <md-divider></md-divider>
+                            <md-subheader class="md-no-sticky">لیست قالب های اختصاصی</md-subheader>
+                            <md-list-item ng-repeat="item in Templates.results">
+                                <div class="md-list-item-text" layout="column" flex>
+                                    <h4> //::item.name// </h4>
+
+                                    <p style="text-align: left">
+                                        <a ng-click="Preview(item)">
+                                            <strong>استخراج</strong>
+                                        </a>
+                                        |
+                                        <a ng-click="Download(item.fileAddr)">
+                                            دانلود قالب
+                                        </a>
+                                        |
+                                        <a ng-click="Edit(item)">
+                                            ویرایش
+                                        </a>
+                                        |
+                                        <a ng-click="Delete(item)">
+                                            حذف
+                                        </a>
+                                    </p>
+                                </div>
+                            </md-list-item>
+                            <md-divider></md-divider>
+
+                        </md-list>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>

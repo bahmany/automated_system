@@ -1,0 +1,51 @@
+{% load i18n %}
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<!-- Head -->
+<head>
+    <!-- Meta data -->
+    <meta charset="utf-8">
+    <title>jsGantt Improved</title>
+    <meta name="description" content="FREE javascript gantt - jsGantt Improved HTML, CSS and AJAX only">
+    <meta name="keywords" content="jsgantt-improved free javascript gantt-chart html css ajax">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Projects</title>
+
+    <link rel="stylesheet"
+          href="{% static "angularThings/ControlProject/bower_components/bootstrap/dist/css/bootstrap.min.css" %}"/>
+    <link rel="stylesheet"
+          href="{% static "angularThings/ControlProject/bower_components/code-prettify/loader/prettify.css" %}"/>
+    <link rel="stylesheet"
+          href="{% static "angularThings/ControlProject/bower_components/Font-Awesome/web-fonts-with-css/css/fontawesome-all.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "angularThings/ControlProject/bower_components/jsGantt/jsgantt.css" %}"/>
+    <link rel="stylesheet" href="{% static "angularThings/ControlProject/bower_components/jsGantt/main.css" %}"/>
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#my-navbar-nav">
+
+
+<div id="embedded-Gantt">
+
+</div>
+
+</body>
+
+<script src="{% static "angularThings/ControlProject/bower_components/jquery/dist/jquery.slim.min.js" %}"></script>
+<script src="{% static "angularThings/ControlProject/bower_components/tether/dist/js/tether.min.js" %}"></script>
+<script src="{% static "angularThings/ControlProject/bower_components/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "angularThings/ControlProject/bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+<script src="{% static "angularThings/ControlProject/bower_components/code-prettify/loader/prettify.js" %}"></script>
+<script src="{% static "angularThings/ControlProject/bower_components/jsGantt/jsgantt.js" %}"></script>
+<script src="{% static "angularThings/ControlProject/bower_components/jsGantt/main.js" %}"></script>
+<script src="{% static "angularThings/ControlProject/scripts/scripts.js" %}"></script>
+
+
+</html>

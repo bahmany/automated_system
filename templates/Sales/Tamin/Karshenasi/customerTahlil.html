@@ -1,0 +1,50 @@
+<div ng-controller="CustomerTahlilCtrl">
+    <div class="panel">
+        <div class="panel-header md-panel-controls ui-sortable-handle">
+            <h3><i class="fa fa-table" style="padding-top: 10px;"></i>تحلیل مشتریان
+
+
+            </h3>
+        </div>
+        <div class="panel-content pagination2 table-responsive" layout="column">
+
+            <div layout="row">
+                <input flex type="text" ng-model="profilesSearchText"
+                       ng-model-options="{debounce: 500}"
+                       placeholder="جستجو..."
+                       style="    height: 30px;
+    font-size: 14px;
+    padding: 3px;">
+                <span flex="10"></span>
+
+                <md-button class="md-button md-raised" ng-if="mobiles.first" ng-click="gotopage(mobiles.first)">اولین
+                </md-button>
+                <md-button class="md-button md-raised" ng-if="mobiles.previous" ng-click="gotopage(mobiles.previous)">
+                    قبلی
+                </md-button>
+                <md-button class="md-button md-raised" ng-if="mobiles.next" ng-click="gotopage(mobiles.next)">بعدی
+                </md-button>
+                <md-button class="md-button md-raised" ng-if="mobiles.last" ng-click="gotopage(mobiles.last)">آخرین
+                </md-button>
+            </div>
+
+            <div>
+                <div ng-repeat="item in customers.results"  ng-click  ui-sref="CustomerTahiliDetails({'cusID':item.hamkaranCode})"
+                     layout-padding=""
+                     ng-class-odd="'odd'"
+                     ng-class-even="'even'">
+                    <div layout-gt-sm="row" layout-align="start center">
+                            <div flex-gt-sm>
+                                //item.name//
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>

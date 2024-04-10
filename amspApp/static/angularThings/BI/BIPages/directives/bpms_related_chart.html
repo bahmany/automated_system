@@ -1,0 +1,41 @@
+<div style="border: 1px solid #d9d9d9;border-radius: 7px;padding: 12px;">
+    <div>
+        <h4 style="margin-bottom: 8px;">
+            //currentcell.title//
+        </h4>
+    </div>
+    <div>
+
+        <div>
+
+            <canvas style="height:300px; width:100%"></canvas>
+        </div>
+        <md-progress-linear md-mode="indeterminate" ng-show="loading"></md-progress-linear>
+
+        <div layout="row">
+            <div ng-repeat="st in step track by $index">
+                <md-button ng-click="change_source($index)" class="md-raised"
+                           ng-class="{'make-it-bold':current_step === st.request.groupby_index}">
+
+                    //st.data.current_filter_field_title//
+
+                    <span ng-show="st.data.last_filter_field_title!==''"
+                          style="font-size: 12px; color: gray; padding-right: 22px;">
+                        <md-icon md-font-icon="fa fa-filter" style="color: lightgray">
+
+                        </md-icon>
+                        //st.data.last_filter_field_title// : //st.data.last_filter_field_value//
+                    </span>
+
+                    <md-icon md-font-icon="fa fa-chevron-left"
+                             ng-show="!(st.request.groupby_index + 1 >= step[current_step].data.max_depth)"></md-icon>
+                    <md-icon md-font-icon="fa fa-chevron-right" style="color: #ff8924"
+                             ng-show="(st.request.groupby_index + 1 >= step[current_step].data.max_depth)"></md-icon>
+                </md-button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

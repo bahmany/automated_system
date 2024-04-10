@@ -1,0 +1,15 @@
+<div ng-controller="NewsBlogCtrl" class="shadower" layout="column">
+    <div> news</div>
+    <div>
+        <div ng-repeat="item in News.results" layout="row" layout-margin=""  ng-class-odd="'odd'" ng-class-even="'even'">
+            <div flex="20" style="background-image:url('//item.pic1//'); height: 130px;background-size: cover;background-repeat: no-repeat; ">
+
+            </div>
+            <div flex="80">
+                <h3>//item.title//</h3>
+                <p>//item.body//</p>
+
+            </div>
+        </div>
+    </div>
+</div>

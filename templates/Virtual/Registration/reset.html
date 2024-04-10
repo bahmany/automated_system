@@ -1,0 +1,41 @@
+{% load translators %}
+<div ng-controller="resetCtrl" class="reg_fist_main_container register">
+    <h2>تغییر رمز عبور</h2>
+    <hr>
+    <div class="row" id="alert-box">
+
+    </div>
+<div ng-if="successSend">
+    رمز شما تغییر کرد - لطفا مجددا وارد سامانه شوید
+</div>
+
+    <div>
+        <form role="form" name="resetpassfrm" ng-if="!(successSend)">
+            {% csrf_token %}
+            <md-input-container class="md-block">
+                <label for="">رمز عبور جدید</label>
+                <input type="password" ng-model="reset.password" required>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">ورود مجدد رمز جدید</label>
+                <input type="password" ng-model="reset.confirmPassword" required>
+            </md-input-container>
+
+            <div layout="row">
+                {{ form.captcha }}
+                <a class="btn" ng-click="refreshCaptcha()">
+                    <i class="fa fa-refresh"></i>
+                </a>
+                <span flex></span>
+                <span ng-if="wait">لطفا صبر کنید</span>
+                <md-button ng-if="!(wait)" class="md-raised md-primary" ng-click="changepass($event)" ng-disabled="resetpassfrm.$invalid">
+                    تغییر رمز عبور
+                </md-button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+</div>

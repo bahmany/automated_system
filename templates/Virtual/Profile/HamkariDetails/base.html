@@ -1,0 +1,67 @@
+<div ng-controller="HamkariDetailsCtrl">
+    <div layout-gt-sm="row" layout-align="center start">
+        <div flex-gt-xs="80" class="shadower" style="max-height: inherit">
+
+            <div class="heading">
+                <div class="line-double">
+                    <div class="row">
+                        <h1>
+                            <md-icon md-font-icon="fa fa-arrow-left" style="color: darkgreen;"></md-icon>
+                            //hamkari.title//
+                        </h1>
+                        <div>
+                            این آگهی از تاریخ
+                            //hamkari.startDate//
+                            تا تاریخ
+                            //hamkari.endDate//
+
+                            معتبر می باشد
+                        </div>
+                        <div flex></div>
+                        <div layout="row">
+                            <span flex></span>
+                            <md-button class="md-raised" ui-sref="introduction"> بازگشت
+
+                            </md-button>
+
+                        </div>
+
+                    </div>
+
+                    <div ng-bind-html="hamkari.exp | to_trusted">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div layout-gt-sm="row" layout-wrap="">
+                <div ng-repeat="item in jobs" flex-gt-sm="" style="border-right: 3px solid lightgreen;" layout-padding
+                     layout-margin>
+                    <div>//item.name//</div>
+
+                    <md-button ng-if="!(item.valid)"
+                               ng-class="{'back-green':item.registered}"
+                               class="md-raised md-primary" ng-click="getJobDetails($event, item)">
+
+                    <span ng-if="!(item.registered)">
+                        ثبت نام
+
+                    </span>
+                        <span ng-if="(item.registered)">
+                            مرور جزئیات شغل
+                        </span>
+
+
+                    </md-button>
+                    <div ng-if="item.valid">اتمام مهلت</div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

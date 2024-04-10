@@ -1,0 +1,60 @@
+<div ng-controller="BIPageDesignerCtrl">
+
+    <div ng-repeat="row in current_page.details.rows" style="padding: 5px;
+    margin: 5px;
+    border: 1px dashed lightgray;
+    font-size: 12px;
+    color: gray;">
+        <div class="" layout="row">
+            <a ng-click="setCell(row, 1)" style="padding-left: 5px; margin-left: 5px;">تک سلولی</a>
+            <a ng-click="setCell(row, 2)" style="padding-left: 5px; margin-left: 5px;">دو سلولی</a>
+            <a ng-click="setCell(row, 3)" style="padding-left: 5px; margin-left: 5px;">سه سلولی</a>
+            <a ng-click="setCell(row, 4)" style="padding-left: 5px; margin-left: 5px;">چهار سلولی</a>
+            <a ng-click="setCell(row, 5)" style="padding-left: 5px; margin-left: 5px;">25 25 50</a>
+            <a ng-click="setCell(row, 6)" style="padding-left: 5px; margin-left: 5px;">25 50 25</a>
+            <a ng-click="setCell(row, 7)" style="padding-left: 5px; margin-left: 5px;">50 25 25</a>
+            <a ng-click="setHeader(row)" style="padding-left: 5px; margin-left: 5px;">عنوان برای ردیف</a>
+            <div flex=""></div>
+            <a ng-click="down(ff, $index)" style="padding: 5px; margin: 5px">down</a>|
+            <a ng-click="up(ff, $index)" style="padding: 5px; margin: 5px">up</a>
+        </div>
+
+        <h5 ng-if="row.header">//row.header//</h5>
+
+
+        <div layout="row">
+            <div
+                    ng-repeat="ch in row['children']"
+                    flex="//ch.flex//"
+                    style="padding: 5px; margin: 5px; border: 1px solid lightgray; font-size: 12px; color: gray;">
+                <div>
+                    <md-input-container class="md-block">
+                        <label>انتخاب نمودار</label>
+                        <md-select ng-model="ch.chartid">
+                            <md-option ng-repeat="nnn in charts" ng-value="nnn.id">//nnn.chartTitle//</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="well-sm">
+
+        <md-button class="md-raised" ng-click="add_row()">
+            <i class="fa fa-plus"></i>
+        </md-button>
+
+    </div>
+    <div>
+
+        <md-button class="md-raised" ng-click="save()">
+            ذخیره
+        </md-button>
+
+    </div>
+
+</div>

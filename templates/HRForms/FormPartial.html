@@ -1,0 +1,29 @@
+{% load translators %}
+<form name="{{ form.form_name }}" class="frmHR" id="frmHR" novalidate>
+    <csrf-token></csrf-token>
+
+        {% csrf_token %}
+
+
+    <fieldset>
+
+            {{ form.as_div }}
+
+    </fieldset>
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-12 text-center">
+
+            <button type="submit"
+                    class="btn btn-primary"
+                    id="sendForm"
+                    ng-disabled="{{ form.form_name }}.$invalid"
+                    ng-click="submit()">ثبت نام <i class="fa fa-puzzle-piece sendFormIcon "></i></button>
+            <button type="button"
+                    class="btn btn-primary"
+                    ng-click="OwnerScope = {}">لغو<i class="fa fa-puzzle-piece sendFormIcon "></i></button>
+        </div>
+    </div>
+
+
+</form>

@@ -1,0 +1,182 @@
+{% load translators %}
+{% load inbox_tags %}
+
+<md-content style="overflow-x: hidden;" class="shadower">
+
+    {% include 'letter/Inbox/search.html' %}
+
+    <div class="inbox-list">
+        <div class="inbox-list-filter">
+            <div>
+                <div>
+                    <div class="inbox-items overlayer" ng-if="!isSearchCallbackCompleted">
+                        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                    </div>
+                    <div>
+                        <div class="inbox-item" ng-if="filter.fi"
+                             style="background-color: red;padding: 8px;border-radius: 8px;color: white;">
+                            <a class="fa fa-times" style="padding:0 6px;"
+                               ng-click="removeFolderFilter();$event.stopPropagation();"></a>
+                            {{ "This list is filtered by folder"|translate }}://SelectedFolder.title//
+                        </div>
+                        <div class="inbox-item" ng-if="filter.li"
+                             style="background-color: red;padding: 8px;border-radius: 8px;color: white;">
+                            <a class="fa fa-times" ng-click="removeLabelFilter();$event.stopPropagation();"></a>
+                            {{ "This list is filtered by label"|translate }}://SelectedLabel.title//
+                        </div>
+                        <div ng-if="InboxList.results.length == 0 && isSearchCallbackCompleted"
+                             class="inbox-item" style="text-align: center">
+                            نامه ای وجود ندارد
+                        </div>
+
+
+                        <md-list class="md-dense">
+
+                            <md-list-item
+                                    ng-repeat="item in InboxList.results"
+                                    data-drop="true"
+                                    data-jqyoui-options
+                                    jqyoui-droppable="{index:0,onDrop:'dropCallbackAddToFolder(item, $index)',multiple:true}"
+                                    ng-model="item.draggedFolders"
+                                    class="md-3-line"
+                                    ng-class="{'current-inb-i':item.id == InboxList.currentSelected, 'inbox-not-read': item.seen == false,'inbox-read': item.seen == true}"
+                                    ng-click="OpenLetter(item, $index, $event)">
+
+                                <div layout-gt-xs="row">
+                                    <img ng-src="//item.sender.avatar//" alt="aa" class="md-avatar"
+                                         ng-click="CheckSelections();item.selected=!(item.selected);"/>
+                                    <md-icon md-font-icon="fa fa-check" ng-if="item.selected"></md-icon>
+                                    <md-button class="md-icon-button" aria-label="mrb"
+                                               ng-click="ChangeStar(item);$event.stopPropagation()">
+                                        <md-icon md-font-icon="fa fa-star"
+                                                 ng-class="{'dark-star':!item.star, 'star-selected':item.star}">
+                                        </md-icon>
+                                    </md-button>
+                                    <div class="md-list-item-text" flex-gt-lg="15" flex-gt-md="40" flex-gt-xs="50">
+                                        <h3 class="bold-name">
+                                            <span ng-if="item.itemMode == 1 && item.itemPlace == 1 && item.itemType == 1">از</span>
+                                            <span ng-if="item.itemMode == 1 && item.itemPlace == 1 && item.itemType == 10">از</span>
+                                            <span ng-if="item.itemMode == 7 && item.itemPlace == 1 && item.itemType == 6">به</span>
+                                            <span ng-if="item.itemMode == 8 && item.itemPlace == 1 && item.itemType == 9">به</span>
+                                            <span ng-if="item.itemMode == 4 && item.itemPlace == 1 && item.itemType == 7">به</span>
+                                            <span ng-if="item.itemMode == 1 && item.itemPlace == 1 && item.itemType == 3">از</span>
+                                            <span ng-if="item.itemMode == 1 && item.itemPlace == 1 && item.itemType == 10">
+                                                            //::item.letter.senderCompanyName//
+                                                        </span>
+                                            <span ng-if="item.itemMode == 1 && item.itemPlace == 1 && item.itemType == 1">
+                                                            //::item.sender.profileName//
+                                                        </span>
+                                            <span ng-if="item.itemMode == 7 && item.itemPlace == 1 && item.itemType == 6">
+                                                            //::item.reciever.others[0].profileName//
+                                                        </span>
+                                            <span ng-if="item.itemMode == 8 && item.itemPlace == 1 && item.itemType == 9">
+                                                            //::item.reciever.others[0].profileName//
+                                                        </span>
+                                            <span ng-if="item.itemMode == 4 && item.itemPlace == 1 && item.itemType == 7">
+                                                            //::item.reciever.others[0].profileName//
+                                                        </span>
+                                            <span ng-if="item.itemMode == 1 && item.itemPlace == 1 && item.itemType == 3">
+                                                            //::item.sender.profileName//
+                                                        </span>
+                                            <i class="fa fa-paperclip" ng-if="item.letter.hasAttachmant"
+                                               style="color: rgb(59, 105, 49);"></i>
+                                        </h3>
+                                        <h4>
+                                            <small class="desc-name"
+                                                   ng-if="item.itemMode == 1 && item.itemPlace == 1 && item.itemType == 10">
+                                                //::item.letter.senderCompanyGroup//
+                                            </small>
+                                            <small class="desc-name"
+                                                   ng-if="item.itemMode == 1 && item.itemPlace == 1 && item.itemType == 1">
+                                                //::item.sender.chartName//
+                                            </small>
+                                            <small class="desc-name"
+                                                   ng-if="item.itemMode == 7 && item.itemPlace == 1 && item.itemType == 6">
+                                                //::item.reciever.others[0].chartName//
+                                            </small>
+                                            <small class="desc-name"
+                                                   ng-if="item.itemMode == 8 && item.itemPlace == 1 && item.itemType == 9">
+                                                //::item.reciever.others[0].chartName//
+                                            </small>
+                                            <small class="desc-name"
+                                                   ng-if="item.itemMode == 4 && item.itemPlace == 1 && item.itemType == 7">
+                                                //::item.reciever.others[0].chartName//
+                                            </small>
+                                            <small class="desc-name"
+                                                   ng-if="item.itemMode == 1 && item.itemPlace == 1 && item.itemType == 3">
+                                                //::item.sender.chartName//
+
+
+                                            </small>
+                                        </h4>
+                                        <p>
+                                            //::item.dateOfObservable | jalaliDateFromNow//
+                                        </p>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div flex class="bold-name item-edd" layout="row">
+
+                                            <span ng-if="item.itemType==8"
+                                                  style="color:#00126c; font-weight: bold;">{{ "Exported Roonevesht"|translate }} :</span>
+                                    <span ng-if="item.itemType==10"
+                                          style="color:#086c00; font-weight: bold;">{{ "Imported Roonevesht"|translate }} :</span>
+                                    <h4>//::item.letter.subject//
+                                        <small>//HandleItem(item)//</small>
+
+
+                                        {#    itemType:#}
+                                        {#        1 = this inbox item received and sent by some one else as usual inside letter#}
+                                        {#        2 = this inbox item is sent to a user and an inbox item listed in send letters#}
+                                        {#        3 = this inbox item forwarded#}
+                                        {#        4 = this inbox item is replied one, i mean this letter is a replay letter#}
+                                        {#        5 = this inbox item is auto send inbox as rooneveshte khodkar#}
+                                        {#        6 = this is first and beginner of a letter#}
+                                        {#        7 = no Type // this is for storing draft#}
+                                        <small>//::item.letterSummery//...
+                                            <i class="fa fa-copy" tooltip="{{ 'Recieved'|translate }}"
+                                               ng-if="item.itemType==1"></i>
+                                            <i class="fa fa-share-square-o"
+                                               ng-if="item.itemType==3"></i>
+                                            <i class="fa fa-file-code-o" ng-if="item.itemType==4"></i>
+                                            <i class="fa fa-bookmark-o" ng-if="item.itemType==6"></i>
+                                            <i class="fa fa-edit" ng-if="item.itemType==7"></i>
+                                            <i class="fa fa-trash" style="color: darkred"
+                                               ng-if="item.itemPlace == 3"></i></small>
+                                    </h4>
+                                </div>
+                                <div layout="row">
+                                    <div class="folder-list" ng-repeat="folder in item.folders">
+                                        <i class="fa fa-close"
+                                           style="top: -4px;  position: relative; display: none"
+                                           ng-click="$event.stopEventPropagation(); RemoveFromFolders($index, item, folder)"></i>
+                                        //::folder.title.substring(0,2)//
+                                    </div>
+                                    <div class="label-list" ng-repeat="label in item.labels"
+                                         style="background-color://label.bgcolor//!important; color://label.color//!important;">
+                                        <i class="fa fa-close"
+                                           style="top: -4px;  position: relative; display: none"
+                                           ng-click="$event.stopEventPropagation(); RemoveFromLabels($index, item, label)"></i>
+                                        //::label.title.substring(0,1)//
+                                    </div>
+                                </div>
+
+                                <md-divider></md-divider>
+                                {#                                <md-divider></md-divider>#}
+
+                            </md-list-item>
+                        </md-list>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</md-content>

@@ -1,0 +1,117 @@
+<table class="table table-bordered table-striped mini mini-table">
+    <thead>
+    <tr>
+        <th style="width: 50px;">ردیف
+        </th>
+        <th>شرح کالا
+            <span style="color: #ffffff"> * </span>
+
+        </th>
+        <th>کد کالا
+            <span style="color: #ffffff"> * </span>
+
+        </th>
+        <th>کد فنی</th>
+        <th>مقدار
+            <span style="color: #ffffff"> * </span>
+
+        </th>
+        <th>واحد</th>
+        <th>تاریخ نیاز
+            <span style="color: #ffffff"> * </span>
+
+        </th>
+        <th>اطلاعات پیوستی</th>
+        <th>ملاحظات</th>
+    </tr>
+    </thead>
+    <tbody ng-show="draft == true">
+    <tr ng-repeat="item in requestItems">
+        <td>//$index+1//</td>
+        <td>
+            <div ng-show="item.exp.selectedItem.item.PartName">
+                //item.exp.selectedItem.item.PartName//
+                <a ng-click="showGoods($event, item)"> (تغییر) </a>
+                <a ng-click="removeGoods($event, item, $index)"> (حذف) </a>
+
+
+            </div>
+            <div ng-show="!(item.exp.selectedItem.item.PartName)">
+                <a ng-click="showGoods($event, item)"> (تعیین) </a>
+                <br>
+                <a ng-click="removeGoods($event, item, $index)"> (حذف) </a>
+
+            </div>
+
+        </td>
+        <td>//item.exp.selectedItem.item.PartCode//</td>
+        <td><input type="text" ng-model="item.code_fanni"></td>
+        <td><input type="number" ng-required="true" ng-model="item.mizan"></td>
+        <td>//item.exp.selectedItem.item.UnitName//</td>
+        <td><input type="text" ng-required="true" placeholder="مثال : 1399/02/02" ng-model="item.tarikhe_niaz"></td>
+        <td>
+            <div ng-show="!(item.exp.files)"><a ng-click="uploadfile(item)">آپلود</a></div>
+            <div ng-show="item.exp.files"><img ng-src="//item.exp.files.thumb//"
+                                               style="height: 50px;border: 1px solid #b5b3b3;border-radius: 9px;">
+                <a href="//item.exp.files.thumb//">دانلود</a>
+                <a ng-click="removeFile(item)">حذف</a>
+            </div>
+
+        </td>
+        <td><input type="text" ng-model="item.tozihat" style="width: 100%"></td>
+    </tr>
+
+    <tr>
+        <td colspan='9' style="text-align: center">
+            <md-button class="md-default md-raised" ng-click="addNewItem()"> ردیف جدید</md-button>
+        </td>
+    </tr>
+    <tr ng-show="frmItems.$invalid">
+        <td colspan='9' style="color: red">
+            اطلاعات خواسته شده را در تکمیل کنید
+        </td>
+    </tr>
+
+    </tbody>
+    <tbody ng-show="draft == false">
+    <tr ng-repeat="item in requestItems">
+        <td>//$index+1//</td>
+        <td>
+            <div ng-show="item.exp.selectedItem.item.PartName">
+                //item.exp.selectedItem.item.PartName//
+            </div>
+
+        </td>
+        <td>
+
+            //item.exp.selectedItem.item.PartCode//
+        </td>
+        <td>
+
+            //item.code_fanni//
+        </td>
+        <td>
+            //item.mizan//
+        </td>
+        <td>//item.exp.selectedItem.item.UnitName//</td>
+        <td>
+            //item.tarikhe_niaz//
+        </td>
+        <td>
+
+
+            <div ng-show="item.exp.files"><img ng-src="//item.exp.files.thumb//" style="height: 50px;
+    border: 1px solid #b5b3b3;
+    border-radius: 9px;">
+                <a href="//item.exp.files.thumb//">دانلود</a>
+
+            </div>
+
+        </td>
+        <td>
+            //item.tozihat//
+        </td>
+    </tr>
+    </tbody>
+</table>
+

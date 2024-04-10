@@ -1,0 +1,125 @@
+<md-toolbar class="md-hue-2">
+    <div layout="row">
+        <md-toolbar-filler layout="row" layout-align="center center">
+
+            <md-checkbox style="margin-bottom: 0" ng-model="ListSelectAll" aria-label="Selected"
+                         ng-click="ToggleSelected()">
+                <md-tooltip>
+                    انتخاب همه
+                </md-tooltip>
+            </md-checkbox>
+
+        </md-toolbar-filler>
+        <div class="md-toolbar-tools">
+            <span>//ListTitle//</span>
+            <md-button class="md-icon-button"
+                       ng-if="true"
+                       ng-click="ChangeListStar()"
+                       ng-class="{
+                        'make-white':filter.s == 1,
+                        'make-yellow':filter.s == 2
+                        }"
+                       aria-label="trash">
+                <md-icon md-font-icon="fa fa-star"></md-icon>
+                <md-tooltip>
+                    نمایش ستاره دارها
+                </md-tooltip>
+                {#                <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>#}
+            </md-button>
+            <md-button class="md-icon-button"
+
+                       ng-if="true"
+                       ng-click="ChangeReadUnread()"
+                       ng-class="{
+                        'make-white':filter.r == 1,
+                        'make-yellow':filter.r == 2,
+                        'make-green':filter.r == 3
+                        }"
+
+                       aria-label="trash">
+                <md-icon md-font-icon="fa fa-envelope"></md-icon>
+                <md-tooltip>نمایش خوانده نشده ها</md-tooltip>
+                {#                <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>#}
+            </md-button>
+            <md-button class="md-icon-button"
+                       ng-if="true"
+                       ng-click="ShowFilter()"
+                       aria-label="magnifying-glass">
+                <md-icon md-font-icon="fa fa-search"></md-icon>
+                <md-tooltip>جستجو</md-tooltip>
+                {#                <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>#}
+            </md-button>
+            <md-menu flex>
+                <md-button aria-label="secs" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <md-icon md-menu-align-target md-font-icon="fa fa-navicon"></md-icon>
+                </md-button>
+
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button ng-click="!InboxList.selected||TrashSelected()"
+                                   ng-class="{'chevron-disable': !InboxList.selected}">
+                            حذف
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button
+                                ng-click="!InboxList.selected||MoveToArchive()"
+                                ng-class="{'chevron-disable': !InboxList.selected}">
+                            آرشیو
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button
+                                ng-click="!InboxList.selected||ForwardSelectedArchve()"
+                                ng-class="{'chevron-disable': !InboxList.selected}">
+                            ارجاع
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button
+                                ng-click="!InboxList.selected||ForwardSelectedArchve()"
+                                ng-class="{'chevron-disable': !InboxList.selected}">
+                            ارجاع و آرشیو
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+
+            </md-menu>
+            <span flex> </span>
+
+            <md-button class="md-icon-button"
+                       ng-click="!InboxList.previous||InboxPageTo(InboxList.previous)"
+                       ng-class="{'chevron-disable': !InboxList.previous}"
+                       aria-label="trash">
+                <md-icon md-font-icon="fa fa-chevron-right"></md-icon>
+                <md-tooltip>
+                    قبلی
+                </md-tooltip>
+                {#                <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>#}
+            </md-button>
+            <span hide-xs ng-if="true" style="font-size: 12px;">
+                //InboxList.from+1//
+                -
+                //InboxList.to//
+                /
+                //InboxList.total//
+            </span>
+            <md-button class="md-icon-button"
+                       ng-click="!InboxList.next||InboxPageTo(InboxList.next)"
+                       ng-class="{'chevron-disable': !InboxList.next}"
+                       aria-label="trash">
+                <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+                <md-tooltip>
+                    بعدی
+                </md-tooltip>
+                {#                <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>#}
+            </md-button>
+
+        </div>
+
+
+    </div>
+</md-toolbar>

@@ -1,0 +1,166 @@
+{% load translators %}
+
+<div ng-controller="ImportCtrl" class="sec">
+
+    {% include "letter/Secretariat/Letters/Partials/ModalImportedCompaniesList.html" with SelectCompanyToImportedFunction="SelectCompanyToImported" datadismiss="modal" %}
+    {% include "letter/Secretariat/Letters/Partials/ModalImportedPositionList.html" with ImportCompanyModels="ImportLetter.exp.export.hameshRecievers" %}
+    {% include "letter/Secretariat/Letters/Partials/wait_layer.html" %}
+
+
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            ویرایش / ایجاد نامه وارده
+        </div>
+    </md-toolbar>
+
+    <form id="frmImportNew" name="frmImportNew">
+        <div class="shadower">
+
+            {% include 'letter/Secretariat/Letters/Partials/Companies.html' with  title='انتخاب ارسال کننده ی نامه'  ImportCompanyModels="ImportLetter.exp.export.companyRecievers" tableLastCol='نام شخص ارسال کننده'  showdelete="false"%}
+
+            {% include 'letter/Secretariat/Letters/Partials/Roonevesht.html' with  title='انتخاب دریافت کننده های رونوشت'  model="ImportLetter.exp.export.hameshRecievers"%}
+
+
+            <div layout="column">
+                <div ng-if="ImportLetter.sign" class="row well well-sm" style="text-align:center;">
+                    <img ng-src="//ImportLetter.sign.generatedFileAddr//" alt=""/>
+                </div>
+                <div layout-gt-md="row">
+                    <md-input-container flex-gt-md="25">
+                        <label for="">تاریخ دریافت</label>
+                        <input type="text"
+                               ng-model="ImportLetter.exp.dateOfSent"
+                               ng-required="true"
+                               ui-mask="9999/99/99"
+                               style="direction: ltr!important;"
+                               model-view-value="true"
+                               id="txt_dateOfSent">
+                    </md-input-container>
+                    <md-input-container flex-gt-md="25">
+                        <label for="">ساعت دریافت</label>
+                        <input type="text"
+                               ng-model="ImportLetter.exp.howtorec"
+                               ng-required="false"
+                               ui-mask="99:99"
+                               dir="ltr"
+                               model-view-value="true"
+                               style="direction: ltr!important;">
+                    </md-input-container>
+
+                    <md-input-container flex-gt-md="25">
+                        <label for="">شماره نامه</label>
+                        <input type="text"
+                               ng-model="ImportLetter.exp.shomareh"
+                               ng-required="false">
+                    </md-input-container>
+
+                    <md-input-container flex-gt-md="25">
+                        <label for="">تعداد ضمائم</label>
+                        <input type="text" ng-model="ImportLetter.exp.attsCount"
+                               ng-required="false">
+                    </md-input-container>
+                </div>
+                <div layout-gt-md="row">
+                    <md-input-container flex-gt-md="20">
+                        <label for="">شماره نامه مرتبط</label>
+                        <input type="text"
+                               ng-model="ImportLetter.exp.relno"
+                               ng-required="false">
+                    </md-input-container>
+{#                    <md-input-container flex-gt-md="75">#}
+{#                        <label for="">کلمات کلیدی جهت جستجو</label>#}
+{#                        <input type="text" ng-model="ImportLetter.exp.exp" ng-required="true">#}
+{#                    </md-input-container>#}
+                    <md-contact-chips flex-gt-md="60"
+                            ng-model="asyncContacts"
+                            md-contacts="delayedQuerySearch($query)"
+                            md-contact-name="name"
+                            md-require-match="true"
+                            md-highlight-flags="i"
+                            filter-selected="filterSelected"
+                            placeholder="کلمات کلیدی یا تگ">
+                    </md-contact-chips>
+
+                    <a ng-click="AddNewTag()" flex-gt-md layout-align="center center" layout="row">
+                        (تگ جدید)
+                    </a>
+                </div>
+
+                <div>
+                    <md-input-container class="md-block">
+                        <label for="">موضوع</label>
+                        <input type="text" ng-model="ImportLetter.subject" ng-required="true">
+                    </md-input-container>
+                </div>
+                <div>
+
+                    <md-input-container class="md-block">
+                        <label for="">خلاصه</label>
+                        <textarea type="text" ng-model="ImportLetter.exp.bodysummery" ng-required="false"></textarea>
+                    </md-input-container>
+                </div>
+            </div>
+
+
+            <md-subheader class="md-no-sticky subheader-inbox">
+                آپلود کاور نامه وارده
+                <span>(ضروروی)</span>
+            </md-subheader>
+            <md-divider></md-divider>
+            <div>
+                {% load img_with_uploader_tags %}
+                {% ImageWithUploader defaultEmptyAvatarUrl="/static/images/avatar_empty.png" modelName="ImportLetter.exp.cover" controllerName="ImportCtrl" imageContainerSize="col-md-4 profile-pic" imageContainerOtherCss="width: 200px;height: 250px;float:none;  background-color: #3e3e3e;" other="data-step='2' data-intro='upload your image'" %}
+
+            </div>
+
+            <md-subheader class="md-no-sticky subheader-inbox">
+                آپلود سایر فایل های ضمیمه
+            </md-subheader>
+            <md-divider></md-divider>
+            <div>
+                {% load fileuploader_tags %}
+                {% FileUploader width='100%' readonly="false" %}
+            </div>
+
+
+            <div class="panel panel-default panel-new-default">
+                <div layout="column" ng-if="!Pending">
+
+                    <div layout-gt-sm="row">
+
+                    </div>
+
+                    <div ng-repeat="itemxx in ImportLetter.attachments.fileAddr" class="well well-sm"
+                         style="text-align: center; width: 100px; height: 125px; padding: 3px; margin: 3px; overflow: hidden; float: right">
+                        <span class="content_right_head">//itemxx.imgInf.name//</span>
+                        <br>
+                        <img ng-src="//itemxx.imgLink//" style="width: 50px; height: 55px">
+                        <br>
+                        <small>
+                            // itemxx.imgInf.size / 1024 | number:0//kb
+                        </small>
+                        <br>
+                        <a ng-click="Download(itemxx.imgLink)">download</a>
+                    </div>
+
+
+                    <div>
+                        <md-toolbar>
+                            <div class="md-toolbar-tools">
+                                <span flex></span>
+                                <md-button type="button" ng-disabled="frmImportNew.$invalid" ng-if="!(ImportLetter.id)" class="md-raised" ng-click="Post()">
+                                    ثبت
+                                </md-button>
+                            </div>
+                        </md-toolbar>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </form>
+</div>

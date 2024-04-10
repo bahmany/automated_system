@@ -1,0 +1,37 @@
+<div ng-controller="SaleMaliBaseCrtl">
+    <div class="spacer">
+        <md-toolbar>
+            <div class="md-toolbar-tools" layout="row">
+                <h4>مدیریت سال های مالی
+
+                </h4>
+
+                <span flex></span>
+
+                <md-button class="md-raised" ng-click="addSaleMali()">ایجاد بازه مالی جدید</md-button>
+
+            </div>
+        </md-toolbar>
+        <md-list flex>
+            <md-list-item ng-repeat="item in salemallis" flex>
+                <div class="md-list-item-text" layout-gt-xs="row" flex layout-margin="start center">
+                    <div flex>
+                        <span>از </span>
+                        <span>//item.dates[8]//</span>
+                        <span> تا </span>
+                        <span>//item.dates[9]//</span>
+                    </div>
+                    <div flex="5"></div>
+
+                    <div>
+                        <md-button class="md-raised" ng-click="setSalieMali(item)">تعیین این بازه</md-button>
+                    </div>
+
+                </div>
+                <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+        </md-list>
+
+
+    </div>
+</div>

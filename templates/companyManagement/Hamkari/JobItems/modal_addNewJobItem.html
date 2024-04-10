@@ -1,0 +1,71 @@
+<md-dialog aria-label="Job Items">
+    <form  name="frmAddEditJobItems">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>ایجاد / ویرایش شغل مورد نیاز</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <h2>ایجاد و یا ویرایش شغل مورد نیاز</h2>
+                <md-input-container class="md-block">
+                    <label>عنوان شغل</label>
+                    <input ng-model="jobItem.name" required>
+                </md-input-container>
+                <textarea style="width: 100%"
+                          ckeditor="editorOptions"
+                          ng-model="jobItem.exp"></textarea>
+                <div>
+                    <div layout="row" ng-repeat="it in jobItem.extraFields track by $index" layout-align="start center">
+                        <div flex="60">
+                            <md-input-container class="md-block">
+                                <label>عنوان فیلد های ضروری</label>
+                                <input ng-model="it.name" required>
+                            </md-input-container>
+                        </div>
+                        <div flex="20">
+                            <md-checkbox ng-model="it.require" aria-label="Checkbox 1">
+                                اجباری
+                            </md-checkbox>
+                        </div>
+                        <div flex="20" layout-align="center center">
+                            <md-button aria-label="removejob" style="display:inline-block;"
+                                       ng-click="RemoveExtraFields(jobItem,$index)">
+                                <md-icon md-font-icon="fa fa-minus"></md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                    <md-toolbar class="md-hue-1">
+                        <md-button aria-label="removejob" style="display:inline-block;" class="md-raised"
+                                   ng-click="AddNewExtraFields(jobItem)">
+                            ایجاد فیلدهای اضافی
+
+                        </md-button>
+                    </md-toolbar>
+
+
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+
+            <span flex></span>
+            <md-button ng-click="answer('not useful')">
+                انصراف
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="post()" ng-disabled="frmAddEditJobItems.$invalid">
+
+                <md-icon md-font-icon="fa fa-save"></md-icon>
+
+ثبت
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

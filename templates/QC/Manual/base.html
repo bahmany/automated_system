@@ -1,0 +1,55 @@
+<div ng-controller="QCManualsController">
+    <md-toolbar class="demo-toolbar md-primary _md _md-toolbar-transitions">
+        <div class="md-toolbar-tools">
+            <h2>
+                جستجو در منابع </h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+
+    <div id="pageViewer" style="display: none">
+        <div layout="row">
+            <md-button ng-click="Download(current)">دانلود</md-button>
+            <span flex=""> </span>
+            <md-button ng-click="return()">برگشت</md-button>
+        </div>
+        <img ng-src="//getImgFull(current)//" style="    width: 100%;">
+    </div>
+
+    <div id="search" class="shadower">
+        <md-input-container class="md-block">
+            <label for="">جستجو</label>
+            <textarea ng-model="searchText" ng-model-options="{debounce: 1000}"></textarea>
+
+        </md-input-container>
+  <md-progress-linear md-mode="indeterminate" ng-show="wait"></md-progress-linear>
+
+        <div>
+            عناوین یافته شده
+        </div>
+        {#        <md-divider></md-divider>#}
+        <div dir="ltr" style="font-size: 12px;" class="well well-sm">
+            <div ng-repeat="item in searchResult" ng-if="item.outlines.length > 0">
+                <div ng-repeat="it in item.outlines" ng-click="OpenManual(item)">
+                    <span style="font-weight: bold; color: blue">//it.title//</span> : <span style="color: grey">//it.desc//</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            صفحات یافت شده
+        </div>
+        <div layout="row" layout-wrap dir="ltr" class="well well-sm">
+            <div ng-repeat="item in searchResult" layout-margin layout-padding="">
+                <div style="font-size: 12px;" ng-click="OpenManual(item)">
+                    <div ng-repeat="it in item.outlines">
+                        <span style="font-weight: bold; color: blue">//it.title//</span> : <span style="color: grey">//it.desc//</span>
+                    </div>
+                    <img ng-src="//getImg(item)//" alt=""
+                         style="height: 400px;    border: 1px solid;    border-radius: 12px;">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

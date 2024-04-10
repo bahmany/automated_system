@@ -1,0 +1,278 @@
+<md-dialog aria-label="Mango (Fruit)" flex="70">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                ایجاد / ویرایش اطلاعات مشتریان
+
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <form name="frmNewReq">
+        <div class="panel-content pagination2 table-responsive">
+            <div>
+                <div>
+                    <div style="margin-bottom: 0;padding-bottom: 0;">
+                        {% load pager_navigator_tags %}
+                        {% pagerNavigator style="text-center" listname="Customers" search_ng_model="CustomersSearchText" PageTo="CustomersPageTo" %}
+                    </div>
+                    {#                    <md-list flex>#}
+                    <div style="max-height: 100px; overflow-y: scroll; margin: 15px; border: 1px solid gray;margin-top: 0;">
+                        <div ng-click="setCustomer(customer)" ng-class-odd="'odd'"
+                             ng-class-even="'even'"
+                             class="noright" ng-repeat="customer in Customers.results">
+                            //customer.name//-//customer.hamkaranCode//
+                        </div>
+                    </div>
+                    {#                    </md-list>#}
+                </div>
+                <div>
+                    <input type="text" ng-model="customer.profileLink" required
+                           style="display: none;">
+                    <h2>
+                        //SelectedProfileInfo.name//
+                        <small ng-if="SelectedProfileInfo.hamkaranCode"
+                               style="font-family: Yekan;font-size: 10px;margin-right: 12px;padding: 2px 9px;border-radius: 10px;background-color: rgb(19, 162, 56);color: white;">
+                            کد ثبتی همکاران :
+                            //SelectedProfileInfo.hamkaranCode//
+                        </small>
+                        <small ng-if="!(SelectedProfileInfo.hamkaranCode)"
+                               style="
+                                   font-family: Yekan;
+                                   font-size: 10px;
+                                   margin-right: 12px;
+                                    padding: 2px 9px;
+                                    /* border: 1px solid gray; */
+                                    border-radius: 10px;
+                                    background-color: #a25513;
+                                    color: white;"> ثبت نشده در همکاران
+                        </small>
+                    </h2>
+                </div>
+                <div layout-gt-sm="row" class="reduce-input-area">
+
+                    <md-input-container flex-gt-sm="25">
+                        <label for="">ضخامت</label>
+                        <input type="number" ng-model="customer.desc.zekhamat">
+                    </md-input-container>
+
+                    <md-input-container flex-gt-sm="25">
+                        <label for="">عرض</label>
+                        <input type="number" ng-model="customer.desc.arz">
+                    </md-input-container>
+
+                    <md-input-container flex-gt-sm="25">
+                        <label for="">طول</label>
+                        <input type="number" ng-model="customer.desc.tool">
+                    </md-input-container>
+
+                    <md-input-container flex-gt-sm="25">
+                        <label for="">تمپر</label>
+                        <input type="number" ng-model="customer.desc.temper">
+                    </md-input-container>
+
+                </div>
+
+
+                <div layout-gt-sm="row" class="reduce-input-area">
+
+                    <md-input-container flex-gt-sm>
+                        <label for="">میزان کیلوگرم</label>
+                        <input type="number" ng-model="customer.desc.qty" required>
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label>زمان مصرف</label>
+                        <md-select ng-model="customer.desc.sayType">
+                            <md-option value="کلی">
+                                کلی
+                            </md-option>
+                            <md-option value="فوری">
+                                فوری
+                            </md-option>
+                            <md-option value="نامعلوم">
+                                نامعلوم
+                            </md-option>
+                            <md-option value="روزانه">
+                                روزانه
+                            </md-option>
+                            <md-option value="ماهانه">
+                                ماهانه
+                            </md-option>
+                            <md-option value="فصلی">
+                                فصلی
+                            </md-option>
+                            <md-option value="سالانه">
+                                سالانه
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex-gt-sm="20">
+                        <label for="">شرایط پرداخت</label>
+                        <md-select ng-model="customer.desc.payType">
+                            <md-option value="نامعلوم">
+                                نامعلوم
+                            </md-option>
+                            <md-option value="نقدی">
+                                نقدی
+                            </md-option>
+                            <md-option value="اعتباری">
+                                اعتباری
+                            </md-option>
+                            <md-option value="قرارداد">
+                                قرارداد
+                            </md-option>
+                            <md-option value="اعتبار اسنادی">
+                                اعتبار اسنادی
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+
+                </div>
+
+                <div layout-gt-sm="row" class="reduce-input-area">
+                    <md-input-container flex-gt-sm="25">
+                        <label for="">تاریخ ثبت</label>
+                        <input type="text"
+                               ui-mask="9999/99/99"
+                               style="direction: ltr!important;text-align: left"
+                               model-view-value="true"
+                               ng-model="customer.desc.tarikheSabt">
+                    </md-input-container>
+                    <md-input-container flex-gt-sm="25">
+                        <label for="">شماره نامه ی وارده</label>
+                        <input type="number" ng-model="customer.desc.letterID">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs>
+                        <label>نوع موجودی</label>
+                        <md-select ng-model="customer.desc.typeOfAsk" ng-init="customer.desc.typeOfAsk = 'اعلامی'">
+                            <md-option value="کارشناسی">
+                                کارشناسی
+                            </md-option>
+                            <md-option value="اعلامی">
+                                اعلامی
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+
+                </div>
+
+
+                <div layout-gt-sm="row" class="reduce-input-area">
+                    <md-input-container flex-gt-xs="25">
+                        <label>ماه</label>
+                        <md-select ng-model="customer.desc.month">
+                            <md-option value="فروردین">
+                                فروردین
+                            </md-option>
+                            <md-option value="اردیبهشت">
+                                اردیبهشت
+                            </md-option>
+                            <md-option value="خرداد">
+                                خرداد
+                            </md-option>
+                            <md-option value="تیر">
+                                تیر
+                            </md-option>
+                            <md-option value="مرداد">
+                                مرداد
+                            </md-option>
+                            <md-option value="شهریور">
+                                شهریور
+                            </md-option>
+                            <md-option value="مهر">
+                                مهر
+                            </md-option>
+                            <md-option value="آبان">
+                                آبان
+                            </md-option>
+                            <md-option value="آذر">
+                                آذر
+                            </md-option>
+                            <md-option value="بهمن">
+                                بهمن
+                            </md-option>
+                            <md-option value="دی">
+                                دی
+                            </md-option>
+                            <md-option value="اسفند">
+
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="25">
+                        <label>فصل</label>
+                        <md-select ng-model="customer.desc.sayseason">
+                            <md-option value="بهار">
+                                بهار
+                            </md-option>
+                            <md-option value="تابستان">
+                                تابستان
+                            </md-option>
+                            <md-option value="پاییز">
+                                پاییز
+                            </md-option>
+                            <md-option value="زمستان">
+                                زمستان
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex-gt-sm="25">
+                        <label for="">سال</label>
+                        <input type="number" ng-model="customer.desc.Year">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="25">
+                        <label>سطح</label>
+                        <md-select ng-model="customer.desc.sath">
+                            <md-option value="Stone">
+                                Stone
+                            </md-option>
+                            <md-option value="Bright">
+                                Bright
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+                <div layout="row">
+                    <span flex></span>
+                    <md-button class="md-raised md-primary" ng-click="saveRequest()"
+                               ng-disabled="frmNewReq.$invalid">ثبت
+                    </md-button>
+                </div>
+                <div>
+                    <md-list>
+
+
+                    </md-list>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+    {#    <form name="frmAddConv">#}
+    {#        <div>#}
+    {##}
+    {##}
+    {#        </div>#}
+    {##}
+    {##}
+    {#        <md-dialog-actions layout="row">#}
+    {#            <span flex></span>#}
+    {#            <md-button class="md-raised md-primary" ng-click="confirm()" ng-disabled="frmAddConv.$invalid">#}
+    {#                ثبت#}
+    {#            </md-button>#}
+    {#            <md-button class="md-raised md-primary" ng-click="confirmCancel()">#}
+    {#                انصراف#}
+    {#            </md-button>#}
+    {#        </md-dialog-actions>#}
+    {##}
+    {#    </form>#}
+</md-dialog>

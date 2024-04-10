@@ -1,0 +1,64 @@
+<h4>سوالات سازندگان </h4>
+<hr>
+
+<form name="frm_frm18">
+
+    <div>
+        <div layout="column">
+            <md-input-container class="md-block">
+                <label for="">نحوه پرداخت هزینه خدمت یا محصول تامین کننده به چه صورت می باشد ؟</label>
+                <md-select ng-model="provider.frm18.nehvehPardakht">
+                    <md-option value="نقدی">
+                        نقدی
+                    </md-option>
+                    <md-option value="اعتباری ( چکی )">
+                        اعتباری ( چکی )
+                    </md-option>
+                    <md-option value="اعتبار اسنادی مدت دار">
+                        اعتبار اسنادی مدت دار
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">مدت اعتبار پیش فاکتور چقدر می باشد ؟</label>
+                <input type="text" ng-model="provider.frm18.modateEtebar">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">آیا شرکت شما مایل به عقد قرارداد می باشد ؟</label>
+                <md-select ng-model="provider.frm18.aghdeGharardad">
+                    <md-option value="بلی">
+                        بلی
+                    </md-option>
+                    <md-option value="خیر">
+                        خیر
+                    </md-option>
+                </md-select>
+
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">مدت زمان ارائه خدمت با ارسال خدمت از زمان سفارش گذاری چه مدتی است ؟</label>
+                <md-select ng-model="provider.frm18.modateEraeeKhadamat">
+                    <md-option value="حداکثر یک هفته">
+                        حداکثر یک هفته
+                    </md-option>
+                    <md-option value="حداکثر یک ماه">
+                        حداکثر یک ماه
+                    </md-option>
+                    <md-option value="بیشتر از یک ماه">
+                        بیشتر از یک ماه
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+
+        </div>
+
+
+    </div>
+
+    <span style="display: none">
+        //frm18_invalid = frm_frm18.$invalid//
+    </span>
+
+
+</form>

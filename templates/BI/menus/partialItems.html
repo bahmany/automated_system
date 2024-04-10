@@ -1,0 +1,88 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar class="_md _md-toolbar-transitions">
+            <div class="md-toolbar-tools">
+                <h2>آیتم های منو</h2>
+                <span flex="" class="flex"></span>
+            </div>
+        </md-toolbar>
+
+
+        <md-dialog-content>
+            <div class="md-dialog-content" style="width: 600px;">
+
+                <div layout="row">
+
+                    <md-input-container class="md-block" flex="45">
+                        <label>صفحه مورد نظر</label>
+                        <md-select ng-model="item.page">
+                            <md-option ng-value="None">
+                                بدون لینک
+                            </md-option>
+                            <md-option ng-repeat="___page in pages" ng-value="___page.id">
+                                //___page.pageTitle//
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="45">
+                        <label>منوی اصلی</label>
+                        <md-select ng-model="item.parent">
+                            <md-option ng-value="None">
+                                اصلی
+                            </md-option>
+                            <md-option ng-repeat="___item in items" ng-value="___item.id">
+                                //___item.title//
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                </div>
+                <div layout="row">
+                    <md-input-container class="md-block" flex="45">
+                        <label>نام منو</label>
+                        <input type="text" ng-required="" ng-model="item.title">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="45">
+                        <label>ترتیب</label>
+                        <input type="number" ng-required="" ng-model="item.order">
+                    </md-input-container>
+                </div>
+
+
+                <div>
+                    <md-button ng-click="postItem()" class="md-default md-raised">
+                        ثبت آیتم
+                    </md-button>
+                </div>
+
+                <div layout-padding="" style="height: 200px; overflow-x: hidden; overflow-y: scroll;">
+                    <div ng-repeat="men in _menu track by $index" layout="row" style="border: 1px solid gray;">
+                        <div flex="50">
+                            //men.title//
+                            <a ng-click="edit(men)" style="font-size: 12px; color: gray">(ویرایش)</a>
+                            <a ng-click="delete(men)" style="font-size: 12px; color: gray">(حذف)</a>
+                        </div>
+
+                        <div flex="50">
+                            <div ng-repeat="ii in men.children track by $index">
+                                //ii.title//
+                                <a  ng-click="edit(ii)"  style="font-size: 12px; color: gray">(ویرایش)</a>
+                                <a  ng-click="delete(ii)"  style="font-size: 12px; color: gray">(حذف)</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+
+        <md-dialog-actions layout="row">
+
+            <md-button class="md-primary md-raised" ng-click="saveit()">ثبت</md-button>
+
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

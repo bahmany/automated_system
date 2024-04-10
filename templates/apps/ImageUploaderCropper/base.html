@@ -1,0 +1,190 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cropme Demo</title>
+    <meta name="description" content="">
+    {#		<meta name="viewport" content="width=device-width">#}
+
+    <link href={% static "Sales/assets/styles/style.css" %} rel="stylesheet">
+    <link href={% static "Sales/assets/styles/theme.css" %} rel="stylesheet">
+    <link href={% static "Sales/assets/styles/ui.css" %} rel="stylesheet">
+    <link href={% static "Sales/assets/styles/material.css" %} rel="stylesheet">
+    <link href={% static "Sales/assets/styles/layout.css" %} rel="stylesheet">
+    <link href={% static "Sales/assets/styles/metrojs.min.css" %} rel="stylesheet">
+    <link href={% static "Sales/assets/styles/ammap.css" %} rel="stylesheet">
+    <link href={% static "Sales/assets/styles/my.css" %} rel="stylesheet">
+    <script src={% static "Sales/assets/styles/modernizr-2.6.2-respond-1.1.0.min.js" %}></script>
+    <link rel="stylesheet" href="/static/bower_components/ckeditorAngularJs/ng-ckeditor.css?v=0.01">
+
+    <link rel="stylesheet" href="/static/bower_components/angular-material/angular-material.min.css?v=0.01">
+    <link rel="stylesheet" href={% static "styles/fonts.css" %}?v=0.01">
+    <link rel="stylesheet" href="/static/styles/myStyles.css?v=0.01">
+    <link rel="stylesheet" href="/static/apps/imageUploaderCropper/styles/my.css">
+    <link rel="stylesheet" href="/static/apps/imageUploaderCropper/bower/rcrop.css">
+
+
+    <title>Title</title>
+</head>
+<body ng-app="app" dir="rtl">
+
+<md-toolbar class="md-hue-1">
+    <div class="md-toolbar-tools">
+        <h2 flex md-truncate>عکس پروفایل</h2>
+        <div flex></div>
+        <md-button class="md-raised" onclick="parent.CloseAvatarModal()">بستن</md-button>
+    </div>
+</md-toolbar>
+
+
+<div ng-controller="myApp as ctrl" layout="column" style="height: 485px;">
+
+    <div style="display: none;">
+        <input type='file' id="file"/>
+    </div>
+    <div>
+        {#        <a onclick="parent.abc();" href="#">Click Me</a>#}
+    </div>
+
+    <div layout-gt-xs="row">
+        <div flex-gt-xs="30" style="padding: 15px;">
+            <div layout-align="center center" layout="row">
+                <md-button ng-click="UploadPic()" class="md-primary md-raised">انتخاب عکس پروفایل ...</md-button>
+            </div>
+            <div class="cropped">
+
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <div flex-gt-xs="70" class="container" layout="column">
+            <div class="imageBox">
+                <div class="thumbBox"></div>
+                <div class="spinner" style="display: none">در حال لود ...</div>
+            </div>
+            <div class="action">
+                <input class="md-primary md-raised md-button md-ink-ripple" type="button" id="btnCrop" value="برش "
+                       style="float: right">
+                <input class="md-fab md-mini md-default md-button md-ink-ripple" type="button" id="btnZoomIn"
+                       value="زوم +" style="float: right">
+                <input class="md-fab md-mini md-default md-button md-ink-ripple" type="button" id="btnZoomOut"
+                       value="زوم -" style="float: right">
+            </div>
+
+
+        </div>
+    </div>
+
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            <div flex></div>
+            <md-button class="md-raised" onclick="parent.CloseAvatarModal()">انصراف</md-button>
+            <md-button class="md-raised md-primary" ng-click="sendProfilePic()">ثبت عکس</md-button>
+
+        </div>
+    </md-toolbar>
+
+
+</div>
+
+
+</body>
+
+
+<script src={% static "Sales/assets/scripts/bower/jquery-3.1.0.min.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/jquery-migrate-3.0.0.min.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/jquery-ui.min.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/main-gsap.min.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/bootstrap.min.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/jquery.appear.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/jquery.cookies.min.js" %}></script> <!-- Jquery Cookies, for theme -->
+<script src={% static "Sales/assets/scripts/bower/jquery.blockUI.min.js" %}></script>
+<script src={% static "bower_components/angular/cropper/angular.min.js" %}></script>
+<script src={% static "bower_components/angular/cropper/angular-animate.min.js" %}></script>
+<script src={% static "bower_components/angular/cropper/angular-aria.min.js" %}></script>
+<script src={% static "bower_components/angular/cropper/angular-messages.min.js" %}></script>
+<script src={% static "bower_components/angular/cropper/angular-route.min.js" %}></script>
+<script src={% static "bower_components/angular-material/angular-material.min.js" %}></script>
+<script src={% static "bower_components/ui-router/release/angular-ui-router.min.js" %}></script>
+<script src={% static "bower_components/angular-dragdrop-master/src/angular-dragdrop.js" %}></script>
+<script src={% static "bower_components/angular-ui-tree-master/dist/angular-ui-tree.min.js" %}></script>
+<script src={% static "bower_components/ocLazyLoad/ocLazyLoad.min.js" %}></script>
+<script src={% static "bower_components/sweetalert/sweetalert.min.js" %}></script>
+<script src={% static "bower_components/md-data-table-master/dist/other_md-data-table.min.js" %}></script>
+<script src={% static "bower_components/angular-translate/angular-translate.js" %}></script>
+<script src={% static "angularThings/others/fitlers/moment.js" %}></script>
+<script src={% static "angularThings/others/fitlers/moment-jalaali.js" %}></script>
+<script src={% static "bower_components/angular-sanitize.min.js" %}></script>
+<script src={% static "bower_components/angular-translate-loader-url/angular-translate-loader-url.js" %}></script>
+<script src={% static "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js" %}></script>
+<script src={% static "bower_components/jquery.json2html-master/json2html.js" %}></script>
+<script src={% static "bower_components/jquery.json2html-master/jquery.json2html.js" %}></script>
+
+
+<script src="/static/apps/imageUploaderCropper/bower/rcrop.min.js"></script>
+<script src="/static/bower_components/ckeditor/full/ckeditor.js?v=0.01"></script>
+<script src="/static/bower_components/ckeditorAngularJs/ng-ckeditor.js?v=0.01"></script>
+<script src="/static/bower_components/angular-timeline/angular-scroll-animate.js?v=0.01"></script>
+<script src="/static/bower_components/angular-timeline/angular-timeline.js?v=0.01"></script>
+<script src="/static/bower_components/ng-file-upload/ng-file-upload.min.js?v=0.01"></script>
+<script src="/static/angularThings/Letter/FileUploader/classUploader.js?v=0.01"></script>
+
+<script src={% static "angularThings/SpecialApps/app.js" %}></script>
+<script src={% static "angularThings/SpecialApps/others/TopNavCtrl.js" %}></script>
+<script src={% static "angularThings/SpecialApps/others/SideBarCtrl.js" %}></script>
+
+
+<script src="/static/angularThings/others/fitlers/jalaliDateFilter.js?v=0.01"></script>
+
+
+<script src={% static "Sales/assets/scripts/bower/bootbox.min.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/jquery.mCustomScrollbar.concat.min.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/bootstrap-hover-dropdown.min.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/sparkline.min.js" %}></script> <!-- Charts Sparkline -->
+<script src={% static "Sales/assets/scripts/bower/retina.min.js" %}></script> <!-- Retina Display -->
+<script src={% static "Sales/assets/scripts/bower/select2.full.min.js" %}></script> <!-- Select Inputs -->
+<script src={% static "Sales/assets/scripts/bower/icheck.min.js" %}></script> <!-- Checkbox & Radio Inputs -->
+<script src={% static "Sales/assets/scripts/bower/backstretch.min.js" %}></script> <!-- Background Image -->
+<script src={% static "Sales/assets/scripts/bower/bootstrap-progressbar.min.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/builder.js" %}></script> <!-- Theme Builder -->
+<script src={% static "Sales/assets/scripts/bower/sidebar_hover.js" %}></script> <!-- Sidebar on Hover -->
+<script src={% static "Sales/assets/scripts/bower/application.js" %}></script> <!-- Main Application Script -->
+<script src={% static "Sales/assets/scripts/bower/plugins.js" %}></script> <!-- Main Plugin Initialization Script -->
+<script src={% static "Sales/assets/scripts/bower/notes.js" %}></script> <!-- Notes Widget -->
+{#<script src={% static "Sales/assets/scripts/bower/quickview.js" %}></script> <!-- Chat Script -->#}
+<script src={% static "Sales/assets/scripts/bower/search.js" %}></script> <!-- Search Script -->
+<script src={% static "Sales/assets/scripts/bower/jquery.noty.packaged.min.js" %}></script>  <!-- Notifications -->
+<script src={% static "Sales/assets/scripts/bower/bootstrap-editable.min.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/bootstrap-contextmenu.min.js" %}></script> <!-- Context Menu -->
+<script src={% static "Sales/assets/scripts/bower/multidatespicker.min.js" %}></script> <!-- Multi dates Picker -->
+<script src={% static "Sales/assets/scripts/bower/todo_list.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/metrojs.min.js" %}></script> <!-- Flipping Panel -->
+<script src={% static "Sales/assets/scripts/bower/Chart.min.js" %}></script>  <!-- ChartJS Chart -->
+<script src={% static "Sales/assets/scripts/bower/highstock.js" %}></script> <!-- financial Charts -->
+<script src={% static "Sales/assets/scripts/bower/exporting.js" %}></script> <!-- Financial Charts Export Tool -->
+<script src={% static "Sales/assets/scripts/bower/ammap.js" %}></script> <!-- Vector Map -->
+<script src={% static "Sales/assets/scripts/bower/worldLow.js" %}></script> <!-- Vector World Map  -->
+<script src={% static "Sales/assets/scripts/bower/black.js" %}></script> <!-- Vector Map Black Theme -->
+<script src={% static "Sales/assets/scripts/bower/skycons.min.js" %}></script> <!-- Animated Weather Icons -->
+<script src={% static "Sales/assets/scripts/bower/jquery.simpleWeather.js" %}></script> <!-- Weather Plugin -->
+<script src={% static "Sales/assets/scripts/bower/widget_weather.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/dashboard.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/material.js" %}></script>
+<script src={% static "Sales/assets/scripts/bower/layout.js" %}></script>
+{#<script src="/static/apps/imageUploaderCropper/bower/superswipe.js"></script>#}
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="/static/apps/imageUploaderCropper/angular-img-cropper.min.js"></script>
+
+
+<script src="/static/apps/imageUploaderCropper/app.js"></script>
+{#		<script src="/static/apps/imageUploaderCropper/main.js"></script>#}
+
+
+</html>

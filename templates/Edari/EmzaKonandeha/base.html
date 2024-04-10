@@ -1,0 +1,252 @@
+<div ng-controller="EmzaKonandehaCtrl">
+
+    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">
+        <div layout="row">
+            <md-toolbar-filler layout-align="center center" layout="row" style="background-color: rgb(139 159 175)">
+                <md-icon md-font-icon="fa fa-clock-o" style="    font-size: 35px;"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">مجوزهای امضا</h2>
+
+                <div>
+                    تعیین مجوز برای کسانی که می توانند برگه های تردد را امضا کنند
+
+                </div>
+            </div>
+        </div>
+    </md-toolbar>
+
+
+    <div class="shadower">
+        <div layout="row" layout-wrap="">
+            <div flex="50"
+                 layout="row"
+                 ng-repeat="member in members" layout-padding
+                 style="border: 1px solid lightgrey; border-radius: 5px">
+                <div>
+                    <img ng-src="//member.avatar//" style="height: 30px; width: 30px; border-radius: 50%" alt="">
+                </div>
+                <div flex="" style="font-size: 13px;">
+                    <div>
+                        //member.profileName// <span
+                            style="font-size: 11px; color: gray">(//member.companyName//)</span>
+                    </div>
+                    <div layout="row">
+                        <div flex="30">پرسنلی :
+                            //member.personnel_code//
+                            <a ng-click="ChangePersCode(member)">(تغییر)</a>
+                        </div>
+                        <div flex></div>
+                        <div flex="30">
+                            کاربری :
+                            //member.username//
+                        </div>
+                        <div flex></div>
+                        <div flex="30" dir="ltr">
+                            موبایل :
+                            //member.cellphone//
+                            <a ng-click="ChangeCell(member)">(تغییر)</a>
+                        </div>
+
+
+                    </div>
+
+                    <table style="width: 100%; max-width: 100%;"
+                           class="check-table table table-bordered table-striped mini">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>نفر اول</th>
+                            <th>دوم</th>
+                            <th>سوم</th>
+                            <th>چهارم</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td rowspan="2">مرخصی ساعتی</td>
+                            <td>کد پرسنلی</td>
+                            <td><input type="text" ng-model="member.desc.taeed.morekhasi_saati_taeed.first"
+                                       ng-change="get_personnel_name_from_code(member, 'morekhasi_saati_taeed', 'first')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.morekhasi_saati_taeed.second"
+                                       ng-change="get_personnel_name_from_code(member, 'morekhasi_saati_taeed', 'second')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.morekhasi_saati_taeed.third"
+                                       ng-change="get_personnel_name_from_code(member, 'morekhasi_saati_taeed', 'third')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.morekhasi_saati_taeed.forth"
+                                       ng-change="get_personnel_name_from_code(member, 'morekhasi_saati_taeed', 'forth')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+
+
+                        </tr>
+                        <tr>
+
+                            <td>نام</td>
+                            <td>//member.desc.taeed.morekhasi_saati_taeed.first_name//</td>
+                            <td>//member.desc.taeed.morekhasi_saati_taeed.second_name//</td>
+                            <td>//member.desc.taeed.morekhasi_saati_taeed.third_name//</td>
+                            <td>//member.desc.taeed.morekhasi_saati_taeed.forth_name//</td>
+                        </tr>
+
+
+                        <tr>
+                            <td rowspan="2">مرخصی روزانه</td>
+                            <td>کد پرسنلی</td>
+                            <td><input type="text" ng-model="member.desc.taeed.morekhasi_roozaneh_taeed.first"
+                                       ng-change="get_personnel_name_from_code(member, 'morekhasi_roozaneh_taeed', 'first')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.morekhasi_roozaneh_taeed.second"
+                                       ng-change="get_personnel_name_from_code(member, 'morekhasi_roozaneh_taeed', 'second')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.morekhasi_roozaneh_taeed.third"
+                                       ng-change="get_personnel_name_from_code(member, 'morekhasi_roozaneh_taeed', 'third')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.morekhasi_roozaneh_taeed.forth"
+                                       ng-change="get_personnel_name_from_code(member, 'morekhasi_roozaneh_taeed', 'forth')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                        </tr>
+                        <tr>
+
+                            <td>نام</td>
+                            <td>//member.desc.taeed.morekhasi_roozaneh_taeed.first_name//</td>
+                            <td>//member.desc.taeed.morekhasi_roozaneh_taeed.second_name//</td>
+                            <td>//member.desc.taeed.morekhasi_roozaneh_taeed.third_name//</td>
+                            <td>//member.desc.taeed.morekhasi_roozaneh_taeed.forth_name//</td>
+                        </tr>
+
+
+                        <tr>
+                            <td rowspan="2">اضافه کاری</td>
+                            <td>کد پرسنلی</td>
+                            <td><input type="text" ng-model="member.desc.taeed.ezafeh_kari_taeed.first"
+                                       ng-change="get_personnel_name_from_code(member, 'ezafeh_kari_taeed', 'first')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.ezafeh_kari_taeed.second"
+                                       ng-change="get_personnel_name_from_code(member, 'ezafeh_kari_taeed', 'second')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.ezafeh_kari_taeed.third"
+                                       ng-change="get_personnel_name_from_code(member, 'ezafeh_kari_taeed', 'third')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.ezafeh_kari_taeed.forth"
+                                       ng-change="get_personnel_name_from_code(member, 'ezafeh_kari_taeed', 'forth')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+
+                        </tr>
+                        <tr>
+
+                            <td>نام</td>
+                            <td>//member.desc.taeed.ezafeh_kari_taeed.first_name//</td>
+                            <td>//member.desc.taeed.ezafeh_kari_taeed.second_name//</td>
+                            <td>//member.desc.taeed.ezafeh_kari_taeed.third_name//</td>
+                            <td>//member.desc.taeed.ezafeh_kari_taeed.forth_name//</td>
+                        </tr>
+
+
+                        <tr>
+                            <td rowspan="2">ماموریت روزانه</td>
+                            <td>کد پرسنلی</td>
+                            <td><input type="text" ng-model="member.desc.taeed.mamoriate_roozaneh_taeed.first"
+                                       ng-change="get_personnel_name_from_code(member, 'mamoriate_roozaneh_taeed', 'first')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.mamoriate_roozaneh_taeed.second"
+                                       ng-change="get_personnel_name_from_code(member, 'mamoriate_roozaneh_taeed', 'second')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.mamoriate_roozaneh_taeed.third"
+                                       ng-change="get_personnel_name_from_code(member, 'mamoriate_roozaneh_taeed', 'third')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.mamoriate_roozaneh_taeed.forth"
+                                       ng-change="get_personnel_name_from_code(member, 'mamoriate_roozaneh_taeed', 'forth')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+
+                        </tr>
+                        <tr>
+
+                            <td>نام</td>
+                            <td>//member.desc.taeed.mamoriate_roozaneh_taeed.first_name//</td>
+                            <td>//member.desc.taeed.mamoriate_roozaneh_taeed.second_name//</td>
+                            <td>//member.desc.taeed.mamoriate_roozaneh_taeed.third_name//</td>
+                            <td>//member.desc.taeed.mamoriate_roozaneh_taeed.forth_name//</td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">ماموریت ساعتی</td>
+                            <td>کد پرسنلی</td>
+                            <td><input type="text" ng-model="member.desc.taeed.mamoriate_saati_taeed.first"
+                                       ng-change="get_personnel_name_from_code(member, 'mamoriate_saati_taeed', 'first')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.mamoriate_saati_taeed.second"
+                                       ng-change="get_personnel_name_from_code(member, 'mamoriate_saati_taeed', 'second')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.mamoriate_saati_taeed.third"
+                                       ng-change="get_personnel_name_from_code(member, 'mamoriate_saati_taeed', 'third')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.mamoriate_saati_taeed.forth"
+                                       ng-change="get_personnel_name_from_code(member, 'mamoriate_saati_taeed', 'forth')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+
+                        </tr>
+                        <tr>
+
+                            <td>نام</td>
+                            <td>//member.desc.taeed.mamoriate_saati_taeed.first_name//</td>
+                            <td>//member.desc.taeed.mamoriate_saati_taeed.second_name//</td>
+                            <td>//member.desc.taeed.mamoriate_saati_taeed.third_name//</td>
+                            <td>//member.desc.taeed.mamoriate_saati_taeed.forth_name//</td>
+                        </tr>
+
+
+                        <tr>
+                            <td rowspan="2">درخواست کالا</td>
+                            <td>کد پرسنلی</td>
+                            <td><input type="text" ng-model="member.desc.taeed.darkhaste_kala_taeed.first"
+                                       ng-change="get_personnel_name_from_code(member, 'darkhaste_kala_taeed', 'first')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.darkhaste_kala_taeed.second"
+                                       ng-change="get_personnel_name_from_code(member, 'darkhaste_kala_taeed', 'second')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.darkhaste_kala_taeed.third"
+                                       ng-change="get_personnel_name_from_code(member, 'morekhasi_saati_taeed', 'third')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+                            <td><input type="text" ng-model="member.desc.taeed.darkhaste_kala_taeed.forth"
+                                       ng-change="get_personnel_name_from_code(member, 'darkhaste_kala_taeed', 'forth')" ng-model-options='{ debounce: 500 }'
+                                       style="width: 50px; height: 20px;"></td>
+
+                        </tr>
+                        <tr>
+
+                            <td>نام</td>
+                            <td>//member.desc.taeed.darkhaste_kala_taeed.first_name//</td>
+                            <td>//member.desc.taeed.darkhaste_kala_taeed.second_name//</td>
+                            <td>//member.desc.taeed.darkhaste_kala_taeed.third_name//</td>
+                            <td>//member.desc.taeed.darkhaste_kala_taeed.forth_name//</td>
+                        </tr>
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" style="text-align: left; padding: 12px;">
+                                    <a ng-click="save_mojavez_grid(member)" class="btn-maker" style="    background-color: darkgreen;
+    padding: 3px;    border-radius: 8px;    font-size: 12px;    padding-left: 10px;    padding-right: 10px;    color: white;">ثبت
+                                        جدول</a>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

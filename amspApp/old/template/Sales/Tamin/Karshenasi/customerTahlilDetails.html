@@ -1,0 +1,82 @@
+<div ng-controller="CustomerTahlilDetailsCtrl">
+    <div class="panel">
+        <div class="panel-header md-panel-controls ui-sortable-handle">
+            <h3><i class="fa fa-table" style="padding-top: 10px;"></i>تحلیل مشتری
+                <small><a style="float: left" ui-sref="CustomerTahili">برگشت</a></small>
+            </h3>
+
+        </div>
+        <div class="panel-content pagination2 table-responsive" layout="column">
+            <div>
+
+                از سال : <input type="number" ng-model="yearStart">
+                تا سال : <input type="number" ng-model="yearEnd">
+
+                <md-button class="md-raised" ng-click="getTahlil()">فراخوانی</md-button>
+
+            </div>
+
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>کد تفضیلی</th>
+                    <th>عنوان</th>
+                    <th>REM</th>
+                    <th>RemDebit</th>
+                    <th>RemCredit</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="step4 in AccSathe4">
+                <tr>
+                    <td>//step4.Code// <i class="fa fa-plus"
+                                          ng-class="{'fa-plus':!(step4.isOpen), 'fa-minus':(step4.isOpen)}"
+                                          ng-click="step4.isOpen = !(step4.isOpen)" style="    padding: 4px;
+    background-color: white;
+    border: 1px solid #c5c5c5;
+    height: 22px;
+    width: 20px;
+    float: left;"></i></td>
+                    <td>//step4.Title//</td>
+                    <td style="text-align: left;">//step4.Rem | number//</td>
+                    <td style="text-align: left;">//step4.RemDebit | number//</td>
+                    <td style="text-align: left;">//step4.RemCredit | number//</td>
+                    <td style="text-align: left;">//step4.Debit | number//</td>
+                    <td style="text-align: left;">//step4.Credit | number//</td>
+                </tr>
+                <tr ng-if="step4.isOpen">
+                    <td colspan="7">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <td>تاریخ</td>
+                                <td>بابت</td>
+                                <td>Credit</td>
+                                <td>Debit</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="step in step4.details">
+                                <td>//step.VchDate | jalaliDate:'jYYYY/jMM/jDD' //</td>
+                                <td>//step.Descr//</td>
+                                <td>//step.Debit | number//</td>
+                                <td>//step.Credit | number//</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+</div>

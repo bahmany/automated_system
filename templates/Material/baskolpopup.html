@@ -1,0 +1,22 @@
+<md-dialog aria-label="Mango (Fruit)" flex="70">
+    <form name="frmPart" ng-show="currentPanel == 1">
+        {% include 'Material/baskolpopu/add_new_good.html' %}
+
+    </form>
+
+    <form ng-show="currentPanel == 2">
+
+        {% include 'Material/baskolpopu/set_anbar_hamkaran.html' %}
+    </form>
+
+    <form name="frmBarcode" ng-show="currentPanel == 3">
+        {% include 'Material/baskolpopu/add_new_barcode.html' %}
+    </form>
+
+    <form name="frmBarcode" ng-show="currentPanel == 4">
+
+        {% include 'Material/baskolpopu/barcode.html' %}
+
+    </form>
+
+</md-dialog>

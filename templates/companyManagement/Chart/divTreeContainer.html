@@ -1,0 +1,55 @@
+{% load translators %}
+
+<div layout="row">
+<div flex="70" class="panel panel-default ">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            {{ 'chart'|translate }}
+        </h3>
+    </div>
+    <div class="panel-body " style="height: 600px;">
+        <div id="tree-container"
+             style="overflow: auto;height: 600px;width:100%"
+             dir="ltr">
+        </div>
+    </div>
+</div>
+
+<div flex="30" class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            {{ "ChartZones" | translate }}
+            <button class=" btn btn-md btn-primary fa fa-plus pull-right" ng-click="NewZone()"
+                    style=" margin-top: -8px;">
+
+            </button>
+        </h3>
+
+    </div>
+    <div class="panel-body">
+        <input type="text" class="form-control underline" id="zoneSearch"
+               placeholder="Search through zones...">
+        <br>
+
+        <div class="fit-height-zone">
+            <div ng-repeat="zone in Zones.results track by $index">
+                <label class="checkbox1" for="Option//$index//">
+                    <input id="Option//$index//" type="checkbox" ng-model="zone.selected"
+                           ng-change="ChangeZonesChart(zone)">
+                    <span></span> </label>
+                <span>//zone.title//</span>
+                <span class="btn-group btn-group-xs pull-right">
+                    <button ng-click="DeleteZone(zone, $index)"
+                            class="btn btn-default btn-xs btn-danger fa fa-trash-o"></button>
+                    <button ng-click="EditZone(zone, $index)"
+                            class="btn btn-default btn-xs btn-info fa fa-pencil"></button>
+
+                </span>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>

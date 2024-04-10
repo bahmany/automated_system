@@ -1,0 +1,47 @@
+<div ng-controller="BIPageCtrl">
+
+    <div ng-repeat="row in page.details.rows" style="padding: 5px;
+    margin: 5px;
+    border: 1px dashed lightgray;
+    font-size: 12px;
+    color: gray;">
+        <h4 ng-if="row.header" style="
+        text-align: left;
+    font-size: 20px;
+    color: #065b5b;
+    font-weight: 800;">//row.header//</h4>
+        <div layout="row">
+            <div ng-repeat="ch in row['children']"
+                 flex="//ch.flex//"
+                 style="padding: 5px; margin: 5px; border: 1px solid lightgray; font-size: 12px; color: gray;">
+                <div>
+                    <bi-chart ng-if="ch.chart_type === 'line' || ch.chart_type === 'bar'" chartid="ch.chartid">
+
+                    </bi-chart>
+                    <bi-top5 ng-if="ch.chart_type === 'top5'" chartid="ch.chartid">
+
+                    </bi-top5>
+                    <bi-latestdatatable ng-if="ch.chart_type === 'latestdatatable'" chartid="ch.chartid">
+
+                    </bi-latestdatatable>
+
+
+
+
+                    <bi-single-value ng-if="ch.chart_type === 'singlevalue'" chartid="ch.chartid">
+
+                    </bi-single-value>
+
+
+                    <bi-table  ng-if="ch.chart_type === 'table'"  chartid="ch.chartid">
+
+                    </bi-table>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

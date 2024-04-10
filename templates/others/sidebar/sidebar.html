@@ -1,0 +1,90 @@
+{% load translators %}
+
+<md-sidenav
+        class="site-sidenav md-sidenav-right md-whiteframe-z2"
+        dir="rtl"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')"
+        hide-print>
+    <header class="nav-header">
+        <div layout-gt-xs="row" layout-margin="center center">
+            <div>
+                <img src="{{ userAvatar }}" style="    height: 85px;    border-radius: 50%;">
+            </div>
+            <div layout="column">
+                <div style="font-size: 13px;color: #ffffff!important;font-weight: bold;margin-top: 44px;">
+                    {{ profileName }}
+                </div>
+                <div style="color: #d1ccc7!important;  font-size: 12px;  display: inline-block;  width: 106px;  white-space: nowrap;  overflow: hidden !important;  text-overflow: ellipsis;">
+                    {{ chartName }}
+                </div>
+            </div>
+            {#            <md-button style="margin-right: 20px;" class="md-fab md-mini md-hue-2" ng-click="OpenAvatar()"#}
+            {#                       alt="{{ currentUser }}">#}
+            {#            </md-button>#}
+        </div>
+        <div>
+
+        </div>
+
+
+    </header>
+
+
+    <md-content flex role="navigation" class="flex">
+
+        <div>
+
+
+        </div>
+
+
+        <ul class="side-menu">
+
+
+            <li ng-repeat="section in menu.sections"
+                layout="column"
+
+                ng-class="{'parentActive' : isSectionSelected(section), 'isItToggle':section.type == 'link'}">
+                <h2 class="menu-heading"
+                    ng-if="section.type === 'heading'"
+                    id="heading_// section.name | nospace //">
+                    //section//
+                </h2>
+                <menu-link ng-class="{'has-alarm':$root.alarms[section.state] > 0 }" section="section" ng-if="section.type === 'link'"></menu-link>
+                <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+
+            </li>
+        </ul>
+
+
+        <div>
+            <div layout="row" layout-align="start center" style="padding: 10px;">
+                <div>
+                    <img src="//companyLogo//" alt="" style="height: 45px;">
+                    <div>//companyName//</div>
+                </div>
+                <div flex="">
+
+                </div>
+                <a style="font-size: 11px;" ng-click="ToggleChoose()">(تغییر)</a>
+            </div>
+
+            <div>
+                <div ng-repeat="company in companies.results" ng-show="ShowCompanyList">
+                    <md-button ng-click="setAsCurrent(company.companyID)">
+                        <md-icon md-font-icon="fa fa-institution" md-menu-align-target></md-icon>
+                        تغییر به : //company.companyName//
+                    </md-button>
+                </div>
+            </div>
+
+        </div>
+    </md-content>
+
+</md-sidenav>
+
+
+
+
+

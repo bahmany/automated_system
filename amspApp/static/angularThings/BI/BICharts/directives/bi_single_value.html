@@ -1,0 +1,56 @@
+<div class="bi-single-amar">
+    <div style="padding: 5px;
+    margin: 5px;
+    border: 1px solid lightgray;
+    font-size: 12px;background-color: lightyellow;
+    color: gray;">
+
+        <div ng-repeat="item in chart_data.data">
+            <div style="text-align: center;font-size: 15px;font-weight: bold;">
+                //chart.chartTitle//
+            </div>
+            <h3 ng-repeat="cc in chart_data.fields"
+                style="text-align: center;font-size: 35px;font-weight: bold;">
+                //item[cc] | number//
+            </h3>
+            <div
+                style="text-align: center;font-size: 12px;">
+                //chart.details.description//
+
+            </div>
+        </div>
+        <md-progress-linear md-mode="indeterminate"
+                            ng-show="is_loading_data"></md-progress-linear>
+        <div layout="row" layout-align="center center" layout-wrap>
+            <div ng-repeat="history in chart_data_history track by $index">
+
+
+                <md-button
+                        class="md-flat-button"
+                        ng-click="go_to_level($index)"
+                        style="border: 1px solid lightgray;border-radius: 5px;font-size: 12px;">
+                                <span ng-if="history.selected_label">
+                                    //history.selected_label//
+                                </span>
+                    <span ng-if="!(history.selected_label)">
+                                    //history.title//
+                                </span>
+
+                    <md-icon
+                            ng-if="chart_data_history.length-1 == $index"
+                            md-font-icon="fa fa-refresh"
+                            ng-class="{'fa-spin' : is_loading_data}"></md-icon>
+
+
+                </md-button>
+
+                <md-button class="md-icon-button"
+                           ng-if="chart_data_history.length-1!=$index">
+                    <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+
+                </md-button>
+
+            </div>
+        </div>
+    </div>
+</div>

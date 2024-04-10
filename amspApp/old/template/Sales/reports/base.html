@@ -1,0 +1,61 @@
+<div ng-controller="SalesReportBaseCtrl" layout="column">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 md-truncate>گزارش های بازرگانی</h2>
+
+            <div flex>
+
+            </div>
+
+        </div>
+    </md-toolbar>
+
+
+    <div layout="row">
+        <md-content flex="15">
+
+
+            <md-list flex style="font-size: 13px;">
+                <md-list-item ui-sref="KhoroojRep1" style="    border-bottom: 1px solid lightgray;">
+                    <div layout="row" layout-align="start center">
+                        <div layout="row" layout-align="start center">
+                            <md-icon md-font-icon="fa fa-clock-o" style="font-size: 22px;"></md-icon>
+
+                        </div>
+                        <div flex>
+                            گزارش های خروج
+                        </div>
+
+                    </div>
+                </md-list-item>
+
+                <md-list-item ui-sref="HavalehForooshTrace" style="    border-bottom: 1px solid lightgray;">
+                    <div layout="row">
+                        <div  layout="row" layout-align="start center">
+                            <md-icon md-font-icon="fa fa-dashboard" style="font-size: 22px;"></md-icon>
+
+                        </div>
+                        <div flex style="padding-right: 5px">
+                           حواله فروش و مانده خارج نشده
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+
+
+
+            </md-list>
+
+
+        </md-content>
+
+        <div flex ui-view="">
+
+        </div>
+
+
+    </div>
+
+
+</div>

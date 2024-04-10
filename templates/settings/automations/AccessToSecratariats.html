@@ -1,0 +1,222 @@
+{% load translators %}
+
+<div ng-controller="AccessToSecratariatCrtl">
+    <md-content>
+        <section
+                layout="row"
+                layout-sm="column"
+                layout-align="center center"
+                layout-wrap
+                class="layout-wrap layout-sm-column layout-align-center-center layout-row">
+            <div id="divCurrentCompany">
+
+<span class="md-body-2">
+    //Company.name//
+</span>
+                {#        <md-button class="md-fab md-primary md-hue-2 pull-right" aria-label="Profile">#}
+                {#            <md-icon md-svg-src="/static/images/open-iconic-master/svg/loop.svg"></md-icon>#}
+                {#        </md-button>#}
+                <button class="md-primary md-button" type="button"
+                        ng-click="OpenChangeCompany()"><span class="ng-scope">
+                {{ 'Change Company'|translate }}...</span>
+                </button>
+                <section
+                        layout="row"
+                        layout-sm="column"
+                        layout-wrap
+                        class="layout-wrap layout-sm-column layout-row">
+                    <div id="divSelectAPerson">
+
+                        {% load autocompletePerson_tags %}
+                        {% AutocompleteMemberTag modelname="person" %}
+                        <md-button class="md-raised md-primary" ng-click="GetSecPermissions()">Get</md-button>
+                        <md-button class="md-raised md-primary" ng-click="SetSecPermissions()">Set</md-button>
+
+                    </div>
+                </section>
+
+            </div>
+            <div id="divSelectCompany" style="display: none">
+                <div>
+                    <md-select
+                            placeholder="Assign to user"
+                            ng-model="SelectedCompanyID"
+                            md-on-open="GetCompanies(100)"
+                            style="min-width: 200px;">
+                        <md-option
+                                ng-value="company.id"
+                                ng-repeat="company in Companies">
+                            //company.name//
+                        </md-option>
+                    </md-select>
+                    <md-button class="md-raised md-primary" ng-click="OpenCompanyShowDiv()">//"OK"|translate}}
+                    </md-button>
+
+
+                </div>
+            </div>
+            <div class="label"><strong>{{ 'Step'|translate }} 1 :</strong>
+                {{ 'Select another company'|translate }}
+            </div>
+        </section>
+        <section>
+            <div layout-padding>
+                <div>
+دسترسی های عمومی
+                </div>
+                <div class="well well-sm">
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_Work_With_Sale" aria-label="Checkbox 1">
+                            توانایی کار با قسمت فروش
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Sale_Manager" aria-label="Checkbox 1">
+مدیر سی آر ام فروش
+                        </md-checkbox>
+                    </div>
+
+                </div>
+                <div>
+                    دسترسی ها در مدیریت شرکت ها
+                </div>
+                <div class="well well-sm">
+
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_edit_company_profile" aria-label="Checkbox 1">
+                            توانایی ویرایش پروفایل شرکت
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_Edit_company_chart" aria-label="Checkbox 1">
+                            توانایی ویرایش چارت ****ی شرکت
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_remove_members" aria-label="Checkbox 1">
+                            توانایی تعلیق فعالیت کاربران
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_edit_documents" aria-label="Checkbox 1">
+                            توانایی ویرایش مستندات
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_edit_productions" aria-label="Checkbox 1">
+                            توانایی ویرایش محصولات
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_edit_BPMS" aria-label="Checkbox 1">
+                            توانایی ویرایش فرآیند ها
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_edit_secretriats" aria-label="Checkbox 1">
+                            توانایی ویرایش دبیرخانه ها
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_Edit_hirings" aria-label="Checkbox 1">
+                            توانایی ویرایش استخدام
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_edit_peoples_to_hire" aria-label="Checkbox 1">
+                            توانایی دسترسی به گزینش و استخدام
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Can_edit_connections" aria-label="Checkbox 1">
+                            توانایی مدیریت ارتباطات و یک پارچه سازی
+                        </md-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div layout-padding>
+                <div>مجوزهای ارسال به کاربران</div>
+                <div class="well well-sm">
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.not_Allowed_sent_to_Members" aria-label="Checkbox 1">
+                            {{ 'not Allowed sent to Members'|translate }}
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.send_Just_with_Chart_limitation" aria-label="Checkbox 1">
+                            {{ 'send Just with Chart limitation'|translate }}
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.not_Allowed_sent_to_Groups" aria-label="Checkbox 1">
+                            {{ 'not Allowed sent to Groups'|translate }}
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.not_Allowed_sent_to_Positions" aria-label="Checkbox 1">
+                            {{ 'not Allowed sent to Positions'|translate }}
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.not_Allowed_sent_to_Zones" aria-label="Checkbox 1">
+                            عدم دسترسی به ارسال نواحی
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.not_Allowed_sent_to_All" aria-label="Checkbox 1">
+                            عدم دسترسی به ارسال به همه
+                        </md-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div layout-padding>
+                <div>مجوزهای اتوماسیون</div>
+                <div class="well well-sm">
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Dont_use_automated_copy_for_this_user"
+                                     aria-label="Checkbox 1">
+                            {{ 'Dont use automated copy for this user'|translate }}</md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.Do_not_send_to_assistance_instead_of_managers"
+                                     aria-label="Checkbox 1">
+                            عدم ارسال نامه مسیولین دفاتر و ارسال مستقیم به مدیر
+                        </md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.This_user_cant_read_public_folders" aria-label="Checkbox 1">
+                            {{ 'This user cant read public folders'|translate }}</md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.This_user_cant_edit_public_folders" aria-label="Checkbox 1">
+                            {{ 'This user cant edit public folders'|translate }}</md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.This_user_cant_create_public_folders" aria-label="Checkbox 1">
+                            {{ 'This user cant create public folders'|translate }}</md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100">
+                        <md-checkbox ng-model="permission.This_user_cant_remove_public_folders" aria-label="Checkbox 1">
+                            {{ 'This user cant remove public folders'|translate }}</md-checkbox>
+                    </div>
+                    <div flex="100" class="flex-100" style="display: none">
+                        <div id="divSelectAPerson">
+
+                            {% load autocompletePerson_tags %}
+                            {% AutocompleteMemberTag modelname="successor" caption="Please select a successor" %}
+
+                            {% load autocompletePerson_tags %}
+                            {% AutocompleteMemberTag modelname="assistant" caption="Please select a assistant" %}
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </section>
+    </md-content>
+</div>

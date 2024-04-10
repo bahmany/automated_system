@@ -1,0 +1,114 @@
+<div ng-controller="BISqlCtrl">
+
+
+    <md-toolbar class="md-hue-2" style="background-color: rgb(0 0 0 / 54%);">
+        <div class="md-toolbar-tools" layout="row">
+            <h5>
+                ایجاد یا ویرایش فراخوانی
+            </h5>
+            <div flex>
+
+            </div>
+            <md-button class="md-raised" aria-label="Settings" ui-sref="bi-sqls">
+                بازگشت
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    {#    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">#}
+    {#        <div layout="row">#}
+    {#            <md-toolbar-filler layout-align="center center" layout="row" style="background-color: rgb(139 159 175)">#}
+    {#            </md-toolbar-filler>#}
+    {##}
+    {#            <div>#}
+    {#                <h2 class="md-toolbar-tools">#}
+    {#                    ایجاد یا ویرایش فراخوانی#}
+    {##}
+    {#                </h2>#}
+    {##}
+    {#                <div>#}
+    {##}
+    {#                    <md-button class="md-raised" ng-click="createDashboard()">#}
+    {#                        بازگشت#}
+    {#                    </md-button>#}
+    {##}
+    {##}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </md-toolbar>#}
+    <div class="shadower">
+        <div layout="row">
+            <div flex="40">
+                <md-input-container class="md-block">
+                    <label>انتخاب نوع منبع</label>
+                    <md-select ng-model="sql.type_of_datasource">
+                        <md-option value=1>منبع داده ای خارجی و سایر بانک های اطلاعاتی</md-option>
+                        <md-option value=2>جداول داده های اتوماسیون</md-option>
+                        <md-option value=3>آمارهای اتوماسیون</md-option>
+                        <md-option value=4>توابع برنامه نویسی شده داخلی اتوماسیون</md-option>
+                        <md-option value=5>اجرا شده در SQL Agent</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div flex=""></div>
+            <div flex="40">
+                <md-input-container class="md-block" ng-show="sql.type_of_datasource === '2'">
+                    <label>نام جدول داده ها</label>
+                    <md-select ng-model="sql.datatable_id">
+                        <md-option ng-value="it.id" ng-repeat="it in datatablesnames.results" >
+                            //it.name//
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+        </div>
+
+        <div layout="row">
+            <div flex="40">
+                <md-input-container class="md-block">
+                    <label for="">نام فراخوانی</label>
+                    <input type="text" ng-model="sql.sqlTitle">
+                </md-input-container>
+            </div>
+            <div flex></div>
+            <div flex="40">
+                <md-input-container class="md-block">
+                    <label for="">زمانبندی - دقیقه</label>
+                    <input type="number" ng-model="sql.sql_runner_schedual">
+                </md-input-container>
+
+            </div>
+        </div>
+
+        <div style="text-align: left">
+
+            <h4>SQL Script Feeder</h4>
+
+            <textarea ng-model="sql.slqscript_feeder" name="" id="" cols="30" rows="10"
+                      style="height: 300px; width: 100%; direction: ltr">
+
+            </textarea>
+
+        </div>
+        <div style="text-align: left">
+
+            <h4>SQL Script Selector Tablename</h4>
+
+            <textarea ng-model="sql.slqscript_selector" name="" id="" cols="30" rows="10"
+                      style="height: 300px; width: 100%; direction: ltr">
+
+            </textarea>
+
+        </div>
+
+
+    </div>
+
+    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">
+        <div layout="row" layout-align="end end">
+            <md-button class="md-raised md-primary" ng-click="save()">ثبت</md-button>
+        </div>
+    </md-toolbar>
+</div>

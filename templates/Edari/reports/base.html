@@ -1,0 +1,40 @@
+<div ng-controller="EdariBaseReportCtrl">
+    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">
+        <div layout="row">
+            <md-toolbar-filler layout-align="center center" layout="row" style="background-color: rgb(139 159 175)">
+                <md-icon md-font-icon="fa fa-list-alt" style="    font-size: 35px;"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">آمارها و گزارشات</h2>
+
+                <div>
+                    <md-button ui-sref="edari-report-taradod-mahaneh" style="background-color: #f1f1f1;">
+                        ترددهای ماهانه
+                    </md-button>
+
+                    <md-button ui-sref="edari-report-mandeh-morekhasi" style="background-color: #f1f1f1;">
+
+                        مانده مرخصی
+                    </md-button>
+
+                    <md-button ui-sref="edari-report-morekhsi-saati" style="background-color: #f1f1f1;">
+                        گزارش مرخصی ساعتی
+                    </md-button>
+
+                    <md-button ui-sref="edari-report-morekhsi-roozaneh" style="background-color: #f1f1f1;">
+                        گزارش مرخصی روزانه
+                    </md-button>
+
+                </div>
+            </div>
+
+
+        </div>
+    </md-toolbar>
+
+    <div ui-view="">
+
+    </div>
+
+</div>

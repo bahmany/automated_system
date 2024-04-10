@@ -1,0 +1,49 @@
+{% load translators %}
+<div ng-controller="LetterBaseCtrl" layout="row" layout-xs="column">
+    <section layout="row" flex>
+        <md-sidenav
+                class="md-sidenav-right margin-left left-inbox-items"
+                style="background-color: white!important;width: 200px;"
+                md-component-id="rightInboxList"
+                md-is-locked-open="$mdMedia('gt-md')"
+                id="rightInboxList"
+                {#                md-is-locked-open="$mdMedia('gt-sm')"#}
+                md-whiteframe="4">
+
+            <md-button
+                    ng-show="!(isOpeningNewLetter)"
+                    class=" md-raised md-primary  btn-side-letter"
+                    aria-label="Compose"
+                    layout="row"
+                    id="btnCompose"
+                    ng-click="MakeNewLetter($event)">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+                <span flex=""></span>
+                نامه جدید
+            </md-button>
+            {% include 'letter/Sidebar/base.html' %}
+        </md-sidenav>
+        <ui-view flex>
+        </ui-view>
+    </section>
+    <div class="inbox-sent-information fader" ng-show="sentLetter.sign" layout="column" layout-align="center center">
+        <h3 style="color: yellow">ارسال شد</h3>
+        <div>
+            <img ng-src="/api/v1/file/upload?q=//sentLetter.sign.generatedFileAddr//"
+                 alt="//sentLetter.sign.generatedSign//" style="height: 40px;">
+        </div>
+        <div>
+            <md-button class="md-raised md-default" ng-click="sentLetter = {}">
+                تایید
+            </md-button>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+

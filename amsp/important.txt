@@ -1,0 +1,60 @@
+
+
+
+
+sshpass -p **** ssh mohammad@app.****.ir
+su -
+
+/etc/init.d/nginx stop |killall -9 uwsgi |rm /var/tmp/django.socket |rm /var/tmp/web.socket
+/home/mohammad/AmsPlusEnvPy3/bin/uwsgi --enable-threads --virtualenv /home/mohammad/AmsPlusEnvPy3 --chdir /var/www/amsPlus --socket /var/tmp/django.socket --buffer-size=32768 --workers=5 --master --module amsp.wsgi_django & sleep 300&
+/home/mohammad/AmsPlusEnvPy3/bin/uwsgi --enable-threads --virtualenv /home/mohammad/AmsPlusEnvPy3 --chdir /var/www/amsPlus --http-socket /var/tmp/web.socket --gevent 1000 --http-websockets --workers=2 --master --module amsp.wsgi_websocket& sleep 300&
+chmod 0777 /var/tmp/django.socket | chmod 0777 /var/tmp/web.socket | /etc/init.d/nginx restart
+
+dumping mongodb
+
+mysqldump -h 172.16.5.42 -u admin_rahsoon -p admin_mapraan > mysql.sql
+mongodump --host 192.168.68.11 -d amsPlus --port 27017 --username rahsoon --password ****
+
+zip -r filename.zip folder1 folder2
+
+
+
+ssh 172.16.0.43
+su -
+redis-cli
+
+
+ps -A
+
+
+
+
+
+local :
+/etc/init.d/nginx stop |killall -9 uwsgi |rm /var/tmp/django.socket |rm /var/tmp/web.socket
+/home/mohammad/AmsPlusEnvPy3/bin/uwsgi --enable-threads --virtualenv /home/mohammad/AmsPlusEnvPy3 --chdir /var/www/html --socket /var/tmp/django.socket --buffer-size=32768 --workers=5 --master --module amsp.wsgi_django & sleep 300&
+/home/mohammad/AmsPlusEnvPy3/bin/uwsgi --enable-threads --virtualenv /home/mohammad/AmsPlusEnvPy3 --chdir /var/www/html --http-socket /var/tmp/web.socket --gevent 1000 --http-websockets --workers=2 --master --module amsp.wsgi_websocket& sleep 300&
+chmod 0777 /var/tmp/django.socket | chmod 0777 /var/tmp/web.socket | /etc/init.d/nginx restart
+
+
+
+
+/etc/init.d/nginx stop&&
+killall -9 uwsgi&
+rm /var/tmp/django.socket&
+rm /var/tmp/web.socket&
+/home/mohammad/AmsPlusEnvPy3/bin/uwsgi --enable-threads --virtualenv /home/mohammad/AmsPlusEnvPy3 --chdir /var/www/rahsoon --socket /var/tmp/django.socket --buffer-size=32768 --workers=5 --master --module amsp.wsgi_django & sleep 300&
+/home/mohammad/AmsPlusEnvPy3/bin/uwsgi --enable-threads --virtualenv /home/mohammad/AmsPlusEnvPy3 --chdir /var/www/rahsoon --http-socket /var/tmp/web.socket --gevent 1000 --http-websockets --workers=2 --master --module amsp.wsgi_websocket& sleep 300&
+chmod 0777 /var/tmp/django.socket&
+chmod 0777 /var/tmp/web.socket&
+/etc/init.d/nginx restart&
+
+ps -A
+
+
+
+// in elasticsearch we should insert analyser for persian language
+
+
+
+d:\projects\rahsoon>c:\Users\1234\rahsoonEnv\Scripts\celery.exe  -A amspApp worker --loglevel=info -P gevent

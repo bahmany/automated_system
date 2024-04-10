@@ -1,0 +1,125 @@
+{#<div class="right-bar-chat right-side-closed animated" id="quickview-sidebar">#}
+{#    <div class="right-bar-tooltip" layout-gt-xs="row" layout-align-gt-xs="start center">#}
+{#        <i class="fa fa-close" ng-click="CloseRightBar()" style="  margin-right: 12px;"></i>#}
+{#        <span flex></span>#}
+{##}
+{#    </div>#}
+{#    <div class="right-bar-content">#}
+{##}
+{##}
+{#        <div id="divChat" style="display: none;">#}
+{#            <div ng-if="chatSignleLoading" layout="row" layout-align="center center">#}
+{#                <md-progress-linear md-mode="indeterminate"></md-progress-linear>#}
+{#            </div>#}
+{#            <div ng-if="!(chatSignleLoading)">#}
+{#                <div layout="row">#}
+{#                    <span flex></span>#}
+{#                    <md-button class="md-raised md-primary" ng-click="BackToChatList()">#}
+{#                        برگشت#}
+{#                    </md-button>#}
+{#                </div>#}
+{#                <div>#}
+{#                    <div layout="row" layout-align="start center">#}
+{#                        <img ng-src="// singleChatter.avatar //"#}
+{#                             style="height: 50px;#}
+{#    border-radius: 32px;#}
+{#    width: 50px;#}
+{#    padding: 5px;#}
+{#    margin: 5px;"#}
+{##}
+{#                             alt="// singleChatter.positionID //"/>#}
+{#                        <div flex layout="column" style="font-size: 12px;">#}
+{#                            <div>//singleChatter.profileName//</div>#}
+{#                            <div>//singleChatter.chartName//</div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div id="divSigleChats" class="right-bar-chat-single-chat" scroll-glue="true">#}
+{#                        <div ng-repeat="item in singleChats.results track by $index">#}
+{#                            <div layout="row" layout-align="start center"#}
+{#                                 ng-class="{'chat-right':item.thisisyou, 'chat-left':!(item.thisisyou) }">#}
+                                {#                            <div class="chat-body" flex>#}
+{#                                <div layout="column" flex>#}
+{#                                    <div layout="row" layout-align="start center">#}
+{#                                        <span ng-if="item.thisisyou" class="chat-body-span-you">شما :</span>#}
+{#                                        <span class="chat-body-span" flex>//item.body//</span>#}
+{##}
+{#                                    </div>#}
+{#                                    <div class="chat-date" style="font-size: 10px!important;">//item.dateOfPost |#}
+{#                                        jalaliDate:'jYYYY/jMM/jDD hh:mm:ss' //#}
+{#                                        <i class="fa fa-check"></i>#}
+{#                                        <i class="fa fa-check" ng-if="item.seen" style="color: #62bd3d!important;"></i>#}
+{##}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+                                {#                            </div>#}
+{#                                <img ng-if="!(item.thisisyou)" ng-src="//item.positionAvatar//" alt="">#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="right-bar-chat-single-chat-text">#}
+{##}
+{#                    <textarea ng-model="newChat.body"#}
+{#                              style="width: 100%; height: 100px;color: black; font-size: 12px;  "></textarea>#}
+{##}
+{#                        <div layout="row">#}
+{#                            <md-button id="btnSendChat" class="md-primary md-raised" ng-click="postSingle()">#}
+{#                                ارسال#}
+{##}
+{#                            </md-button>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{##}
+{#        <div id="divChatterList">#}
+{#            <div class="right-bar-chatter-list">#}
+{#                <div ng-if="chatListLoading" layout="row" layout-align="center center">#}
+{#                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>#}
+{#                </div>#}
+{#                <md-list ng-show="!(chatListLoading)">#}
+{#                    <div>#}
+{#                        <div>#}
+{#                            {% load pager_navigator_tags %}#}
+{#                            {% pagerNavigatorForSpacial style="text-center" listname="chatters" search_ng_model="chattersText" PageTo="chattersPageTo" %}#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <md-list-item#}
+{#                            class="md-2-line"#}
+{#                            ng-repeat="item in chatters.results |orderBy:rowID "#}
+{#                            ng-click="openChat(item)"#}
+{#                            ng-class-odd="'odd'"#}
+{#                            ng-class-even="'even'">#}
+{#                        <img ng-src="// item.avatar //" class="md-avatar" alt="// item.positionID //"/>#}
+{#                        <div class="md-list-item-text" layout="column">#}
+{#                            <span class="chat-status" ng-class="{#}
+{#                            'back-green':item.online == 'idle',#}
+{#                            'back-yellow':item.online == 'active',#}
+{#                            'back-red':item.online == 'lazy',#}
+{#                            'back-dis':item.online == 'dis'#}
+{#                            }"></span>#}
+{#                            <p style="color: black!important;">//item.profileName//#}
+{#                                <span ng-if="item.unseen > 0 && !(item.thisisyou)">#}
+{#                                <i class="fa fa-wechat" style="color: red!important;"></i>#}
+{#                                //item.unseen//#}
+{#                            </span>#}
+{#                                <span ng-if="item.thisisyou"> شما </span>#}
+{#                            </p>#}
+{#                            <p style="font-size: 10px;color: black!important;">//item.chartName//</p>#}
+{#                        </div>#}
+{#                    </md-list-item>#}
+{##}
+{#                </md-list>#}
+{#            </div>#}
+{##}
+{##}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#</div>#}
+{##}

@@ -1,0 +1,64 @@
+<h4>عضویت در لیست تامین کنندگان سایر شرکت ها</h4>
+<hr>
+<div layout="column">
+
+
+    <form action="" name="frm7form">
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام شرکت</label>
+                    <input type="text" ng-model="provider.frm7.nameSherkat" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تاریخ عضویت</label>
+                    <input type="text" ng-model="provider.frm7.tarikheOzaviat">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">زمینه فعالیت</label>
+                    <input type="text" ng-model="provider.frm7.zaminehFaaliat">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+        </div>
+        <div layout-gt-xs="row">
+            <span flex></span>
+            <md-button class="md-default md-raised" ng-disabled="frm7form.$invalid" ng-click="addTofrm('7')">
+                اضافه به لیست
+            </md-button>
+        </div>
+    </form>
+    <div>
+        <table class="sp-table">
+            <thead>
+            <tr>
+                <th >نام شرکت</th>
+                <th >تاریخ عضویت</th>
+                <th >زمینه فعالیت</th>
+                <th >عملیات</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="st in provider.frm7_list track by $index">
+                <td style="text-align: center">//st.nameSherkat//</td>
+                <td style="text-align: center">//st.tarikheOzaviat//</td>
+                <td style="text-align: center">//st.zaminehFaaliat//</td>
+                <td style="text-align: center">
+                    <md-button class="md-primary md-default" ng-click="removefrm('7',$index)">حذف</md-button>
+                </td>
+            </tr>
+            <tr ng-if="provider.frm7_list.length == 0">
+                <td colspan="4">
+                    هیچ عضویتی وارد نشده است
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

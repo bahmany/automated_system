@@ -1,0 +1,43 @@
+{% load translators %}
+
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <td>کد سمت</td>
+                <td>نام سمت</td>
+                <td>درجه</td>
+                <td>نام سمت بالایی</td>
+                <td>تعداد پرسنل</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="5" ng-if="isLoadingChartRow">
+                    <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                </td>
+            </tr>
+            <tr ng-repeat="item in rawCharts track by $index" ng-class-odd="'odd'" ng-class-even="'even'">
+                <td>//item.id//
+                </td>
+                <td>//item.title//
+                    <a ng-click="ShowChangeTitleModal(item)">(تغییر)</a>
+                </td>
+                <td>//item.rank//
+                    <a ng-click="ShowChangeRankModal(item)">(تغییر)</a>
+                </td>
+                <td>//item.topTitle//
+                    <a ng-click="ShowChangeTopModal(item)">(تغییر)</a>
+                </td>
+                <td>//item.personelCount//
+                    <a ng-click="ShowRAWPositionsInChartModal(item)">(مشاهده)</a>
+
+                </td>
+                <td>
+                    <a ng-click="ShowRAWDabirkhanehModal(item)">دسترسی به دبیرخانه ها</a>
+                </td>
+                <td><a ng-click="DeleteChart(item.id)">حذف</a></td>
+            </tr>
+            </tbody>
+        </table>

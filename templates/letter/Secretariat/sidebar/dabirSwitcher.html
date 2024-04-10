@@ -1,0 +1,14 @@
+<md-menu>
+    <md-button aria-label="secs" ng-click="$mdOpenMenu($event)">
+        // GetDefaultDabir(PermittedSecratraitsList) // ...
+    </md-button>
+
+    <md-menu-content>
+        <md-menu-item ng-repeat="item in PermittedSecratraitsList">
+            <md-button ng-click="ChangeDefaultSecratrait(item)">
+                //item.name//
+                <md-tooltip>تغییر دبیرخانه</md-tooltip>
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

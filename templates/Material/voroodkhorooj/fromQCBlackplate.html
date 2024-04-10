@@ -1,0 +1,109 @@
+<div ng-controller="fromQCBlackplateCtrl">
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">کنترل کیفیت ورق سیاه</h2>
+            </div>
+
+
+        </div>
+    </md-toolbar>
+
+    <md-divider></md-divider>
+    <md-input-container class="md-block">
+        <label for="">جستجو</label>
+        <md-icon md-font-icon="fa fa-search" class="name"></md-icon>
+        <input ng-model="search_barcode" type="text" ng-model-options="{debounce: 800}">
+    </md-input-container>
+
+    <div>
+        <div ng-repeat="item in qcList track by $index"
+             style="padding: 3px; margin: 3px; border-bottom: 1px solid #dfdfdf; ">
+            <div layout-gt-sm="row">
+                <div flex-gt-sm="50" flex-gt-md="33" flex-gt-lg="25"
+                     layout="column"
+                     style="border-right: 2px solid lightgray;    padding-right: 8px;">
+                    <div>
+                        <span ng-show="item.position == 8845344">انبار مواد اولیه</span>
+                        <span ng-show="item.position == 7463333">قرنطینه</span>
+
+                    </div>
+                    <div>
+                        <span>بارکد : </span><span>//item.barcode//</span>
+                    </div>
+                    <div>
+                        <span>//item.desc.product.Code//</span>
+                    </div>
+                    <div>
+                        <span>//item.desc.product.Name//</span>
+                    </div>
+
+                </div>
+                <div flex-gt-sm="50"
+                     flex-gt-md="33"
+                     flex-gt-lg="25"
+                     layout="column"
+                >
+
+                    <div style="background-color: #4c4c4c;padding: 3px;color: rgb(250,250,250); margin-left: 20px;">
+                        <span>//item.desc.location.locationTitle//</span>
+                    </div>
+                    <div>
+                        <span>//item.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</span>
+                    </div>
+                    <div>
+                        <span>//item.locationLink.name//</span>
+                    </div>
+
+
+                </div>
+                <div flex-gt-sm="50"
+                     flex-gt-md="33"
+                     layout="column"
+                     flex-gt-lg="25">
+
+                    <div>
+                        <span>بارنامه : </span>
+                        <span>//item.desc.barcode.shomare_barnameh//</span>
+                    </div>
+                    <div>
+                        <span>شماره کلاف :</span>
+                        <span>//item.desc.barcode.shomare_kalaf//</span>
+                    </div>
+                    <div>
+                        <span>وزن خالص : </span>
+                        <span>//item.desc.barcode.vazne_khales//</span>
+                    </div>
+
+
+                </div>
+                <div flex-gt-sm="50"
+                     flex-gt-md="33"
+                     flex-gt-lg="25"
+                     layout="column"
+                     layout-align="center center">
+                    <md-checkbox ng-model="item.desc.ready_to_tolid">دارای مجوز تولید</md-checkbox>
+                    <md-button class="md-raised" style="height: 40px;" ng-click="convertToScrap(item, $index)">تبدیل به ضایعات
+                    </md-button>
+
+                </div>
+            </div>
+            <div layout="row" layout-align="center center">
+                <md-input-container flex>
+                    <label for="">دلیل عیب</label>
+                    <input type="text" ng-model="item.desc.why_qc_bp">
+                </md-input-container>
+
+                <md-button class="md-raised" style="height: 40px;" ng-click="updateqc(item)">ذخیره تغییرات</md-button>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>

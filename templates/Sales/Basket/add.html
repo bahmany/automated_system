@@ -1,0 +1,110 @@
+<md-dialog aria-label="سبر فروش">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>سبد فروش</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content" ng-show="addPanel">
+            <form action="" name="frmBasketItem">
+                <div layout="column">
+                    <div layout-gt-xs="row">
+                        <md-input-container flex-gt-xs="20">
+                            <label for="">کد محصول</label>
+                            <input type="text" ng-required="true" ng-model="basketItem.desc.itemID" dir="ltr" style="text-align: left">
+                        </md-input-container>
+
+                        <md-input-container flex-gt-xs="20">
+                            <label for="">مقدار</label>
+                            <input type="number" ng-required="true" ng-model="basketItem.desc.amount">
+                        </md-input-container>
+                        <md-input-container flex-gt-xs="20">
+                            <label for="">فی (ریال)</label>
+                            <input type="number" ng-required="true" ng-model="basketItem.desc.fee">
+                        </md-input-container>
+                        <md-input-container flex-gt-xs="20">
+                            <label for="">درصد تخفیف</label>
+                            <input type="number" ng-required="true" ng-model="basketItem.desc.off">
+                        </md-input-container>
+                        <md-input-container class="divMiniInput" flex-gt-xs="20">
+                            <label>نوع پرداخت</label>
+                            <md-select ng-model="basketItem.desc.paymentType" ng-required="true">
+                                <md-option value='نقدی'>
+                                    نقدی
+                                </md-option>
+                                <md-option value='چکی'>
+                                    چکی
+                                </md-option>
+                                <md-option value='اعتباری ۳۰ روزه'>
+                                    اعتباری ۳۰ روزه
+                                </md-option>
+                                <md-option value='اعتباری ۶۰ روزه'>
+                                    اعتباری ۶۰ روزه
+                                </md-option>
+                                <md-option value='قرارداد'>
+                                    قراردادی
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <span flex></span>
+                        <md-button ng-disabled="frmBasketItem.$invalid" class="md-primary md-raised"
+                                   ng-click="addToBasket()">ثبت
+                        </md-button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <div class="md-dialog-content" ng-show="!(addPanel)">
+            <table class="table mini table-bordered table-striped ojoodi-table">
+                <thead>
+                <tr>
+                    <th>کد محصول</th>
+                    <th>مقدار</th>
+                    <th>فی</th>
+                    <th>درصد تخفیف</th>
+                    <th>قیمت کل</th>
+                    <th>با ارزش افزوده</th>
+                    <th>نوع</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in basketItems.results track by $index">
+                    <td>//item.desc.itemID//</td>
+                    <td>//item.desc.amount | number:0//</td>
+                    <td>//item.desc.fee | number:0//</td>
+                    <td>//item.desc.off | number:0//</td>
+                    <td>//(item.desc.amount * item.desc.fee) - ((item.desc.amount * item.desc.fee)*(item.desc.off /
+                        100)) | number:0//
+                    </td>
+                    <td>//((item.desc.amount * item.desc.fee) - ((item.desc.amount * item.desc.fee)*(item.desc.off /
+                        100))) * 1.09 | number:0//
+                    </td>
+                    <td>
+                        //item.desc.paymentType//
+                    </td>
+                    <td>
+                        <md-button class="md-icon-button" ng-click="basketItemEdit(item)">
+                            <md-icon md-font-icon="fa fa-pencil"></md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" ng-click="delFromBasket($event, item)">
+                            <md-icon md-font-icon="fa fa-trash"></md-icon>
+                        </md-button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </md-dialog-content>
+
+
+</md-dialog>

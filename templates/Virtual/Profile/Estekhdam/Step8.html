@@ -1,0 +1,53 @@
+{% load translators %}
+<div ng-controller="step8Ctrl">
+    <div layout-gt-sm="row">
+        <div flex-gt-sm="50" layout-padding class="well well-sm frame margin-15 ">
+            <div style="text-align: center" id="secPicProfile" ng-click="uploadImageClick()" class="div-clickabel">
+                <i class="fa fa-male fa-5x"></i><br>
+            <span>
+                جهت آپلود عکس خود بروی این قسمت کلیک کنید
+            </span><br>
+            <span>
+                عکس شما میبایست کمتر از ۵۰۰ کیلوبایت باشد
+            </span>
+            </div>
+            <div style="text-align: center" ng-if="Resume.pic">
+                <md-button ng-click='uploadImageClick()'>تغییر عکس</md-button>
+                |
+                <md-button ng-click='removeProfilePic()'>حذف عکس</md-button>
+            </div>
+
+        </div>
+        <div flex-gt-sm="50" layout-padding class="well well-sm frame margin-15 ">
+            <div style="text-align: center" id="secResumeProfile" ng-click="uploadResumeClick()" class="div-clickabel">
+
+                <i class="fa  fa-file-o fa-5x"></i><br>
+                چنانچه خواهان ضمیمه کردن فایل رزومه خود می باشید می توانید با کلیک بروی این قسمت
+                رزومه ی خود را آپلود نمایید
+                توجه داشته باشید آپلود نمودن رزومه ضروری نیست
+            </div>
+            <div style="text-align: center" ng-if="Resume.resume">
+
+                <md-button ng-click='downloadResume()'>دانلود رزومه</md-button>
+                |
+                <md-button ng-click='uploadResumeClick()'>تغییر رزومه</md-button>
+                |
+                <md-button ng-click='removeResule()'>حذف رزومه</md-button>
+            </div>
+        </div>
+
+        <input type="file" id="filePicProfile" accept="image/jpeg" style="display: none" name="nfilePicProfile">
+        <input type="file" id="fileResume" style="display: none" name="nfileResume">
+    </div>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout-align="end center">
+            <md-button
+                    class="md-raised"
+                    ng-click="Post('8',Resume)">ذخیره در سوابق و مرحله ی بعد
+            </md-button>
+
+        </div>
+    </md-toolbar>
+</div>
+

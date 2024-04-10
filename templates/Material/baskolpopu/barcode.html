@@ -1,0 +1,56 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>
+            ورودی مواد اولیه
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-dialog-content>
+    <div class="md-dialog-content" layout-gt-xs="row">
+        <div flex>
+            <div>تاریخ ورود</div>
+            <div>//loadedBarcode.desc.barcode.dateOf//</div>
+        </div>
+        <div flex>
+            <div>نام کالا</div>
+            <div>//loadedBarcode.desc.product.Name//</div>
+
+        </div>
+        <div flex>
+            <div>کد کالا</div>
+            <div>//loadedBarcode.desc.product.Code//</div>
+
+        </div>
+    </div>
+</md-dialog-content>
+
+<md-dialog-actions layout="row">
+
+    <span flex></span>
+    <md-button
+            class="md-raised"
+            ng-click="deleteBarcode()">
+        حذف بارکد
+    </md-button>
+    <span flex></span>
+    <md-button
+            class="md-raised md-primary"
+            ng-click="printBarcodeAgain()">
+        چاپ مجدد بارکد
+    </md-button>
+{#    <md-button#}
+{#            class="md-raised md-primary"#}
+{#            ng-click="GoodStayInLocation()">#}
+{#        تایید تخلیه در محل#}
+{#    </md-button>#}
+{#    <md-button#}
+{#            class="md-raised md-primary"#}
+{#            ng-click="ConfirmVazn()">#}
+{#        تایید وزن ادعایی#}
+{#    </md-button>#}
+
+</md-dialog-actions>

@@ -1,0 +1,65 @@
+<div>
+
+    <div>
+        dshjfb
+    </div>
+
+    <div>
+        <table class="table mini table-bordered table-striped lightGrayTable">
+            <thead>
+            <tr>
+                <th colspan="7" class="tblHead">فاکتورهای صادره به تفکیک سال</th>
+            </tr>
+            <tr>
+                <th>سال</th>
+                <th>فی میانگین</th>
+                <th colspan="2">تعداد کل</th>
+                <th colspan="2">ریال کل</th>
+                <th>تعداد فاکتور</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in factors.total">
+                <td>//item.Year//</td>
+                <td>//item.avgprice | number:0//</td>
+                <td colspan="2">//item.km | number:0//</td>
+                <td colspan="2">//item.price | number:0//</td>
+                <td>//item.tedad | number:0//</td>
+
+            </tr>
+            </tbody>
+            <thead>
+            <tr>
+                <th colspan="7" class="tblHead">فاکتورهای صادره</th>
+            </tr>
+            <tr>
+                <th>تاریخ</th>
+                <th>شماره فاکتور</th>
+                <th>نام محصول</th>
+                <th>کد محصول</th>
+                <th>تعداد</th>
+                <th>فی</th>
+                <th>قیمت کل</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in factors.detail">
+                <td>// item.dateshamsi //</td>
+                <td>// item.VchHdrRef //</td>
+                <td>// item.PartName //</td>
+                <td>// item.PartCode //</td>
+                <td>// item.Qty | number //</td>
+                <td>// item.FactorTotalPrice / item.Qty | number:0 //</td>
+                <td>// item.FactorTotalPrice | number //</td>
+            </tr>
+            </tbody>
+
+
+
+
+        </table>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,46 @@
+<md-toolbar>
+    <div class="md-toolbar-tools" layout="row">
+        <span flex></span>
+        <md-button ng-click="currentPanel = 1">بازگشت</md-button>
+
+    </div>
+</md-toolbar>
+<md-dialog-content>
+    <div class="md-dialog-content">
+        <div layout="row" class="shadower">
+            <div flex="45">
+                <div ng-repeat="item in hamkaran_anbars">
+                    <div layout="row">
+                        <span>//item.Title//</span>
+                        <span flex></span>
+                        <md-button class="md-raised" ng-click="checkBoxCallBack(item)">انتخاب</md-button>
+                    </div>
+                    <md-divider></md-divider>
+                </div>
+
+                {#                            <div#}
+                {#                                    ivh-treeview-id-attribute="'Serial'"#}
+                {#                                    ivh-treeview-label-attribute="'Title'"#}
+                {#                                    ivh-treeview-children-attribute="'children'"#}
+                {#                                    ivh-treeview-on-cb-change="checkBoxCallBack(ivhNode)"#}
+                {#                                    ivh-treeview="hamkaran_anbars">#}
+                {#                            </div>#}
+            </div>
+            <div flex></div>
+
+            <div flex="45">
+
+                <div ng-repeat="item in hamkaran_anbars_registered">
+                    <div layout="row">
+                        <span>//item.StockName//</span>
+                        <span flex></span>
+                        <md-button class="md-raised" ng-click="deleteFromBar(item)">حذف محل</md-button>
+                    </div>
+                    <md-divider></md-divider>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</md-dialog-content>

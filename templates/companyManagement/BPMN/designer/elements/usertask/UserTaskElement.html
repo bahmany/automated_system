@@ -1,0 +1,47 @@
+{% load translators %}
+
+<div id="usertask-setup-div" style="display:none;">
+    <md-toolbar class="md-hue-3">
+        <div class="md-toolbar-tools">
+            المان :
+            //lastSelected.businessObject.name//
+        </div>
+    </md-toolbar>
+    <md-content flex="">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="انجام دهنده وظیفه">
+                {% include "companyManagement/BPMN/designer/elements/usertask/performer.html" %}
+            </md-tab>
+            <md-tab label="طراحی فرم">
+                {% include "companyManagement/BPMN/designer/elements/usertask/form_desinger.html" %}
+
+            </md-tab>
+            <md-tab label="کد">
+                {% include "companyManagement/BPMN/designer/elements/usertask/code.html" %}
+
+            </md-tab>
+
+
+        </md-tabs>
+
+    </md-content>
+    <md-toolbar class="md-hue-3">
+        <div class="md-toolbar-tools">
+            <span flex>
+                </span>
+            <md-button class="md-button"
+                       ng-click="cancelSetupUserTask()">انصراف
+            </md-button>
+            <md-button class="md-button"
+                       ng-click="resetForm()">ریست فرم
+            </md-button>
+            <md-button class="md-button md-raised md-primary"
+                       ng-click="saveSetupUserTask()">ثبت تغییرات فرم
+            </md-button>
+
+
+        </div>
+    </md-toolbar>
+
+
+</div>

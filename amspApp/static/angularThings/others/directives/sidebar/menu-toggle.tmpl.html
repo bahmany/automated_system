@@ -1,0 +1,53 @@
+<md-button ng-if="!(section.href)" class="md-button-toggle"
+           ng-click="toggle()"
+           aria-controls="side-menu-// section.name | nospace //"
+           flex style="width: 100%"
+           aria-expanded="// isOpen()//">
+
+    <div layout="row">
+        <md-icon md-font-icon="//section.icon//"></md-icon>
+        <span>//section | humanizeDoc//</span>
+        <span flex></span>
+        <md-icon
+                aria-hidden="true"
+                md-font-icon="fa fa-chevron-up"
+                class="md-toggle-icon"
+                ng-class="{'toggled' : isOpen()}"></md-icon>
+
+    </div>
+
+
+</md-button>
+
+<a ng-if="section.href"
+   class="md-button-toggle"
+   aria-controls="side-menu-// section.name | nospace //"
+   href="//section.href//"
+   target="//section.target//"
+   flex style="width: 100%"
+   aria-expanded="// isOpen()//">
+
+    <div layout="row">
+
+        <md-icon md-font-icon="//section.icon//"></md-icon>
+        <span>// section.name //</span>
+        <span flex></span>
+        <md-icon
+                aria-hidden="true"
+                md-font-icon="fa fa-chevron-up"
+                class="md-toggle-icon"
+                ng-class="{'toggled' : isOpen()}"></md-icon>
+    </div>
+
+</a>
+
+
+<ul
+        ng-show="isOpen()"
+        id="side-menu-// section.name | nospace //"
+        class="menu-toggle-list">
+    <li ng-repeat="page in section.pages" ng-class="{'isItToggle':section.type == 'link'}">
+        <menu-link section="page"></menu-link>
+    </li>
+
+</ul>

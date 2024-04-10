@@ -1,0 +1,35 @@
+<div ng-controller="ControlProjectIncomeTypesCtrl" layout="column">
+
+    {% include "ControlProject/Income/modalAddEditIncomeType.html" %}
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            منابع یا عنوان درآمدها
+            <span flex></span>
+
+            <md-button class="md-fab md-mini" ng-click="AddNewincomeType()">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+
+            </md-button>
+        </div>
+    </md-toolbar>
+
+
+    <div>
+        <div ng-if="waitForLoading">
+            <md-progress-linear class="fader" md-mode="indeterminate"></md-progress-linear>
+        </div>
+
+        <div>
+            {% load tables_tags %}
+            {% tablePagination2 main_model_name="incomeTypes" %}
+        </div>
+
+        <div class="shadower">
+
+            {% include "ControlProject/Income/list.html" %}
+
+        </div>
+    </div>
+
+
+</div>

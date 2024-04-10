@@ -1,0 +1,74 @@
+<div layout-gt-xs="row" flex ng-controller="NewsCtrl">
+
+    <div flex-gt-xs="30">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+اخبار و اطلاعیه ها
+                <span flex></span>
+
+                <md-button class="md-fab md-mini">
+                    <a ui-sref="news-post({NewsID: 0})">
+                        <md-icon md-font-icon="fa fa-plus"></md-icon>
+                    </a>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <div>
+
+
+
+
+
+
+
+
+
+                <md-input-container class="md-block">
+                    <label>جستجو</label>
+                    <input ng-model="filter.search" type="text" ng-model-options="{debounce: 500}">
+                </md-input-container>
+                <div layout="row" layout-align="start center">
+                    <md-button class="md-icon-button" ng-click="GoToPage(dataTables.next)"
+                               ng-disabled="dataTables.next == null">
+                        <md-icon md-font-icon="fa fa-chevron-right"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="GoToPage(dataTables.previous)"
+                               ng-disabled="dataTables.previous == null">
+                        <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+                    </md-button>
+
+                    <span flex=""></span>
+                    //dataTables.count//
+                </div>
+            </div>
+            <md-divider></md-divider>
+
+            <md-list flex>
+
+
+                <md-list-item class="md-3-line" ng-repeat="item in Newses.results"
+                              ui-sref="news-post({NewsID: item.id})">
+                    {#                              ui-sref="statistics.data({MSTemplateId: item.id})"#}
+
+                    {#                    <md-icon md-font-icon="fa //item.icon//" class="md-icon-avatar"></md-icon>#}
+                    <div class="md-list-item-text">
+                        <h3>//item.title//
+
+                        </h3>
+
+                    </div>
+                    <md-divider></md-divider>
+
+                </md-list-item>
+            </md-list>
+        </div>
+
+    </div>
+
+
+    <div flex layout="row" layout-align="center start">
+        <ui-view flex-gt-sm="95" ></ui-view>
+    </div>
+
+</div>

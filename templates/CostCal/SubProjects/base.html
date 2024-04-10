@@ -1,0 +1,31 @@
+<div ng-controller="CostCalSubProjectsCtrl" layout="column" class="shadower">
+
+
+    {% include "CostCal/SubProjects/modalAddNewSubProject.html" %}
+
+    <div layout="row">
+        <a ng-click="AddNewSubProject()">فعالیت جدید</a>
+    </div>
+
+
+    <div>
+
+        <div ng-if="waitForLoading">
+            <md-progress-linear class="fader" md-mode="indeterminate"></md-progress-linear>
+        </div>
+
+        <div>
+            {% load tables_tags %}
+            {% tablePagination2 main_model_name="subProjects" %}
+        </div>
+
+        <div class="shadower">
+            {% include "CostCal/SubProjects/list.html" %}
+        </div>
+
+    </div>
+
+
+
+
+</div>

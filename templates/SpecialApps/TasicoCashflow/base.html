@@ -1,0 +1,99 @@
+{% load translators %}
+<div ng-controller="****CashflowCtrl" flex>
+
+    {% include "SpecialApps/****Cashflow/modalPayDetails.html" %}
+    {% include "SpecialApps/****Cashflow/modalIncomDetails.html" %}
+
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="تاریخ ها">
+            <md-content class="md-padding">
+                <h1 class="md-display-2">تاریخ های ترخیص</h1>
+                <div layout-gt-sm="row" class="child-has-row">
+                    <div flex>نام شرکت</div>
+                    <div flex>میزان (تن)</div>
+                    <div flex>گشایش اعتبار</div>
+                    <div flex>حمل به کشتی</div>
+                    <div flex>انتقال به کمرگ ایران</div>
+                    <div flex>رسیدن به کارخانه</div>
+                    <div flex>تاریخ سر رسید</div>
+                </div>
+                <div ng-repeat="item in Projects  track by $index" ng-class="$index % 2 == 0 ? 'even' : 'odd'">
+                    <div layout-gt-sm="row" class="child-has-row">
+                        <div flex>//item.companyLink.name//</div>
+                        <div flex>//item.tonValue//</div>
+                        <div flex>//item.dateGoshayeshEtebarSh//</div>
+                        <div flex>//item.dateToShipSh //</div>
+                        <div flex>//item.dateToIranPortSh//</div>
+                        <div flex>//item.****DateSh//</div>
+                        <div flex>//item.dateLCSh//</div>
+                    </div>
+
+                </div>
+
+            </md-content>
+        </md-tab>
+        <md-tab label="آمار و گزارش">
+            <md-content class="md-padding">
+                <h1 class="md-display-2">آمار / گزارش
+
+                </h1>
+                <md-button class="md-primary md-raised" ng-click="GenerateMongoCache()">ایجاد کش گزارشات</md-button>
+                <md-button class="md-primary md-raised" ng-click="GetDailyCache()">فراخوانی کش</md-button>
+                <md-button class="md-primary md-raised" ng-click="GetMonthlyCache()"> ماهانه فراخوانی کش</md-button>
+                <div ng-repeat="item in Dates  track by $index" ng-class="$index % 2 == 0 ? 'even' : 'odd'"
+                     layout-gt-sm="row" class="child-has-row">
+                    <div flex><span>تاریخ : </span>//item.current_sh//</div>
+                    <div flex><span>روز : </span>//item.current_dayname//</div>
+                    <div flex><span>دریافت : </span>
+                        <md-button class="md-primary md-raised" ng-click="IncomeClick(item)">//item.income | number//
+                        </md-button>
+                    </div>
+                    <div flex><span>پرداخت : </span>
+                        <md-button class="md-primary md-raised" ng-click="PayClick(item)">//item.pay | number//
+                        </md-button>
+                    </div>
+                    <div ng-class="{ 'text-red': item.total < 0 , 'text-green' : item.total > 0  }"><span>مانده : ( میلیون ریال)</span>
+                        //item.total | number//
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="سایر جداول">
+            <md-content class="md-padding">
+                <h1 class="md-display-2">سایر گزارش ها
+
+                </h1>
+                <div>
+                    <md-button class="md-primary md-raised" ng-click="GetMonthly()">گزارش سازی ماهانه</md-button>
+                    <md-button class="md-primary md-raised" ng-click="GetSimpleList()">جدول ساده</md-button>
+
+                </div>
+                <md-input-container class="md-block"  style="direction: ltr">
+                    <label for="">Mongo Query for aggr</label>
+                    <textarea ng-model="QueryToMongo" style="direction: ltr;    font-family: tahoma;" name="ss" id="txt_commands" cols="30" rows="2">      </textarea>
+                </md-input-container>
+
+                <md-input-container class="md-block"  style="direction: ltr">
+                    <label for="">Transform</label>
+                    <input type="text"  style="direction: ltr;    font-family: tahoma;" ng-model="QueryToTransform">
+                </md-input-container>
+                <md-input-container class="md-block"  style="direction: ltr">
+                    <label for="">RAW</label>
+                    <textarea ng-model="QueryResult" style="direction: ltr;    font-family: tahoma;" name="ss" id="txt_commands" cols="30" rows="2">      </textarea>
+                </md-input-container>
+
+                <div>
+                    <md-button class="md-primary md-raised" ng-model="QueryToMongo" ng-click="ExecuteIt()">اجرا</md-button>
+                </div>
+
+                <div id="dynamic_table">
+
+                </div>
+
+            </md-content>
+
+        </md-tab>
+    </md-tabs>
+
+
+</div>

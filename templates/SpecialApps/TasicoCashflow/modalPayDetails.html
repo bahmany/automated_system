@@ -1,0 +1,90 @@
+<div id="modal_pay_detail" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 95%!important;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+
+                    جزییات پرداخت </h4>
+            </div>
+            <form id="frmPostYear" name="frmPostYear">
+                <div class="modal-body">
+                    <h1 class="md-title">
+                        در لیست زیر جزییات پرداخت قابل نمایش می باشد
+
+                    </h1>
+                    <div layout="column">
+                        <div layout="row">
+                            <div flex>نوع</div>
+                            <div flex>مبلغ پرداختی (ریال)</div>
+                            <div flex>تامین کننده</div>
+                            <div flex>تاریخ کارخانه</div>
+                            <div flex>میزان (تن)</div>
+                            <div flex>نوع اعتبار</div>
+                        </div>
+                        <div ng-repeat="item in PayDetails"
+                             ng-class="$index % 2 == 0 ? 'even' : 'odd'">
+                            <div layout="row">
+                                <div flex>//::item.payTypeStr//</div>
+                                <div flex>//::item.pay | number//</div>
+                                <div flex>//::item.project.companyLink.name//</div>
+                                <div flex>//::item.project.****Date | jalaliDate:'jYYYY/jMM/jDD'//</div>
+                                <div flex>//::item.project.tonValue//</div>
+                                <div flex>
+                                    <md-button class="md-default md-raised" ng-click="item.showDetail = !(item.showDetail)">//::item.project.detailLink.name//
+                                    </md-button>
+                                </div>
+                            </div>
+                            <div class="well well-sm" layout="row" layout-wrap ng-show="item.showDetail == true" ng-init="item.showDetail = false">
+                                <span>تعداد روزهای حمل از کارخانه ی سازنده تا کشتی</span> : <span>//::item.project.detailLink.daysFromFactoryToShip//</span><div
+                                    style="width: 40px"></div>
+                                <span>تعداد روزهای گمرک ایران تا کارخانه</span> : <span>//::item.project.detailLink.daysFromIranPortToFactory//</span><div
+                                    style="width: 40px"></div>
+                                <span>تعداد روزهای شروع حمل تا گمرک ایران</span> : <span>//::item.project.detailLink.daysFromShipToIranPort//</span><div
+                                    style="width: 40px"></div>
+                                <span>تعداد روزهای حمل به کشتی تا پایان LC</span> : <span>//::item.project.detailLink.daysFromShippingToLC//</span><div
+                                    style="width: 40px"></div>
+                                <span>نوع تامین</span> : <span>//::item.project.detailLink.lcType//</span><div
+                                    style="width: 40px"></div>
+                                <span>درصد هزینه های متفرقه ی تامین</span> : <span>//::item.project.detailLink.moneyPercentHazineh//</span><div
+                                    style="width: 40px"></div>
+                                <span>درصد مالیات ارزش افزوده</span> : <span>//::item.project.detailLink.moneyPercentMaliateArzesh//</span><div
+                                    style="width: 40px"></div>
+                                <span>درصد تعرفه</span> : <span>//::item.project.detailLink.moneyPercentTarafeh//</span><div
+                                    style="width: 40px"></div>
+                                <span>درصد پرداخت به هنگام پایان LC</span> : <span>//::item.project.detailLink.moneyPercentWhenLC//</span><div
+                                    style="width: 40px"></div>
+                                <span>درصد پرداخت هنگام گشایش LC</span> : <span>//::item.project.detailLink.moneyPercentWhenOpenLC//</span><div
+                                    style="width: 40px"></div>
+                                <span>درصد پرداخت هنگام حمل</span> : <span>//::item.project.detailLink.moneyPercentWhenTransfer//</span><div
+                                    style="width: 40px"></div>
+                                <span>ریال به ازای هر کیلو قلع</span> : <span>//::item.project.detailLink.moneyRialGhalPerTon//</span><div
+                                    style="width: 40px"></div>
+                                <span>ریال حمل هر تن</span> :
+                                <span>//::item.project.detailLink.moneyRialHamelPerTon//</span><div
+                                    style="width: 40px"></div>
+                                <span>ریال به ازای هر تن شیمیایی و سایر</span> : <span>//::item.project.detailLink.moneyRialOtherShimiaieePerTon//</span><div
+                                    style="width: 40px"></div>
+                                <span>ریال به ازای هر تن ورق سیاه</span> : <span>//::item.project.detailLink.moneyRialPerTon//</span><div
+                                    style="width: 40px"></div>
+                                <span>نام اعتبار</span> : <span>//::item.project.detailLink.name//</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal"
+                            ng-disabled="frmPostYear.$invalid"
+                            ng-click="Post()">ثبت
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

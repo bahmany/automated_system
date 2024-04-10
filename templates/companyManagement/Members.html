@@ -1,0 +1,40 @@
+{% load translators %}
+
+<div ng-controller="CompanyMembersCtrl">
+
+                <md-list flex>
+                    <md-subheader class="md-no-sticky subheader-inbox">
+                        تعلیق اعضا
+                        </header>
+                    </md-subheader>
+                    <md-divider></md-divider>
+
+                    <md-list-item>
+                        {% load pager_navigator_tags %}
+                        {% pagerNavigator style="text-center" listname="Members" search_ng_model="MemberSearchText" PageTo="MemberPageTo" %}
+                    </md-list-item>
+                    <md-list-item
+                            class="md-3-line"
+                            ng-if="item.userID"
+                            ng-repeat="item in Members.results">
+                        <img ng-src="//item.avatar//" class="md-avatar"/>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>//item.profileName//
+                                <small class="pull-right">//item.post_date | jalaliDate:'jYYYY/jMM/jDD'//</small>
+                            </h3>
+                            <h4>
+                                // item.chartName //
+                            </h4>
+                            <p style="text-align: left">
+                                <a ng-click="ForceOut(item)">تعلیق</a>
+                            </p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+
+
+
+
+
+</div>
+

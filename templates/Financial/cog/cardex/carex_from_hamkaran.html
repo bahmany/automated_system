@@ -1,0 +1,48 @@
+<div ng-controller="CardexHamkaranCtrl">
+    <div>
+        <md-button ng-click="GetCardexFromHamkaran()">فراخوانی از همکاران و ذخیره در بهای تمام شده</md-button>
+    </div>
+
+    <div dir="rtl">
+        <div class="panel">
+            <div class="panel-header md-panel-controls ui-sortable-handle">
+                <h3><i class="fa fa-table"></i>کاردکس مواد اولیه</h3>
+            </div>
+            <div class="panel-content pagination2 table-responsive">
+                <table
+                        class="table table-bordered bordered table-striped table-condensed datatable"
+                        ui-jq="dataTable"
+                        ui-options="dataTableOpt"
+                        id="table2">
+{#                    <thead>#}
+{#                    <tr>#}
+{#                        <th>کد طبقه</th>#}
+{#                        <th>نام طبقه</th>#}
+{#                        <th>کد کالا</th>#}
+{#                        <th>نام کالا</th>#}
+{#                        <th> مقداری مانده پایان دوره</th>#}
+{#                        <th> ریالی مانده پایان دوره</th>#}
+{#                        <th>مقداری خالص مصرف تولیدی</th>#}
+{#                        <th>ریالی خالص مصرف تولیدی</th>#}
+{#                    </tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{#                    <tr ng-repeat="item in cardexs.results">#}
+{#                        <td>//item.row.CodeTabaghe//</td>#}
+{#                        <td>//item.row.NameTabaghe//</td>#}
+{#                        <td>//item.row.CodeKala//</td>#}
+{#                        <td>//item.row.NameKala//</td>#}
+{#                        <td>//item.row.z_MeghdareMandePayamDoreh//</td>#}
+{#                        <td> //item.row.z_MablagheMandePayamDoreh//</td>#}
+{#                        <td>//item.row.z_MeghdareKhaleseTolidi//</td>#}
+{#                        <td> //item.row.z_MablagheKhaleseTolidi//</td>#}
+{#                    </tr>#}
+{#                    </tbody>#}
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>

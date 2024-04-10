@@ -1,0 +1,85 @@
+{% load translators %}
+<div ng-controller="statisticsDataCtrl">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            ثبت آمار جدید
+        </div>
+    </md-toolbar>
+    <div>
+        <form name="addStaticFrm">
+            <div class="shadower">
+                <div>
+                    <div><h3>//currentSmallStatic.name// <small>//currentSmallStatic.desc//</small></h3></div>
+                    <div layout="row">
+                        <span>
+                            میانگین :
+                        </span>
+                        <span>
+                            //currentSmallStatic.avg|number//
+                        </span>
+                        <span flex></span>
+                        <span>
+بیشترین مقدار :
+                        </span>
+                        <span>
+                            //currentSmallStatic.max|number//
+                        </span>
+                    </div>
+                </div>
+                <md-input-container class="md-block">
+                    <label> مقدار جدید</label>
+                    <input type="text" ng-required="true" ng-model="statisticData.value" fcsa-number >
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>تاریخ ثبت</label>
+                    <input type="text" ng-required="true"
+                           style="direction: ltr!important;"
+                           ng-model="statisticData.entryDate"
+                           ng-init="statisticData.entryDate = getCurrentDate()"
+                           ui-mask="9999/99/99 99:99"
+                           model-view-value="true"
+                    >
+                </md-input-container>
+            </div>
+
+
+            <md-toolbar class="md-hue-3">
+                <div class="md-toolbar-tools">
+                    <span flex></span>
+                    <md-button class="md-raised md-primary" ng-disabled="addStaticFrm.$invalid" ng-click="updateOrCreate()" type="submit">
+                        ذخیره
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+            <div class="shadower">
+                <div layout="row">
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="DataPageTo(data.previous)" ng-disabled="!data.previous">
+                        <md-icon md-font-icon="fa fa-chevron-right"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="DataPageTo(data.next)" ng-disabled="!data.next">
+                        <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+                    </md-button>
+{#                    {% load pager_navigator_tags %}#}
+{#                    {% pagerNavigator style="text-center" listname="data" search_ng_model="DataSearchText" PageTo="DataPageTo" %}#}
+                </div>
+                <div class="lp-inbox-item" ng-repeat="item in data.results"
+                     ng-click="selectedStatisticDataId=item.id;$event.stopPropagation();getMSData(item.id);"
+                     onclick="$('.lp-inbox-item').removeClass('active');$(this).addClass('active');"
+                     ui-sref="data-statistics({MSDataId: item.id})">
+                    <div class="lp-body" layout="row">
+                        <h3 flex><span>//item.value | number//</span>
+                            <small>(//item.entryDate | jalaliDate:'jYYYY/jMM/jDD HH:mm'//)</small>
+                        </h3>
+
+                        <md-button class="md-icon-button" ng-click="destroyData(item);">
+                            <md-icon md-font-icon="fa fa-trash"></md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

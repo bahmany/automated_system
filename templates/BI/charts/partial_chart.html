@@ -1,0 +1,132 @@
+<md-content class="md-padding"  >
+
+    <div layout="row">
+        <div ng-if="chart.details.chart_type === 'table' || chart.details.chart_type === 'line' || chart.details.chart_type === 'bar' || chart.details.chart_type === 'top5' || chart.details.chart_type === 'singlevalue'"
+             flex="30">
+            <div>
+                <md-button class="md-raised" ng-click="sql_result_fields_for_chart()">فراخوانی فیلدها</md-button>
+                <md-button class="md-raised" ng-click="render_chart()">ایجاد چارت</md-button>
+            </div>
+            <div>
+
+
+            </div>
+
+            <div>
+                <md-input-container class="md-block">
+                    <label for="">نام</label>
+                    <input type="text" ng-model="chart.chartTitle">
+                </md-input-container>
+            </div>
+
+            <div>
+                <md-input-container class="md-block">
+                    <label for="">توضیحات</label>
+                    <input type="text" ng-model="chart.details.description">
+                </md-input-container>
+            </div>
+
+
+            <div>
+                <md-input-container class="md-block">
+                    <label>مرتب سازی</label>
+                    <md-select ng-model="chart.details.sort_type">
+                        <md-option value='label'>بر اساس لیبل</md-option>
+                        <md-option value='label_desc'>بر اساس لیبل برعکس</md-option>
+                        <md-option value='value'>بر اساس مقدار</md-option>
+                        <md-option value='value_desc'>بر اساس مقدار برعکس</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <div>
+
+            </div>
+
+
+            <div>
+                <md-button class="md-raised" ng-click="save()">
+                    ذخیره
+                </md-button>
+                <md-button class="md-raised" ng-click="update_chart_just_option()">
+                    apply
+                </md-button>
+            </div>
+
+
+            <div ng-if="chart.details.sql.table_spec.length > 0">
+                <div layout="row"
+                     style="padding: 6px; border-bottom: 1px solid lightgrey; font-size: 12px;"
+                     ng-repeat="ff in chart.details.sql.table_spec | filter:{is_selected_for_operation:true}">
+                    <div>//ff.COLUMN_NAME//</div>
+                    <div style="color: gray; font-size: 11px; padding-left: 5px; padding-right: 5px;"
+                         dir="ltr">
+                        (order : //ff.DATA_TYPE//)
+                    </div>
+                    <div flex
+                         ng-if="ff.DATA_TYPE == 'varchar' || ff.DATA_TYPE == 'nvarchar' || ff.DATA_TYPE == 'char'">
+                        <div>
+                            <select ng-model="ff.operation_type">
+                                <option value=1>count</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div flex>
+                        <span ng-show="ff.operation_type === '1'">sum</span>
+                        <span ng-show="ff.operation_type === '2'">max</span>
+                        <span ng-show="ff.operation_type === '3'">min</span>
+                        <span ng-show="ff.operation_type === '4'">count</span>
+                        <span ng-show="ff.operation_type === '5'">avg</span>
+                    </div>
+
+
+                    <div style="font-size: 12px;">
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div flex>
+
+            <div ng-if="chart.id">
+                <div ng-if="chart.details.chart_type === 'line' || chart.details.chart_type === 'bar'">
+                    <bi-chart chartid="chart.id">
+
+                    </bi-chart>
+                </div>
+
+                <div ng-if="chart.details.chart_type === 'top5'">
+                    <bi-top5 chartid="chart.id">
+
+                    </bi-top5>
+                </div>
+                <div ng-if="chart.details.chart_type === 'latestdatatable'">
+                    <bi-latestdatatable chartid="chart.id">
+
+                    </bi-latestdatatable>
+                </div>
+                <div ng-if="chart.details.chart_type === 'singlevalue'">
+                    <bi-single-value chartid="chart.id">
+
+                    </bi-single-value>
+                </div>
+                <div ng-if="chart.details.chart_type === 'table'">
+                    <bi-table chartid="chart.id">
+
+                    </bi-table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</md-content>

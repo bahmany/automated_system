@@ -1,0 +1,127 @@
+<div ng-controller="MaterialBaskolCtrl">
+
+
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">ورود به انبار</h2>
+
+                <div>
+                    <div layout="row" layout-wrap="">
+                        <md-button disabled="true">
+                            لیست انبارها :
+                        </md-button>
+                        <md-button class="md-primary md-raised" ng-repeat="item in locations"
+                                   ng-click="setCurrentLocation(item)">
+                            //item.name//
+                        </md-button>
+                    </div>
+
+                </div>
+                <div>
+                    <div layout="row" layout-wrap="">
+                        <md-button disabled="true">
+                            طبقات :
+                        </md-button>
+                        <md-button ng-if="currentLocation.z" ng-click="change_z($index)" class="md-primary md-raised"
+                                   ng-repeat="z in [].constructor(currentLocation.z) track by $index">
+                            طبقه
+                            // $index+1//
+                        </md-button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </md-toolbar>
+
+
+    <md-divider></md-divider>
+
+    <div class="spacer">
+        <div>
+
+            <table class="table table-condensed table-bordered table-striped">
+                <tr>
+                    <td>//currentLocation.name// - طبقه //z//</td>
+                    <td class="td-full">پر است</td>
+                    <td class="td-wait">رزرو</td>
+                    <td class="td-free">آزاد</td>
+                    <td class="td-QC_Prob">دارای QC</td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+
+
+            <div style="width: 100%; overflow: scroll" ng-if="currentLocation">
+
+                <table ng-if="tablecalled" class="table table-condensed table-bordered table-striped"
+                       style="direction: rtl">
+                    <tbody>
+                    <tr ng-repeat="x in [[].constructor(currentLocation.y)] track by $index">
+                        <td class="td-btn"
+                            ng-repeat="y in [].constructor(currentLocation.x) track by $index"
+                            ng-click="openLocation($event, $parent.$index+1, $index+1, getChar(64+cr.x)+(cr.z-1).toString()+checkIntAnbar(cr.y))"
+
+                            style="
+                            text-align: center;
+
+                            direction: ltr;"
+                            ng-init="cr = get_cell($parent.$index+1, $index+1, z)"
+                            id="td_//cr.x//_//cr.z//_//cr.y//"
+                            ng-class="{
+                                'td-full':(cr.position == 87976544 && cr.confirmLocation),
+                                'td-wait':(cr.position == 87976544 && !cr.confirmLocation),
+                                'td-free':!(cr.partnum),
+                                'this_is_65':(cr.desc.product.Code.substring(0,2) === '65'),
+                                'td-QC_Prob':(cr.position == 8845344)
+                            }">
+
+                            <div layout="row" layout-align="center center">
+                                <div>
+                                    <span style="font-size: 26px;    font-weight: bold;"
+                                          ng-bind="cr.desc.product.Code ? cr.desc.product.Code.substring(2,3) : ''  "></span>
+
+
+                                </div>
+                                <div flex>
+                                    //getChar(64+cr.x)//
+                                    //cr.z-1//
+                                    //checkIntAnbar(cr.y)//
+                                    {#                            <i class="fa fa-check" ng-show="cr.confirmLocation" ></i>#}
+                                    {#                            <i class="fa fa-check-circle" ng-show="cr.confirmVazn" data-toggle="tooltip" ></i>#}
+                                    <br>
+                                    <span ng-bind="cr.desc.product.Code ? cr.desc.product.Code.substring(0,9) : ''  ">
+
+                            </span>
+
+
+                                </div>
+                            </div>
+
+
+                            {#                        //$parent.$index+1// -#}
+                            {#                        //$index+1// -#}
+                            {#                        //z//#}
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

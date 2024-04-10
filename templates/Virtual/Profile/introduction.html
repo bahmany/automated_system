@@ -1,0 +1,185 @@
+{% load translators %}
+{#<div ng-controller="introductionCtrl" class="content-container">#}
+<div ng-controller="introductionCtrl">
+
+    <div layout="column" style="color: white; background-image: url('/static/images/hamkari/banner-six-joinus.jpg');    min-height: 450px;
+    background-size: cover;background-repeat: no-repeat; background-position: center bottom;">
+
+        <div layout-gt-xs="row" layout-align="center end" style="height: 200px;background-image: url('/static/images/hamkari/bepeivand.png');
+    background-size: initial;background-repeat: no-repeat; background-position: center bottom;">
+
+
+        </div>
+
+        <h1 layout-gt-xs="row" layout-align="center end">
+            {{ company.extra.name }}
+        </h1>
+
+    </div>
+    <div layout="row" layout-align="center center" style="    background-color: #1f1f21;    height: 50px; color: white"
+         layout-padding="">
+        <i class="fa fa-heart" style="    font-size: 20px;    color: red;"></i>
+    </div>
+
+    {% if not login %}
+        <div layout-gt-xs="row" layout-align="center start">
+            <div flex-gt-xs="80" style="background-color: white; max-height: inherit" layout-padding="">
+                <div>
+                    شما در
+                    {{ company.extra.name }}
+                    ثبت نام نکرده اید
+                </div>
+                <div layout-gt-xs="row" layout-align="center start">
+
+                    <h1 style="color: red">
+                        چگونه ثبت نام کنیم ؟
+                    </h1>
+                </div>
+                <div layout-gt-xs="row" layout-align="center start">
+
+                    <h1 style="color: green">
+                        مراحل زیر را به ترتیب دنبال کنید
+                    </h1>
+                </div>
+                <div layout-gt-xs="row" layout-align="center start">
+
+                    <div flex-gt-xs="">
+                        <div>
+
+                            مرحله اول :
+                            <strong style="color: blue">
+                                <a ui-sref="register">
+                                    ثبت نام اولیه
+                                </a>
+                            </strong>
+
+                        </div>
+                        <div style="height: 200px; background-image: url('/static/images/hamkari/Step1.jpg');background-size: cover;background-repeat: no-repeat; background-position: center bottom; ">
+
+                        </div>
+                        <hr>
+                        {% include 'Virtual/Profile/help/step1.html' %}
+
+                    </div>
+                    <div flex-gt-xs="5"></div>
+                    <div flex-gt-xs="">
+
+                        <div> مرحله دوم :
+
+                            <strong style="color: blue">
+                                تکمیل پروفایل
+                            </strong>
+                        </div>
+                        <div style="height: 200px; background-image: url('/static/images/hamkari/news_lightmoves_lighting_control_simple_can_be_harder_than_complex.jpg');background-size: cover;background-repeat: no-repeat; background-position: center bottom; ">
+
+                        </div>
+                        <hr>
+                        {% include 'Virtual/Profile/help/step2.html' %}
+                    </div>
+                    <div flex-gt-xs="5"></div>
+                    <div flex-gt-xs="">
+                        <div>
+                            مرحله سوم :
+
+                            <strong style="color: blue">
+                                انتخاب شغل و منتظر تماس
+                            </strong>
+                        </div>
+                        <div style="height: 200px; background-image: url('/static/images/hamkari/hd-img-shop-partus.jpg');background-size: cover;background-repeat: no-repeat; background-position: center bottom; ">
+
+                        </div>
+                        <hr>
+                        <div>
+                            پس از ثبت نام می توانید شغل خود را انتخاب نمایید
+                            کارشناسان جذب و استخدام در سامانه آگهی های جذب را ثبت می کنند و کاربران ثبت نام کننده در
+                            سایت می توانند
+                            با انتخاب شغل مورد نظر
+                            ، علاقه خود را به همکاری اعلام نمایند
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    {% endif %}
+    <div layout-gt-sm="row" layout-align="center start">
+        <div flex-gt-xs="80" class="shadower">
+
+
+            {% if login %}
+                <div layout="row" layout-align="center center" style="text-align: center;;">
+
+                    <md-button ui-sref="step1">
+                        <h3><img src="/static/images/profile-icon-29.png" alt="pic of profile"><br>
+
+                            <i class="fa fa-arrow-left" style="color: red;"></i>
+                            کاربر محترم شما
+                            //level.rank//
+                            درصد از پروفایل خود را تکمیل نموده اید
+                            <br>
+                            <small>
+                                بهتر است برای گزینشی بهتر و سریعتر بالای ۸۰ درصد از پروفایل خود را تکمیل نمایید
+
+                            </small>
+
+
+                        </h3>
+                    </md-button>
+                </div>
+            {% endif %}
+            <div class="heading text-center">
+                <div class="line-double">
+                    <h2>متقاضی محترم</h2>
+                    <span>
+                        جهت اعلام آمادگی برای همکاری با ما
+                        می بایست وارد یکی از آگهی های همکاری زیر شوید.
+<br>
+                        توجه داشته باشید بروی دکمه ی
+                        <strong style="  color: red;  text-decoration: underline;">مشاهده و ثبت نام در شغل</strong>
+                        کلیک کنید
+
+                    </span>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <div layout-gt-xs="row" layout-align="center start">
+        <div flex-gt-xs="80" style="background-color: white; max-height: inherit" layout-padding="" layout-gt-sm="row"
+             layout-wrap="">
+
+            <div style="border-right: 3px solid lightblue;"
+                 ng-repeat="item in jobs.results" flex-gt-md=""
+                 layout-align="start center">
+                {#                <div layout="column">#}
+
+                <h3> //item.title//</h3>
+                <div>
+                    تاریخ ثبت نام
+                    از
+                    //item.startDate//
+                    تا
+                    //item.endDate//
+
+                </div>
+                <div layout="row">
+                    <span flex></span>
+                    <md-button class="md-raised md-primary" ui-sref="hamkari({hamkariID:item.id})">
+                        مشاهده و ثبت نام در شغل
+                    </md-button>
+
+
+                </div>
+                {#                </div>#}
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,261 @@
+{% load translators %}
+
+<div layout="column" style="background-color: white;" layout-padding="5">
+
+    <div>
+{#        <div ng-if="news.checker.length > 0">#}
+{#                    <h5>پیام های ویژه شما</h5>#}
+{#        <div style="border: 1px solid #898989;    font-size: 21px;    color: red;">#}
+{#            <ul>#}
+{#                <li ng-repeat="c in news.checker">#}
+{#                    //c.msg//#}
+{#                </li>#}
+{#            </ul>#}
+{#            </p>#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#        </div>#}
+
+        <h4>اطلاعیه های با اهمیت</h4>
+        <div layout-gt-xs="row" layout="column" layout-wrap=""
+
+        >
+            <div class="make-div-button"
+                 flex-gt-xs="30"
+                 flex-gt-sm="25"
+                 flex-gt-md="20"
+                 flex-gt-lg="15"
+                 layout-margin="5"
+                 layout="column"
+                 layout-align="end center"
+                 ng-repeat="nw in news.new1"
+                 ui-sref="Newsread({NewsID:nw.id})"
+                 style="
+        background-image: url(//nw.pic1//);
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 3px;
+        min-height: 200px; min-width: 200px; background-color: darkolivegreen">
+
+                <div class="ellipsis-oneline" style="
+            background-color: #ffffff;
+    width: 100%;
+    padding: 3px;
+    font-size: 13px;
+    min-height: 25px;
+    border-bottom: 1px solid gray;
+    margin: 0;
+    line-height: 18px;">
+                    //nw.title//
+                </div>
+                <div class="ellipsis make-it-no-style"
+                     style="
+                     margin: 0;
+            background-color: #ffffffed;    width: 100%;    padding: 3px;    font-size: 13px;    min-height: 40px;"
+                     ng-bind-html="nw.body | to_trusted">
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    {#<div layout="column" ng-bind-html="NewsBox3.body | to_trusted">#}
+    {##}
+    {##}
+    {#    <md-tabs md-dynamic-height md-border-bottom>#}
+    {#        <md-tab label="اخبار و اطلاعیه ها">#}
+    {#            <md-content class="md-padding">#}
+    {##}
+    {##}
+    {#    <div layout-gt-xs="row" layout-wrap="">#}
+    {#        <div>#}
+    {#            <div>//NewsBox3.title//</div>#}
+    {#            <div>#}
+    {##}
+    {#            </div>#}
+    {##}
+    {#        </div>#}
+    {##}
+    {#        <div flex-gt-xs="50" class="dash-box">#}
+    {#            <div class="dash-box-header" layout="row">#}
+    {#                <span>                با سلام#}
+    {#</span>#}
+    {##}
+    {#                <span flex=""></span>#}
+    {#                <span style="font-size: 10px;">#}
+    {#                    97/08/02#}
+    {#                </span>#}
+    {##}
+    {#            </div>#}
+    {##}
+    {##}
+    {##}
+    {#            <div>در سامانه یکپارچه قسمتی جهت اطلاع رسانی مستندات ، دستورالعمل ها و آیین نامه تعبیه گردیده است. لذا در#}
+    {#                صورتی که#}
+    {#                خواستار اطلاع از وضعیت آخرین دستورالعمل ها هستید به لینک زیر مراجعه نمایید و یا در صورتی خواهان اطلاع#}
+    {#                رسانی#}
+    {#                دستورالعمل های مد نظر خود هستید ، مستندات خود را به واحد مهندسی صنایع اعلام نمایید</div>#}
+    {##}
+    {#            <div><a href="/docs/blog/" target="_blank">ورود به قسمت کنترل مستندات</a></div>#}
+    {##}
+    {#            <div>با سپاس</div>#}
+    {#        </div>#}
+    {#        <div flex-gt-xs="50" class="dash-box">#}
+    {#            <div class="dash-box-header" layout="row">#}
+    {#                <span>                امضای دیجیتال بر فرآیندها#}
+    {#</span>#}
+    {##}
+    {#                <span flex=""></span>#}
+    {#                <span style="font-size: 10px;">#}
+    {#                    97/08/02#}
+    {#                </span>#}
+    {##}
+    {#            </div>#}
+    {##}
+    {##}
+    {##}
+    {#            <ul style="list-style: arabic-indic;">#}
+    {#                <li>اعلام شماره موبایل به واحد فناوری اطلاعات  </li>#}
+    {#                <li>مراجعه به قسمت تغییر رمز دوم در اتوماسیون اداری</li>#}
+    {#                <li>تعریف رمز دوم</li>#}
+    {#                <li>دریافت کد پیگیری توسط تلفن همراه و ثبت در اتوماسیون</li>#}
+    {#                <li>رمز نگاری مربوط به امضا توسط استانداردهای جهانی بوده و سوء استفاده از آن امکانپذیر نیست</li>#}
+    {#                <li>فرآیند مربوط به امضای الکترونیکی توسط هیات مدیره مصوب شده است و به منزله ی امضای اصلی شخص می باشد</li>#}
+    {#            </ul>#}
+    {#        </div>#}
+    {#    </div>#}
+    {##}
+    {##}
+    {#    <h5 class="span-new-dash-item-black">//NewsBox3.title//</h5>#}
+    {#    <div ng-bind-html="NewsBox3.body | to_trusted"></div>#}
+    {##}
+    {#                <h1 class="md-display-2">اخبار و اطلاعیه ها</h1>#}
+    {#                <div>#}
+    {#                    <div#}
+    {#                            class="dashboard-news-item">#}
+    {##}
+    {##}
+    {#                    </div>#}
+    {#                </div>#}
+    {##}
+    {#                <div layout-gt-md="row">#}
+    {#                    <div flex-gt-md="60" md-margin>#}
+    {#                        <div class="dashboard-news-main-news-container">#}
+    {#                            <div ng-repeat="news in MainNews track by $index"#}
+    {#                                 ng-click="openNews(news)"#}
+    {#                                 layout-align="end start"#}
+    {#                                 layout="column"#}
+    {#                                 class="dashboard-news-item"#}
+    {#                                 style="background-image:linear-gradient(rgba(0, 0, 0, 0), rgba(26, 26, 26, 0.901961)), url('//news.pic1//')">#}
+    {#                    <span style="  margin-bottom: 20px; margin-right: 15px;">#}
+    {#                        <p class="p-dash-news-box"><span>اخبار</span></p>#}
+    {#                        <span class="span-new-dash-item">//news.title//</span>#}
+    {#                    </span>#}
+    {##}
+    {#                            </div>#}
+    {#                        </div>#}
+    {##}
+    {##}
+    {#                    </div>#}
+    {#                    <div class="dash-new-one" flex-gt-md="40">#}
+    {#                        <div ng-click="openNews(NewsBox1)" class="dashboard-news-item" layout="column" md-margin#}
+    {#                             layout-align="end end"#}
+    {#                             style="background-image: url(//NewsBox1.pic1//)"><span class="span-new-dash-item">//NewsBox1.title//</span>#}
+    {#                        </div>#}
+    {#                        <div ng-click="openNews(NewsBox2)" class="dashboard-news-item" layout="column" md-margin#}
+    {#                             layout-align="end end"#}
+    {#                             style="background-image: url(//NewsBox2.pic1//)"><span class="span-new-dash-item">//NewsBox2.title//</span>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {##}
+    {#            </md-content>#}
+    {#        </md-tab>#}
+    {#        <md-tab label="آمار و گزارش">#}
+    {#            <md-content class="md-padding">#}
+    {#                <h1 class="md-display-2">آمار / گزارش</h1>#}
+    {#                <div ng-repeat="item in profile track by $index ">#}
+    {##}
+    {#                    <div ng-if="item.type == 2" class="shadower" style="margin-top: 15px;overflow: hidden; ">#}
+    {#                        <div layout="row" layout-align="start center" style="color: #A5A5A5;">#}
+    {#                            <h3>آمارها</h3>#}
+    {#                            <span flex></span>#}
+    {#                            <md-button aria-label="Open phone interactions menu"#}
+    {#                                       class="md-icon-button">#}
+    {#                                <a href="/#/dashboard/DashboardSettings">#}
+    {#                                    <md-icon md-font-icon="fa fa-gear"></md-icon>#}
+    {#                                </a>#}
+    {#                            </md-button>#}
+    {#                        </div>#}
+    {#                        <div></div>#}
+    {#                        <div layout-gt-sm="row">#}
+    {#                            <div style="background-color: //backColors[$index]//!important;"#}
+    {#                                 ng-repeat="it in item.items track by $index"#}
+    {#                                 flex#}
+    {#                                 flex-gt-md="25"#}
+    {#                                 layout#}
+    {#                                 layout-margin#}
+    {#                                 layout-align="center top">#}
+    {##}
+    {#                                <md-button ng-if="!(it.static_id)" aria-label="Open phone interactions menu"#}
+    {#                                           class="md-icon-button">#}
+    {#                                    <a href="/#/dashboard/DashboardSettings">#}
+    {#                                        <md-icon md-menu-origin md-font-icon="fa fa-gear"></md-icon>#}
+    {#                                    </a>#}
+    {##}
+    {#                                </md-button>#}
+    {##}
+    {#                                <dashboard-statics ng-if="it.static_id" staticid="it.static_id"></dashboard-statics>#}
+    {##}
+    {##}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {##}
+    {#                    <div ng-if="item.type == 1" ng-repeat="it in item.items track by $index" class="shadower"#}
+    {#                         style="margin-top: 15px;overflow: hidden;">#}
+    {#                        <div layout="row" layout-align="start center" style="color: #A5A5A5;">#}
+    {#                            <h3>اعلانات و اطلاعیه ها</h3>#}
+    {#                            <span flex></span>#}
+    {#                        </div>#}
+    {#                        <div style="overflow: hidden"></div>#}
+    {##}
+    {#                        {% autoescape off %}#}
+    {#                            {{ msg }}#}
+    {#                        {% endautoescape %}#}
+    {#                    </div>#}
+    {##}
+    {##}
+    {#                    <div ng-if="item.type==3" class="shadower">#}
+    {#                        <div layout="row" layout-align="start center" style="color: #A5A5A5;overflow: hidden;">#}
+    {#                            <h3>//item.name//</h3>#}
+    {#                            <span flex></span>#}
+    {##}
+    {#                        </div>#}
+    {#                        <div></div>#}
+    {#                        <dashboard-bpms-statics it=item></dashboard-bpms-statics>#}
+    {##}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </md-content>#}
+    {#        </md-tab>#}
+    {#        <md-tab label="تقویم">#}
+    {#            <md-content class="md-padding">#}
+    {#                <h1 class="md-display-2">تقویم</h1>#}
+    {#                <dashboard-calendar flex layout="column"></dashboard-calendar>#}
+    {#            </md-content>#}
+    {#        </md-tab>#}
+    {#    </md-tabs>#}
+    {##}
+    {##}
+    {#    #}
+    {##}
+    {##}
+    {#</div>#}

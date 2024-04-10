@@ -1,0 +1,157 @@
+{% load translators %}
+<div style="max-width: 300px;" class="col-md-6">
+    // ::'Selected Members'|translate//
+    <hr style="  padding-bottom: 0px;  margin-bottom: 0px;margin-top: 4px;">
+    <div class="row">
+        <div class="well well-sm clearfix" style="display: none;">
+            <div id="divShowSentDetailbtn" class="text-center">
+                <button class="btn btn-default btn-xs" ng-click="ShowSentDetail()">// ::'Sent Details'|translate//</button>
+            </div>
+            <div id="divSentDetail" style="display: none">
+                <div>
+                    <table class="tbl-compose-details" style="width: 100%;">
+                        <tbody>
+                        <tr>
+                            <td>// ::'Datetime of send'|translate//</td>
+                            <td>// ::'Priority'|translate//</td>
+                            <td>// ::'Security'|translate//</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input style="direction: ltr"
+                                       ui-mask="9999/99/99 99:99"
+                                       ng-model="CurrentTime"
+                                       ui-mask-use-viewvalue="true"
+                                       type="text"
+                                       id="txtDatetimeOfSent">
+                            </td>
+                            <td>
+                                <select id="txtPriority" ng-model="paramOfSend.priority"
+                                        ng-init="paramOfSend.priority=1">
+                                    <option value="1" selected>//"Usual"|translate//</option>
+                                    <option value="2">//"Fast"|translate//</option>
+                                    <option value="3">//"Very Fast"|translate//</option>
+                                    <option value="4">//"+Very Fast"|translate//</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="selectSecure" ng-model="paramOfSend.security" ng-init="paramOfSend.security=1">
+                                    <option value="1" selected>//"Usual"|translate//</option>
+                                    <option value="2">//"Secure"|translate//</option>
+                                    <option value="3">//"+Secure"|translate//</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                // ::'Tags'|translate//
+                            </td>
+                            <td colspan="2">// ::'Note'|translate//</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="txtTags" ng-model="paramOfSend.tags">
+                            </td>
+                            <td colspan="2">
+                                <textarea id="txtaHamesh" ng-model="member.hamesh"></textarea>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-default btn-xs " ng-click="HideSentDetail()">// ::'Hide Details'|translate//
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+            <div ng-repeat="member in selects"
+                 style=" padding: 10px;  border: solid 1px lightgrey;border-radius: 0px;  border-top: none;">
+                <div style="display: block">
+                    <a style="cursor: pointer;display: block; text-align: right; word-wrap: break-word; float: right">
+                        <img style="margin-left: 10px; width: 25px; height: 25px; display: block; direction: ltr; cursor: pointer"
+                             ng-src="//member.avatar//">
+                    </a>
+
+                    <div style="display: block; text-align: right; word-wrap: break-word">
+                        <div>
+                            //member.profileName//
+                            <small>//member.chartName//</small>
+                            <div>
+                                <div class="well well-sm clearfix send-detail-per-rec" style="display: none">
+
+                                    <table class="tbl-compose-details" style="width: 100%">
+                                        <tbody>
+                                        <tr>
+                                            <td>// ::'Datetime of send'|translate//</td>
+                                            <td>// ::'Priority'|translate//</td>
+                                            <td>// ::'as CC'|translate//</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input style="direction: ltr"
+                                                       ui-mask="9999/99/99 99:99"
+                                                       ng-model="member.CurrentTime"
+                                                       ui-mask-use-viewvalue="true"
+                                                       type="text"
+                                                       id="txtDatetimeOfSent" class="spec"></td>
+                                            <td><select id="txtPriority" ng-model="member.priority">
+                                                <option value>//"Usual"|translate//</option>
+                                                <option value="2">//"Fast"|translate//</option>
+                                                <option value="3">//"Very Fast"|translate//</option>
+                                                <option value="4">//"+Very Fast"|translate//</option>
+                                            </select></td>
+                                            <td><input id="Option" type="checkbox" ng-model="member.cc"
+                                                       ng-init="member.cc = false"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>// ::'Security'|translate//</td>
+                                            <td colspan="2"> // ::'Note'|translate//
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><select id="selectSecure" ng-model="member.security">
+                                                <option value>//"Usual"|translate//</option>
+                                                <option value="2">//"Secure"|translate//</option>
+                                                <option value="3">//"+Secure"|translate//</option>
+                                            </select></td>
+                                            <td colspan="2"><textarea id="txtaHamesh" ng-model="member.hamesh" style="width: 128px;"></textarea>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+                                    <div class="text-center">
+                                        <button class="btn btn-default btn-xs" ng-click="hidePerRecDetails($event)">
+                                            // ::'Hide Details'|translate//
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                                <div class="show-detail-per-rec text-center">
+                                    <button class="btn btn-default btn-xs" ng-click="showPerRecDetails($event)">
+                                        // ::'Send Details'|translate//
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="btn-group btn-group-xs pull-left">
+                            <i class="fa fa-search other-btn"></i>
+                            <i class="fa fa-arrow-circle-o-right other-btn"
+                               ng-click="removeSelected(member, $index)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

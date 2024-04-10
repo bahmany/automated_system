@@ -1,0 +1,504 @@
+{% extends "baseWithoutBound.html" %}
+{% load i18n %}
+
+
+{% block main_content %}
+
+
+    <div ng-app="appEstekhdam" ng-controller="Estekhdam" id="divEstekhdam" ng-cloak>
+
+        {% include "dms/Person/Estekhdam/Estekhdam.html" %}
+    </div>
+
+
+    {% load staticfiles %}
+    {% load sekizai_tags %}
+
+
+    {% addtoblock "js_script" %}
+        <script>
+            var RequireJobsSelection = [];
+            var RequireTimeSelection = [];
+            var RequireKnowSelection = [];
+            var ProfileImageAddress = "";
+            var ProfileResume = "";
+            var appEstekhdam = angular.module("appEstekhdam", []);
+            appEstekhdam.config(function ($interpolateProvider) {
+                $interpolateProvider.startSymbol('//');
+                $interpolateProvider.endSymbol('//');
+            });
+            appEstekhdam.controller("Estekhdam", function ($scope, $http) {
+                $http.defaults.headers.post['rahsoon-csrftoken'] = $.cookie('rahsoon-CSRF-TOKEN');
+                $scope.Estekhdam = {};
+                $scope.Estekhdam.Educations = [];
+                $scope.Estekhdam.Languages = [];
+                $scope.Estekhdam.Dorehs = [];
+                $scope.Estekhdam.Experiences = [];
+                $scope.Estekhdam.Softwares = [];
+                $scope.Estekhdam.Jobs = [];
+                $scope.Education = {};
+                $scope.Language = {};
+                $scope.Doreh = {};
+                $scope.Experience = {};
+                $scope.Software = {};
+                $scope.Job = {};
+                $scope.SearchFilter = {};
+                $scope.Require = {};
+
+                $scope.CheckForRegisteredBefore = function (item) {
+                    {#smartAlert_OK("{% trans 'Error' %}","{% trans 'You have been registered before. Every user allowed to register just one time' %}");#}
+                    if ($scope.Estekhdam.Email != item.ConfirmEmail) {
+                        smartAlert_OK("{% trans 'Error' %}", "{% trans 'Email address does not match with confirmation' %}");
+                        return;
+                    }
+                    if ($scope.Estekhdam.Password != item.ConfirmPassword) {
+                        smartAlert_OK("{% trans 'Error' %}", "{% trans 'Password does not match with confirmation' %}");
+                        return;
+                    }
+                    if (isValidIranianNationalCode(item.InternationalCode) == false) {
+                        smartAlert_OK("{% trans 'Error' %}", "{% trans 'International Code is not correct' %}");
+                        return;
+                    }
+
+                    $http.post("/dms/check-estekhdam-register-before/", item).success(function (data) {
+                        if (data.messageType == "Error") {
+                            smartAlert_Error(data.messageHeader, data.messageText)
+                        }
+                        if (data.messageType == "Succ") {
+                            $scope.HandleStep(1);
+                        }
+                    });
+                }
+                $scope.CheckValidationOfStep1 = function (item) {
+                    $http.post("/dms/check-validation-of-step1/", item).success(function (data) {
+                        if (data.messageType == "Error") {
+                            smartAlert_Error(data.messageHeader, data.messageText)
+                        }
+                        if (data.messageType == "Succ") {
+                            $scope.HandleStep(2);
+                        }
+                    });
+                }
+                $scope.HandleEducationForFirstTime = function () {
+                    $("#secBranch").hide();
+                    $("#secGerayesh").hide();
+                    $("#secUniversityType").hide();
+                    $("#secEducationalPlaceName").hide();
+                    $("#secStartYear").hide();
+                    $("#secEndYear").hide();
+                    $("#secAverageOfLicense").hide();
+                    $("#secCountry").hide();
+                    $("#secHasLicense").hide();
+                };
+
+                $scope.HandleEducationForFirstTime();
+                $scope.EducationAddToList = function (item) {
+                    if (item.LevelofEducation == "{% trans 'Lower then diploma' %}") {
+
+                    } else if (item.LevelofEducation == "{% trans 'Diploma' %}") {
+
+                        if (item.Branch == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+
+                        if (item.EndYear == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.AverageOfLicense == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.HasLicense == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                    } else {
+                        if (item.LevelofEducation == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.Branch == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.Gerayesh == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.UniversityType == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.EducationalPlaceName == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.StartYear == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.EndYear == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.AverageOfLicense == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.Country == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.HasLicense == undefined) {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                        if (item.UniversityType == '0') {
+                            smartAlert_Error("{% trans 'Error' %}", "اطلاعات خواسته شده را تکمیل نمایید ");
+                            return;
+                        }
+                    }
+                    $scope.Estekhdam.Educations.push(item);
+                    $scope.Education = {
+                        LevelofEducation: 0,
+                        UniversityType: 0,
+                        Country: "{% trans 'Iran' %}",
+                        HasLicense: "بله اصل مدرک را دریافت کرده ام"
+                    };
+                }
+                $scope.HandleEducationChange = function (itemID) {
+                    console.log(itemID);
+                    if (itemID == "{% trans 'Lower then diploma' %}") {
+                        $("#secBranch").hide();
+                        $("#secGerayesh").hide();
+                        $("#secUniversityType").hide();
+                        $("#secEducationalPlaceName").hide();
+                        $("#secStartYear").hide();
+                        $("#secEndYear").hide();
+                        $("#secAverageOfLicense").hide();
+                        $("#secCountry").hide();
+                        $("#secHasLicense").hide();
+                    } else if (itemID == "{% trans 'Diploma' %}") {
+                        $("#secBranch").show();
+                        $("#secGerayesh").hide();
+                        $("#secUniversityType").hide();
+                        $("#secEducationalPlaceName").hide();
+                        $("#secStartYear").hide();
+                        $("#secEndYear").show();
+                        $("#secAverageOfLicense").show();
+                        $("#secCountry").hide();
+                        $("#secHasLicense").hide();
+                    } else {
+                        $("#secBranch").show();
+                        $("#secGerayesh").show();
+                        $("#secUniversityType").show();
+                        $("#secEducationalPlaceName").show();
+                        $("#secStartYear").show();
+                        $("#secEndYear").show();
+                        $("#secAverageOfLicense").show();
+                        $("#secCountry").show();
+                        $("#secHasLicense").show();
+                    }
+                }
+                $scope.CheckValidationOfStep2 = function (item) {
+                    $http.post("/dms/check-validation-of-step2/", item).success(function (data) {
+                        if (data.messageType == "Error") {
+                            smartAlert_Error(data.messageHeader, data.messageText)
+                        }
+                        if (data.messageType == "Succ") {
+                            $scope.HandleStep(3)
+                        }
+                    });
+                }
+                $scope.LanguagesAddToList = function (item) {
+                    $scope.Estekhdam.Languages.push(item);
+
+                    $scope.Language = {
+                        Name: 'English',
+                        Skill: 'Good'
+                    }
+                }
+                $scope.DorehsAddToList = function (item) {
+                    if (item.WorkshopName == undefined) {
+                        smartAlert_Error('{% trans "Error" %}', '{% trans "Workshop name is require" %}');
+                        return;
+                    }
+                    $scope.Estekhdam.Dorehs.push(item);
+                    $scope.Doreh = {}
+                }
+                $scope.ExperiencesAddToList = function (item) {
+                    if (item.Name == undefined) {
+                        smartAlert_Error('{% trans "Error" %}', '{% trans "Experience name is require" %}');
+                        return;
+                    }
+                    $scope.Estekhdam.Experiences.push(item);
+                    $scope.Experience = {}
+                }
+                $scope.SoftwaresAddToList = function (item) {
+                    if (item.Name == undefined) {
+                        smartAlert_Error('{% trans "Error" %}', '{% trans "Software name is require" %}');
+                        return;
+                    }
+                    $scope.Estekhdam.Softwares.push(item);
+                    $scope.Software = {}
+                }
+                $scope.JobsAddToList = function (item) {
+                    console.log(item);
+                    if (item.Name == undefined) {
+                        smartAlert_Error('{% trans "Error" %}', '{% trans "Job name is require" %}');
+                        return;
+                    }
+                    if (item.Company == undefined) {
+                        smartAlert_Error('{% trans "Error" %}', '{% trans "Company name is require" %}');
+                        return;
+                    }
+                    $scope.Estekhdam.Jobs.push(item);
+                    $scope.Job = {}
+
+                }
+                $scope.PreparingDataToSend = function () {
+                    // every thing is ready to send
+                    {#                    debugger;#}
+                    // no need to store sata code ..
+                    $scope.Estekhdam.ProfileImageAddress = ProfileImageAddress;
+                    $scope.Estekhdam.ProfileResume = ProfileResume;
+                    $scope.Estekhdam.SelectedJobs = RequireJobsSelection;
+                    $scope.Estekhdam.SelectedTimes = RequireTimeSelection;
+                    $scope.Estekhdam.SelectedKnows = RequireKnowSelection;
+                    $scope.Estekhdam.Require = $scope.Require;
+                    $http.post("/dms/save-hamkari/", $scope.Estekhdam).success(function (data) {
+                        if (data.messageType == "Error") {
+                            smartAlert_Error(data.messageHeader, data.messageText)
+                        }
+                        if (data.messageType == "Succ") {
+                            smartAlert_OK("{% trans 'Success' %}", 'اطلاعات شما با موفقیت ثبت شد - در صورت نیاز با شما تماس گرفته خواهد شد لطفا به هیچ وجه با شرکت تماس نگیرید');
+                            setTimeout(location.reload(), 10000);
+                        }
+                    });
+                }
+                $scope.HandleStep = function (stepNumber) {
+                    if (stepNumber == 0) {
+                        $(".div-step0").show()
+                    } else {
+                        $(".div-step0").hide()
+                    }
+                    if (stepNumber == 1) {
+
+                        $(".div-step1").show()
+                    } else {
+                        $(".div-step1").hide()
+                    }
+                    if (stepNumber == 2) {
+                        $(".div-step2").show()
+                    } else {
+                        $(".div-step2").hide()
+                    }
+                    if (stepNumber == 3) {
+                        $(".div-step3").show()
+                    } else {
+                        $(".div-step3").hide()
+                    }
+                    if (stepNumber == 4) {
+                        $(".div-step4").show()
+                    } else {
+                        $(".div-step4").hide()
+                    }
+                    if (stepNumber == 5) {
+                        $(".div-step5").show()
+                    } else {
+                        $(".div-step5").hide()
+                    }
+                    if (stepNumber == 6) {
+                        $(".div-step6").show()
+                    } else {
+                        $(".div-step6").hide()
+                    }
+                    if (stepNumber == 7) {
+                        $(".div-step7").show()
+                    } else {
+                        $(".div-step7").hide()
+                    }
+                    if (stepNumber == 8) {
+                        $(".div-step8").show()
+                    } else {
+                        $(".div-step8").hide()
+                    }
+                    if (stepNumber == 9) {
+                        $(".div-step9").show()
+                    } else {
+                        $(".div-step9").hide()
+                    }
+                }
+                $scope.HandleStep(0);
+
+                $scope.CheckStep8 = function () {
+                    if ($scope.Require.SataCode == undefined) {
+                        smartAlert_Error("خطا", "لطفا کد خانواده ****های **** را خالی رها نکنید");
+                        return
+                    }
+                    if ($scope.Require.SataCode == "") {
+                        smartAlert_Error("خطا", "لطفا کد خانواده ****های **** را خالی رها نکنید");
+                        return
+                    }
+                    $scope.HandleStep(9);
+                }
+            });
+
+
+            $("#txtBirthDate").inputmask("1399/99/99").attr("dir", "ltr");
+            $("#txtStartYear").inputmask("1399").attr("dir", "ltr");
+            $("#txtEndYear").inputmask("1399").attr("dir", "ltr");
+            $("#txtYearOfWorkshop").inputmask("1399").attr("dir", "ltr");
+            $("#txtAverageOfLicense").inputmask("99.99").attr("dir", "ltr");
+            function uploadImageClick() {
+                $("#filePicProfile").click();
+            }
+            function uploadResumeClick() {
+                $("#fileResume").click();
+            }
+            $("#filePicProfile").change(function () {
+                if ($("#filePicProfile").val()) {
+                    var frmData = new FormData();
+                    frmData.append("pic", filePicProfile.files[0]);
+                    $("#secPicProfile").html("<i class='fa fa-refresh fa-5x fa-spin'></i> ");
+                    $.ajax({
+                        url: '/dms/upload-hamkari-profile-pic/',
+                        type: 'POST',
+                        data: frmData,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            if (data.messageType == "Error") {
+                                smartAlert_Error('{% trans "Error" %}', data.messageText);
+                                $("#secPicProfile").html('<br><br>' +
+                                        '<i class="fa fa-male fa-5x"></i><br>' +
+                                        '<span>' +
+                                        'جهت آپلود عکس خود بروی این قسمت کلیک کنید' +
+                                        '</span><br>' +
+                                        '<span>' +
+                                        'عکس شما میبایست کمتر از ۵۰۰ کیلوبایت باشد' +
+                                        '</span>'
+                                );
+                            }
+                            if (data.messageType == "Succ") {
+                                $("#secPicProfile").html("");
+                                ProfileImageAddress = data.messageText;
+                                $("#secPicProfile").css({
+                                    "background-image": "url('" + data.messageText + "')",
+                                    'background-size': '50%',
+                                    'background-repeat': 'no-repeat',
+                                    'background-position': 'center center'
+                                });
+                            }
+                        }
+                    });
+
+                }
+            });
+            $("#fileResume").change(function () {
+                if ($("#fileResume").val()) {
+                    var frmData = new FormData();
+                    frmData.append("pic", fileResume.files[0]);
+                    $("#secResumeProfile").html("<i class='fa fa-refresh fa-5x fa-spin'></i> ");
+                    $.ajax({
+                        url: '/dms/upload-hamkari-profile-resume/',
+                        type: 'POST',
+                        data: frmData,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            if (data.messageType == "Error") {
+                                smartAlert_Error('{% trans "Error" %}', data.messageText);
+                                $("#secResumeProfile").html(
+                                        '<br>' +
+                                        '<br>' +
+                                        '<i class="fa  fa-file-o fa-5x"></i><br>' +
+                                        'چنانچه خواهان ضمیمه کردن فایل رزومه خود می باشید می توانید با کلیک بروی این قسمت' +
+                                        'رزومه ی خود را آپلود نمایید' +
+                                        'توجه داشته باشید آپلود نمودن رزومه ضروری نیست' +
+                                        '</section>'
+                                );
+                            }
+                            if (data.messageType == "Succ") {
+
+                                ProfileResume = data.messageText;
+                                $("#secResumeProfile").html(
+                                        '<br><br><span class="fa-stack fa-lg">' +
+                                        '<i class="fa fa-file-o fa-5x"></i>' +
+                                        '<i class="fa fa-check fa-3x fa-stack-3x text-success"></i></span>'
+                                )
+                            }
+                        }
+                    });
+                }
+            });
+            $(".require-jobs input:checkbox").on("change", function (self) {
+                {#                console.log($(this).parent().text().trim());#}
+                label = $(this).parent().text().trim();
+                var isChecked = false;
+                isChecked = ($(this).prop('checked'));
+                if (isChecked == true) {
+                    RequireJobsSelection.push(label);
+                } else {
+                    for (var i = 0; RequireJobsSelection.length > i; i++) {
+                        if (RequireJobsSelection[i] == label) {
+                            RequireJobsSelection.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                //console.log(RequireJobsSelection);
+            });
+            $(".require-times input:checkbox").on("change", function (self) {
+                {#                console.log($(this).parent().text().trim());#}
+                label = $(this).parent().text().trim();
+                var isChecked = false;
+                isChecked = ($(this).prop('checked'));
+                if (isChecked == true) {
+                    RequireTimeSelection.push(label);
+                } else {
+                    for (var i = 0; RequireTimeSelection.length > i; i++) {
+                        if (RequireTimeSelection[i] == label) {
+                            RequireTimeSelection.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                //console.log(RequireTimeSelection);
+            });
+            $(".require-knowus input:checkbox").on("change", function (self) {
+                {#                console.log($(this).parent().text().trim());#}
+                label = $(this).parent().text().trim();
+                var isChecked = false;
+                isChecked = ($(this).prop('checked'));
+                if (isChecked == true) {
+                    RequireKnowSelection.push(label);
+                } else {
+                    for (var i = 0; RequireKnowSelection.length > i; i++) {
+                        if (RequireKnowSelection[i] == label) {
+                            RequireKnowSelection.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                //console.log(RequireKnowSelection);
+            });
+        </script>
+
+    {% endaddtoblock %}
+    {% addtoblock "js_file" %}
+
+    {% endaddtoblock %}
+
+    {% addtoblock "css_file" %}
+
+    {% endaddtoblock %}
+
+    {% addtoblock "css_script" %}
+    {% endaddtoblock %}
+
+{% endblock %}
+
+

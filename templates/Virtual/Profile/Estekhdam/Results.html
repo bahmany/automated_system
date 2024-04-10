@@ -1,0 +1,27 @@
+{% load translators %}
+<div ng-controller="step11resultsCtrl">
+
+    <div>
+        <div ng-repeat="item in regJobs" ng-if="CheckIsSelectedClicked(item)" class="frame margin-15" layout-padding>
+            <h3>//item.hamkarititle//</h3>
+            <div class="frame margin-15" layout-padding>
+                <div style="font-size:12px;">لیست شغل هایی که شما برای آنها ابراز تمایل به همکاری نموده اید :</div>
+                <div ng-repeat="it in item.extra.requests | filter:{is_selected: true}">
+                    //it.name//
+                </div>
+            </div>
+            <div>
+                <div class="frame margin-15" layout-padding style="    background-color: #C00000; color: #ffffff">
+                    <div style="font-size:12px; font-weight: bold">نتیجه :</div>
+                    <div ng-if="item.type == 1">در دست بررسی</div>
+                    <div ng-if="item.type == 2">دعوت برای آزمون</div>
+                    <div ng-if="item.type == 3">دعوت برای مصاحبه</div>
+                    <div ng-if="item.type == 4">شما پذیرش شده اید</div>
+                    <div ng-if="item.type == 5">مردود</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

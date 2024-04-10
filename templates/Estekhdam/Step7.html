@@ -1,0 +1,99 @@
+{% load staticfiles %}
+{% load sekizai_tags %}
+{% load i18n %}
+<fieldset>
+    <div class="row">
+        <section class="col col-4">
+            <label>عنوان شغلی<span style="color: #d12210">(*)</span></label>
+            <label class="input">
+                <input type="text" ng-model="Job.Name" >
+            </label>
+        </section>
+        <section class="col col-4">
+            <label>شرکت<span style="color: #d12210">(*)</span></label>
+            <label class="input">
+                <input type="text" ng-model="Job.Company" >
+            </label>
+        </section>
+        <section class="col col-2">
+            <label>{% trans 'Start Year' %}</label>
+            <label class="input">
+                <input type="text" ng-model="Job.StartYear">
+            </label>
+        </section>
+        <section class="col col-2">
+            <label>{% trans 'End Year' %}</label>
+            <label class="input">
+                <input type="text" ng-model="Job.EndYear">
+            </label>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col col-3">
+            <label> {% trans 'Salary' %} </label>
+            <label class="input">
+                <input type="text" ng-model="Job.Salary">
+            </label>
+        </section>
+        <section class="col col-3">
+            <label> {% trans 'Cause of lefting job' %} </label>
+            <label class="input">
+                <input type="text" ng-model="Job.CauseOfLeftingJob">
+            </label>
+        </section>
+        <section class="col col-3">
+            <label> {% trans 'Insurance no. and explanation' %} </label>
+            <label class="input">
+                <input type="text" ng-model="Job.InsuranceNoandExplanation">
+            </label>
+        </section>
+        <section class="col col-3">
+            <label> {% trans 'Other Explanations' %} </label>
+            <label class="input">
+                <input type="text" ng-model="Job.OtherExplanations">
+            </label>
+        </section>
+
+
+    </div>
+    <section>
+        <label></label>
+        <label class="input">
+            <a class="btn btn-success" ng-click="JobsAddToList(Job)">{% trans 'Add To List' %}<i class="fa fa-plus-square "></i></a>
+        </label>
+    </section>
+    <section>
+        <table class="table-responsive table table-bordered table-striped">
+            <thead>
+            <tr>
+                <td>عنوان شغلی</td>
+                <td>شرکت</td>
+                <td>{% trans 'Salary' %}</td>
+                <td>{% trans 'Start Year' %}  تا  {% trans 'End Year' %}</td>
+                <td>توضیحات</td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in Estekhdam.Jobs track by $index">
+                <td>// item.Name //</td>
+                <td>// item.Company //</td>
+                <td>// item.Salary //</td>
+                <td>// item.StartYear // - // item.EndYear //</td>
+                <td>// item.CauseOfLeftingJob // <br> // item.InsuranceNoandExplanation // <br> //
+                    item.OtherExplanations //
+                </td>
+                <td><a class="btn btn-default"
+                       ng-click="Estekhdam.Jobs.splice($index,1)">{% trans 'Remove' %}</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" style="text-align: center" ng-show="!Estekhdam.Jobs.length">
+                    {% trans 'There is no data' %}
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </section>
+</fieldset>

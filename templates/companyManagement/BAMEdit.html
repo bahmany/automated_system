@@ -1,0 +1,76 @@
+{% load translators %}
+
+<div layout-gt-md="row">
+    <div class="col-md-6 bpms-form-container" style="float: none;margin: 0 auto;"
+         ng-controller="BAMEditCtrl">
+        <div class="panel panel-default panel-new-default pnl-bpms" style="border: 1px solid rgb(207,207,207)">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    //'ویرایش شاخص ' | translate//
+                </h3>
+            </div>
+            <div class="panel-body">
+
+                    <form novalidate action="">
+                        <input name="name" class="form-control" type="text" ng-model="bam.name"
+                               placeholder="{{ 'عنوان شاخص'|translate }}...">
+                        <br/>
+                        <select class="form-control" name="bpmn_id" ng-model="bam.bpmn_id" ng-change="getSteps()"
+                                ng-options="obj.id as obj.name for obj in bpmns">
+                            <option value="">{{ 'انتخاب فرایند'|translate }}...</option>
+                        </select>
+                        <br/>
+                        <select class="form-control" name="step_id" ng-model="bam.step_id"
+                                ng-options="obj.id as obj.name for obj in steps">
+                            <option value="0">{{ 'تمامی فعالیت ها'|translate }}</option>
+                        </select>
+                         <br/>
+                        <select class="form-control" name="time_period" ng-model="bam.time_period"
+                                ng-options="obj.id as obj.name for obj in times">
+                        </select>
+                        <br/>
+                        <select class="form-control" name="don_or_run" ng-model="bam.done_or_run"
+                                ng-options="obj.id as obj.name for obj in mhdoodes">
+                        </select>
+                        <br/>
+                          <input name="name" class="form-control" type="number" ng-model="bam.min_mess"
+                               placeholder="{{ 'حداقل مقدار شاخص'|translate }}">
+                        <br/>
+                          <input name="name" class="form-control" type="number" ng-model="bam.start_warn"
+                               placeholder="{{ 'شروع هشدار'|translate }}">
+                        <br/>
+                          <input name="name" class="form-control" type="text" ng-model="bam.start_danger"
+                               placeholder="{{ 'شروع بحران'|translate }}">
+                        <br/>
+
+                    <button type="button" class="btn btn-danger fa fa-times pull-right"
+                            ng-click="cancelNewBAM()"
+                            style="margin-top: -8px;" onclick="$('.lp-inbox-item').removeClass('active');"></button>
+                    <button type="button" class="btn btn-success fa fa-save pull-right"
+                            ng-click="saveIt()"
+                            style="margin-top: -8px;" onclick="$('.lp-inbox-item').removeClass('active');"
+                            tooltip="{{ 'create'|translate }}"></button>
+
+                </form>
+
+                {#                <link rel="stylesheet" href="/static/bower_components/angular-form-gen/angular-form-gen.min.css"/>#}
+                <style>
+
+                    {#                    @media print {#}
+                    {#                        * {#}
+                    {#                            display: none ;#}
+                    {#                        }#}
+                    {##}
+                    {#                        #DoLunchedProcessCtrl, #DoLunchedProcessCtrl * {#}
+                    {#                            display: block;#}
+                    {#                        }#}
+                    {#                    }#}
+
+                    label.lbamflabel {
+                        display: none;
+                    }
+                </style>
+            </div>
+        </div>
+    </div>
+</div>

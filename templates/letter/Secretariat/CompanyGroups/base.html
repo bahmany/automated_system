@@ -1,0 +1,61 @@
+{% load translators %}
+<md-content id="divPostCompanyGroup" ng-controller="CompanyGroupsCtrl">
+    <form name="companyGroupForm">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+
+
+                مدیریت گروه شرکت ها
+
+                <span flex></span>
+                <md-button
+                        class="md-fab md-mini"
+                        aria-label="ایجاد"
+                        ng-click="ShowNewCompanyGroup()">
+                    <md-icon md-font-icon="fa fa-plus"></md-icon>
+                    <md-tooltip>ایجاد گروه شرکت جدید</md-tooltip>
+                </md-button>
+
+            </div>
+        </md-toolbar>
+
+    </form>
+    <div>
+
+
+        <div class="tbl-container">
+            {% load tables_tags %}
+            {% tablePagination main_model_name="CompanyGroups" table_search_watch_model_name="CompanyGroupsSearchText" table_go_to_page_func_name="CompanyGroupsPageTo" table_handle_pagination_func_name="HandleCompaniesGroupTablePagination" table_info_model_name="TableCompanyGroups" %}
+
+            <table class="table table-has-border">
+                <thead>
+
+                <tr>
+                    <th>نام گروه</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="item in CompanyGroups.results" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <td>//item.name//</td>
+                    <td>
+                        <div class="btn-group btn-group-xs">
+                            <a ng-click="RemoveCompanyGroup(item)">حذف
+                            </a>
+                            |
+                            <a ng-click="EditCompanyGroup(item)">
+                                ویرایش
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            {% include "letter/Secretariat/CompanyGroups/modalAddEditCompanyGroups.html" %}
+
+        </div>
+    </div>
+
+
+</md-content>

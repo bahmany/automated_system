@@ -1,0 +1,113 @@
+<div ng-controller="BIBaseCtrl">
+
+    <section layout="row" flex>
+        <md-sidenav layout="column" class="md-sidenav-right" md-component-id="right"
+                    md-is-locked-open="$mdMedia('gt-md')">
+
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <h5>
+                        داشبورد مدیریتی
+                    </h5>
+
+                    <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                        <md-icon md-font-icon="fa fa-area-chart"></md-icon>
+                    </md-button>
+
+                </div>
+            </md-toolbar>
+
+
+            <ul class="side-menu bi-sider">
+
+
+                <li ng-repeat="section in menu"
+                    layout="column"
+
+                    ng-class="{'parentActive' : isSectionSelected(section), 'isItToggle':section.type == 'link'}">
+                    <h2 class="menu-heading"
+                        ng-if="section.type === 'heading'"
+                        id="heading_// section.name | nospace //">
+                        //section//
+                    </h2>
+                    <menu-link section="section"
+                               ng-if="section.type === 'link'"></menu-link>
+                    <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+
+                </li>
+
+
+                <li ng-repeat="section in sections"
+                    layout="column"
+
+                    ng-class="{'parentActive' : isSectionSelected(section), 'isItToggle':section.type == 'link'}">
+                    <h2 class="menu-heading"
+                        ng-if="section.type === 'heading'"
+                        id="heading_// section.name | nospace //">
+                        //section//
+                    </h2>
+                    <menu-link section="section"
+                               ng-if="section.type === 'link'"></menu-link>
+                    <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+
+                </li>
+            </ul>
+
+
+        </md-sidenav>
+        <md-content layout-fill="" ui-view="" style="margin-right: 8px;">
+            <div class="shadower">
+                <img src="/static/images/bi/618795cfffffbac36b.jpg" style="width: 100%" alt="">
+            </div>
+        </md-content>
+    </section>
+
+    <div layout="row" style="display: none;">
+
+        <div style="width: 100px;" layout="column" class="bi-main-side-menu">
+            <a ui-sref="bi-groups">
+                <i class="fa fa-group"></i>
+                گروه ها
+            </a>
+            <a ui-sref="bi-dashboard-pages">
+                <i class="fa fa-pagelines"></i>
+                صفحات
+            </a>
+            <a ui-sref="bi-charts">
+                <i class="fa fa-newspaper-o"></i>
+                نمودارها</a>
+            <a ui-sref="bi-sqls">
+                <i class="fa fa-pagelines"></i>
+                فراخوانی ها
+            </a>
+
+            <a ui-sref="bi-tools">
+                <i class="fa fa-database"></i>
+                منابع</a>
+        </div>
+        {#        <div flex ui-view=""></div>#}
+    </div>
+</div>
+
+
+<style>
+    .bi-main-side-menu a {
+        font-size: 12px;
+        padding: 5px;
+        border-bottom: 1px solid lightgrey
+    }
+
+    .bi-main-side-menu a:hover {
+        background-color: lightgrey;
+        text-decoration: none;
+    }
+
+    .bi-main-side-menu a:last-child {
+        border-bottom: none;
+    }
+
+    .bi-main-side-menu i {
+        margin-left: 10px;
+    }
+
+</style>

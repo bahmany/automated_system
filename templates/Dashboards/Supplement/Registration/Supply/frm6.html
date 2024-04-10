@@ -1,0 +1,125 @@
+<h4>اطلاعات هیات مدیره</h4>
+<hr>
+<div>
+    <div layout="column">
+
+
+        <form action="" name="form_frm6">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نام و نام خانوادگی</label>
+                        <input type="text" ng-model="provider.frm6.name" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">سمت</label>
+                        <input type="text" ng-model="provider.frm6.semat">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تا تاریخ</label>
+                        <input type="text" ng-model="provider.frm6.taTarikh"                               ui-mask="9999/99/99" dir="ltr"
+>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">حیطه اختیارات</label>
+                        <input type="text" ng-model="provider.frm6.hitehEkhtiarat">
+                    </md-input-container>
+                </div>
+
+
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">رشته تحصیلی</label>
+                        <input type="text" ng-model="provider.frm6.reshteh" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">سابقه کار</label>
+                        <input type="text" ng-model="provider.frm6.sabegheKar">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">شماره یا شماره های تماس</label>
+                        <input type="text" ng-model="provider.frm6.tamas">
+                    </md-input-container>
+                </div>
+
+
+            </div>
+{#                    {% include "Dashboards/Supplement/Registration/Supply/imageUploaderArea.html" with formStep="6" %}#}
+{##}
+
+
+            <div layout-gt-xs="row">
+                <span flex></span>
+                <md-button ng-click="addTofrm('6')"
+                           ng-disabled="form_frm6.$invalid"
+                           class="md-raised md-default">
+                    اضافه به لیست
+                </md-button>
+            </div>
+
+        </form>
+
+        <div>
+            <table class="sp-table table table-bordered">
+                <thead>
+                <tr>
+                    <th >نام</th>
+                    <th >سمت</th>
+                    <th >تا تاریخ</th>
+                    <th >رشته</th>
+                    <th >سابقه کار</th>
+                    <th >تماس</th>
+                    <th >عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.frm6_list">
+                    <td >//it.name//</td>
+                    <td >//it.semat//</td>
+                    <td >//it.taTarikh//</td>
+                    <td >//it.reshteh//</td>
+                    <td >//it.sabegheKar//</td>
+                    <td >//it.tamas//</td>
+                    <td >
+                    {% include "Dashboards/Supplement/Registration/Supply/fileViewTdTable.html" with nm="it" %}
+                    <a ng-click="removefrm('6',$index)">حذف</a>
+                    </td>
+                </tr>
+
+                <tr ng-if="provider.frm6_list.length == 0">
+                    <td colspan="7">
+                        لیست صاحبین امضا خالی است
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div>
+
+        </div>
+
+    </div>
+
+ {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm6" %}
+
+
+</div>

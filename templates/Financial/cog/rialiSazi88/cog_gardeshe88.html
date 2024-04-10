@@ -1,0 +1,170 @@
+<div ng-controller="RialSazi88Ctrl">
+
+    <div class="spacer">
+        <md-toolbar>
+            <div class="md-toolbar-tools" layout-gt-xs="row">
+                <h4>محاسبه گردش کویل های ۸۸
+
+                </h4>
+
+                <span flex></span>
+
+                <md-button loading="در حال محاسبه ..."
+                           notloading="محاسبه گردش ..." disableonrequest
+                           class="md-raised" ng-click="StartGardeshProcess()"></md-button>
+            </div>
+
+
+        </md-toolbar>
+
+
+        <div>
+{#            <div class="alert alert-danger" ng-show="bugs.length > 0" style="overflow: scroll; max-height: 162px;">#}
+            <div class="alert alert-danger" ng-show="false" style="overflow: scroll; max-height: 162px;">
+                <table style="width: 100%; font-size: 12px; background-color: white"
+                       class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>کد کالا</th>
+                        <th>کد ارتباطی</th>
+                        <th>نوع ارور</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in bugs">
+                        <td>//item.coil77//</td>
+                        <td>//item.link//</td>
+                        <td>//item.bug_reason//</td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <table id="divTable88" style="min-width: 3501px;font-size: 12px; text-align: center"
+                   dir="rtl"></table>
+
+        </div>
+    </div>
+
+
+</div>
+
+{##}
+{#<div class="row">#}
+{#    <div class="col-12">#}
+{#        <div class="card">#}
+{#            <div class="card-body">#}
+{#                <h1>محاسبه گردش کویل های ۸۸</h1>#}
+{#                <div class="docs-lead" dir="rtl" style="text-align: right;font-size: 12px;">#}
+{#                    در اینجا هزینه ی تمام شده ی کویل های ۸۸ با استفاده از مباحث استاندارد مواد بری و#}
+{#                    الگوریتم میانگین موزون محاسبه می شود#}
+{#                    <br/>#}
+{#                    <br/>#}
+{#                    <ul dir="rtl" style="text-align: right;"> برای محاسبه ی نرخ مصرف کویل و مبلغ انتقالی از کویل شیت#}
+{#                        کارهای زیر را کردیم#}
+{##}
+{#                        <li dir="rtl" style="text-align: right;">گروه بندی کویل های ۷۷ ی که ارسال به خط برش شده#}
+{#                            بودند#}
+{#                        </li>#}
+{#                        <li dir="rtl" style="text-align: right;"> گروه بندی شیت های ۸۸ که تولید طی دوره شده بودند#}
+{#                        </li>#}
+{#                        <li dir="rtl" style="text-align: right;">این گروه بندی بر اساس سازنده – تمپر – سطح – ضخامت#}
+{#                            صورت گرفته و این طور فرض شده است که اینها#}
+{#                            به هیچ وجه در تمامی فرآیندهای تولید تغییر نخواهند کرد#}
+{#                        </li>#}
+{#                        <li dir="rtl" style="text-align: right;">#}
+{#                            اگر این کدها در هر مرحله تغییر کنند بحساب تداخل و#}
+{#                            اشکال در ورود اطلاعات توسط انباردار محاسبه#}
+{#                            شده و می بایست اصلاح شوند#}
+{#                        </li>#}
+{#                        <li dir="rtl" style="text-align: right;">#}
+{##}
+{#                            در این محاسبات برای خط برش دوم#}
+{#                            دستمزد مستقیم زده نشده است#}
+{#                            با استعلام از مالی متوجه شدم#}
+{#                            تمامی دستمزدهای خطوط برش بنام خط برش یک زده میشود#}
+{#                            و این مسئله امکان دارد کمی ارقام را نامتعادل کند#}
+{#                            که البته در خروجی کل عدد صحیح خواهد بود#}
+{##}
+{#                        </li>#}
+{##}
+{##}
+{#                    </ul>#}
+{##}
+{##}
+{#                </div>#}
+{##}
+{##}
+{#                <nav class="navbar navbar-expand-lg navbar-light bg-light">#}
+{#                    <a class="navbar-brand">عملیات</a>#}
+{#                    <md-button class="navbar-toggler" type="md-button" data-toggle="collapse"#}
+{#                               data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"#}
+{#                               aria-expanded="false" aria-label="Toggle navigation">#}
+{#                        <span class="navbar-toggler-icon"></span>#}
+{#                    </md-button>#}
+{#                    <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+{#                        <ul class="navbar-nav mr-auto">#}
+{#                            <li class="nav-item active">#}
+{#                                <md-button loading="در حال محاسبه ..."#}
+{#                                           notloading="مرحله اول : محاسبه گردش" disableonrequest#}
+{#                                           class="" ng-click="StartGardeshProcess()"></md-button>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{##}
+{#                </nav>#}
+{##}
+{#                <div dir="rtl" style="text-align: right">#}
+{#                    <p>#}
+{#                    <h3>اطلاعات</h3>#}
+{#                    <ul>#}
+{#                        <li>#}
+{##}
+{#                            کل خرید قلع برای سال#}
+{#                            <strong style="color: darkgreen; text-decoration: underline">#}
+{#                                //ghal.saleMali//#}
+{#                            </strong>#}
+{#                            مبلغ#}
+{#                            <strong style="color: darkgreen; text-decoration: underline">//ghal.details.majmoo_mablagh_sadereh#}
+{#                                * -1#}
+{#                                | number//</strong>#}
+{#                            ریال و#}
+{#                            <strong style="color: darkgreen; text-decoration: underline">//ghal.details.majmoo_meghdar_sadereh#}
+{#                                |#}
+{#                                number//</strong>#}
+{#                            کیلو است#}
+{#                            میزان ورق قلع اندود تولید شدن#}
+{#                            <strong style="color: darkgreen; text-decoration: underline">#}
+{#                                //ghal.total_kilo_tolid| number//#}
+{#                            </strong>#}
+{#                            کیلو بوده و میزان تخصیص میانگین موزون قلع به ورق های تولید شده#}
+{#                            <strong style="color: darkgreen; text-decoration: underline">#}
+{#                                //( ghal.details.majmoo_mablagh_sadereh / ghal.total_kilo_tolid )* -1| number//#}
+{#                            </strong>#}
+{#                            ریال#}
+{#                            است#}
+{##}
+{#                        </li>#}
+{#                    </ul>#}
+{#                    </p>#}
+{#                </div>#}
+{##}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div>#}
+{#        <md-button class="btn btn-success" ng-click="StartGardeshProcess()">محاسبه گردش</md-button>#}
+{#    </div>#}
+{##}
+{##}
+{#    <div style="background-image: url('/static/Financial/assets/images/cog_77_to_88.png');     height: 500px;    background-size: contain;    background-repeat: no-repeat;">#}
+{##}
+{#    </div>#}
+{##}
+{#</table>#}
+{##}
+{##}
+{#</div>#}

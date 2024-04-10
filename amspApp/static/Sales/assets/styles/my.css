@@ -1,0 +1,21 @@
+.inbox-item{
+    padding: 5px;
+}
+
+.profConv *{
+    direction: ltr!important;
+}
+
+.text-blue{
+    color: darkblue;
+}
+
+.text-red{
+    color: darkred;
+}
+
+.text-gray{
+    color: dimgrey;
+}
+
+

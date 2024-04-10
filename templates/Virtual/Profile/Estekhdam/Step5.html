@@ -1,0 +1,122 @@
+{% load translators %}
+{% load staticfiles %}
+{% load i18n %}
+
+
+<h1 class="md-title">مهارت ها و تجربیات</h1>
+<div layout-gt-sm="column" ng-controller="step5Ctrl">
+    <div class="frame firstreg">
+        <div flex-gt-sm layout-padding>
+            <div class="toolbar">
+                مهارت ها و تجربیات خود را وارد نمایید
+            </div>
+
+            <md-content>
+                <p class="help">
+                    <md-icon md-font-icon="fa fa-info-circle"
+                             style="    font-size: 24px;    color: rgb(97, 58, 0);">
+
+                    </md-icon>
+
+                    چنانچه تجربه یا مهارتی دارید که نه مدرکی برای آن صادر شده و یا نه
+                    دوره ای برای آن شرکت کرده اید
+                    در این قسمت آنرا وارد نمایید
+
+                </p>
+                <form name="experienceForm">
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>عنوان مهارت و یا تجربه</label>
+                            <input type="text" ng-model="ExperienceItem.Name" required="">
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>درجه ی مهارت و یا آشنایی</label>
+                            <input type="text" ng-model="ExperienceItem.Level" required="">
+
+                            <div class="hint">
+
+                            </div>
+                        </md-input-container>
+
+
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>میزان فعالیت و آشنایی</label>
+                            <input type="text" ng-model="ExperienceItem.AgeOfPracticalSkills">
+
+                            <div class="hint">
+                                در این قسمت می توانید سالهایی را تجربه ی مورد نظر را مورد استفاده قرار میدادید را ذکر
+                                نمایید
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>توضیحات</label>
+                            <input type="text" ng-model="ExperienceItem.Exp">
+                        </md-input-container>
+
+
+                    </div>
+                    <div>
+                        <md-input-container class="md-block" flex-gt-sm style="text-align: left">
+                            <label></label>
+                            <md-button ng-disabled="experienceForm.$invalid"
+                                       class="md-raised md-primary"
+                                       ng-click="AddToList(ExperienceItem)">
+                                اضافه به لیست سوابق
+                            </md-button>
+                        </md-input-container>
+
+                    </div>
+                </form>
+                <section>
+                    <table class="table table-responsive ">
+                        <thead>
+                        <tr>
+                            <td>عنوان مهارت و یا تجربه</td>
+                            <td>درجه ی مهارت و یا آشنایی</td>
+                            <td>میزان فعالیت و آشنایی</td>
+                            <td>توضیحات</td>
+                            <td></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in Experience.items track by $index">
+                            <td>// item.Name //</td>
+                            <td>// item.Level //</td>
+                            <td>// item.AgeOfPracticalSkills //</td>
+                            <td>// item.Explanations //</td>
+                            <td>
+                                <md-button class="md-raised" ng-click="itemEdit(item, $index)">ویرایش</md-button>
+                                <md-button class="md-raised" ng-click="Experience.items.splice($index,1)">حذف
+                                </md-button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="text-align: center" ng-show="!Experience.items.length">
+                                هیچ سابقه ای وارد نشده است
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </section>
+            </md-content>
+            <md-toolbar>
+                <div class="md-toolbar-tools" layout-align="end center">
+                    <md-button class="md-raised" ng-click="Post('5', Experience)">ذخیره در سوابق و مرحله ی بعد
+                    </md-button>
+
+                </div>
+            </md-toolbar>
+        </div>
+    </div>
+</div>
+
+

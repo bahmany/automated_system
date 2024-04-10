@@ -1,0 +1,19 @@
+<div>
+    <md-button class="md-default md-raised" ng-click="showImageDialog($event, [], '{{ formStep }}')"
+               style="background-color: rgb(115, 177, 87)">
+        آپلود ضمایم
+    </md-button>
+</div>
+<div ng-show="provider.frm{{ formStep }}.files" layout="column"
+     style="    border: 1px solid #cacaca;    border-radius: 5px;    padding: 12px;">
+    <div>
+        فایل هاو مستندات آپلود شده مربوطه
+    </div>
+    <div layout-gt-xs="row" layout-wrap="">
+        <div ng-repeat="item in provider.frm{{ formStep }}.files" class="img-view-files">
+            <img ng-src="/api/v1/file/upload?q=thmum100_//item.name//"
+                 alt="//item.name//" style="height: 100px;">
+        </div>
+    </div>
+
+</div>

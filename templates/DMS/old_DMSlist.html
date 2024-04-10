@@ -1,0 +1,42 @@
+{% load translators %}
+
+<div class="col-md-12" ng-controller="DMSUserInboxCtrl">
+    <div class="panel panel-primary " style="border: 1px solid rgb(207,207,207)">
+        <div class="panel-heading">
+            <h3 class="panel-title inline">{{ 'documents'|translate}}</h3>
+        </div>
+        <div class="panel-body" style="    padding: 0;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>کد</th>
+                    <th>نام</th>
+                    <th>نوع</th>
+                    <th>مدل</th>
+                    <th>تاریخ</th>
+                    <th>واحد</th>
+                    <th>فرایندهای مرتبط</th>
+                    <th>قالب</th>
+                    <th>دانلود</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="itm in listDMS">
+                    <td>//itm.docCode//</td>
+                    <td>//itm.name//</td>
+                    <td>//itm.docType//</td>
+                    <td>//itm.docModel//</td>
+                    <td>//itm.latestPostDate | jalaliDate:'jYYYY/jMM/jDD'//</td>
+                    <td>//itm.docZone//</td>
+                    <td>//itm.docRelated//</td>
+                    <td>//itm.docFormat//</td>
+                    <td><a href="/api/v1/file/upload?q=//itm.currentFile//"><i class="fa fa-download"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+            <pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage"
+                        max-size="maxSize" class="pagination-sm"
+                        boundary-links="true" rotate="true" num-pages="numPages"></pagination>
+        </div>
+    </div>
+</div>

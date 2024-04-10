@@ -1,0 +1,268 @@
+<div ng-controller="EZItemCtrl">
+    {#    <md-toolbar layout="row">#}
+    {##}
+    {##}
+    {##}
+    {#        <h2 class="md-toolbar-tools">جزئیات اضافه کاری</h2>#}
+    {##}
+    {#        <div flex></div>#}
+    {#        <md-button class="md-button" ui-sref="ezlist">#}
+    {#            بازگشت#}
+    {#        </md-button>#}
+    {##}
+    {#    </md-toolbar>#}
+    {##}
+    {#    <div>#}
+    {#        <md-button class="md-raised" ng-click="addtohz()">تست نوشتن در اضافه کاری</md-button>#}
+    {#    </div>#}
+
+
+    <md-toolbar class="md-hue-5">
+        <div class="md-toolbar-tools">
+            <h4 md-truncate>درخواست اضافه کاری</h4>
+
+            <div flex>
+
+            </div>
+
+            <md-button
+                    ui-sref="ezlist"
+                    class="md-raised md-primary">
+                بازگشت
+
+
+            </md-button>
+
+        </div>
+    </md-toolbar>
+
+
+    <div class="shadower">
+
+        <div layout-gt-xs="row">
+
+
+            <md-input-container flex-gt-xs>
+                <label for="ewtwgf">تاریخ انجام
+                    مثال : 1399/01/01
+                </label>
+                <input type="text"
+                       mask="1999/99/99"
+                       dir="ltr"
+                       placeholder="1399/01/01"
+                       ng-model="ez.tarikheAnjam"
+                       style="direction: ltr!important;" name="ewtwgf">
+            </md-input-container>
+            <div flex-gt-xs="5">
+            </div>
+
+            <md-input-container flex-gt-xs>
+                <label for="ewtwgfdsf">جهت انجام</label>
+                <input type="text" name="ewtwgfdsf"
+                       ng-model="ez.JahateAnjameh">
+            </md-input-container>
+
+        </div>
+
+
+        <div>
+            <h4>
+                لیست افراد زیر شاخه شما
+            </h4>
+            <div>
+                <table ng-show="ez.typeOf === 1 || ez.typeOf === undefined || ez.typeOf === null"
+                       class="table table-bordered table-striped" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>انتخاب</th>
+                        <th>نام</th>
+                        <th>سمت</th>
+                        <th>کد پرسنلی</th>
+                        <th>از</th>
+                        <th>تا</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="per in ez.desc.pers">
+                        <td>
+                            <md-checkbox ng-model="per.check" aria-label="Checkbox 1">
+                            </md-checkbox>
+                        </td>
+                        <td>
+                            //per.profileName//
+                        </td>
+                        <td>
+                            //per.chartName//
+                        </td>
+                        <td>
+                            <input type="text" ng-model="per.personnel_code" readonly>
+                            <div ng-show="per.personnel_code === null || per.personnel_code === undefined || per.personnel_code === ''"
+                                 style="font-size: 12px;    color: red;">
+                                لطفا با واحد فناوری جهت ثبت کد پرسنلی این پرسنل هماهنگی نمایید
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" ng-model="per.az" style="direction: ltr; text-align: left;"
+                                   mask="99:99"
+                                   placeholder="مثال : 14:01">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="per.ta" style="direction: ltr; text-align: left;"
+                                   mask="99:99"
+                                   placeholder="مثال : 19:00">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table ng-show="ez.typeOf === 2" class="table table-bordered table-striped" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>نام</th>
+                        <th>سمت</th>
+                        <th>کد پرسنلی</th>
+                        <th>از</th>
+                        <th>تا</th>
+                        <th>میزان دقیقه</th>
+                        <th>عدم</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="per in ez.desc.pers">
+
+                        <td>
+                            //per.profileName//
+                        </td>
+                        <td>
+                            //per.chartName//
+                        </td>
+                        <td>
+                            //per.personnel_code//
+                        </td>
+                        <td>
+                            <input type="text" ng-model="per.az" style="direction: ltr; text-align: left;"
+                                   placeholder="مثال : 14:01">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="per.ta" style="direction: ltr; text-align: left;"
+                                   placeholder="مثال : 19:00">
+                        </td>
+
+                        <td>
+                            //per.mizan_daghighe//
+                        </td>
+                        <td>
+                            <md-button class="md-raised" ng-click="remove_pers(per)">حذف</md-button>
+                            <md-button class="md-raised" ng-click="save_pers(per)">ثبت</md-button>
+                        </td>
+                    </tr>
+                    <tr style="background-color: gray;
+    color: white;">
+                        <td colspan="7" style="font-size: 12px;    text-align: left;">
+                            جمع کل :
+                            //ez.desc.total_daghigheh//
+                            دقیقه
+                            یا
+                            //ez.desc.total_daghigheh/60 //
+                            ساعت
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" style="text-align: right; font-size: 11px;" ng-show="ez.desc.changes">
+                            <div ng-repeat="item in ez.desc.changes"
+                                 style="padding: 5px; margin: 5px; border-bottom: 1px solid darkgray;">
+                                مورخه
+                                // item.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+                                توسط
+                                // item.changer.profileName // - // item.changer.chartName //
+                                اضافه کاری
+                                // item.prev.profileName //
+                                از
+                                // item.prev.az //
+                                تا
+                                // item.prev.ta //
+                                به
+
+                                از
+                                // item.changeto.az //
+                                تا
+                                // item.changeto.ta //
+                                تغییر کرد
+
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <md-toolbar class="md-hue-2"
+                    ng-if="ez.typeOf === 1 || ez.typeOf === undefined || ez.typeOf === null || ez.typeOf ===''">
+            <div layout="row" layout-align="start center" class="md-toolbar-tools">
+                <md-button class="md-primary md-raised" ng-click="save_draft()">
+                    ثبت موقت
+                </md-button>
+                <div flex>
+                </div>
+                <md-button class="md-primary md-raised" ng-click="start_ez()">
+                    شروع فرآیند
+                    <md-icon class="fa fa-check"></md-icon>
+                </md-button>
+
+            </div>
+        </md-toolbar>
+
+        <div>
+
+        </div>
+
+
+        <div ng-if="ez.typeOf == 2">
+            <div layout="row" layout-align="center center">
+
+                {% include 'Edari/ez/partial_approve.html' with title='درخواست کننده' approvestep=1 keyname='pos_vahede_darkhat' %}
+                {% include 'Edari/ez/partial_approve.html' with title='مدیر درخواست کننده' approvestep=2  keyname='pos_modire_vahede_darkhat' %}
+
+            </div>
+
+            <md-divider style="margin-top: 45px;"></md-divider>
+
+            <h4>شرح اقدامات شده</h4>
+            <textarea
+                    name="sfsdf"
+                    id="txt_sfsdf"
+                    ng-model="ez.Sharh"
+                    cols="30" rows="5" style="width: 100%"></textarea>
+            <div layout="row">
+                <div flex style="font-size: 12px; color: gray">
+                    امضای مدیرمنابع انسانی/مسئول اداری منوط به تکمیل بودن شرح اقدامات است.
+                    این قسمت فقط توسط درخواست کننده قابل تکمیل است.
+
+                </div>
+                <md-button class="md-raised md-primary" ng-click="save_sharhe_eghdamaat()">ذخیره توسط درخواست کننده
+                </md-button>
+            </div>
+            <md-divider style="margin-top: 25px;margin-bottom: 25px;"></md-divider>
+
+
+            <div layout="row">
+
+                {% include 'Edari/ez/partial_approve.html' with title='درخواست کننده' approvestep=3 keyname='pos_vahede_darkhat_after_sign' %}
+                {% include 'Edari/ez/partial_approve.html' with title='مدیر درخواست کننده' approvestep=4 keyname='pos_modire_vahede_darkhat_after_sign' %}
+                {% include 'Edari/ez/partial_approve.html' with title='مدیر منابع انسانی / مسئول اداری' approvestep=5 keyname='pos_modire_mali' %}
+            </div>
+
+
+            <div>
+                <md-button class="md-raised" ng-click="remove_approved_ez()">حذف کل فرآیند توسط متقاضی یا مدیر متقاضی
+                </md-button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

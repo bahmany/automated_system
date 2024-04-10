@@ -1,0 +1,192 @@
+<div ng-controller="DashboardSettingsCtrl">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            مدیریت داشبورد
+        </div>
+    </md-toolbar>
+    <div class="shadower">
+        <div layout-align="start center" layout="row" layout-xs="column">
+
+            <md-checkbox aria-label="Disabled checkbox" ng-model="DashSetting.ChartSwitch">
+                تایمر در صفحه غیر فعال شود
+            </md-checkbox>
+
+            <span flex="5">
+
+        </span>
+
+            <md-input-container>
+                <label for="">زمان بین رفرش - ثانیه</label>
+                <input type="number" max="70" min="4" ng-disabled="DashSetting.ChartSwitch"
+                       ng-model="DashSetting.ChartSwitchSeconds" ng-required="true"/>
+            </md-input-container>
+
+        </div>
+
+        <div ng-repeat="item in DashSetting.dashboard | orderBy:'sort' track by $index" layout-margin>
+            <div><input type="number" ng-model="item.sort"></div>
+            <div ng-if="item.type==3" class="frame-dotted-around" layout-padding>
+                <div layout="row">
+                    داده های دخیل در آمار تک ستونی
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="DashSetting.dashboard.splice($index, 1)">
+                        <md-icon md-font-icon="fa fa-minus"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="MoveUp(item)">
+                        <md-icon md-font-icon="fa fa-chevron-up"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="MoveDown(item)">
+                        <md-icon md-font-icon="fa fa-chevron-down"></md-icon>
+                    </md-button>
+                </div>
+                <div>
+                    <md-input-container class="md-block">
+                        <label for="">عنوان آمار</label>
+                        <input type="text" ng-model="item.name" ng-required=""/>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row" layout-wrap>
+                    <div ng-repeat="it in item.data_id" flex-gt-sm="25" layout="column"
+                         class="frame-dotted-around-child">
+                        <md-input-container>
+                            <label>انتخاب منبع داده </label>
+                            <md-select ng-model="it.static_id">
+                                <md-option ng-repeat="icct in StaticItems" value="//icct.id//">
+                                    //icct.name//
+                                    -
+                                    توسط
+                                    //icct.positionName//
+
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>انتخاب رنگ</label>
+                            <md-select ng-model="it.static_color">
+                                <md-option value="black">مشکی</md-option>
+                                <md-option value="green">سبز</md-option>
+                                <md-option value="red">قرمز</md-option>
+                                <md-option value="yellow">زرد</md-option>
+                                <md-option value="blue">آبی</md-option>
+                                <md-option value="gray">خاکستری</md-option>
+                            </md-select>
+                        </md-input-container>
+                        {#                        <md-input-container class="md-block">#}
+                        {#                            <label for="">بالاترین مقدار</label>#}
+                        {#                            <input type="number" ng-model="it.max"/>#}
+                        {#                        </md-input-container>#}
+                        {#                        <md-input-container class="md-block">#}
+                        {#                            <label for="">پایین ترین مقدار</label>#}
+                        {#                            <input type="number" ng-model="it.min"/>#}
+                        {#                        </md-input-container>#}
+                        <md-button ng-click="item.data_id.splice($index, 1)">
+                            <md-icon md-font-icon="fa fa-minus"></md-icon>
+                        </md-button>
+                    </div>
+                    <div flex-gt-sm="25" class="frame-dotted-around-child" layout="row" layout-align="center center"
+                         layout-padding layout-margin>
+                        <md-button class="md-icon-button" ng-click="AddDataCell(item)">
+                            <md-icon md-font-icon="fa fa-plus"></md-icon>
+                        </md-button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div ng-if="item.type==2" class="frame-dotted-around" layout-padding>
+                <div layout-gt-md="row">
+                    داده های دخیل در آمار
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="DashSetting.dashboard.splice($index, 1)">
+                        <md-icon md-font-icon="fa fa-minus"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="MoveUp(item)">
+                        <md-icon md-font-icon="fa fa-chevron-up"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="MoveDown(item)">
+                        <md-icon md-font-icon="fa fa-chevron-down"></md-icon>
+                    </md-button>
+                </div>
+                <div layout-gt-md="row">
+                    <div flex="25" ng-repeat="it in item.items" class="frame-dotted-around-child">
+                        <md-input-container class="md-block">
+                            <label for="">نام آمار</label>
+                            <input type="text" ng-model="it.name" ng-required/>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label for="">انتخاب منبع داده</label>
+                            <md-select ng-model="it.static_id">
+                                <md-option ng-repeat="icct in StaticItems" value="//icct.id//">
+                                    //icct.name//
+                                    -
+                                    توسط
+                                    //icct.positionName//
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+{#                        <md-input-container class="md-block">#}
+{#                            <label for="">کد رنگ</label>#}
+{#                            <input type="text" style="direction: ltr!important;" ng-model="it.backColor"/>#}
+{#                        </md-input-container>#}
+                        {#                        <md-input-container class="md-block">#}
+                        {#                            <label for="">بالاترین مقدار</label>#}
+                        {#                            <input type="number" ng-model="it.max"/>#}
+                        {#                        </md-input-container>#}
+                        {#                        <md-input-container class="md-block">#}
+                        {#                            <label for="">پایین ترین مقدار</label>#}
+                        {#                            <input type="number" ng-model="it.min"/>#}
+                        {#                        </md-input-container>#}
+
+
+                    </div>
+                </div>
+                <div>
+
+                </div>
+
+            </div>
+
+            <div ng-if="item.type==1" class="frame-dotted-around" layout-padding>
+                <div layout-gt-md="row">
+اعلانات و اطلاعیه ها
+
+                    <span flex></span>
+
+                    <md-button class="md-icon-button" ng-click="MoveUp(item, $index)">
+                        <md-icon md-font-icon="fa fa-chevron-up"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="MoveDown(item, $index)">
+                        <md-icon md-font-icon="fa fa-chevron-down"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div layout="row" layout-align="center center">
+            <md-button class="md-raised" ng-click="AddOneRow()">ایجاد ردیف تکی</md-button>
+            <md-button class="md-raised" ng-click="AddFourRow()">ایجاد ردیف چهارتایی</md-button>
+        </div>
+
+        <md-toolbar class="md-hue-3">
+            <div class="md-toolbar-tools">
+            <span flex>
+
+            </span>
+
+                <md-button class="md-raised" ng-click="CancelEditing()">
+                    انصراف
+                </md-button>
+
+                <md-button class="md-raised md-primary" ng-click="PostEditing($event)">
+                    ذخیره
+                </md-button>
+
+            </div>
+
+    </div>
+
+</div>
+
+</div>

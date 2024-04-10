@@ -1,0 +1,112 @@
+<h4>مرحله دهم - در صورت دارا بودن حق امتیاز ، لیسانس یا نمایندگی  </h4>
+<hr>
+<div>
+    <div layout="column">
+
+
+        <form action="" name="form_step10">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نام شركت یا **** اعطا كننده</label>
+                        <input type="text" ng-model="provider.step10.name" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">زمینه فعالیت</label>
+                        <input type="text" ng-model="provider.step10.zamineh">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">كشور</label>
+                        <input type="text" ng-model="provider.step10.keshavar">
+                    </md-input-container>
+                </div>
+
+
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تلفن</label>
+                        <input type="text" ng-model="provider.step10.tel" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">عنوان لیسانس / نمایندگی</label>
+                        <input type="text" ng-model="provider.step10.onvan">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ دریافت</label>
+                        <input type="text" ng-model="provider.step10.tarikh">
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ خاتمه اعتبار</label>
+                        <input type="text" ng-model="provider.step10.etmam">
+                    </md-input-container>
+                </div>
+
+            </div>
+
+
+            <div layout-gt-xs="row">
+                <span flex></span>
+                <md-button ng-click="addToStep10()"
+                           ng-disabled="form_step10.$invalid"
+                           class="md-raised md-default">
+                    اضافه به لیست
+                </md-button>
+            </div>
+
+        </form>
+
+        <div>
+            <table class="sp-table">
+                <thead>
+                <tr>
+                    <th >نام</th>
+                    <th >زمینه</th>
+                    <th >کشور</th>
+                    <th >تلفن</th>
+                    <th >عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.step10_list">
+                    <td >//it.name//</td>
+                    <td >//it.zamineh//</td>
+                    <td >//it.tel//</td>
+                    <td >//it.reshteh//</td>
+                    <td >
+                        <md-button class="md-primary md-default" ng-click="removestep10($index)">حذف</md-button>
+                    </td>
+                </tr>
+
+
+                <tr ng-if="provider.step10_list.length == 0">
+                    <td colspan="5">
+                        لیست حق امتیازات خالی است
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>

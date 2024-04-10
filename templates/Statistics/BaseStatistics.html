@@ -1,0 +1,62 @@
+{% load translators %}
+<div layout-gt-xs="row" flex ng-controller="statisticsBaseCtrl">
+    <div flex-gt-xs="30">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                آمارها
+                <span flex></span>
+
+                <md-button class="md-fab md-mini">
+                    <a ui-sref="new-statistics()">
+                        <md-icon md-font-icon="fa fa-plus"></md-icon>
+                    </a>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <md-list flex>
+                <md-list-item class="md-3-line" ng-repeat="item in data.results"
+                              ui-sref="data-statistics({MSTemplateId: item.id})">
+                    {#                    <md-icon md-font-icon="fa //item.icon//" class="md-icon-avatar"></md-icon>#}
+                    <div class="md-list-item-text">
+                        <h3>//item.name//
+                            <small>(//item.dataType//)</small>
+                        </h3>
+                        <p>//item.desc//</p>
+                        <p layout="row" ng-if="item.isOwner">
+                            <span flex></span>
+                            <md-button class="md-icon-button" ng-click="destroyTemplate(item);">
+                                <md-icon md-font-icon="fa fa-trash"></md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button">
+                                <a ui-sref="edit-statistics({'MSTemplateId':item.id})">
+                                    <md-icon md-font-icon="fa fa-pencil"></md-icon>
+                                </a>
+                            </md-button>
+                            <md-button class="md-icon-button">
+                                <a ui-sref="share-statistics({'MSTemplateId':item.id})">
+                                    <md-icon md-font-icon="fa fa-users"></md-icon>
+                                </a>
+                            </md-button>
+                        </p>
+                        <div ng-if="!item.isOwner" layout="row">
+                            <span flex></span>
+                            <small>
+                                <md-icon md-font-icon="fa fa-lock"></md-icon>
+                                توسط //item.creatorName//
+
+                            </small>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+
+                </md-list-item>
+            </md-list>
+        </div>
+
+    </div>
+    <div flex layout="row" layout-align="center start">
+        <ui-view flex-gt-sm="80"></ui-view>
+    </div>
+
+</div>

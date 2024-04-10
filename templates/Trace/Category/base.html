@@ -1,0 +1,138 @@
+<div ng-controller="TraceCategoryCtrl" layout-gt-xs="row">
+
+
+    <div flex-gt-xs="30">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                دسته بندی ها ردیابی
+                <span flex></span>
+                <md-button class="md-fab md-mini" ng-click="add()">
+                    <md-icon md-font-icon="fa fa-plus"></md-icon>
+
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <md-list flex>
+                <md-list-item style="font-size: 14px;"
+                              ng-class-odd="'odd'"
+                              ng-class-even="'even'"
+                              ng-repeat="item in traces.results"
+                              layout="row"
+                              ng-click="editItem($event, item)">
+                    <div>
+                        <span ng-show="item.isItSource"> منبع -</span>
+                        <span ng-show="!(item.isItSource)"> مقصد -</span>
+                        <span ng-show="item.traceType == 1"> بازرگانی : </span>
+                        <span ng-show="item.traceType == 2"> همکاران : </span>
+                        <span ng-show="item.traceType == 3"> تولید : </span>
+                        <span ng-show="item.traceType == 4"> سایر : </span>
+                        <span>// item.name //</span>
+                    </div>
+                    <div flex></div>
+
+                    <md-button class="md-icon-button">
+                        <md-icon class="fa fa-trash"></md-icon>
+                    </md-button>
+
+                </md-list-item>
+            </md-list>
+        </div>
+
+
+    </div>
+
+    <div flex-gt-xs="5">
+
+    </div>
+    <form name="frmTraceCat" flex>
+
+        <div flex-gt-xs>
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    دسته بندی ها ردیابی
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+            <div class="shadower">
+
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs>
+                        <label for="">نام</label>
+                        <input type="text" ng-model="tracecat.name" required>
+                    </md-input-container>
+                    <div flex-gt-xs="5"></div>
+                    <md-input-container flex-gt-xs>
+                        <label>نوع</label>
+                        <md-select ng-model="tracecat.traceType" required>
+                            <md-option value>انتخاب کنید</md-option>
+                            <md-option value=1>بازرگانی - خرید - تامین</md-option>
+                            <md-option value=2>انبارهای همکاران سیستم</md-option>
+                            <md-option value=3>فرآیندهای تولید</md-option>
+                            <md-option value=4>سایر دپارتمان ها</md-option>
+                            {#            <md-option ng-repeat="state in ctrl.states" ng-value="state.abbrev" ng-disabled="$index === 1">#}
+                            {#              {{state.abbrev}}#}
+                            {#            </md-option>#}
+                        </md-select>
+                    </md-input-container>
+                    <div flex-gt-xs="5"></div>
+
+                    <div flex-gt-xs layout-align="center center" layout="row">
+                        <md-checkbox ng-model="tracecat.isItSource" aria-label="Checkbox 1">
+                            <span>آیا منبع است ؟</span>
+                        </md-checkbox>
+                    </div>
+
+                </div>
+
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs ng-if="tracecat.traceType == 1">
+                        <label for="">نام دریافت کننده/ارسال کننده بازرگانی</label>
+                        <input type="text" ng-model="tracecat.exp.nameOfCommerce" required>
+                    </md-input-container>
+                    <div flex-gt-xs="1"></div>
+                    <md-input-container flex-gt-xs ng-if="tracecat.traceType == 2">
+                        <label for="">کد انبار همکاران سیستم</label>
+                        <input type="number" min="00" max="99"
+                               ng-model-options="{debounce:500}"
+                               ng-model="tracecat.exp.hamkaranCode" required>
+                        <div ng-show="isHakTrue == true" style="    color: darkgreen;    font-size: 12px;">//catHamk//
+                        </div>
+                        <div ng-show="isHakTrue == false" style="    color: red;    font-size: 12px;">
+                            پیدا نشد
+                        </div>
+                    </md-input-container>
+                    <div flex-gt-xs="1"></div>
+                    <md-input-container flex-gt-xs ng-if="tracecat.traceType == 3">
+                        <label for="">نام فرآیند تولید</label>
+                        <input type="text" ng-model="tracecat.exp.nameOfFarayand" required>
+                    </md-input-container>
+                    <div flex-gt-xs="1"></div>
+                    <md-input-container flex-gt-xs ng-if="tracecat.traceType == 4">
+                        <label for="">نام سایر دپارتمان</label>
+                        <input type="text" ng-model="tracecat.exp.nameOfDepartment" required>
+                    </md-input-container>
+                </div>
+
+                <div layout="row">
+
+                </div>
+
+            </div>
+
+            <md-toolbar class="md-hue-3">
+                <div class="md-toolbar-tools">
+                    <span flex></span>
+                    <md-button
+                            ng-disabled="frmTraceCat.$invalid"
+                            class="md-button md-raised md-primary" ng-click="post($event)">ثبت
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+
+        </div>
+
+    </form>
+
+</div>

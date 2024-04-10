@@ -1,0 +1,28 @@
+{% load translators %}
+
+<div class="list-inbox-header">
+    <p class="inbox-header" style="font-size: 14px!important;"> {{ 'My Letters'| translate}}
+    </p>
+
+    <p>
+        <span class="inbox-header ff">//InboxList.secname//</span> -
+        <span class="inbox-header ss" ng-if="InboxList.p == '-1,1,1'">{{"Inbox"|translate}}</span>
+        <span class="inbox-header ss" ng-if="InboxList.p == '6,7,1'">{{"Sent"|translate}}</span>
+        <span class="inbox-header ss" ng-if="InboxList.p == '1,4,1'">{{"Draft"|translate}}</span>
+        <span class="inbox-header ss" ng-if="InboxList.p == '5,1,1'">{{"Automate"|translate}}</span>
+        <span class="inbox-header ss" ng-if="InboxList.p == '-1,-1,2'">{{"Archive"|translate}}</span>
+        <span class="inbox-header ss" ng-if="InboxList.p == '-1,-1,3'">{{"Trash"|translate}}</span>
+    <span class="inbox-header ss" ng-if="SelectedLabel.id && itemType == -1 && itemMode == -1 && itemPlace == -1">
+        //SelectedLabel.title//
+    </span>
+    <span class="inbox-header ss" ng-if="SelectedFolder.id && itemType == -1 && itemMode == -1 && itemPlace == -1">
+        //SelectedFolder.title//
+    </span>
+
+
+    </p>
+</div>
+
+
+
+

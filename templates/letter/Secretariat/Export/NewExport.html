@@ -1,0 +1,171 @@
+{% load translators %}
+<div ng-controller="ExportCtrl">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            وایرایش / ایجاد نامه صادره
+        </div>
+
+    </md-toolbar>
+
+    <form style="background-color: white" name="latterExportFrm">
+        <div layout-padding="">
+        <div>انتخاب شرکت و یا شرکت های دریافت کننده</div>
+        <div layout-gt-md="row">
+            <div flex="50">
+                {% load tables_tags %}
+                {% tablePaginationSimple main_model_name="Companies" table_search_watch_model_name="CompnaiesTableSearch" table_go_to_page_func_name="companiesTableGoToPage" table_handle_pagination_func_name="HandleCompaniesTablePagination" table_info_model_name="TableCompanies" %}
+                <br>
+                <table class="comp-export-select-tbl">
+                    <tbody>
+                    <tr ng-repeat="item in Companies.results">
+                        <td>//item.group.name//</td>
+                        <td>//item.name//</td>
+                        <td>
+                            <div class="btn-group btn-group-xs">
+                                <a class="btn btn-default fa fa-plus"
+                                   ng-click="SelectCompany(item)"></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div flex="50">
+                <table class="comp-export-select-tbl selected">
+                    <tbody>
+                    <tr>
+                        <td>{{ 'Company Name'|translate }}</td>
+                        <td>{{ 'Reciever Name'|translate }}</td>
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="item in ExportLetter.exp.export.companyRecievers track by $index">
+                        <td><input type="text" ng-model="item.name"
+                                   style="width: 110px;"/></td>
+                        <td><input type="text" ng-model="item.recieverName"
+                                   style="width: 100px;"/></td>
+                        <td><a class="btn btn-default btn-xs fa fa-minus"
+                               ng-click="RemoveCompany($index)"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>انتخاب دریافت کننده های رونوشت</div>
+        <div layout-gt-md="row">
+            <div flex="50">
+                {% load tables_tags %}
+                {% tablePaginationSimple main_model_name="Members" table_search_watch_model_name="MembersTableSearch" table_go_to_page_func_name="membersTableGoToPage" table_handle_pagination_func_name="HandleMembersTablePagination" table_info_model_name="TableMembers" %}
+                <table class="comp-export-select-tbl">
+                    <tbody>
+                    <tr ng-repeat="item in Members.results">
+                        <td>//item.profileName//
+                            <small>(//item.chartName//)</small>
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-xs">
+                                <a class="btn btn-default fa fa-plus"
+                                   ng-click="SelectPerson(item)"></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div flex="50">
+                <table class="comp-export-select-tbl selected">
+                    <tbody>
+                    <tr>
+                        <td>{{ 'Person Name'|translate }}</td>
+                        <td>{{ 'Hamesh'|translate }}</td>
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="item in ExportLetter.exp.export.hameshRecievers track by $index">
+                        <td><input type="text" ng-model="item.profileName"
+                                   style="width: 110px;"/></td>
+                        <td><input type="text" ng-model="item.hamesh"
+                                   style="width: 100px;"/></td>
+                        <td><a class="btn btn-default btn-xs fa fa-minus"
+                               ng-click="RemoveMember($index)"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <md-input-container class="md-block">
+            <label>موضوع نامه ی صادره</label>
+            <input type="text" id="ExportLetter_subject" ng-model="ExportLetter.subject" ng-required="true">
+        </md-input-container>
+        <div layout-gt-md="row">
+            <md-input-container>
+                <label>تاریخ ارسال</label>
+                <input id="ExportLetter_subject"
+                       ui-mask="9999/99/99" dir="ltr" model-view-value="true"
+                       style="direction: ltr!important;"
+                       type="text" ng-model="ExportLetter.exp.dateOfSent"/>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container>
+                <label>ساعت ارسال</label>
+                <input id="ExportLetter_subject" type="text" ng-model="ExportLetter.exp.timeOfSent"
+                       ui-mask="99:99" dir="ltr" model-view-value="true"
+                       style="direction: ltr!important;"/>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container>
+                <label>تعداد ضمایم</label>
+                <input id="ExportLetter_exp_attsCount" ng-model="ExportLetter.exp.attsCount"/>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container>
+                <label>نحوه ارسال</label>
+                <input id="ExportLetter_exp_sentType" ng-model="ExportLetter.exp.sentType"/>
+            </md-input-container>
+        </div>
+        <md-input-container class="md-block">
+            <label>پانوشت امضا</label>
+            <textarea ng-model="ExportLetter.exp.signText" id="ExportLetter_exp_signText"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>پابرگی</label>
+            <textarea ng-model="ExportLetter.exp.footerText" id="ExportLetter_exp_footerText"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>نوشتار سربرگ</label>
+            <textarea ng-model="ExportLetter.exp.headerText" id="ExportLetter_exp_headerText"></textarea>
+        </md-input-container>
+        <div>متن نامه صادره</div>
+        <div>
+            <textarea ckeditor="editorOptions" ng-model="ExportLetter.body"></textarea>
+        </div>
+        <div>فایل های ضمیمه</div>
+        <div>
+            {% include "share/filecloud/PreviewWithEdit.html" %}
+        </div>
+        <div>سرویس فایل ها</div>
+        <div>
+            {% include "share/filecloud/FilesCloud.html" %}
+
+        </div>
+        </div>
+        <md-toolbar class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span flex></span>
+                <md-button class="md-raised md-primary"
+                           ng-disabled="latterExportFrm.$invalid"
+                           ng-click="SaveRemoveDraft()">
+                    ذخیره
+                </md-button>
+                <md-button class="md-raised" ng-disabled="latterExportFrm.$invalid" ng-click="Save()">
+                    ذخیره و نگهداری از پیش نویس</md-button>
+                <md-button class="md-raised" ng-click="SaveAsDraft()">ذخیره پیش نویس</md-button>
+{#                <md-button type="submit" ng-disabled="latterExportFrm.$invalid" class="md-raised md-primary"#}
+{#                           ng-click="PostCompanyGroup()">ثبت#}
+{#                </md-button>#}
+{#                <md-button class="md-raised" ng-click="CancelCompanyGroup()">انصراف</md-button>#}
+            </div>
+        </md-toolbar>
+
+    </form>
+
+
+</div>

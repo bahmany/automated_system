@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>******.com</title>
+    <link rel="stylesheet" href="/static/styles/printable.css" type="text/css"/>
+</head>
+<body class="letter">
+<h2>**** **** ****</h2>
+<hr>
+<br>
+{% for image in images %}
+<div>
+    <img src="data:image/png;base64,{{ image }}" alt="" style="width: 100%;">
+</div>
+{% endfor %}
+</body>
+</html>

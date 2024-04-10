@@ -1,0 +1,14 @@
+{% load translators %}
+<script type="text/ng-template" id="validateBpmnModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">صحت سنجی فرایند</h3>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="alert alert-danger" ng-repeat="itm in allErrors">
+            <p>//itm.type// - //itm.name// - //itm.message//</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button value="default action" class="btn btn-danger"
+                ng-click="ok()"><i class="fa fa-check"></i></button>
+    </div></script>

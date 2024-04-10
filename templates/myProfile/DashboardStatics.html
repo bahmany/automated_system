@@ -1,0 +1,84 @@
+{% load translators %}
+{% load inbox_tags %}
+
+<div ng-controller="StaticsCrtl">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            <h3>            مشاهده دقیق آمارها
+</h3>
+            <span flex></span>
+            <span><a ui-sref="dashboard">برگشت</a></span>
+        </div>
+    </md-toolbar>
+
+
+    <md-content class="shadower">
+        <h3>
+            //staticData.tmpl.name//
+        </h3>
+        <div layout-gt-md="row">
+            <md-input-container class="md-block" flex-gt-sm="20">
+                <label>{{ 'Start Date'|translate }}</label>
+                <input ng-model="filter.startdate" class="picker" ng-model-options="{debounce:500}">
+            </md-input-container>
+            <span flex-gt-sm="5"></span>
+            <md-input-container class="md-block" flex-gt-sm="20">
+                <label>{{ 'End Date'|translate }}</label>
+                <input ng-model="filter.enddate" class="picker" ng-model-options="{debounce:500}">
+            </md-input-container>
+            <span flex-gt-sm="5"></span>
+            <md-input-container class="md-block" flex-gt-sm="20">
+                <label>کمترین مقدار</label>
+                <input fcsa-number ng-model="filter.max" type="text" ng-model-options="{debounce:500}">
+            </md-input-container>
+            <span flex-gt-sm="5"></span>
+            <md-input-container class="md-block" flex-gt-sm="20">
+                <label>بیشترین مقدار</label>
+                <input fcsa-number ng-model="filter.min" type="text" ng-model-options="{debounce:500}">
+            </md-input-container>
+        </div>
+        <canvas class="canvbpm" height="75px"></canvas>
+<div layout-gt-md="">
+    <div flex-gt-md><span> بیشترین </span>//staticData.exp.max.value|number// - //staticData.exp.max.entryDate//</div>
+    <span flex-gt-md="3"></span>
+    <div flex-gt-md><span> کمترین </span>//staticData.exp.min.value|number// - //staticData.exp.min.entryDate//</div>
+    <span flex-gt-md="3"></span>
+    <div flex-gt-md><span> میانگین </span>//staticData.exp.avg|number//</div>
+</div>
+        <div>
+            <table md-table md-progress="promise">
+                <thead md-head md-order="filter.order" md-on-reorder="getDesserts">
+                <tr md-row>
+                    <th md-column style="text-align: right">مقدار</th>
+                    <th md-column style="text-align: right">تاریخ</th>
+                    <th md-column style="text-align: right">تاریخ ثبت</th>
+                </tr>
+
+                </thead>
+                <tbody md-body>
+                <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="item in staticData.dt">
+                    <td md-cell style="text-align: right; font-weight: bold">//item.value|number//</td>
+                    <td md-cell style="text-align: right">//item.entryDate//</td>
+                    <td md-cell style="text-align: right">//item.postDate//</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </md-content>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

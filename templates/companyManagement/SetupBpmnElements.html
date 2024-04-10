@@ -1,0 +1,87 @@
+{% load translators %}
+<div class="conter-wrapper clearfix bpmnsetup" ng-controller="bpmnSetupCtrl">
+
+
+    <div class="obj-cont" style="left:189px;">
+        <div class="bpmn-container-header-des">
+            //bpmn.name// <a ui-sref="process({ 'companyid': companyId})">({{ 'save and close'//)</a>
+        </div>
+        <div class="bpmn-editor-container">
+
+
+            <div id="bpmn-viewer" class="obj-cont"></div>
+            {% include 'companyManagement/ExclusiveGatewayElement.html' %}
+            {% include 'companyManagement/UserTaskElement.html' %}
+            {% include 'companyManagement/TaskElement.html' %}
+            {% include 'companyManagement/CallActivityElement.html' %}
+            {% include 'companyManagement/ParalellGatewayElement.html' %}
+        </div>
+    </div>
+
+
+    <div class="company-bpmn-toolbox">
+        <div style="    font-size: 14px;
+    padding: 7px 0px;">
+            {{ 'Process Objects'|translate}}
+        </div>
+
+        <div class="fg-edit-palette c-toolb">
+
+            <h4 ng-if="!processObjs">{{"No form element"|translate}}</h4>
+
+            <div ng-repeat="template in processObjs track by $index " class="fg-field ng-scope proc-items"
+                 dq-draggable="fg-edit-canvas"
+                 dq-drag-begin="{ source: 'objectPalette', field: template }"
+                 draggable="true"
+
+                    >
+                <div class="fg-field-overlay">
+{#                    <div class="btn-toolbar btn-toolbar-right">#}
+                        <i class="fa fa-trash btn-rec" style="    color: #de6764;float: left;margin: 9px;font-size: 14px"
+                                ng-click="removeProcessObj($index)" title="Remove"></i>
+                        <i class="fa fa-pencil btn-rec" style="color: #008b0f;float: left;margin: 10px;font-size: 14px;margin-left: 0px;"
+                                ng-click="editPO($index)" title="edit"></i>
+                    <i class="fa fa-info btn-rec" style="color: #008b0f;float: left;margin: 10px;font-size: 14px;margin-left: 0px;"
+                                ng-click="toggleVisibleProcessObj($event)" title="info"></i>
+{#                    </div>#}
+                </div>
+                <div class="fg-field-inner form-group ng-isolate-scope"
+                     ng-class="{ 'fg-field-required': fieldSchema.validation.required, 'has-error': form.state[field.name].$invalid }"
+                     fg-field="template" fg-tab-index="-1" fg-no-validation-summary="true"
+                        >
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="/static/bower_components/angular-form-gen/angular-form-gen.min.css"/>
+<link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/css/diagram-js.css"/>
+<link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/vendor/bpmn-font/css/bpmn-embedded.css"/>
+<link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/css/app.css"/>
+
+<script src="/static/bower_components/bpmn-modeler2/BpmnViewerApp.js"></script>
+<script src="/static/bower_components/bpmn-modeler2/bpmn-moddle.js"></script>
+
+
+<style>
+{#    .djs-element.djs-shape:not(.djs-connection) .djs-visual > rect:nth-child(1) {#}
+{#    fill: rgba(13, 172, 245, 0.77) !important;#}
+{#    stroke: #084E77;#}
+{# } #}
+    .djs-element.djs-shape:not(.djs-connection) .djs-visual > polygon:nth-child(1) {
+    fill: #fec107 !important;
+    stroke: #96740F !important;
+}
+    .djs-element.djs-connection:not(.djs-shape) .djs-visual > path:nth-child(1) {
+    stroke: #77848C !important;
+}
+    .djs-element.djs-shape:not(.djs-connection) .djs-visual > circle:nth-child(1) {
+    fill: #de6764 !important;
+}
+</style>

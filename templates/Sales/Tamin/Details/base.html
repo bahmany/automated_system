@@ -1,0 +1,118 @@
+<div ng-controller="TaminDetailsCtrl">
+    <div>
+        <div layout="column">
+            <form name="frmTaminDetails">
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">کد نوع ورق</label>
+                        <input type="number" required ng-model="detail.noe">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">کد کشور</label>
+                        <input type="number" required ng-model="detail.keshvar">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">تمپر</label>
+                        <input type="number" required ng-model="detail.temper">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">سطح</label>
+                        <input type="number" required ng-model="detail.sath">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">ضخامت</label>
+                        <input type="number" required ng-model="detail.zekhamat">
+                    </md-input-container>
+                </div>
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">عرض</label>
+                        <input type="number" required ng-model="detail.arz">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">بعد از تریم</label>
+                        <input type="number" required ng-model="detail.arzAfterTrim">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">کیفیت</label>
+                        <input type="number" required ng-model="detail.keifiat">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">طول</label>
+                        <input type="number" required ng-model="detail.tool">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">میزان</label>
+                        <input type="number" required ng-model="detail.qty">
+                    </md-input-container>
+                </div>
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs="40">
+                        <label for="">محل انبار</label>
+                        <input type="text" ng-model="detail.mahaleAnbar">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">دسته بندی خرید</label>
+                        <input type="text" ng-model="detail.dasteBandiKharid">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">شماره سفارش</label>
+                        <input type="text" ng-model="detail.somarehSefaresh">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">تاریخ ورود به گمرک</label>
+                        <input type="text" ng-model="detail.tarikheVoroodBeGomrok" placeholder="1395/05/05">
+                    </md-input-container>
+
+                </div>
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">تاریخ برش</label>
+                        <input type="text" ng-model="detail.tarikheBoresh" placeholder="1395/05/05">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">مصرف</label>
+                        <input type="text" ng-model="detail.masraf">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">توضیحات کیفی</label>
+                        <input type="text" ng-model="detail.toozihateKeifi">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">توضیحات برنامه ریزی</label>
+                        <input type="text" ng-model="detail.toozihateBarnameRizi">
+                    </md-input-container>
+                    <md-input-container flex-gt-xs="20">
+                        <label for="">سایر توضیحات</label>
+                        <input type="text" ng-model="detail.tozihat">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <span flex></span>
+                    <md-button class="md-raised md-primary" ng-click="post()" ng-disabled="frmTaminDetails.$invalid">
+                        ثبت
+                    </md-button>
+                    <md-button class="md-raised md-primary" ng-click="cancel()">
+                        انصراف
+                    </md-button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div>
+        <md-list>
+            <md-list-item class="md-3-line" ng-repeat="item in todos" ng-click="null">
+
+            </md-list-item>
+
+
+        </md-list>
+    </div>
+
+
+</div>

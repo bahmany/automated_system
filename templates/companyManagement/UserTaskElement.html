@@ -1,0 +1,278 @@
+{% load translators %}
+
+<div id="usertask-setup-div"
+     style="display:none;">
+    <md-toolbar class="md-hue-3">
+
+        <div class="md-toolbar-tools">
+            المان :
+            //lastSelected.businessObject.name//
+
+            <span flex>
+
+                </span>
+            <md-button class="md-button"
+                       ng-click="cancelSetupUserTask()">انصراف
+            </md-button>
+            <md-button class="md-button"
+                       ng-click="resetForm()">ریست فرم
+            </md-button>
+            <md-button class="md-button md-raised md-primary"
+                       ng-click="saveSetupUserTask()">ثبت تغییرات فرم
+            </md-button>
+
+
+        </div>
+    </md-toolbar>
+    <md-content flex="">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="انجام دهنده وظیفه">
+                <md-content class="md-padding">
+                    <div class="tbl-container col-md-7">
+                        <table class="tbl-performer-type">
+                            <tr>
+                                <td colspan="6"
+                                    style="text-align: right;font-size: 13px;  font-weight: bold;  border-bottom: 1px solid rgb(207, 207, 207);">
+                                    {{ "Select performer:"|translate }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="btn-rec hover-back"
+                                    ng-class="{'selectedHightlight':performerType ==1}"
+                                    ng-click="performerType=1">{{ 'User'|translate }}
+                                </td>
+                                <td class="btn-rec hover-back"
+                                    ng-class="{'selectedHightlight':performerType ==2}"
+                                    ng-click="performerType=2">{{ 'Chart'|translate }}
+                                </td>
+                                <td class="btn-rec hover-back"
+                                    ng-class="{'selectedHightlight':performerType ==3}"
+                                    ng-click="performerType=3">{{ 'Starter'|translate }}
+                                </td>
+                                {#                        <td class="btn-rec hover-back" ng-class="{'selectedHightlight':performerType ==4}"#}
+                                {#                            ng-click="performerType=4">{{ 'Zone'|translate}}#}
+                                {#                        </td>#}
+                                <td class="btn-rec hover-back"
+                                    ng-class="{'selectedHightlight':performerType ==5}"
+                                    ng-click="performerType=5">{{ 'Boss'|translate }}
+                                </td>
+                                <td class="btn-rec hover-back"
+                                    ng-class="{'selectedHightlight':performerType ==6}"
+                                    ng-click="performerType=6">{{ 'Previous'|translate }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" style="border-top: 1px solid rgb(207, 207, 207);">
+                                    <div class="row" style="    min-height: 72px;">
+                                        <div class="col-md-12">
+                                            <p ng-hide="performerType!=3"
+                                               style="word-break: break-word;font-size: 16px;font-weight: bold;margin:10px 2px;">
+                                                {{ 'The starter will be performer of this task'|translate }}
+                                            </p>
+
+                                            <p ng-hide="performerType!=5"
+                                               style="word-break: break-word;font-size: 16px;font-weight: bold;margin:10px 2px;">
+                                                {{ 'Boss of starter will be performer of this task'|translate }}
+                                            </p>
+
+                                            <div class="col-md-6" ng-hide="performerType!=2">
+                                                <label for="pos-select">{{ 'assignpos'|translate }}<select
+                                                        class="form-control"
+                                                        name="pos-select"
+                                                        id="pos-select"
+                                                        ng-model="chartSelected"
+                                                        ng-options="chart.id as chart.title for chart in charts.results">
+                                                    <option value="" selected label="select position...">
+                                                        {{ 'Select a position...'|translate }}
+                                                    </option>
+
+                                                </select></label>
+                                            </div>
+                                            <div class="col-md-6" ng-hide="performerType!=2">
+                                                <p
+                                                        style="word-break: break-word;font-size: 15px;margin:10px 2px;">
+                                                    {{ 'systemWillAssignTheMostFreePersonInThisChartAutomatically'|translate }}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-5" ng-hide="performerType!=1">
+                                                <div class="form-group">
+                                                    <label for="pos-select">{{ 'assignpos'|translate }}<select
+                                                            class="form-control"
+                                                            name="pos-select"
+                                                            id="pos-select"
+                                                            ng-model="chartSelected"
+                                                            ng-options="chart.id as chart.title for chart in charts.results">
+                                                        <option value="" selected
+                                                                label="select position...">
+                                                            select
+                                                            position...
+                                                        </option>
+
+                                                    </select></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" ng-hide="performerType!=1">
+                                                <div class="form-group">
+
+
+                                                    <label for="user-select">{{ 'assignuser'|translate }}<select
+                                                            class="form-control"
+                                                            name="user-select"
+                                                            id="user-select"
+                                                            ng-model="userSelected"
+                                                            ng-options="user.id as user.profileName for user in users.results">
+                                                        <option value="" selected label="select user...">
+                                                            select
+                                                            user...
+                                                        </option>
+
+
+                                                    </select></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8" ng-hide="performerType!=6">
+                                                <label for="user-select">{{ 'enter user field id'|translate }}
+                                                    <input type="text" class="form-control"
+                                                           ng-model="prePerformer"/>
+                                                </label>
+                                            </div>
+                                            <p class="col-md-3" ng-hide="performerType!=6">
+                                                {{ 'copy field which contains selected user here'|translate }}
+                                            </p>
+
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="tbl-container col-md-4 pull-right">
+                        <table class="tbl-performer-type">
+                            <tr>
+                                <td colspan="2"
+                                    style="text-align: right;font-size: 13px;  font-weight: bold;  border-bottom: 1px solid rgb(207, 207, 207);">
+                                    {{ 'time for this step'|translate }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;">
+                                    <label for=""><input type="number" placeholder="ساعت..."
+                                                         ng-model="selectedBAM"/></label>
+                                </td>
+
+                            </tr>
+                        </table>
+
+
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="طراحی فرم">
+                <md-content>
+                    <div>
+                        <div class="tbl-container">
+                            <table class="tbl-performer-type" style="width: initial">
+                                <tr>
+                                    <td colspan="4"
+                                        style="text-align: right;font-size: 13px;  font-weight: bold;  border-bottom: 1px solid rgb(207, 207, 207);">
+                                        کپی کردن فرم های قبلی در این محل
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><select name="copyPaste" id="copyPaste" ng-model="selectedFormForCopy">
+                                        <option value="">{{ 'Select a form...'|translate }}</option>
+                                        <option ng-repeat="itm in formsForCopy" value="//itm.id//">//itm.name//
+                                        </option>
+                                    </select></td>
+                                    <td>
+                                        <md-button class="md-button md-raised" ng-click="pasteForm()">
+                                            {{ 'Paste here'|translate }}
+                                        </md-button>
+                                    </td>
+                                    <td>
+                                        <md-button class="md-button md-raised" ng-click="unreadonlyAll()">
+                                            {{ 'unreadonlyAll'|translate }}
+                                        </md-button>
+                                    </td>
+                                    <td>
+                                        <md-button class="md-button md-raised" ng-click="readonlyAll()">
+                                            {{ 'readonlyAll'|translate }}
+                                        </md-button>
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </div>
+
+
+                    </div>
+                    <div flex>
+
+
+                        <div class="form-edit-content">
+                            <div class="form-content-edit">
+
+
+                                <form class="form-horizontal">
+                                    <div fg-edit fg-schema="form.schema"></div>
+                                </form>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="کد">
+                <div class="code-editor this_task">
+                    <div>
+                        Python code container
+                    </div>
+
+                    <div class="well well-sm">
+                        <div>
+                            وقتی فرم ساخته می شود
+                            onFormCreate
+                        </div>
+
+                        <textarea ui-codemirror
+                                  ui-codemirror-opts="editorOptionsPython"
+                                  ng-model="form.oncreate">
+
+                    </textarea>
+                    </div>
+                    <div class="well well-sm">
+
+
+                        <div>
+
+                            وقتی فرم ارسال می شود
+                            onFormSend
+
+                        </div>
+
+                        <textarea ui-codemirror
+                                  ui-codemirror-opts="editorOptionsPython"
+                                  ng-model="form.onsend">
+
+                    </textarea>
+                    </div>
+                    <style>
+                        .this_task .CodeMirror pre {
+                            padding-left: 35px !important;
+                        }
+                    </style>
+                </div>
+
+            </md-tab>
+
+
+        </md-tabs>
+
+    </md-content>
+
+
+</div>

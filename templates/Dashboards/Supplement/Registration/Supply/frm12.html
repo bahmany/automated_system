@@ -1,0 +1,105 @@
+<h4>استانداردهای ****ی ، نظامنامه یا گواهی نامه های مدیریت </h4>
+<hr>
+<div>
+    <div layout="column">
+
+
+        <form action="" name="form_frm12">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">شرح استاندارد ****ی یا گواهینامه یا نظامنامه</label>
+                        <input type="text" ng-model="provider.frm12.sharh" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نام موسسه صادر کننده</label>
+                        <input type="text" ng-model="provider.frm12.nameMosaseh">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نام گواهی ملی/بین المللی</label>
+                        <input type="text" ng-model="provider.frm12.nameGovahi">
+                    </md-input-container>
+                </div>
+
+
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ دریافت</label>
+                        <input type="text" ng-model="provider.frm12.tarikheDaryaft"                                ui-mask="9999/99/99" dir="ltr"
+ required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ انقضا</label>
+                        <input type="text" ng-model="provider.frm12.tarikheEnqeza">
+                    </md-input-container>
+                </div>
+
+
+
+
+            </div>
+                            <div layout-gt-xs="row">
+                    <span flex></span>
+                    <md-button ng-click="addTofrm('12')"
+                               ng-disabled="form_frm12.$invalid"
+                               class="md-raised md-default">
+                        اضافه به لیست
+                    </md-button>
+                </div>
+
+        </form>
+
+        <div>
+            <table class="sp-table table table-bordered">
+                <thead>
+                <tr>
+                    <th>نام موسسه</th>
+                    <th>گواهی</th>
+                    <th>تاریخ دریافت</th>
+                    <th>تاریخ انقضا</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.frm12_list">
+                    <td>//it.nameMosaseh//</td>
+                    <td>//it.nameGovahi//</td>
+                    <td>//it.tarikheDaryaft//</td>
+                    <td>//it.tarikheEnqeza//</td>
+                    <td>
+                    {% include "Dashboards/Supplement/Registration/Supply/fileViewTdTable.html" with nm="it" %}
+                    <a ng-click="removefrm('7',$index)">حذف</a>                    </td>
+                </tr>
+
+                <tr ng-if="provider.frm12_list.length == 0">
+                    <td colspan="5">
+                        لیست خالی است
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+        <div>
+        <ul>توضیحات : ارائه کپی مدارک الزامی می باشد. در صورت دارا بودن سایر مدارک و توضیحات مرتبط لطفا پیوست ها را آپلود نمایید
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='12' inputid='1' label="ضمائم" %}
+        </ul>
+    </div>
+
+
+            {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm12" %}
+
+</div>

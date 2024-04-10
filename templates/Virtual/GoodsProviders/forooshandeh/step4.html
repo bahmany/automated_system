@@ -1,0 +1,64 @@
+<h4>مرحله چهارم - عضویت در لیست تامین کنندگان سایر شرکت ها :</h4>
+<hr>
+<div layout="column">
+
+
+    <form action="" name="step4form">
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام شرکت</label>
+                    <input type="text" ng-model="provider.step4.nameSherkat" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تاریخ عضویت</label>
+                    <input type="text" ng-model="provider.step4.tarikheOzaviat">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">زمینه فعالیت</label>
+                    <input type="text" ng-model="provider.step4.zaminehFaaliat">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+        </div>
+        <div layout-gt-xs="row">
+            <span flex></span>
+            <md-button class="md-default md-raised" ng-disabled="step4form.$invalid" ng-click="addToStep4()">
+                اضافه به لیست
+            </md-button>
+        </div>
+    </form>
+    <div>
+        <table class="sp-table">
+            <thead>
+            <tr>
+                <th >نام شرکت</th>
+                <th >تاریخ عضویت</th>
+                <th >زمینه فعالیت</th>
+                <th >عملیات</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="st in provider.step4_list track by $index">
+                <td style="text-align: center">//st.nameSherkat//</td>
+                <td style="text-align: center">//st.tarikheOzaviat//</td>
+                <td style="text-align: center">//st.zaminehFaaliat//</td>
+                <td style="text-align: center">
+                    <md-button class="md-primary md-default" ng-click="removeStep4($index)">حذف</md-button>
+                </td>
+            </tr>
+            <tr ng-if="provider.step4_list.length == 0">
+                <td colspan="4">
+                    هیچ عضویتی وارد نشده است
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

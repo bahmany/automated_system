@@ -1,0 +1,36 @@
+<div ng-show="!(approve.item.closed)">
+
+    <md-button ng-if="(approve.signs | filter:{whichStep:{{ signID }} }).length == 0" class="md-raised md-primary"
+               ng-click="sign(approve,{{ signID }}, $event)">{{ btnLabel }}
+    </md-button>
+    <md-button ng-if="(approve.signs | filter:{whichStep:{{ signID }} }).length == 0"
+               ng-click="changeHavaleh(approve,{{ signID }}, $event)"
+               class="md-primary md-raised">تغییر...
+    </md-button>
+</div>
+<div ng-if="(approve.signs | filter:{whichStep:{{ signID }} }).length == 0 && approve.item.closed">
+    امضا نشد
+</div>
+
+
+<div style="text-align: center" ng-if="(approve.signs | filter:{whichStep:{{ signID }} }).length == 1"
+     ng-repeat="sign in approve.signs | filter:{whichStep:{{ signID }} }">
+    <div ng-if="sign.comment" style="
+    border: 1px solid gray;
+    background-color: yellow;
+    border-radius: 5px;
+    padding: 4px;
+    font-size: 12px;
+    margin: 3px;">//sign.comment//
+    </div>
+    <qr text="makeqrcode(sign.id)"
+        size="100"
+        color="#fff"
+        background="#000"></qr>
+    <br>
+    //sign.positionName//<br>
+    //sign.positionchartName// <br>
+    //sign.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+    {#    //sign.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//#}
+    <br>
+</div>

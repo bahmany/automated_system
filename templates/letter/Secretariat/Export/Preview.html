@@ -1,0 +1,135 @@
+{% load translators %}
+    <div class="row" ng-controller="ExportPreviewCtrl">
+
+    <div class="col-md-11" style="float: none;margin: 0 auto;">
+        <div class="panel panel-default panel-new-default" style="border: 1px solid rgb(207,207,207)">
+            <div class="panel-heading">
+                <h3 class="panel-title">مرور نامه صادره
+                </h3>
+            </div>
+            <div class="panel-body">
+
+                <div class="row well well-sm" style="text-align:center;">
+                    <img ng-src="//ExportLetter.letter.sign.generatedFileAddr//" alt=""/>
+                </div>
+
+                <div>شرکت و یا شرکت های دریافت کننده</div>
+                <div class="row well well-sm">
+                    <div ng-repeat="item in ExportLetter.letter.exp.export.companyRecievers track by $index">
+                        //item.name//
+                    </div>
+                </div>
+                <div class="row">
+                    <div>دریافت کننده های هامش</div>
+                    <div class="row well well-sm">
+                        <div ng-repeat="item in ExportLetter.letter.exp.export.hameshRecievers track by $index">
+                            //item.profileName// - //item.chartName//
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ExportLetter_subject">{{ 'Subject'|translate}}</label>
+
+                            <div ng-bind="ExportLetter.letter.subject"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="txt_dateOfSent"> تاریخ ارسال </label>
+
+                            <div type="text" class="control-expo" id="txt_dateOfSent"
+                                 ng-bind="ExportLetter.letter.exp.dateOfSent"
+
+                                 dir="ltr"
+                                 style="direction: ltr!important;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ExportLetter_exp_timeOfSent"> {{ 'Sent Time'|translate}}</label>
+
+                            <div type="text" class="control-expo" id="ExportLetter_exp_timeOfSent"
+                                 ng-bind="ExportLetter.letter.exp.timeOfSent"
+                                 style="direction: ltr!important;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="ExportLetter_exp_attsCount">{{ 'Atts Count'|translate}}</label>
+
+                            <div id="ExportLetter_exp_attsCount"
+                                 ng-bind="ExportLetter.letter.exp.attsCount"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="ExportLetter_exp_sentType">{{ 'Sent Type'|translate}}</label>
+
+                            <div type="text" class="control-expo" id="ExportLetter_exp_sentType"
+                                 ng-bind="ExportLetter.letter.exp.sentType"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ExportLetter_exp_signText">{{ 'Sign Text'|translate}}</label>
+
+                            <div ng-bind="ExportLetter.letter.exp.signText" id="ExportLetter_exp_signText"
+                                    ></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ExportLetter_exp_footerText">{{ 'Footer Text'|translate}}</label>
+
+                            <div ng-bind="ExportLetter.letter.exp.footerText" id="ExportLetter_exp_footerText"
+                                    ></div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ExportLetter_exp_headerText">{{ 'Header Text'|translate}}</label>
+
+                            <div ng-bind="ExportLetter.letter.exp.headerText" id="ExportLetter_exp_headerText"
+                                    ></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    بدنه نامه
+                </div>
+                <div class="row">
+                    <p ng-bind-html="ExportLetter.letter.body">
+
+                    </p>
+                </div>
+                <div class="row">
+                    {{"Selected Attachments"|translate}}
+                </div>
+                <div class="row">
+                    <div class="well well-sm clearfix">
+                        <div ng-repeat="item in ExportLetter.letter.attachments"
+                             class="pull-left clearfix text-center final-atts"
+                             style="width: 100px; height: 125px; padding: 3px; margin: 3px; overflow: hidden; background-color: white;">
+                            {% include "share/filecloud/PreviewWithOutEdit.html" %}
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

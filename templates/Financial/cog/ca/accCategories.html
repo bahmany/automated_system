@@ -1,0 +1,119 @@
+<div ng-controller="AccCategoryCtrl" class="container-fluid">
+    <div class="spacer">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h4>تنظیمات و پارامترها
+                    <small>
+                        در اینجا شما می توانید پارامترهای محاسبه را تعیین کنید.
+                    </small>
+                </h4>
+
+            </div>
+        </md-toolbar>
+        <div>
+            <md-input-container class="md-block">
+                <label>مواد مستقیم</label>
+                <textarea class="form-control" aria-label="With textarea"
+                          ng-model="cat.details.MavadMostaghim"></textarea>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>دستمزد مستقیم</label>
+                <textarea class="form-control" aria-label="With textarea"
+                          ng-model="cat.details.DasmozdMostaghim"></textarea>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>سربار</label>
+                <textarea class="form-control" aria-label="With textarea"
+                          ng-model="cat.details.Sarbar"></textarea>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>واحدهای تولیدی</label>
+                <textarea class="form-control" aria-label="With textarea"
+                          ng-model="cat.details.Tolidi"></textarea>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>واحدهای مستقیم تولیدی</label>
+                <textarea class="form-control" aria-label="With textarea"
+                          ng-model="cat.details.MostaghimTolidi"></textarea>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>مواد مستقیم</label>
+                <textarea class="form-control" aria-label="With textarea"
+                          ng-model="cat.details.MavadMostaghim"></textarea>
+            </md-input-container>
+            <div>
+                برای گزارش برنامه ریزی
+
+            </div>
+            <div>
+                codekala+ - +meghdare_masraf+ - +nerkhe_masraf
+            </div>
+            <md-input-container class="md-block">
+                <label>گزارش برنامه ریزی</label>
+                <textarea class="form-control" aria-label="With textarea"
+                          ng-model="cat.details.GozaresheBarnamerizi"></textarea>
+
+            </md-input-container>
+
+            <div>
+                <md-button type="md-button" ng-click="storeCats()" class="btn btn-brand btn-behance">
+                    <i class="fa fa-save"></i><span>ذخیره</span>
+                </md-button>
+            </div>
+
+        </div>
+        {#        <div class="docs-example">#}
+        {#            <div class="input-group mb-3" style="height: 200px;">#}
+        {#                <div class="input-group-prepend">#}
+        {#                    <span class="input-group-text">مواد مستقیم</span>#}
+        {#                </div>#}
+        {#                <textarea class="form-control" aria-label="With textarea"#}
+        {#                          ng-model="cat.details.MavadMostaghim"></textarea>#}
+        {#            </div>#}
+        {##}
+        {#            <div class="input-group mb-3" style="height: 200px;">#}
+        {#                <div class="input-group-prepend">#}
+        {#                    <span class="input-group-text">دستمزد مستقیم</span>#}
+        {#                </div>#}
+        {#                <textarea class="form-control" aria-label="With textarea"#}
+        {#                          ng-model="cat.details.DasmozdMostaghim"></textarea>#}
+        {#            </div>#}
+        {##}
+        {#            <div class="input-group mb-3" style="height: 200px;">#}
+        {#                <div class="input-group-prepend">#}
+        {#                    <span class="input-group-text">سربار</span>#}
+        {#                </div>#}
+        {#                <textarea class="form-control" aria-label="With textarea"#}
+        {#                          ng-model="cat.details.Sarbar"></textarea>#}
+        {#            </div>#}
+        {##}
+        {#            <div class="input-group mb-3" style="height: 200px;">#}
+        {#                <div class="input-group-prepend">#}
+        {#                    <span class="input-group-text">واحدهای تولیدی</span>#}
+        {#                </div>#}
+        {#                <textarea class="form-control" aria-label="With textarea"#}
+        {#                          ng-model="cat.details.Tolidi"></textarea>#}
+        {#            </div>#}
+        {##}
+        {#            <div class="input-group mb-3" style="height: 200px;">#}
+        {#                <div class="input-group-prepend">#}
+        {#                    <span class="input-group-text">واحدهای مستقیم تولیدی</span>#}
+        {#                </div>#}
+        {#                <textarea class="form-control" aria-label="With textarea"#}
+        {#                          ng-model="cat.details.MostaghimTolidi"></textarea>#}
+        {#            </div>#}
+        {##}
+        {#            <nav class="navbar navbar-light bg-light justify-content-between"#}
+        {#                 style="background-color: #e3f2fd;">#}
+        {#                <a class="navbar-brand"></a>#}
+        {#                <md-button type="md-button" ng-click="storeCats()" class="btn btn-brand btn-behance">#}
+        {#                    <i class="fa fa-save"></i><span>ذخیره</span>#}
+        {#                </md-button>#}
+        {#            </nav>#}
+        {##}
+        {#        </div>#}
+
+    </div>
+
+
+</div>

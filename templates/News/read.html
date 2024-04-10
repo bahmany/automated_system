@@ -1,0 +1,27 @@
+<div ng-controller="ReadNewsCtrl" style="background-color: white">
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row" style="border-bottom: 1px solid #cacaca;">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+            <div layout="row" layout-align="start center">
+                <h2 class="md-toolbar-tools">
+                    //news.title//
+                </h2>
+            </div>
+            <div flex></div>
+            <md-button class="md-raised" href="#/dashboard/home">
+                بازگشت
+            </md-button>
+
+
+        </div>
+    </md-toolbar>
+    <div class="thisisnews">
+        <p ng-bind-html="news.body | to_trusted" style="overflow-wrap: break-word;"></p>
+
+    </div>
+    <div style="text-align: left">//news.postDate | jalaliDateFromNow:'jYYYY-jMM-jDD hh:mm:ss'//</div>
+
+
+</div>

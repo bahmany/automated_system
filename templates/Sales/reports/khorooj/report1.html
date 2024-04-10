@@ -1,0 +1,142 @@
+<div ng-controller="KhoroojRep1Ctrl">
+
+    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">
+        <div layout="row">
+            <md-toolbar-filler layout-align="center center" layout="row" style="background-color: rgb(139 159 175)">
+                <md-icon md-font-icon="fa fa-clock-o" style="    font-size: 35px;"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">خروج ها</h2>
+
+
+                <div>
+                    <md-button ng-click="get_report(1)" style="background-color: #f1f1f1;">
+                        یک ساعت پیش
+                    </md-button>
+
+                    <md-button ng-click="get_report(2)" style="background-color: #f1f1f1;">
+                        <md-icon md-font-icon="fa fa-plus" style="color: blue;"></md-icon>
+                        سه ساعت پیش
+                    </md-button>
+
+                    <md-button ng-click="get_report(3)" style="background-color: #f1f1f1;">
+                        ۵ ساعت پیش
+                    </md-button>
+
+                    <md-button ng-click="get_report(4)" style="background-color: #f1f1f1;">
+                        امروز
+                    </md-button>
+
+                    <md-button ng-click="get_report(5)" style="background-color: #f1f1f1;">
+                        دیروز
+                    </md-button>
+
+                    <md-button ng-click="get_report(6)" style="background-color: #f1f1f1;">
+                        این هفته
+                    </md-button>
+
+
+                    <md-button ng-click="get_report(7)" style="background-color: #f1f1f1;">
+                        هفته گذشته
+                    </md-button>
+                    <md-button ng-click="get_report(8)" style="background-color: #f1f1f1;">
+                        ماه جاری
+                    </md-button>
+
+                    <md-button ng-click="get_report(9)" style="background-color: #f1f1f1;">
+                        ماه گذشته
+                    </md-button>
+
+                    <md-button ng-click="get_report(10)" style="background-color: #f1f1f1;">
+                        سال جاری
+                    </md-button>
+
+                    <md-button ng-click="get_report(11)" style="background-color: #f1f1f1;">
+                        سال گذشته
+                    </md-button>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </md-toolbar>
+
+
+    <div class="spacer">
+        <div>
+            <md-progress-linear md-mode="indeterminate" ng-show="is_loading"></md-progress-linear>
+
+        </div>
+        <div layout="row">
+
+            <div flex class="shadower">
+
+                <div ng-show="report1">
+
+                    <div class="shadower" style="font-size: 13px" dir="rtl">
+                        بازه تاریخ از
+                        <span style="margin-left: 10px;">
+                            //startdate | jalaliDate:'jYYYY/jMM/jDD'//
+                        </span>
+                        <span style="font-size: 11px; color: grey;margin-left: 10px;">
+                            //startdate | jalaliDate:' HH:mm:ss'//
+                        </span>
+                        تا
+                        <span style="margin-left: 10px;">
+                                                    //enddate | jalaliDate:'jYYYY/jMM/jDD'//
+                        </span>
+                        <span style="font-size: 11px; color: grey;margin-left: 10px;">
+                            //enddate | jalaliDate:' HH:mm:ss'//
+                        </span>
+                    </div>
+
+                    <div>
+
+                        <table class="table mini table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>نام</th>
+                                <th>کد راهکاران</th>
+                                <th>جمع</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="item in report_result track by $index">
+                                <td>//$index+1//</td>
+                                <td>//item.name//</td>
+                                <td>//item._id.t0_CounterpartDLCode//</td>
+                                <td>//item.sumof_qty |number//</td>
+                                <td>//item._id.PartUnit//</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; font-weight: bold;text-align: left" colspan="3">جمع کل</td>
+                                <td style="padding: 12px; font-weight: bold">//total_kg | number//</td>
+                                <td style="padding: 12px; font-weight: bold">کیلوگرم</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; font-weight: bold;text-align: left" colspan="3"
+                                    class="shadower">جمع کل
+                                </td>
+                                <td style="padding: 12px; font-weight: bold" class="shadower">//total_cnt | number//
+                                </td>
+                                <td style="padding: 12px; font-weight: bold" class="shadower">عدد</td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

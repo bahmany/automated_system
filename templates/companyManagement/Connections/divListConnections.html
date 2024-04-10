@@ -1,0 +1,23 @@
+{% load translators %}
+
+<div id="div_list_connections" layout-gt-xs="row">
+    <md-card ng-repeat="item in Connections.results">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">//item.username//</span>
+                <span class="md-subhead">//item.hostAddress//</span>
+            </md-card-title-text>
+            <md-card-title-media>
+                <div class="md-media-sm card-media">
+                    <img src="/static/images/mssql.png" alt=""/>
+                    //item.databaseName//
+                </div>
+            </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-click="test(item)">تست صحت</md-button>
+            <md-button ng-click="edit(item)">ویرایش</md-button>
+            <md-button ng-click="EnterToPools(item)">ارتباطات</md-button>
+        </md-card-actions>
+    </md-card>
+</div>

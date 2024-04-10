@@ -1,0 +1,47 @@
+<div ng-controller="SalesConversationItemsCtrl">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                مذاکره با
+                //currentConv.CustomerName//
+                <span flex></span>
+                <md-button class="md-raised md-primary" ng-click="getFromBasket()">
+                    انتقال از سبد
+                </md-button>
+                <md-button class="md-fab md-mini" ng-click="addNewProduct()">
+                    <md-icon md-font-icon="fa fa-plus"></md-icon>
+                    <md-tooltip>سفارش جدید</md-tooltip>
+                </md-button>
+                <md-button ui-sref="SalesConv">
+                    بازگشت
+                </md-button>
+            </div>
+        </md-toolbar>
+
+    <md-tabs md-dynamic-height md-border-bottom>
+
+        <md-tab label="مذاکره">
+            <md-content class="md-padding">
+                <div>
+                    {% include "Sales/Conversations/items/partial_conversations.html" %}
+                </div>
+
+            </md-content>
+        </md-tab>
+
+
+        <md-tab label="گزارش عملکرد">
+            <md-content class="md-padding">
+                <div>
+                    {% include "Sales/Conversations/items/partial_analy.html" %}
+                </div>
+            </md-content>
+        </md-tab>
+
+
+    </md-tabs>
+
+
+</div>
+
+
+

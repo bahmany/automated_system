@@ -1,0 +1,124 @@
+<h4>سوابق کاری و حرفه ای</h4>
+<hr>
+<div layout="column">
+
+    <form name="frm21_form">
+
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام موسسه یا شرکت</label>
+                    <input type="text" ng-model="provider.frm21.nameMoaseseh" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تاریخ شروع همکاری</label>
+                    <input type="text" ng-model="provider.frm21.tarikheShoroo"                               ui-mask="9999/99/99" dir="ltr"
+>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تاریخ پایان همکاری</label>
+                    <input type="text" ng-model="provider.frm21.tarikhePayan"                               ui-mask="9999/99/99" dir="ltr"
+>
+                </md-input-container>
+            </div>
+        </div>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">علت خاتمه همکاری</label>
+                    <input type="text" ng-model="provider.frm21.elateKhatemeh">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تعداد تشویق نامه ها</label>
+                    <input type="text" ng-model="provider.frm21.tedadeTashvighNameha">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">زمینه ی فعالیت موسسه یا شرکت</label>
+                    <input type="text" ng-model="provider.frm21.zaminehFaaliat">
+                </md-input-container>
+            </div>
+
+
+        </div>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">زمینه همکاری با موسسه یا شرکت</label>
+                    <input type="text" ng-model="provider.frm21.zaminehHamkari">
+                </md-input-container>
+            </div>
+
+        </div>
+
+        {#                {% include "Dashboards/Supplement/Registration/Supply/imageUploaderArea.html" with formStep="21" %}#}
+
+
+        <div layout-gt-xs="row">
+            <span flex></span>
+            <md-button class="md-default md-raised" ng-click="addTofrm('21')" ng-disabled="frm21_form.$invalid">
+                اضافه به لیست
+            </md-button>
+        </div>
+    </form>
+    <div>
+        <table class="sp-table table table-bordered">
+            <thead>
+            <tr>
+                <th>نام</th>
+                <th>شروع</th>
+                <th>پایان</th>
+                <th>علت خاتمه</th>
+                <th>تعداد تشویق</th>
+                <th>زمینه فعالیت</th>
+                <th>زمینه همکاری</th>
+                <th>عملیات</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="it in provider.frm21_list">
+                <td>//it.nameMoaseseh//</td>
+                <td>//it.tarikheShoroo//</td>
+                <td>//it.tarikhePayan//</td>
+                <td>//it.elateKhatemeh//</td>
+                <td>//it.tedadeTashvighNameha//</td>
+                <td>//it.zaminehFaaliat//</td>
+                <td>//it.zaminehHamkari//</td>
+                <td>
+                    {% include "Dashboards/Supplement/Registration/Supply/fileViewTdTable.html" with nm="it" %}
+                    <a ng-click="removefrm('7',$index)">حذف</a></td>
+            </tr>
+
+            <tr ng-if="provider.frm21_list.length == 0">
+                <td colspan="8">
+                    لیست سوابق کاری خالی است
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+    <div>
+        <ul>توضیحات : لطفا در صورت وجود سایر مدارکی را که موجب افزایش اعتبار شما در لیست می شود را آپلود نمایید
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='21' inputid='1' label="ضمائم" %}
+        </ul>
+    </div>
+
+
+
+    {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm21" %}
+</div>

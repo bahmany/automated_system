@@ -1,0 +1,32 @@
+<div ng-controller="ReportMyTaradodCtrl">
+    <div class="shadower">
+        <div layout="row" ng-init="filter['year']={{ frm.year }};filter['month']={{ frm.month }};">
+            <div>
+                <md-input-container class="md-block">
+                    <label for="">سال</label>
+                    <input type="number" ng-model="filter.year">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container class="md-block">
+                    <label for="">ماه</label>
+                    <input type="number" ng-model="filter.month">
+                </md-input-container>
+
+            </div>
+            <div>
+                <md-button ng-click="getTaradod()" class="md-raised md-primary"
+                           ng-show="result != ''">
+                    فراخوانی
+                </md-button>
+
+            </div>
+        </div>
+
+        <div>
+            <img style="width: 100%;max-width: 1400px;" src="// result //" alt="">
+            <h2 ng-show="result == ''">لطفا صبر کنید</h2>
+        </div>
+    </div>
+
+</div>

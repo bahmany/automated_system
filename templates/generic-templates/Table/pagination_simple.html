@@ -1,0 +1,39 @@
+{% load translators %}
+
+<div id="search_with_pagination">
+    <div>
+
+        <a
+                class="btn-maker"
+                ng-if="{{ main_model_name }}.previous"
+                ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.previous)"
+                >
+            <i class="fa fa-arrow-right"></i></a>
+
+
+        <a class=" btn-maker"
+           ng-repeat="itemA in {{ main_model_name }}.page_myrange"
+           ng-class="{'selectedpaging': {{ main_model_name }}.current_page == itemA.index }"
+           ng-if="!({{ main_model_name }}.num_pages < itemA.index || 1 > itemA.index)"
+           ng-click="{{ table_go_to_page_func_name }}(itemA.addr)">
+            //itemA.index//
+        </a>
+
+        <a      class=" btn-maker"
+                ng-if="{{ main_model_name }}.next"
+                ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.next)"
+                >
+
+            <i class="fa fa-arrow-left"></i>
+        </a>
+
+
+                        <span class="">
+                                    //{{ main_model_name }}.count//
+                                    </span>
+                                <span class="">
+                                    <i class="fa fa-search"></i></span>
+        <input type="text" style="font-size: 10px; " ng-model="{{ table_search_watch_model_name }}"  ng-model-options="{debounce: 300}"/>
+
+    </div>
+</div>

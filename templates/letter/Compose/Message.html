@@ -1,0 +1,92 @@
+{% load translators %}
+<div>
+
+
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            {{ 'Send or edit letter'|translate }}
+        </div>
+        <span flex></span>
+    </md-toolbar>
+
+    <div layout-padding="">
+        <div layout="row" layout-align="start center">
+            <md-button class="md-fab md-mini"
+                       ng-disabled="isSending"
+                       ng-click="selectPositions()"
+                       style="background-color:#009688"
+                       aria-label="trash">
+                <md-icon md-font-icon="fa fa-users"></md-icon>
+                <md-tooltip>{{ 'Select recievers'|translate }}</md-tooltip>
+            </md-button>
+            <strong class="to">{{ 'to'|translate }} </strong>
+            <md-list>
+                <md-list-item ng-repeat="item in letter.recievers track by $index" flex="100"
+                              ng-click="letter.recievers.splice($index, 1)">
+                    <img class="md-avatar" ng-src="//item.avatar//">
+
+                    <p>//item.profileName// (
+                        <small>//item.chartName//</small>
+                        )
+                    </p>
+
+
+                </md-list-item>
+            </md-list>
+        </div>
+        <md-input-container class="md-block">
+            <label>{{ 'subject'|translate }}</label>
+            <input required
+                   type="text"
+                   name="clientEmail"
+                   ng-model="letter.subject"
+                   minlength="2" maxlength="100"/>
+            <div ng-messages="letter.subject.$error" role="alert">
+                <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                    {{ 'Subject should be between 2 to 100 words, do not left it blank'|translate }}
+                </div>
+            </div>
+        </md-input-container>
+        <textarea ckeditor="editorOptions"
+                  ng-model="letter.body">
+        </textarea>
+        <div>
+            {% load fileuploader_tags %}
+            {% FileUploader width='100%' readonly="false" %}
+        </div>
+
+        <div ng-if="selectedFiles.length > 0">
+            <div>ضمائم
+            </div>
+            <div ng-repeat="item in selectedFiles track by $index" class="selected-file-name" layout="row"
+                 ng-class-odd="'odd'" ng-class-even="'even'">
+                <i class="glyphicon glyphicon-folder-open mr2"></i>
+                <span ng-repeat="path in item.path"><span>/</span><i class="glyphicon glyphicon-folder-open mr2"></i> //path//</span>
+                <span><span>/</span> //item.name//</span>
+                <span flex></span>
+                <span style="font-size: 12px;">
+                <span ng-if="item.type=='file'">فایل</span>
+                <span ng-if="item.type=='dir'">پوشه</span></span>
+                <a ng-click="RemoveFromUploaded($index)"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+
+
+        <div layout="row">
+            <md-button class="md-fab md-mini hide" style="background-color:#009688 " ng-click="selectAtts()">
+                <md-icon style="margin-top: -4px;" md-font-icon="fa fa-paperclip"></md-icon>
+                <md-tooltip>{{ 'Upload attachments or use clouds' | translate }}</md-tooltip>
+            </md-button>
+            <span flex></span>
+
+            <md-button ng-click="cancelLetter()" class="md-raised" ng-disabled="isSending">{{ 'Cancel'|translate }}</md-button>
+            <md-button ng-click="SaveAsDraftThenClose()" class="md-raised" ng-disabled="isSending">{{ 'Save to Draft'|translate }}</md-button>
+            <md-button ng-click="sendLetter()" class="md-raised md-primary" ng-disabled="isSending">
+                {{ 'Send'|translate }}
+            </md-button>
+        </div>
+        <div ng-if="isSending" class="fader">
+            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </div>
+    </div>
+</div>

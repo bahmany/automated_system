@@ -1,0 +1,75 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>
+            ورودی مواد اولیه
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-dialog-content>
+    <div class="md-dialog-content">
+        <div>
+
+            <div layout="row">
+                {#                        <div style="direction: ltr; text-align: left; width: 250px;">#}
+                {##}
+                {#                            <div#}
+                {#                                    ivh-treeview-id-attribute="'Serial'"#}
+                {#                                    ivh-treeview-label-attribute="'Title'"#}
+                {#                                    ivh-treeview-children-attribute="'children'"#}
+                {#                                    ivh-treeview="hamkaran_anbars">#}
+                {#                            </div>#}
+                {##}
+                {#                        </div>#}
+                <div flex layout="row" class="form-gardesh">
+                    <div flex="65">
+                        <md-input-container class="md-block">
+                            <label for="">کد کالا</label>
+                            <input name="name" type="text"
+                                   ng-model="Code"
+                                   ng-model-options="{debounce:500}"
+                                   required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label for="">شرح کالا</label>
+                            <input type="text" ng-model="PART.Name" readonly>
+                        </md-input-container>
+
+                    </div>
+                    <div flex>
+                    </div>
+                    <div flex="25">
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+    <md-button ng-click="confirmCancel()">
+        انصراف
+    </md-button>
+    <md-button ng-click="blockLocation()">
+        مسدود سازی محل
+    </md-button>
+
+
+
+
+    <span flex></span>
+
+
+    <md-button class="md-button md-raised" ng-click="setBarcode()"
+               ng-disabled="frmPart.$invalid || !(PART.Code)">بارکد
+    </md-button>
+
+
+</md-dialog-actions>

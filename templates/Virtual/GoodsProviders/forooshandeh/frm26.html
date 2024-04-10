@@ -1,0 +1,16 @@
+<h4>ثبت و دریافت کد پیگیری</h4>
+<hr>
+
+
+<ul ng-if="errmsg.length > 0">
+    <li>اطلاعات شما به دلایل زیر ثبت نمی شود :
+        <ul style="list-style: arabic-indic;padding-right: 38px;color: red;">
+            <li ng-repeat="err in errmsg">//err//</li>
+        </ul>
+    </li>
+</ul>
+<span flex></span>
+<md-button
+        class="md-raised md-primary" ng-click="save($event)">
+    ذخیره
+</md-button>

@@ -1,0 +1,57 @@
+<div>
+        {% include "Sales/_share/header.html" with pageName="مذاکره با مشتریان" %}
+
+    <div layout="row">
+        <button type="button" class="btn btn-primary btn-embossed" ng-click="addNew()">مذاکره جدید
+            <div class="ripple-wrapper"></div>
+        </button>
+
+        <span flex></span>
+        <md-checkbox ng-model="filter.active">فعال</md-checkbox>
+        <md-checkbox ng-model="filter.noactive">غیر فعال</md-checkbox>
+        <md-checkbox ng-model="filter.withpish">دارای پیش فاکتور</md-checkbox>
+        <md-checkbox ng-model="filter.nopish">بدون پیش فاکتور</md-checkbox>
+    </div>
+    <div>
+        <md-progress-linear md-mode="indeterminate" ng-if="wait"></md-progress-linear>
+    </div>
+    <md-list flex>
+        <div>
+            {% load pager_navigator_tags %}
+            {% pagerNavigatorForSpacial style="text-center" listname="Convs" search_ng_model="ConvsSearchText" PageTo="ConvsPageTo" %}
+        </div>
+        <md-list-item ng-disabled="Conv.PrefactorID"
+                      ui-sref="SalesConversationsItems({ConvID:Conv.id})"
+                      ng-class-odd="'odd'"
+                      ng-class-even="'even'"
+                      class="noright" ng-repeat="Conv in Convs.results">
+            <img ng-src="// Conv.avatar //" alt="// Conv.positionName //" class="md-avatar"/>
+            <p ng-class="{'ignore':!(Conv.Open)}">
+                <md-icon md-font-icon="fa fa-check" style="color: green"
+                         ng-if="Conv.PrefactorID"></md-icon>
+
+                // Conv.customerLink.name // - //Conv.dateOfPost | jalaliDate:'jYYYY/jMM/jDD' //
+                <span style="font-size: 12px; color: darkgreen">(//Conv.total | number// ریال)</span>
+                //Conv.PrefactorID//
+            </p>
+
+            <i class="fa fa-wechat">
+
+            </i>//Conv.commentCount//
+
+            <i class="fa fa-dropbox">
+
+            </i>//Conv.productCount//
+
+            <md-icon ng-if="!(Conv.PrefactorID)" class="md-secondary" md-font-icon="fa fa-check"
+                     ng-click="completed($event, Conv)"></md-icon>
+            <md-icon ng-if="!(Conv.PrefactorID)" class="md-secondary" md-font-icon="fa fa-ban"
+                     ng-click="ignore($event, Conv)"></md-icon>
+            <md-icon ng-if="!(Conv.PrefactorID)" class="md-secondary" md-font-icon="fa fa-pencil"
+                     ng-click="edit($event, Conv)"></md-icon>
+            <md-icon ng-if="!(Conv.PrefactorID)" class="md-secondary" md-font-icon="fa fa-trash"
+                     ng-click="delete($event, Conv)"></md-icon>
+
+        </md-list-item>
+    </md-list>
+</div>

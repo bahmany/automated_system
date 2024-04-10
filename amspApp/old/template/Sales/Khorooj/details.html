@@ -1,0 +1,409 @@
+<div ng-controller="KhoroojDetailsCtrl" id="divKhoroojDetailsCtrl">
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">مجوز خروج</h2>
+
+                <div layout="row">
+
+                    <span flex></span>
+                    <md-button class="mb-raised" ng-click="gotoprev()">
+                        قبلی
+                    </md-button>
+
+                    <md-button class="mb-raised" ng-click="gotonext()">
+                        بعدی
+                    </md-button>
+
+                    <md-button class="mb-raised" ui-sref="Khorooj">
+                        برگشت
+                    </md-button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </md-toolbar>
+    <md-divider></md-divider>
+
+
+    <div class="spacer">
+
+        <div layout="column">
+
+            <div ng-show="headerDet.exp.itIsBatel" style="padding: 12px;
+    text-align: center;
+    font-size: 16px;
+    margin: 15px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding-bottom: 30px;
+    padding-top: 30px;">
+                <h3>
+                    باطل شده است
+                </h3>
+                <div>
+                    //headerDet.exp.itIsBatelWhy//
+                </div>
+
+                <div>
+                    //headerDet.exp.itIsBatelDatetime | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+
+                </div>
+
+            </div>
+
+
+            <div ng-show="headerDet.phones.length == 0"
+                 style="padding: 12px;
+    text-align: center;
+    font-size: 16px;
+    margin: 15px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding-bottom: 30px;
+    padding-top: 30px;">
+                برای این مشتری شماره موبایل تعریف نشده است
+                لطفا وارد راهکاران شده و شماره یا شماره ها را اضافه نمایید
+
+            </div>
+
+
+            <div layout-gt-sm="row" style="    padding-bottom: 21px;">
+                <div flex-gt-sm=""><span>نام مشتری : </span>
+                    <span style="font-size: 18px;font-weight: bold;color: green;">//headerDet.exp.t0_CounterpartEntityText//</span>
+                </div>
+                <div flex-gt-sm="" layout="row" layout-align="end center">
+                    <div layout="column" style="font-size: 12px;
+    border-right: solid 1px gray;
+    padding-right: 12px;">
+                        <div><span>شماره :</span><span>//headerDet.exp.t0_Number//</span></div>
+                        <div><span>تاریخ :</span><span>//headerDet.exp.t0_Date| jalaliDate:'jYYYY/jMM/jDD'//</span>
+                        </div>
+                        <div><span>وضعیت :</span><span>//headerDet.exp.t1_Name//</span></div>
+                    </div>
+
+                </div>
+                {#                <div flex-gt-sm=""><span>تلفن ثابت : </span><span>????</span></div>#}
+            </div>
+            {#            <div layout-gt-sm="row">#}
+            {#                <div flex-gt-sm=""><span>نشانی تحویل گیرنده : </span><span>؟؟؟؟؟</span></div>#}
+            {#                <div flex-gt-sm=""><span>تلفن همراه : </span><span>؟؟؟؟؟؟؟</span></div>#}
+            {#            </div>#}
+
+            <div style="border-bottom: 3px solid gray">
+                <div layout-gt-sm="row" style="border-bottom: 1px solid gray;border-top: 1px solid gray; background-color: #4a89dc;
+    color: white;">
+                    <div flex-gt-sm="10" style="padding: 5px;border-left: solid 1px #969696;"><span>ردیف</span></div>
+                    <div flex-gt-sm="5" style="padding: 5px;border-left: solid 1px #969696;"><span>پیش</span></div>
+                    <div flex-gt-sm="5" style="padding: 5px;border-left: solid 1px #969696;"><span>حواله</span></div>
+                    <div flex-gt-sm="15" style="padding: 5px;border-left: solid 1px #969696;">
+                        <span>تاریخ حواله فروش</span></div>
+                    <div flex-gt-sm="20" style="padding: 5px;border-left: solid 1px #969696;"><span>کد کالا</span></div>
+                    <div flex-gt-sm="30" style="padding: 5px;border-left: solid 1px #969696;"><span>شرح کالا</span>
+                    </div>
+                    <div flex-gt-sm="15" style="padding: 5px;">مقدار خالص</div>
+                </div>
+
+                <div ng-repeat="item in headerDet.items track by $index" layout-gt-sm="row" ng-class-odd="'odd'"
+                     ng-class-even="'even'">
+                    <div flex-gt-sm="10" style="padding: 5px;border-left: solid 1px #969696;"><span>//$index+1//</span>
+                    </div>
+                    <div flex-gt-sm="5" style="padding: 5px;border-left: solid 1px #969696;">
+                        <span>//item.pishfactor//</span>
+                    </div>
+                    <div flex-gt-sm="5" style="padding: 5px;border-left: solid 1px #969696;">
+                        <a href=//"https://app.******.com/#!/Sales/kh/"+item.havaleh_foroosh_id+"/details"// target="_blank" >
+
+                            //item.havaleh_foroosh_code//
+                        </a>
+                    </div>
+                    <div flex-gt-sm="15" style="padding: 5px;border-left: solid 1px #969696;">
+                        <span>//item.havaleh_foroosh_tarikh| jalaliDate:'jYYYY/jMM/jDD'//</span>
+                    </div>
+                    <div flex-gt-sm="20" style="padding: 5px;border-left: solid 1px #969696;">
+                        <span>//item.item.Code//</span>
+                    </div>
+                    <div flex-gt-sm="30" style="padding: 5px;border-left: solid 1px #969696;">
+                        <span>//item.item.PartName//</span>
+                    </div>
+                    <div flex-gt-sm="15" style="padding: 5px;">//item.item.Quantity | number//
+                        <span style="font-size: 12px; color: gray">
+                        (//item.item.PartUnit//)
+                    </span>
+                    </div>
+                </div>
+                <div style="border-top: solid 1px gray">
+                    <div layout-gt-sm="row" layout-align="end center" style="padding: 5px 4px;">
+                        <div style="padding-left: 12px;">
+                            جمع کل خالص :
+                            //headerDet.exp.TotalQty | number//
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="border-bottom: 1px solid #cac9c9;padding: 5px;">
+                <span>توضیحات : </span>
+                <span class="thisbold "> //headerDet.exp.t0_Description// </span>
+            </div>
+
+            <div layout-gt-sm="row" layout-wrap="start center" style="    border-bottom: 1px solid #cac9c9;">
+                <div flex-gt-sm="50" layout-wrap="start center" style="    border-left: 1px solid #cac9c9;">
+                    <div style="    padding: 4px; border-bottom: 1px solid #cac9c9;"><span>نام باربری : </span><span
+                            class="thisbold">//headerDet.exp.t4_name_barbari//</span></div>
+                    <div style="padding: 4px"><span>نام راننده : </span><span
+                            class="thisbold">//headerDet.exp.t2_String2//</span></div>
+                </div>
+                <div flex-gt-sm="50" layout-wrap="start center">
+                    <div style="    padding: 4px; border-bottom: 1px solid #cac9c9;"><span>شماره بارنامه : </span><span
+                            class="thisbold">//headerDet.exp.t2_String4//</span></div>
+                    <div style="    padding: 4px; border-bottom: 1px solid #cac9c9;"><span>شماره خودرو : </span><span
+                            class="thisbold">//headerDet.exp.t2_String1//</span></div>
+                    <div style="padding: 4px"><span>تلفن همراه : </span><span class="thisbold" dir="ltr">//headerDet.exp.t2_String3//</span>
+                    </div>
+                </div>
+            </div>
+            <div layout-gt-sm="row" style="    border-bottom: 1px solid #cac9c9;">
+                <div flex-gt-sm="" style="padding: 4px; border-left: 1px solid #cac9c9;">
+                    <span>وزن خالی خودرو : </span><span class="thisbold">//headerDet.exp.t2_Number4 | number//</span>
+                </div>
+                <div flex-gt-sm="" style="  padding: 4px;   border-left: 1px solid #cac9c9;">
+                    <span>وزن پر خودرو : </span><span class="thisbold">//headerDet.exp.t2_Number6 | number//</span>
+                </div>
+                <div flex-gt-sm="" style="padding: 4px; "><span>وزن ناخالص باسکول : </span><span class="thisbold">//headerDet.exp.t2_Number6 - headerDet.exp.t2_Number4 | number//</span>
+                </div>
+            </div>
+
+            <div layout-gt-sm="row" style="    border: solid 3px #7f7f82;
+    margin: 12px;
+    padding: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;" layout-align="center center">
+                <div flex-gt-sm layout-align="center center" layout="row"
+                     style="text-align: center;    border-left: solid 1px gray;">
+                    <div layout-align="center center">
+                        1-
+                        امضا صادره کننده - انباردار
+                        <br>
+
+                        {% include "Sales/Khorooj/qrcode_btn.html" with btnLabel="امضا" signID=1 %}
+
+                    </div>
+
+
+                </div>
+                <div flex-gt-sm layout-align="center center" layout="row"
+                     style="text-align: center;    border-left: solid 1px gray;">
+                    <div layout-align="center center">
+                        2-
+                        امضا تایید کننده - سرپرست حسابداری
+                        <br>
+                        {% include "Sales/Khorooj/qrcode_btn.html" with btnLabel="امضا" signID=2 %}
+                    </div>
+
+                </div>
+                <div flex-gt-sm layout-align="center center" layout="row"
+                     style="text-align: center;">
+                    <div layout-align="center center">
+                        3-
+                        امضا تصویب کننده - مدیرعامل یا
+                        مدیرمالی
+                        <br>
+                        {% include "Sales/Khorooj/qrcode_btn.html" with btnLabel="امضا" signID=3 %}
+                    </div>
+                </div>
+            </div>
+
+            <div layout-gt-sm="row" style="    border: solid 3px #7f7f82;
+    margin: 12px;
+    padding: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;" layout-align="center center">
+                <div flex-gt-sm layout-align="center center" layout="row"
+                     style="text-align: center;    border-left: solid 1px gray;">
+                    <div layout-align="center center">
+                        4-
+                        اجناس فوق درب کارخانه **** **** **** سالم تحویل راننده شد
+                        <br>
+                        {% include "Sales/Khorooj/qrcode_btn.html" with btnLabel="امضا متصدی کنترل خروج" signID=4 %}
+                    </div>
+                </div>
+                <div flex-gt-sm layout-align="center center" layout="row"
+                     style="text-align: center;">
+                    <div layout-align="center center">
+                        5- امضای انتظامات :
+                        تعداد کل پالت های خروجی :
+                        <span style="    font-weight: bold; color: green; font-size: 18px;">//headerDet.exp.t2_Number2//</span>
+                        <br>
+                        {#                        <input type="number" ng-model="tedadPalet">#}
+
+                        {#                        <br>#}
+                        {% include "Sales/Khorooj/qrcode_btn.html" with btnLabel="امضا و ارسال پیام کوتاه" signID=5 %}
+                    </div>
+                </div>
+            </div>
+            <div style="min-height: 150px;    border: 1px solid;    padding: 4px;    margin: 5px;">
+                اینجانب
+                //headerDet.exp.t2_String2//
+                فرزند
+                ..................................................... به کد ملی
+                ........................... تعداد
+                //headerDet.exp.t2_Number2//
+                پالت را تحویل گرفتم
+                <br>
+                <div style="text-align: left;">
+                    امضای راننده
+                </div>
+            </div>
+
+
+            {#            <div style="padding-top: 30px;#}
+            {#    padding-bottom: 30px;#}
+            {#    border-bottom: 1px solid #cac9c9;#}
+            {#    background-color: beige;#}
+            {#    padding-left: 15px;#}
+            {#    padding-right: 15px;#}
+            {#    text-align: justify;">#}
+            {#                <span class="addTitle">استان </span> <span class="addDet">//headerDet.item.ParentCityName// </span>#}
+            {#                <span class="addTitle">شهر </span> <span class="addDet">//headerDet.item.CityName// </span>#}
+            {#                <span class="addTitle">شرکت </span> <span class="addDet">//headerDet.item.Title// </span>#}
+            {#                <span class="addTitle">آدرس </span> <span class="addDet">//headerDet.item.Address// </span>#}
+            {#                <span class="addTitle">کد پستی :</span> <span class="addDet">//headerDet.item.ZipCode// </span>#}
+            {#                <span class="addTitle">تلفن :</span> <span class="addDet">//headerDet.item.Phone// </span>#}
+            {#                <span class="addTitle">موبایل : </span> <span class="addDet">//headerDet.item.Mobile// </span>#}
+            {#                <span class="addTitle">کد ملی : </span> <span class="addDet">//headerDet.item.NationalCode// </span>#}
+            {#                <span class="addTitle">کد ثبت : </span> <span class="addDet">//headerDet.item.IdNo// </span>#}
+            {#            </div>#}
+
+
+        </div>
+
+
+        <div style="    padding: 15px;    background-color: #d2d2d2;">
+            <div class="panel-header md-panel-controls ui-sortable-handle">
+                <h3><i class="fa fa-table" style="padding-top: 10px;"></i>
+                    آپلود اسکن حواله خروج
+                    -
+                    دقت نمایید حتما فایل عکس را بازگذاری کنید و از آپلود فایل pdf خودداری نمایید
+                </h3>
+            </div>
+
+
+            <div style="display: none;" id="divUploader">
+                {% load fileuploader_tags %}
+                {% FileUploader width='100%' %}
+                <div>
+                    <md-button ng-click="saveFiles()">ثبت</md-button>
+                    <md-button ng-click="cancelFiles()">انصراف</md-button>
+                </div>
+            </div>
+            <div id="divFiles">
+                <div layout="row" layout-wrap="">
+                    <div ng-repeat="item in Files.uploaded  track by $index"
+                         class="well well-sm clearfix text-center"
+                         style="width: 100px; height: 145px; padding: 3px; margin: 3px; overflow: hidden">
+                        <span class="content_right_head">//item.imgInf.name//</span>
+                        <br>
+                        <img ng-src="//item.imgLink//" style="max-width: 50px; max-height: 55px">
+                        <br>
+                        <small>
+                            // item.imgInf.size / 1024 | number:0//kb
+                        </small>
+                        <br>
+
+                        <div class="btn-group btn-group-xs">
+
+                            <i class="btn btn-default btn-xs fa fa-times-circle-o"
+                               ng-click="$event.stopPropagation();RemoveFromUploaded($event, $index);">
+                            </i>
+
+                            <i class="btn btn-default btn-xs fa fa-arrow-circle-down"
+
+                               ng-click="$event.stopPropagation();Download(item);"></i>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div layout="row" layout-wrap="center center" style="padding-bottom: 20px;">
+                    <md-button style="margin: 0 auto" class="md-button md-raised md-primary" ng-click="showUploader()">
+                        آپلود فایل تصویری حواله خروج ...
+                    </md-button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="panel-header md-panel-controls ui-sortable-handle">
+                <h3><i class="fa fa-table" style="padding-top: 10px;"></i>ارسال پیام کوتاه</h3>
+            </div>
+            <div>
+                <div ng-repeat="sms in smss  track by $index" style="
+                border: 1px solid gray;
+    padding: 10px;
+    margin-left: 6px;
+    margin-right: 6px;">
+                    <div>
+                        <span>ارسال کننده : </span> <span>//sms.sendername// - //sms.senderchart//</span>
+                    </div>
+                    <div>
+                        {#                        <span class="addTitle">موبایل : </span><span class="addDet">//sms.cellNoToSMS//</span>#}
+                        <span class="addTitle">موبایل : </span><span class="addDet" dir="ltr">*****//sms.cellNoToSMS.substring(sms.cellNoToSMS.length,6)//</span>
+                        <span class="addTitle">ارسال : </span><span class="addDet">//sms.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</span>
+                        <span class="addTitle">متن پیام : </span><span class="addDet">//sms.msg//</span>
+                        <span class="addTitle">وضعیت : </span><span class="addDet">//sms.result//</span>
+                        <span class="addTitle">مشاهده : </span><span class="addDet">//sms.seenDate | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</span>
+                    </div>
+                </div>
+            </div>
+            <div style="padding: 15px;">
+                <div>
+                    <form name="frmSms">
+                        <md-input-container class="md-block" style="display: none;">
+                            <label for="">شماره یا شماره های تماس مثال : 0912**** - 091255854125</label>
+                            <input ng-required type="text" ng-model="sms.mobile">
+                        </md-input-container>
+                        {#                    <md-input-container class="md-block">#}
+                        {#                        <label for="">شماره یا شماره های تماس مثال : 0912**** - 091255854125</label>#}
+                        {#                        <textarea type="text" ng-model="sms.text"></textarea>#}
+                        {#                    </md-input-container>#}
+                        <div>
+                            <div style="font-size: 12px;    padding: 5px;    background-color: #e4e4e4;    border-radius: 10px;    padding-right: 20px;">
+                                <span> دریافت کننده های پیام کوتاه :</span>
+                                <span ng-repeat="phone in headerDet.phones track by $index" dir="ltr">
+                                    //phone//
+                                </span>
+                            </div>
+                            <div>
+
+                            </div>
+
+                        </div>
+                        <div layout="row">
+                            <span flex></span>
+                            <md-button
+                                    ng-disabled="frmSms.$invalid"
+                                    class="md-raised md-primary" ng-click="sendSms()">
+
+                                ارسال پیام
+
+                            </md-button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

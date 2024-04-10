@@ -1,0 +1,23 @@
+{% load translators %}
+
+<div class="conter-wrapper"  style="
+  border-top: none;
+  padding: 10px 5px;
+  padding-bottom: 0;
+  border-radius: 0;" ng-controller="CompanyProcessCtrl">
+
+    <style>
+        .pagination {
+            margin-bottom: 0;
+        }
+    </style>
+    <div id="divBpmn">
+{% include bpmn_table_template %}
+        </div>
+    <div id="divRec" style="display: none;">
+        {% include 'share/select-recievers/SelectRecievers.html' %}
+    </div>
+{% include bpmn_edit_modal %}
+{% include 'companyManagement/validateBpmn.html' %}
+    <br/>
+</div>

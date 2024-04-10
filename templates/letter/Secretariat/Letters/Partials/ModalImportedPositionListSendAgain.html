@@ -1,0 +1,73 @@
+{% load translators %}
+
+<div id="modal_select_imported_positions_send_again" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+
+                    انتخاب پرسنل
+                </h4>
+            </div>
+            <div class="modal-body">
+                <h1 class="md-title">
+                    لطفا یک یا چند پرسنل بعنوان دریافت کننده ی رونوشت را انتخاب نمایید
+                </h1>
+                <div ng-if="isLoading">
+                    <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                </div>
+                <div>
+                    {% load tables_tags %}
+                    {% tablePaginationSimple main_model_name="Members" table_search_watch_model_name="filterSendAgain.MembersTableSearch" table_go_to_page_func_name="membersTableGoToPage" table_handle_pagination_func_name="HandleMembersTablePagination" table_info_model_name="TableMembers" %}
+                    <table class="comp-export-select-tbl">
+                        <tbody>
+                        <tr ng-repeat="item in Members.results">
+                            <td>//item.profileName//
+                                <small>(//item.chartName//)</small>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-xs">
+                                    <a
+                                       ng-click="SelectPersonToSendAgain(item)">انتخاب</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <table class="comp-export-select-tbl">
+                        <tbody>
+                        <tr ng-repeat="item in SelectedMembers track by $index">
+                            <td>//item.profileName//
+                                <small>(//item.chartName//)</small>
+                            </td>
+                            <td>
+                                <input type="text" ng-model="item.hamesh">
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-xs">
+                                    <a class="btn btn-defaults"
+                                       ng-click="RemoveFromSelectedSendAgain($index)">حذف</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="SendItAgain()" ng-disabled="SelectedMembers.length == 0">ارسال</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>

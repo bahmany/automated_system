@@ -1,0 +1,133 @@
+<div ng-controller="KhoroojOldCtrl">
+
+
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+
+            <div flex>
+                <h2 class="md-toolbar-tools">مجوزهای خروج</h2>
+
+                <div layout="row">
+                    <input flex type="text" ng-model="searchStr"
+                           ng-model-options="{debounce: 500}"
+                           placeholder="جستجو در تمام فیلدهای حواله تحویل فروش"
+                           style="    height: 30px; font-size: 14px; padding: 3px;">
+                    <span flex="10"></span>
+
+                    <md-button class="md-button md-raised" ng-if="exists.first" ng-click="gotopage(exists.first)">اولین
+                    </md-button>
+                    <md-button class="md-button md-raised" ng-if="exists.previous" ng-click="gotopage(exists.previous)">
+                        قبلی
+                    </md-button>
+                    <md-button class="md-button md-raised" ng-if="exists.next" ng-click="gotopage(exists.next)">بعدی
+                    </md-button>
+                    <md-button class="md-button md-raised" ng-if="exists.last" ng-click="gotopage(exists.last)">آخرین
+                    </md-button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </md-toolbar>
+    <md-divider></md-divider>
+
+
+    <div layout="column">
+
+
+        {#            <div layout="row">#}
+        {#                <input flex type="text" ng-model="searchStr"#}
+        {#                       ng-model-options="{debounce: 500}"#}
+        {#                       placeholder="جستجو در تمام فیلدهای حواله تحویل فروش"#}
+        {#                       style="    height: 30px; font-size: 14px; padding: 3px;">#}
+        {#                <span flex="10"></span>#}
+        {##}
+        {#                <md-button class="md-button md-raised" ng-if="exists.first" ng-click="gotopage(exists.first)">اولین#}
+        {#                </md-button>#}
+        {#                <md-button class="md-button md-raised" ng-if="exists.previous" ng-click="gotopage(exists.previous)">#}
+        {#                    قبلی#}
+        {#                </md-button>#}
+        {#                <md-button class="md-button md-raised" ng-if="exists.next" ng-click="gotopage(exists.next)">بعدی#}
+        {#                </md-button>#}
+        {#                <md-button class="md-button md-raised" ng-if="exists.last" ng-click="gotopage(exists.last)">آخرین#}
+        {#                </md-button>#}
+        {#            </div>#}
+        <div layout-gt-sm="row" layout-padding="" style="    background-color: cadetblue;
+    color: white;">
+            <div flex-gt-sm>وضعیت</div>
+            <div flex-gt-sm>تعداد امضا</div>
+            <div flex-gt-sm>شماره حواله</div>
+            <div flex-gt-sm>نام شرکت</div>
+            <div flex-gt-sm>تاریخ صدور</div>
+            <div flex-gt-sm>جمع کل کیلو</div>
+        </div>
+        <div ng-repeat="item in exists.results"
+             ng-click=""
+             ui-sref="OldKhoroojDetails({khid:item.id})"
+             layout-padding=""
+             ng-class-odd="'odd'"
+             ng-class-even="'even'">
+            <div layout-gt-sm="row" style="    border: solid 1px #a2a2a2;">
+                <div flex-gt-sm layout="row">
+                    <div ng-class="{'saleOK':item.hahScan, 'saleNot': !item.hahScan, }">
+                        <md-tooltip>دارای اسکن</md-tooltip>
+                        //item.hahScan//
+                    </div>
+                    <div ng-class="{'saleOK':item.hasSms, 'saleNot': !item.hasSms, }">
+                        <md-tooltip>ارسال اس ام اس</md-tooltip>
+                        //item.hasSms//
+                    </div>
+                    <div ng-class="{'saleOK':item.readSms, 'saleNot': !item.readSms, }">
+                        <md-tooltip>مراجعه به لینک</md-tooltip>
+                        //item.readSms//
+                    </div>
+
+                </div>
+                <div flex-gt-sm style="font-weight: bold;font-size: 17px;color: blue;">
+                    //item.signCount//
+                </div>
+                <div flex-gt-sm>
+                    //item.item.VchNum//
+                <span ng-show="item.item.itIsBatel" style="color: darkred">باطل شده</span>
+                </div>
+                <div flex-gt-sm>//item.item.CntrprtTitle//</div>
+                <div flex-gt-sm>//item.item.VchDate//</div>
+                <div flex-gt-sm style="    font-size: 16px;    font-weight: bold;    color: #18a689;">
+                    //item.item.TotalQty//
+                </div>
+            </div>
+            <div layout-gt-sm="row" style="margin: 0;
+    padding: 0;
+    font-size: 11px;    border: solid 1px #a2a2a2;
+    border-top: none;
+    padding: 5px 7px;">
+                <div flex-gt-sm><span>راننده : </span><span>//item.item.Driver//</span></div>
+                <div flex-gt-sm><span>باربری : </span><span>//item.item.TransCmpName//</span></div>
+                <div flex-gt-sm><span>موبایل : </span><span>//item.item.LicencNo//</span></div>
+                <div flex-gt-sm><span>پلاک : </span><span>//item.item.CarNumber//</span></div>
+                <div flex-gt-sm><span>بارنامه : </span><span>//item.item.RealTransNo//</span></div>
+                <div flex-gt-sm><span>از : </span><span>//item.item.StockName//</span></div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    {##}
+    {#    <table#}
+    {#            class="table table-bordered bordered table-striped table-condensed datatable"#}
+    {#            ui-jq="dataTable"#}
+    {#            ui-options="dataTableOpt"#}
+    {#            id="table2">#}
+    {##}
+    {#    </table>#}
+
+</div>

@@ -1,0 +1,79 @@
+{% load translators %}
+<md-content
+        class="shadower col-md-6 bpms-form-container"
+        id="BAMNewCtrl"
+        style="float: none;margin: 0 auto;"
+
+            ng-controller="BAMNewCtrl">
+    <div layout="row" layout-align="start center" style="color: #A5A5A5;">
+        <h3> //'شاخص جدید' | translate//</h3>
+        <span flex></span>
+    </div>
+    <md-divider></md-divider>
+    <br/>
+                    <form novalidate action="">
+                        <input name="name" class="form-control" type="text" ng-model="bam.name"
+                               placeholder="{{ 'عنوان شاخص'|translate }}...">
+                        <br/>
+                        <select class="form-control" name="bpmn_id" ng-model="bam.bpmn_id" ng-change="getSteps()"
+                                ng-options="obj.id as obj.name for obj in bpmns">
+                            <option value="">{{ 'انتخاب فرایند'|translate }}...</option>
+                        </select>
+                        <br/>
+                        <select class="form-control" name="step_id" ng-model="bam.step_id"
+                                ng-options="obj.id as obj.name for obj in steps">
+                            <option value="0">{{ 'تمامی فعالیت ها'|translate }}</option>
+                        </select>
+                         <br/>
+                        <select class="form-control" name="time_period" ng-model="bam.time_period">
+                            <option value="0">{{ 'تمام مدت'|translate }}</option>
+                            <option value="7">{{ 'هفته گذشته'|translate }}</option>
+                            <option value="31">{{ 'ماه گذشته'|translate }}</option>
+                            <option value="93">{{ '۳ ماه گذشته'|translate }}</option>
+                            <option value="183">{{ '۶ ماه گذشته'|translate }}</option>
+                            <option value="365">{{ 'سال گذشته'|translate }}</option>
+                        </select>
+                        <br/>
+                        <select class="form-control" name="done_or_run" ng-model="bam.don_or_run">
+                            <option value="">{{ 'انتخاب محدوده'|translate }}...</option>
+                            <option value="1">{{ 'فعالیت های جاری'|translate }}</option>
+                            <option value="0">{{ 'فعالیت های پایان یافته'|translate }}</option>
+                        </select>
+                        <br/>
+                          <input name="name" class="form-control" type="number" ng-model="bam.min_mess"
+                               placeholder="{{ 'حداقل مقدار شاخص'|translate }}">
+                        <br/>
+                          <input name="name" class="form-control" type="number" ng-model="bam.start_warn"
+                               placeholder="{{ 'شروع هشدار'|translate }}">
+                        <br/>
+                          <input name="name" class="form-control" type="text" ng-model="bam.start_danger"
+                               placeholder="{{ 'شروع بحران'|translate }}">
+                        <br/>
+
+                    <button type="button" class="btn btn-danger fa fa-times pull-right"
+                            ng-click="cancelNewBAM()"
+                            style="margin-top: -8px;" onclick="$('.lp-inbox-item').removeClass('active');"></button>
+                    <button type="button" class="btn btn-success fa fa-save pull-right"
+                            ng-click="saveIt()"
+                            style="margin-top: -8px;" onclick="$('.lp-inbox-item').removeClass('active');"
+                            tooltip="{{ 'create'|translate }}"></button>
+
+                </form>
+
+</md-content>
+<style>
+
+                    {#                    @media print {#}
+                    {#                        * {#}
+                    {#                            display: none ;#}
+                    {#                        }#}
+                    {##}
+                    {#                        #DoLunchedProcessCtrl, #DoLunchedProcessCtrl * {#}
+                    {#                            display: block;#}
+                    {#                        }#}
+                    {#                    }#}
+
+                    label.lbamflabel {
+                        display: none;
+                    }
+                </style>

@@ -1,0 +1,91 @@
+<h4>تضمین کیفیت محصول و خدمات پس از فروش</h4>
+<hr>
+<div>
+    <div layout="column">
+
+
+        <form action="" name="form_frm24">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">شرح محصول یا خدمت قابل ارایه</label>
+                        <input type="text" ng-model="provider.frm24.sharh" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">مدت گارانتی ماه</label>
+                        <input type="text" ng-model="provider.frm24.garant">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">مدت وارانتی ماه</label>
+                        <input type="text" ng-model="provider.frm24.waranty">
+                    </md-input-container>
+                </div>
+
+
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نمونه های ارایه شده به مشتریان قبلی</label>
+                        <input type="text" ng-model="provider.frm24.nemooneh" required>
+                    </md-input-container>
+                </div>
+
+            </div>
+
+
+
+            <div layout-gt-xs="row">
+                <span flex></span>
+                <md-button ng-click="addTofrm('24')"
+                           ng-disabled="form_frm24.$invalid"
+                           class="md-raised md-default">
+                    اضافه به لیست
+                </md-button>
+            </div>
+
+        </form>
+
+        <div>
+            <table class="sp-table">
+                <thead>
+                <tr>
+                    <th >شرح</th>
+                    <th >مدت گارانتی</th>
+                    <th >مدت وارانتی</th>
+                    <th >نمون</th>
+                    <th >عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.frm24_list">
+                    <td >//it.sharh//</td>
+                    <td >//it.garant//</td>
+                    <td >//it.waranty//</td>
+                    <td >//it.nemooneh//</td>
+                    <td >
+                        <md-button class="md-primary md-default" ng-click="removefrm('24',$index)">حذف</md-button>
+                    </td>
+                </tr>
+
+
+                <tr ng-if="provider.frm24_list.length == 0">
+                    <td colspan="5">
+                        لیست   خالی است
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>

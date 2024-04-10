@@ -1,0 +1,19 @@
+<div ng-controller="CaToDavayereTolidiAfterCalcCtrl">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h4>
+                نتایج نهایی پس از محاسبه
+            </h4>
+
+        </div>
+    </md-toolbar>
+    <md-list>
+        <md-list-item ng-repeat="item in calcList.details.ResultOfSums">
+            <div class="md-list-item-text">
+                <span flex>//item.name// : </span>
+                <strong flex style="font-weight: bold">//item.value|number//</strong>
+            </div>
+        </md-list-item>
+</div>
+
+</div>

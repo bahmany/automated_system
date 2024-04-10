@@ -1,0 +1,37 @@
+<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+            md-component-id="left" hide-print
+            style="height: 850px;"
+            md-is-locked-open="$mdMedia('gt-sm')">
+    <header>
+        <a class="docs-logo" href="/reg/#/home/profile/introduction" style="  background-color: white;
+  margin: 12px;
+  padding: 12px;
+  border-radius: 15px;">
+            <img src="{{ logo }}" alt="" style="padding: 12px;
+  width: 100%;
+  height: initial;"/>
+            <h1 class="docs-logotype md-heading">
+
+                {{ companyName }}
+
+            </h1>
+        </a>
+    </header>
+
+    <ul class="skip-links">
+        <li class="md-whiteframe-z2">
+            <md-button ng-click="focusMainContent($event)" href="#">Skip to content</md-button>
+        </li>
+    </ul>
+
+    <md-content flex role="navigation" layout-padding>
+        <ul class="docs-menu">
+            <li ng-click="Select(item)" ng-repeat="item in leftSideMenu"
+                ng-class="{'left-side-bar-selected':item.selected}">
+                مرحله
+                //$index+1// :
+                //item.name//
+            </li>
+        </ul>
+    </md-content>
+</md-sidenav>

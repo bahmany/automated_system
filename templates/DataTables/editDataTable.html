@@ -1,0 +1,221 @@
+{% load translators %}
+<div flex ng-controller="EditDataTablesCtrl">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            ایجاد جدول جدید
+        </div>
+    </md-toolbar>
+    <form name="frmNewStat">
+        <div class="shadower">
+            <md-input-container class="md-block">
+                <label for="">نام جدول</label>
+                <input type="text" ng-model="dataTable.name" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">توضیحات</label>
+                <input type="text" ng-model="dataTable.desc" ng-required="true">
+            </md-input-container>
+            <div layout="column" layout-padding layout-margin style="background-color: #e8e8e8"
+                 ng-repeat="item in dataTable.fields.list track by $index ">
+                <div>
+                    <input type="number" ng-model="item.sort" placeholder="Sort order">
+
+                    <span flex></span>
+                    <md-button class="md-raised md-primary"
+                               ng-click="RemoveField($index, item)">حذف فیلد
+                    </md-button>
+                    {#                <md-button class="md-raised md-warn" ng-disabled="frmNewStat.$invalid" ng-click="publishTemplate()">#}
+                    {#                    انتشار#}
+                    {#                </md-button>#}
+
+                </div>
+                <md-input-container class="md-block">
+                    <label for="">نام فیلد</label>
+                    <input type="text" ng-model="item.fieldname" ng-required="true">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label for="">نوع فیلد</label>
+                    <md-select ng-model="item.dataType" ng-required="true">
+                        <md-option value="string">حروف</md-option>
+                        <md-option value="int">عدد</md-option>
+                        <md-option value="date">تاریخ</md-option>
+                        <md-option value="time">ساعت</md-option>
+                        <md-option value="lookup">جستجویی</md-option>
+                    </md-select>
+                </md-input-container>
+                <div>
+                    <md-input-container
+                            ng-if="item.dataType == 'calc'"
+                            class="md-block">
+                        <label for="">فرمول محاسباتی</label>
+                        <input type="text" ng-model="item.calc_formula">
+                    </md-input-container>
+                    <md-input-container class="md-block" ng-if="item.dataType == 'lookup'">
+                        <label for="">نوع جستجو</label>
+                        <md-select ng-model="item.lookupType">
+                            <md-option value="static">داده های ثابت</md-option>
+                            <md-option value="datatables">فراخوانی از جداول داده ها</md-option>
+                            <md-option value="pools">فراخوانی از ارتباطات</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container
+                            ng-if="item.dataType == 'lookup' && item.lookupType=='static'"
+                            class="md-block">
+                        <label for="">مقادیر ثابت لطفا با اینتر از یکدیگر جدا نمایید</label>
+                        <textarea ng-model="item.lookup_static_items"></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block"
+                                        ng-if="item.dataType == 'lookup' && item.lookupType=='datatables'">
+                        <label for="">نام جدول</label>
+                        <input type="text" ng-model="item.lookup_datatable_name" ng-required="true">
+                    </md-input-container>
+                    <md-input-container class="md-block"
+                                        ng-if="item.dataType == 'lookup' && item.lookupType=='datatables'">
+                        <label for="">نام فیلد ها - لطفا با اینتر از یکدیگر جدا نمایید </label>
+                        <textarea type="text" ng-model="item.lookup_datatable_displayfieldnames"
+                                  ng-required="true"></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block"
+                                        ng-if="item.dataType == 'lookup' && item.lookupType=='datatables'">
+                        <label for="">فیلد برگشتی</label>
+                        <input type="text" ng-model="item.lookup_datatable_valuefield" ng-required="true">
+                    </md-input-container>
+                    <md-input-container class="md-block"
+                                        ng-if="item.dataType == 'lookup' && item.lookupType=='pools'">
+                        <label for="">کانکشن ارتباط</label>
+                        <input type="text" ng-model="item.lookup_pools_connectionname" ng-required="true">
+                    </md-input-container>
+                    <md-input-container class="md-block"
+                                        ng-if="item.dataType == 'lookup' && item.lookupType=='pools'">
+                        <label for="">نام پول ارتباطی نمایشی</label>
+                        <input type="text" ng-model="item.lookup_pools_display_poolname" ng-required="true">
+                    </md-input-container>
+                    <md-input-container class="md-block"
+                                        ng-if="item.dataType == 'lookup' && item.lookupType=='pools'">
+                        <label for="">کانکشن ارتباط مقداری</label>
+                        <input type="text" ng-model="item.lookup_pools_connectionname" ng-required="true">
+                    </md-input-container>
+                    <md-input-container class="md-block"
+                                        ng-if="item.dataType == 'lookup' && item.lookupType=='pools'">
+                        <label for="">نام پول ارتباطی مقداری</label>
+                        <input type="text" ng-model="item.lookup_pools_value_poolname" ng-required="true">
+                    </md-input-container>
+                    <md-input-container class="md-block" ng-if="item.dataType == 'string' || item.dataType == 'int'">
+                        <label for="">کمترین طول رشته</label>
+                        <input type="number" ng-model="item.min" >
+                    </md-input-container>
+                    <md-input-container class="md-block" ng-if="item.dataType == 'string' || item.dataType == 'int'">
+                        <label for="">بیشترین طول رشته</label>
+                        <input type="number" ng-model="item.max" >
+                    </md-input-container>
+                    <md-input-container class="md-block"
+                                        ng-if="!(item.dataType == 'lookup' || item.dataType == 'calc')">
+                        <label for="">پیش فرض</label>
+                        <input type="number" ng-model="item.default" >
+                    </md-input-container>
+                    <md-checkbox ng-model="item.require" aria-label="Checkbox 1">
+                        خالی رها نشود
+                    </md-checkbox>
+                    <md-checkbox ng-model="item.isLimited" aria-label="Checkbox 99 ">
+                        دارای مجوز دسترسی باشد
+                    </md-checkbox>
+
+
+                    <md-list flex ng-if="item.isLimited">
+                        <md-list-item>
+                            اعضای دارای مجوز ویرایش
+                        </md-list-item>
+                        <md-list-item ng-repeat="it in item.limitedUsers track by $index" ng-click="null">
+                            <img class="md-avatar" ng-src="//it.avatar//">
+
+                            <div>
+                                <md-checkbox ng-model="it.canEdit" aria-label="Checkbox 1">
+                                    مجوز ثبت
+                                    - //it.profileName// (//it.chartName//)
+                                </md-checkbox>
+
+                            </div>
+
+                            <span flex=""></span>
+                            <md-button class="md-icon-button" ng-click="removeUser($parent.$index,item, $index,it)">
+                                <md-icon md-font-icon="fa fa-trash"></md-icon>
+                            </md-button>
+                            <md-divider></md-divider>
+
+                        </md-list-item>
+
+                        <md-list-item>
+                            <div>
+
+                                {% load autocompletePerson_tags %}
+                                {% AutocompleteMemberTag modelname="person" %}
+                            </div>
+                            <div>
+                                <md-button class="md-raised" ng-click="addTo($index,item, person)">
+                                    اضافه به اشتراک
+                                </md-button>
+                            </div>
+
+
+                        </md-list-item>
+                    </md-list>
+
+
+                </div>
+
+
+            </div>
+
+
+            <md-toolbar class="md-hue-1">
+                <div class="md-toolbar-tools">
+                    <span flex></span>
+                    <md-button class="md-raised md-primary"
+
+                               ng-click="AddNewField()">ایجاد فیلد جدید
+                    </md-button>
+                    {#                <md-button class="md-raised md-warn" ng-disabled="frmNewStat.$invalid" ng-click="publishTemplate()">#}
+                    {#                    انتشار#}
+                    {#                </md-button>#}
+
+                </div>
+            </md-toolbar>
+
+            <md-checkbox ng-model="dataTable.schedule.active" aria-label="Checkbox 1">
+دوره اخطار ثبت
+            </md-checkbox>
+
+            <md-input-container class="md-block" ng-if="dataTable.schedule.active">
+                <label for="">دقیقه</label>
+                <input type="number" ng-model="dataTable.schedule.minutes">
+            </md-input-container>
+
+{#            <md-checkbox ng-model="item.isAutomatic" aria-label="Checkbox 1">#}
+{#اجرای خودکار#}
+{#            </md-checkbox>#}
+{##}
+{#            <md-input-container class="md-block" ng-if="item.isAutomatic">#}
+{#                <label for="">دستور</label>#}
+{#                <textarea ng-model="item.automaticSctript"  style="direction: ltr!important;"></textarea>#}
+{#            </md-input-container>#}
+
+
+
+        </div>
+        <md-toolbar class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span flex></span>
+                <md-button class="md-raised md-primary"
+                           type="submit"
+                           ng-disabled="frmNewStat.$invalid"
+                           ng-click="post()">ذخیره
+                </md-button>
+                {#                <md-button class="md-raised md-warn" ng-disabled="frmNewStat.$invalid" ng-click="publishTemplate()">#}
+                {#                    انتشار#}
+                {#                </md-button>#}
+
+            </div>
+        </md-toolbar>
+    </form>
+
+</div>

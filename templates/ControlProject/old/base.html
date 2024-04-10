@@ -1,0 +1,45 @@
+<div ng-controller="ControlProjectBaseCtrl" layout="row">
+    <div flex-gt-xs="30">
+        <md-toolbar layout-gt-xs="row" class="md-hue-4">
+            <div class="md-toolbar-tools">
+                <span>کنترل پروژه</span>
+                <div flex></div>
+
+
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <md-list flex>
+                <md-subheader class="md-no-sticky subheader-inbox">
+                    ابزارها
+                </md-subheader>
+            </md-list>
+            <md-divider></md-divider>
+            <md-list-item class="md-1-line"
+                          ui-sref="Year">
+                <p>
+                    دوره های استراتژیک
+                </p>
+            </md-list-item>
+
+            <md-list-item class="md-1-line" ui-sref="Income">
+                <p>
+
+                    انواع منابع
+
+
+                </p>
+            </md-list-item>
+
+            <md-list-item class="md-1-line"
+                          ui-sref="Outcome">
+                <p>
+                    انواع مصارف </p>
+            </md-list-item>
+
+        </div>
+    </div>
+    <div flex layout="row" layout-align="center start">
+        <ui-view flex-gt-sm="95"></ui-view>
+    </div>
+</div>

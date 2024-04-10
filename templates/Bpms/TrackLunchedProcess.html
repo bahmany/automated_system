@@ -1,0 +1,72 @@
+{% load translators %}
+
+<link rel="stylesheet" href="/static/bower_components/angular-form-gen/angular-form-gen.min.css"/>
+<link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/css/diagram-js.css"/>
+<link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/vendor/bpmn-font/css/bpmn-embedded.css"/>
+<link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/css/app.css"/>
+
+
+<md-content
+        class="shadower  bpms-diagram-container"
+        id="TrackLunchedProcessCtrl"
+        style="float: none;margin: 0 auto;"
+        ng-controller="TrackLunchedProcessCtrl">
+    <div layout="row" layout-align="start center" style="color: #A5A5A5;">
+        <h3>{{ 'Diagram'|translate }}</h3>
+        <span flex></span>
+        <h6 style="text-align: left;line-height: 14px;">
+
+            <span style="color:#5cb85c">{{ 'grean'|translate }} {{ 'doneSteps'|translate }}</span> - <span
+                style="color:#03a9f5">{{ 'blue'|translate }} {{ 'yourSteps'|translate }}</span> - <span
+                style="color:#e4413a">{{ 'red'|translate }} {{ 'currentSteps'|translate }}</span>
+            <button class="btn btn-danger fa fa-times pull-right" ui-sref="lunchedArchive()"
+                    style="margin-top: -8px;"></button>
+            {#            <small style="font-weight: normal; font-size: 11px;">(//lunchedPData.chartTitle//)</small>#}
+        </h6>
+
+    </div>
+    <md-divider></md-divider>
+    <div style="display: none;height: 495px;" id="bpmn-viewer"></div>
+
+</md-content>
+<style>
+    .finished:not(.djs-connection) .djs-visual > :nth-child(1) {
+        fill: #5cb85c !important; /* color elements as green */
+    {#  stroke: #5cb85c !important; /* color elements as green */#}
+
+    }
+
+    .djs-element:not(.djs-connection) .djs-visual > rect:nth-child(1) {
+        stroke: #000000 !important;
+
+    }
+
+    .djs-element:not(.finished) .djs-visual > :nth-child(1) {
+        fill: #FAFAFA !important;
+    }
+
+    .thisstep:not(.djs-connection) .djs-visual > :nth-child(1) {
+        fill: #3ca2e0 !important; /* color elements as green */
+    {#  stroke: #3ca2e0 !important; /* color elements as green */#}
+    }
+
+    .currentstep:not(.djs-connection) .djs-visual > :nth-child(1) {
+        fill: #e4413a !important; /* color elements as green */
+    {#  stroke: #3ca2e0 !important; /* color elements as green */#}
+    }
+
+    .djs-element:not(.finished) .djs-visual > text:nth-child(1) {
+        fill: #000000 !important;
+    }
+
+    .djs-element:not(.finished) .djs-visual > path:nth-child(1) {
+        fill: inherit !important;
+    }
+
+    .form-control {
+        height: 43px;
+    }
+</style>
+<script src="/static/bower_components/bpmn-modeler2/BpmnViewerApp.js"></script>
+<script src="/static/bower_components/bpmn-modeler2/bpmn-moddle.js"></script>
+

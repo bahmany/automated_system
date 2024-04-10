@@ -1,0 +1,13 @@
+{% load translators %}
+<div ng-controller="baseController">
+    <div style="padding: 15px; margin: 15px;">
+        <a ui-sref="customers-register">Register Customer</a> |
+        <a ui-sref="billing-register">Register Billing Strategy</a> |
+        <a ui-sref="payment-register">Register Payment</a> |
+        <a ui-sref="languages-register">Register Dict</a> |
+    </div>
+    <div>
+        <ui-view></ui-view>
+
+    </div>
+</div>

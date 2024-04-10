@@ -1,0 +1,49 @@
+<div ng-controller="cogReportCheckCtrl">
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout-gt-xs="row">
+            <h4>
+                کنترل مراحل
+            </h4>
+
+            <span flex></span>
+
+            <md-button loading="در حال محاسبه ..."
+                       notloading="محاسبه" disableonrequest
+                       class="md-raised" ng-click="getCheck()"></md-button>
+
+
+        </div>
+
+
+    </md-toolbar>
+
+    <div class="spacer">
+
+        <table class="check-table table table-bordered table-striped mini" >
+            <tbody>
+            <tr> <td>دستمزد مستقیم</td> <td><i class="fa" ng-class="{'fa-check':check.dastmozde_mostaghim, 'fa-info':!(check.dastmozde_mostaghim)}"></i></td>  </tr>
+            <tr> <td>گزارش برنامه ریزی</td> <td><i class="fa" ng-class="{'fa-check':check.gozareshe_barnamerizi, 'fa-info':!(check.gozareshe_barnamerizi)}"></i></td>  </tr>
+            <tr> <td>مواد مستقیم</td> <td><i class="fa" ng-class="{'fa-check':check.mavade_mostaghim, 'fa-info':!(check.mavade_mostaghim)}"></i></td>  </tr>
+            <tr> <td>مستقیم تولید</td> <td><i class="fa" ng-class="{'fa-check':check.mostaghime_tolidi, 'fa-info':!(check.mostaghime_tolidi)}"></i></td>  </tr>
+            <tr> <td>سربار</td> <td><i class="fa" ng-class="{'fa-check':check.sarbar, 'fa-info':!(check.sarbar)}"></i></td>  </tr>
+            <tr> <td>تولیدی</td> <td><i class="fa" ng-class="{'fa-check':check.tolidi, 'fa-info':!(check.tolidi)}"></i></td>  </tr>
+            <tr> <td>گزارش تسهیم</td> <td><i class="fa" ng-class="{'fa-check':check.daryafte_gozareshe_tashim, 'fa-info':!(check.daryafte_gozareshe_tashim)}"></i></td>  </tr>
+            <tr> <td>گزارش سهم بری</td> <td><i class="fa" ng-class="{'fa-check':check.daryafte_gozareshe_sahmabari, 'fa-info':!(check.daryafte_gozareshe_sahmabari)}"></i></td>  </tr>
+            <tr> <td>انتقال انبار</td> <td><i class="fa" ng-class="{'fa-check':check.aya_enteghale_anbar_soorat_gerefteh, 'fa-info':!(check.aya_enteghale_anbar_soorat_gerefteh)}"></i></td>  </tr>
+            <tr> <td>ابتدای دوره ۷۷</td> <td><i class="fa" ng-class="{'fa-check':check.aya_mandeh_ebtedaye_doreh_77_vojood_darad, 'fa-info':!(check.aya_mandeh_ebtedaye_doreh_77_vojood_darad)}"></i></td>  </tr>
+            <tr> <td>محاسبه ۷۷</td> <td><i class="fa" ng-class="{'fa-check':check.mohasebeh_gardesh_77, 'fa-info':!(check.mohasebeh_gardesh_77)}"></i></td>  </tr>
+            <tr> <td>ابتدای دوره ۸۸</td> <td><i class="fa" ng-class="{'fa-check':check.aya_mandeh_ebtedaye_doreh_88_vojood_darad, 'fa-info':!(check.aya_mandeh_ebtedaye_doreh_88_vojood_darad)}"></i></td>  </tr>
+            <tr> <td>محاسبه ۸۸</td> <td><i class="fa" ng-class="{'fa-check':check.mohasebeh_gardesh_88, 'fa-info':!(check.mohasebeh_gardesh_88)}"></i></td>  </tr>
+            <tr> <td>ابتدای دوره کارمزدی کویل</td> <td><i class="fa" ng-class="{'fa-check':check.aya_mandeh_ebtedaye_doreh_75_vojood_darad, 'fa-info':!(check.aya_mandeh_ebtedaye_doreh_75_vojood_darad)}"></i></td>  </tr>
+            <tr> <td>محاسبه کویل کارمزدی</td> <td><i class="fa" ng-class="{'fa-check':check.mohasebeh_gardesh_75, 'fa-info':!(check.mohasebeh_gardesh_75)}"></i></td>  </tr>
+            <tr> <td>ابتدای دوره کارمزدی شیت</td> <td><i class="fa" ng-class="{'fa-check':check.aya_mandeh_ebtedaye_doreh_85_vojood_darad, 'fa-info':!(check.aya_mandeh_ebtedaye_doreh_85_vojood_darad)}"></i></td>  </tr>
+            <tr> <td>محاسبه شیت</td> <td><i class="fa" ng-class="{'fa-check':check.mohasebeh_gardesh_85, 'fa-info':!(check.mohasebeh_gardesh_85)}"></i></td>  </tr>
+            <tr> <td>ابتدای دوره چاپ و لاک</td> <td><i class="fa" ng-class="{'fa-check':check.aya_mandeh_ebtedaye_doreh_89_vojood_darad, 'fa-info':!(check.aya_mandeh_ebtedaye_doreh_89_vojood_darad)}"></i></td>  </tr>
+            <tr> <td>محاسبه چاپ و لاک</td> <td><i class="fa" ng-class="{'fa-check':check.mohasebeh_gardesh_89, 'fa-info':!(check.mohasebeh_gardesh_89)}"></i></td>  </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>

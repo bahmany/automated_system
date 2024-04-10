@@ -1,0 +1,332 @@
+{% load translators %}
+{% load staticfiles %}
+{% load sekizai_tags %}
+{% load i18n %}
+<article class="art-total">
+    <header role="heading" style="background-color: #dbd7dc">
+        <span class="widget-icon" style="float: left; padding: 6px;"> <i class="fa fa-check"></i> </span>
+
+        <h2>سامانه جمع آوری اطلاعات فردی</h2>
+    </header>
+
+    <form class="smart-form">
+        <section>
+
+            <div class="alert alert-warning fade in">
+                <button data-dismiss="alert" class="close">
+                    ×
+                </button>
+                <i class="fa-fw fa fa-warning"></i>
+                <strong>مهم : </strong>
+
+                ثبت نام کننده محترم لطفا از دکمه
+                Back
+                مرورگر خود استفاده نکنید
+                چنانچه از این دکمه استفاده نمایید تمام اطلاعات وارد شما حذف میشود
+                جهت رفتن به مراحل قبل از دکمه ی مرحله ی قبلی در انتهای فرم استفاده نمایید
+
+                <br>
+                ضمنا امکان ویرایش همکنون وجود نداشته و تا یک ماه دیگر به سیستم اضافه خواهد شد
+            </div>
+        </section>
+        <section>
+            {% include "dms/Person/Estekhdam/Step0Sharayet.html" %}
+        </section>
+
+        <section>
+            {% include "dms/Person/Estekhdam/Step0Help.html" %}
+        </section>
+
+
+
+        <div class="div-step0">
+            <h3>
+                اولین قدم :
+                ثبت نام در سامانه
+            </h3>
+            <br>
+            {% include "dms/Person/Estekhdam/Step0.html" %}
+            <div class="step-footer">
+                <div class="row">
+                    <button class="btn btn-info next"
+                            ng-click="CheckForRegisteredBefore(Estekhdam)">مرحله بعدی
+                        <i dir="ltr" class="fa  fa-check-square-o"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="div-step1">
+            <h3>
+                دومین قدم :
+                تکمیل اطلاعات شخصی
+            </h3>
+            <br>
+            {% include "dms/Person/Estekhdam/Step1.html" %}
+            <div class="step-footer">
+                <div class="row">
+
+                    <a class="btn btn-info next"
+                       ng-click="CheckValidationOfStep1(Estekhdam)">مرحله بعدی
+                        <i dir="ltr" class="fa  fa-check-square-o"></i>
+                    </a>
+
+                    <a class="btn btn-info perv" ng-click="HandleStep(0);">مرحله قبلی
+
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="div-step2">
+            <h3>
+                سومین قدم :
+                تکمیل اطلاعات تحصیلی
+            </h3>
+            <br>
+            {% include "dms/Person/Estekhdam/Step2.html" %}
+            <div class="step-footer">
+                <div class="row">
+
+                    <button class="btn btn-info next"
+                            ng-click="CheckValidationOfStep2(Estekhdam)"> مرحله بعدی
+                        <i dir="ltr" class="fa  fa-check-square-o"></i>
+                    </button>
+
+                    <button class="btn btn-info perv" ng-click="HandleStep(1)">مرحله قبلی
+
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="div-step3">
+            <h3>
+                چهارمین قدم :
+                تکمیل اطلاعات زبان های خارجی
+            </h3>
+            <br>
+            {% include "dms/Person/Estekhdam/Step3.html" %}
+            <div class="step-footer">
+                <div class="row">
+
+                    <button class="btn btn-info next"
+                            ng-click="HandleStep(4)">مرحله بعدی
+                        <i dir="ltr" class="fa  fa-check-square-o"></i>
+                    </button>
+
+                    <button class="btn btn-info perv" ng-click="HandleStep(2)">مرحله قبلی
+
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="div-step4">
+            <h3>
+                پنجمین قدم :
+                تکمیل اطلاعات دوره های آموزشی
+            </h3>
+            <br>
+            {% include "dms/Person/Estekhdam/Step4.html" %}
+            <div class="step-footer">
+                <div class="row">
+
+                    <button class="btn btn-info next"
+                            ng-click="HandleStep(5)">مرحله بعدی
+                        <i dir="ltr" class="fa  fa-check-square-o"></i>
+                    </button>
+
+                    <button class="btn btn-info perv" ng-click="HandleStep(3)">مرحله قبلی
+
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="div-step5">
+            <h3>
+                ششمین قدم :
+                تکمیل مهارت های تجربی
+            </h3>
+            <br>
+            {% include "dms/Person/Estekhdam/Step5.html" %}
+            <div class="step-footer">
+                <div class="row">
+
+                    <button class="btn btn-info next"
+                            ng-click="HandleStep(6)">مرحله بعدی
+                        <i dir="ltr" class="fa  fa-check-square-o"></i>
+                    </button>
+
+                    <button class="btn btn-info perv" ng-click="HandleStep(4)">مرحله قبلی
+
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="div-step6">
+            <h3>
+                هفتمین قدم :
+                تکمیل مهارت های نرم افزاری
+            </h3>
+            <br>
+            {% include "dms/Person/Estekhdam/Step6.html" %}
+            <div class="step-footer">
+                <div class="row">
+
+                    <button class="btn btn-info next"
+                            ng-click="HandleStep(7)">مرحله بعدی
+                        <i dir="ltr" class="fa  fa-check-square-o"></i>
+                    </button>
+
+                    <button class="btn btn-info perv" ng-click="HandleStep(5)">مرحله قبلی
+
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="div-step7">
+            <h3>
+                هشتمین قدم :
+                تکمیل سوابق شغلی
+            </h3>
+            <br>
+            {% include "dms/Person/Estekhdam/Step7.html" %}
+            <div class="step-footer">
+                <div class="row">
+
+                    <button class="btn btn-info next"
+                            ng-click="HandleStep(8)">مرحله بعدی
+                        <i dir="ltr" class="fa  fa-check-square-o"></i>
+                    </button>
+
+                    <button class="btn btn-info perv" ng-click="HandleStep(6)">مرحله قبلی
+
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="div-step8">
+            <h3>
+                نهمین قدم :
+                تکمیل فرم درخواست همکاری
+            </h3>
+            <br>
+            {% include "dms/Person/Estekhdam/Step8.html" %}
+            <div class="step-footer">
+                <div class="row">
+
+                    <button class="btn btn-info next"
+                            ng-click="CheckStep8()">مرحله بعدی
+                        <i dir="ltr" class="fa  fa-check-square-o"></i>
+                    </button>
+
+                    <button class="btn btn-info perv" ng-click="HandleStep(7)">مرحله قبلی
+
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="div-step9">
+            <h3>
+                دهمین قدم :
+                آپلود عکس و رزومه
+            </h3>
+            <br>
+            {% include "dms/Person/Estekhdam/Step9.html" %}
+            <div class="step-footer">
+                <div class="row">
+
+                    <button class="btn btn-info next"
+                            ng-click="PreparingDataToSend()">پایان و ارسال اطلاعات
+                        <i dir="ltr" class="fa  fa-check-square-o"></i>
+                    </button>
+
+                    <button class="btn btn-info perv" ng-click="HandleStep(8)">مرحله قبلی
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+</article>
+
+{% addtoblock "css_script" %}
+    <style>
+        .div-step0 {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .art-total {
+            border: solid 1px #9d9d9d;
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .art-total header h2 {
+            margin: 0;
+            padding: 5px;
+        }
+
+        h3 {
+            font-family: Yekan;
+            border-bottom: 3px solid #b8b8b8;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: #00097a;
+
+        }
+
+        .step-footer {
+            border-top: 3px solid #b8b8b8;
+            margin-top: 15px;
+            padding-top: 12px;
+            margin-bottom: 50px;
+        }
+
+        .next {
+            float: left !important;
+            margin-left: 22px;
+            margin-right: 22px;
+
+        }
+
+        .perv {
+            float: right !important;
+            margin-left: 22px;
+            margin-right: 22px;
+        }
+
+        form div fieldset {
+            background-color: transparent !important;
+        }
+
+        .smart-form select.input-sm {
+            line-height: normal !important;
+            padding-top: 0px;
+
+        }
+
+        .clickSection:hover {
+            cursor: pointer;
+            background-color: #dcf2f7;
+        }
+
+    </style>
+
+{% endaddtoblock %}

@@ -1,0 +1,38 @@
+{% load translators %}
+<div ng-controller="forgetCtrl" class="reg_fist_main_container register">
+    <h2>فراموشی رمز عبور</h2>
+    <hr>
+    <div class="row" id="alert-box">
+
+    </div>
+    <div>
+        <div ng-if="successSend">
+            ایمیلی برای شما ارسال شد لطفا تا قبل از انقضا به آن مراجعه نمایید - ممکن ایمیل مورد نظر در قسمت spam ها ذخیره شود
+        </div>
+        <form role="form" name="forgetpassfrm" ng-if="!(successSend)">
+            {% csrf_token %}
+            <md-input-container class="md-block">
+                <label for="">ایمیل یا نام کاربری</label>
+                <input type="text" ng-model="forget.name" name="name" id="name" required>
+            </md-input-container>
+            <div layout="row">
+                {{ form.captcha }}
+
+                <a class="btn" ng-click="refreshCaptcha()">
+                    <i class="fa fa-refresh"></i>
+                </a>
+                {#            {{ form.captcha }}#}
+                <div flex></div>
+                <span flex></span>
+                <span ng-if="wait">لطفا صبر کنید - در حال ارسال ایمیل</span>
+                <md-button ng-if="!(wait)" class="md-raised md-primary" ng-click="forgetpass($event)"
+                           ng-disabled="forgetpassfrm.$invalid">
+                    ارسال لینک تغییر رمز عبور
+                </md-button>
+
+            </div>
+
+
+        </form>
+    </div>
+</div>

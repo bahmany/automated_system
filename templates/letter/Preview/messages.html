@@ -1,0 +1,9 @@
+<div ng-controller="MsgPrevCtrl" class="mrb-msg-prev-container">
+    <div ng-repeat="msg in msgs" class="mrb-msg-chat-items">
+        <div ng-init="getMsgPrev(msg)">
+            <div ng-bind-html="msg.inf.letter.body | to_trusted"></div>
+        </div>
+
+    </div>
+paydareh
+</div>

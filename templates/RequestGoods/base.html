@@ -1,0 +1,111 @@
+<div ng-controller="baseRGCtrl" layout="row">
+    <div flex>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                درخواست کالا
+                <span flex></span>
+                <md-button class="md-icon-button md-raised" ui-sref="request-goods-item({idof:'1'})">
+                    <md-icon md-font-icon="fa fa-plus"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <div class="shadower">
+
+            <div layout-gt-sm="row" style="font-size: 11px;">
+                    <md-checkbox flex ng-model="filter.not_finished">ناتمام ها</md-checkbox>
+                    <md-checkbox flex ng-model="filter.has_roll">دارای نقش</md-checkbox>
+                    <md-checkbox flex ng-model="filter.archive">بایگانی</md-checkbox>
+                <md-input-container flex>
+                    <label>جستجو</label>
+                    <input id="ExportLetter_subject"
+                           ng-model-options="{debounce: 500}"
+                           style="direction: rtl!important;"
+                           type="text" ng-model="filter.search"/>
+                </md-input-container>
+
+                <md-button class="md-default" ng-click="GoToPage(requests.next)">
+                    <md-icon md-font-icon="fa fa-chevron-right"></md-icon>
+                </md-button>
+                <md-button class="md-default" ng-click="GoToPage(requests.previous)">
+                    <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+                </md-button>
+
+            </div>
+            <div layout="row">
+                <div layout="row" style="font-size: 10px;" flex>
+                    <div flex>
+                        تعداد
+                        //requests.count//
+
+                        صفحات
+                        //requests.num_pages//
+
+                        همکنون صفحه
+                        //requests.current_page//
+
+
+                    </div>
+                    <div flex>
+                        <div>
+                            هر صفحه
+                            //requests.per_page//
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div flex>
+
+                <table class="table table-mini table-striped table-bordered hovered  dt-responsive nowrap"
+                       style="font-size: 12px;">
+                    <thead>
+                    <tr style="text-align: right;background-color: cadetblue; color:white;font-weight: normal;">
+                        <th style="vertical-align: middle;font-size: 9px; font-weight: 100;">
+                            <div>درخواست کننده</div>
+                            <div>تاریخ درخواست</div>
+                            <div>خلاصه درخواست</div>
+                        </th>
+                        <th style="vertical-align: middle;font-size: 9px; font-weight: 100;">گروه کالا</th>
+                        <th style="vertical-align: middle;font-size: 9px; font-weight: 100;">امضا</th>
+                        <th style="vertical-align: middle;font-size: 9px; font-weight: 100;">انبار</th>
+                        <th style="vertical-align: middle;font-size: 9px; font-weight: 100;">تاریخ</th>
+                        <th style="vertical-align: middle;font-size: 9px; font-weight: 100;">تامین</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in requests.results" ui-sref="request-goods-item({idof:item.id})"
+                        ng-click="null">
+                        <td>
+                            <div>//item.profileName// <small>(//item.chartName//)</small></div>
+                            <div>//item.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'// - //item.summ//...</div>
+                        </td>
+                        <td style="vertical-align: middle;">//item.selected_details.group_kala//</td>
+                        <td style="vertical-align: middle;">
+                            نوبت به
+                            //item.currentPositionToConfirm//</td>
+                        <td style="vertical-align: middle;"> //item.exp.send_tamin_date | jalaliDate:'jYYYY/jMM/jDD -
+                            hh:mm'//
+                        </td>
+                        <td style="vertical-align: middle;">//item.exp.tamin_accepted_date | jalaliDate:'jYYYY/jMM/jDD -
+                            hh:mm' //
+                        </td>
+                        <td style="vertical-align: middle;">//item.exp.havaleh_froosh_file_date |
+                            jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <md-divider></md-divider>
+
+        </div>
+    </div>
+
+
+</div>

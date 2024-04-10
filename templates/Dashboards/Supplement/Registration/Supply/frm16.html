@@ -1,0 +1,91 @@
+<h4>سوالات فروشندگان </h4>
+<hr>
+
+<form name="frm_frm16">
+
+    <div>
+        <div layout="column">
+            <md-input-container class="md-block">
+                <label for="">فاصله جغرافیایی تامین کننده تا شرکت صنایع **** **** **** چند کیلومتر است ؟</label>
+                <md-select ng-model="provider.frm16.faseleh">
+                    <md-option value="حداکثر ۵۰ کیلومتر">
+                        حداکثر ۵۰ کیلومتر
+                    </md-option>
+                    <md-option value="حداکثر ۲۵۰ کیلومتر">
+                        حداکثر ۲۵۰ کیلومتر
+                    </md-option>
+                    <md-option value="بیشتر از ۲۵۰ کیلومتر">
+                        بیشتر از ۲۵۰ کیلومتر
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">نخوه حمل بار جهت ارسال به مشتری چگونه است ؟</label>
+                <input type="text" ng-model="provider.frm16.nahvehHamleBar">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label for="">نحوه پرداخت هزینه خدمت یا محصول تامین کننده به چه صورت می باشد ؟</label>
+                <md-select ng-model="provider.frm16.nehvehPardakht">
+                    <md-option value="نقدی">
+                        نقدی
+                    </md-option>
+                    <md-option value="اعتباری ( چکی )">
+                        اعتباری ( چکی )
+                    </md-option>
+                    <md-option value="اعتبار اسنادی مدت دار">
+                        اعتبار اسنادی مدت دار
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">مدت اعتبار پیش فاکتور چقدر می باشد ؟</label>
+                <input type="text" ng-model="provider.frm16.modateEtebar">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">آیا شرکت شما مایل به عقد قرارداد می باشد ؟</label>
+                <md-select ng-model="provider.frm16.aghdeGharardad">
+                    <md-option value="بلی">
+                        بلی
+                    </md-option>
+                    <md-option value="خیر">
+                        خیر
+                    </md-option>
+                </md-select>
+
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">مدت زمان ارائه خدمت با ارسال خدمت از زمان سفارش گذاری چه مدتی است ؟</label>
+                <md-select ng-model="provider.frm16.modateEraeeKhadamat">
+                    <md-option value="حداکثر یک هفته">
+                        حداکثر یک هفته
+                    </md-option>
+                    <md-option value="حداکثر یک ماه">
+                        حداکثر یک ماه
+                    </md-option>
+                    <md-option value="بیشتر از یک ماه">
+                        بیشتر از یک ماه
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+
+        </div>
+
+
+    </div>
+
+        <div>
+        <ul>
+            توضیحات : لطفا در صورت وجود سایر مدارکی که موجب افزایش اعتبار شما در لیست تامین کنندگان می گردد آن را آپلود نمایید
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='16' inputid='1' label="ضمائم" %}
+        </ul>
+    </div>
+
+    <span style="display: none">
+        //frm16_invalid = frm_frm16.$invalid//
+    </span>
+
+            {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm16" %}
+
+</form>

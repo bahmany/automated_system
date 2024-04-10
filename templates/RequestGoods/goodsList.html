@@ -1,0 +1,86 @@
+<md-dialog aria-label="انتخاب کالا" dir="rtl">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>انتخاب کالا یا خدمت</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    X
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <h2>لیست کالاها و خدمات از انبار</h2>
+                <h5>
+                    چنانچه کالای مد نظر شما در لیست وجود ندارد - لطفا با واحد انبار تماس گرفته و از آنها درخواست نمایید
+                    تا کالای جدید را تعریف نمایند و پس از آن دکمه ی بروز رسانی را انتخاب نمایید
+                </h5>
+                <md-input-container class="md-block">
+                    <label>جستجو</label>
+                    <input ng-model="searchStr" type="text" ng-model-options="{debounce: 500}">
+                </md-input-container>
+
+                <div style="max-height: 200px; overflow-y:scroll">
+                    <div ng-repeat="item in goodItems">
+                        <p>
+                            // item.Title //
+                        </p>
+                        <table class="table table-bordered table-striped mini mini-table">
+                            <thead>
+                            <tr>
+                                <td>نام کالا</td>
+                                <td>واحد</td>
+                                <td>کد انبار</td>
+                                <td>سریال</td>
+                                <td>موجودی</td>
+                                <td>انتخاب</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr ng-repeat="ii in item.result">
+                                <td>//ii.item.PartName//</td>
+                                <td>//ii.item.UnitName//</td>
+                                <td>//ii.item.PartCode//</td>
+                                <td>//ii.item.Serial//</td>
+                                <td>
+
+                                    <a ng-show="!(ii.item.mojoodi)" ng-click="viewMojoodi(ii)">مشاهده موجودی</a>
+                                    <span ng-show="ii.item.mojoodi">//ii.item.mojoodi//</span>
+
+                                </td>
+                                <td><a ng-click="selectIt(ii)">انتخاب</a></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" ng-show="isEditing == false">
+            <md-button class="md-raised md-default" ng-click="getLatestStocks()">
+                بروز رسانی لیست کالاها/خدمات
+            </md-button>
+            <md-button class="md-raised md-warn" ui-sref="request-goods-chat">
+                نمی توانم کالای مورد نظرم را پیدا کنم
+            </md-button>
+
+            <span flex></span>
+
+            <md-button class="md-raised md-default" ng-click="confirmCancel()">
+                انصراف
+            </md-button>
+        </md-dialog-actions>
+        <md-dialog-actions layout="row" ng-show="isEditing == true">
+            <div>
+                لطفا صبر کنید - این قسمت کمی زمانبر است - همکنون لیست فوق در حال بروز رسانی با لیست همکاران سیستم می
+                باشد
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

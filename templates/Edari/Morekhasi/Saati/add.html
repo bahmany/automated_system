@@ -1,0 +1,266 @@
+<div ng-controller="MorekhasiSaatiAddCtrl" ng-cloak>
+
+    <md-toolbar class="md-hue-5">
+        <div class="md-toolbar-tools">
+            <h4 md-truncate>درخواست مرخصی ساعتی</h4>
+
+            <div flex>
+
+            </div>
+
+            <md-button
+                    ui-sref="morekhasi-saati-list"
+                    class="md-raised md-primary">
+                بازگشت
+
+
+            </md-button>
+
+        </div>
+    </md-toolbar>
+
+
+    <div class="shadower">
+        {% if has_check %}
+            <div style="color: red;">
+                <h5>عدم تکمیل اطلاعات</h5>
+                <ul>
+                </ul>
+                {% for value in checker %}
+                    <li>
+                        {{ value.msg }}
+                    </li>
+                {% endfor %}
+            </div>
+
+        {% else %}
+            <form name="morekhasi_saati_frm">
+                <div flex flex-gt-lg="50" flex-gt-md="60" flex-gt-sm="70" style="    margin: 0 auto;
+    border: 1px solid lightgray;
+    padding: 12px;
+    border-radius: 10px;">
+                    <div layout="row" style="margin-top:12px;margin-bottom:12px; " layout-align="start center"
+                         ng-show="!(morekhasi.exp.pos_vahede_darkhat.is_signed)">
+                        <md-radio-group ng-model="morekhasi.exp.typeof" aria-labelledby="morekhasitype" layout="row">
+                            <md-radio-button ng-value=1 class="md-primary">برای خودم</md-radio-button>
+                            <md-radio-button ng-value=2>برای دیگری</md-radio-button>
+                        </md-radio-group>
+
+                        <md-button ng-show="morekhasi.exp.typeof == 2" class="md-raised"
+                                   ng-click="get_another_personnel()">
+                            کد
+                            پرسنلی دیگری
+                        </md-button>
+
+                    </div>
+                    <div layout="row">
+                        <div flex layout-padding="">
+                            <md-input-container class="md-block">
+                                <label>نام و نام خانوادگی</label>
+                                <input ng-model="morekhasi.exp.pos_vahede_darkhat.profileName" required readonly>
+                            </md-input-container>
+                        </div>
+                        <div flex layout-padding="">
+                            <md-input-container class="md-block">
+                                <label>شماره پرسنلی</label>
+                                <input ng-model="morekhasi.exp.pos_vahede_darkhat.personnel_code" required
+                                       readonly>
+                            </md-input-container>
+
+                        </div>
+
+                        <div flex layout-padding="">
+                            <md-input-container class="md-block">
+                                <label>واحد ****ی</label>
+                                <input ng-model="morekhasi.exp.pos_vahede_darkhat.chartName" required readonly>
+                            </md-input-container>
+
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <div flex layout-padding="">
+                            <md-input-container class="md-block">
+                                <label>تاریخ مرخصی</label>
+                                <input ng-model="morekhasi.exp.dateofmorekhasi" required
+                                       mask="1499/99/99"
+                                       dir="ltr"
+                                       placeholder="مثال 1400/01/01"
+                                       ng-readonly="morekhasi.exp.pos_vahede_darkhat.is_signed === true"
+                                       style="direction: ltr!important;"
+                                >
+                            </md-input-container>
+                        </div>
+                        <div flex layout-padding="">
+                            <md-input-container class="md-block">
+                                <label>از ساعت</label>
+                                <input ng-model="morekhasi.exp.az" mask="99:99" required
+                                       ng-readonly="morekhasi.exp.pos_vahede_darkhat.is_signed === true"
+
+                                       dir="ltr" style="direction: ltr!important;"
+                                       placeholder="مثال 10:08">
+                            </md-input-container>
+                        </div>
+                        <div flex layout-padding="">
+                            <md-input-container class="md-block">
+                                <label>تا ساعت</label>
+                                <input ng-model="morekhasi.exp.taa" mask="99:99" required
+                                       ng-readonly="morekhasi.exp.pos_vahede_darkhat.is_signed === true"
+
+                                       dir="ltr" style="direction: ltr!important;"
+                                       placeholder="مثال 16:12">
+                            </md-input-container>
+                        </div>
+
+                    </div>
+                    <div layout-padding="" style="font-size: 14px;">
+                        میزان ساعت مرخصی
+                        درخواستی
+                        <span style="font-weight: bold; color: #0b2e13; text-decoration: underline">//morekhasi.exp.mizan//</span>
+                        دقیقه
+                        می باشد
+                    </div>
+                    <div style="font-size: 12px; border: 1px solid lightgrey; padding: 4px; margin: 4px; background-color: #ececec; border-radius: 4px;">
+                        ضمنا
+                        برای
+                        //morekhasi.exp.pos_vahede_darkhat.profileName//
+                        از
+                        //karaweb_trace.from//
+                        تا
+                        //karaweb_trace.to//
+                        میزان
+                        //karaweb_trace.result//
+                        مرخصی ساعتی
+                        در سامانه ی دنیای پردازش ثبت شده است
+                    </div>
+                </div>
+
+                <div layout="column" layout-gt-xs="row" layout-align="center center" style="font-size: 13px;">
+                    <div layout-align="center center" flex layout-padding layout-margin
+                         style="border:1px solid lightgrey; border-radius: 4px;height: 200px;">
+                        <div style="height: 100px;">
+                            <div style="text-align: center; padding: 0;">متقاضی</div>
+                            <div style="text-align: center; padding: 0;">
+                                //morekhasi.exp.pos_vahede_darkhat.profileName//
+                            </div>
+                            <div style="text-align: center; padding: 0;">//morekhasi.exp.pos_vahede_darkhat.chartName//
+                            </div>
+                            <div style="text-align: center; padding: 0;" ng-show="morekhasi_saati_frm.$invalid"
+                                 class="text-warning">
+                                لطفا فرم بالا را تکمیل کنید
+                            </div>
+                        </div>
+                        <div style="text-align: center;"
+
+                             ng-show="!(morekhasi.exp.pos_vahede_darkhat.is_signed)">
+                            <md-button
+                                    ng-disabled="morekhasi_saati_frm.$invalid"
+                                    ng-click="confirm(1)" type="button" class="md-primary md-raised">تایید و شروع فرآیند
+                            </md-button>
+                        </div>
+
+                        <div style="text-align: center;" ng-show="morekhasi.exp.pos_vahede_darkhat.is_signed">
+                            <div>تایید شده</div>
+                            <div>در تاریخ
+                                //morekhasi.exp.pos_vahede_darkhat.date_of_signed | jalaliDate:'jYYYY/jMM/jDD HH:mm'//
+                            </div>
+                        </div>
+                    </div>
+                    <div layout-align="center center" flex layout-padding layout-margin
+
+                         style="border:1px solid lightgrey; border-radius: 4px;height: 200px;">
+                        <div style="height: 100px;"
+                             ng-show="!(morekhasi.exp.pos_modire_vahede_darkhat.is_signed) && !(morekhasi.exp.pos_modire_vahede_darkhat.is_disagree) ">
+                            <div style="text-align: center; padding: 0;">موافقت کننده ها</div>
+{#                            <div style="text-align: center; padding: 0;">#}
+{#                                //morekhasi.exp.pos_modire_vahede_darkhat.profileName//#}
+{#                                <span style="font-size: 11px; color: gray;">//morekhasi.exp.pos_modire_vahede_darkhat.chartName//</span>#}
+{#                            </div>#}
+                            <div ng-repeat="item in morekhasi.exp.pos_emaza_konandeha" style="text-align: center;">
+                                //item.profileName//
+                                <span style="font-size: 11px; color: gray;">(//item.chartName//)</span>
+                            </div>
+
+                        </div>
+
+
+                        <div style="text-align: center; color: darkslategray"
+                             ng-show="!(morekhasi.exp.pos_modire_vahede_darkhat.is_signed) && !(morekhasi.exp.pos_modire_vahede_darkhat.is_disagree) ">
+                            <md-button ng-click="confirm(2)" type="button" style="text-align: center;"
+                                       class="md-primary md-raised">تایید
+                            </md-button>
+                            <md-button ng-click="confirm(99)" type="button" style="text-align: center;"
+                                       class="md-warn md-raised">
+                                مخالفت
+                            </md-button>
+                        </div>
+                        <div style="text-align: center;" ng-show="morekhasi.exp.pos_modire_vahede_darkhat.is_signed">
+                            <div>تایید شده</div>
+                            <div>در تاریخ
+                                //morekhasi.exp.pos_modire_vahede_darkhat.date_of_signed | jalaliDate:'jYYYY/jMM/jDD
+                                HH:mm'//
+                                <br>
+
+                                توسط
+                                //morekhasi.exp.pos_modire_vahede_darkhat.profileName//
+                            </div>
+                        </div>
+
+                        <div style="text-align: center;" ng-show="morekhasi.exp.pos_modire_vahede_darkhat.is_disagree"
+                             class="text-danger">
+                            <div>مخالفت شد</div>
+                            <div>در تاریخ
+                                //morekhasi.exp.pos_modire_vahede_darkhat.date_of_signed | jalaliDate:'jYYYY/jMM/jDD
+                                HH:mm'//
+                                <br>
+                                توسط
+                                //morekhasi.exp.pos_modire_vahede_darkhat.profileName//
+                            </div>
+                        </div>
+
+                    </div>
+{#                    <div layout-align="center center;" flex layout-padding layout-margin#}
+{#                         style="border:1px solid lightgrey; border-radius: 4px;height: 200px;">#}
+{#                        <div style="height: 100px;">#}
+{##}
+{#                            <div style="text-align: center;padding: 0;"> مدیر منابع انسانی / مسئول اداری</div>#}
+{#                            <div style="text-align: center;padding: 0;">//morekhasi.exp.pos_modire_mali.profileName#}
+{#                                +'/'+#}
+{#                                morekhasi.exp.pos_masoole_edari.profileName //#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div ng-show="!(morekhasi.exp.pos_modire_vahede_darkhat.is_disagree === true)">#}
+{#                            <div style="text-align: center;"#}
+{#                                 ng-show="!(morekhasi.exp.pos_modire_mali.is_signed || morekhasi.exp.pos_masoole_edari.is_signed)">#}
+{#                                <md-button ng-click="confirm(3)" type="button" style="text-align: center;"#}
+{#                                           class="md-primary  md-raised">تایید#}
+{#                                </md-button>#}
+{#                            </div>#}
+{#                            <div style="text-align: center;" ng-show="morekhasi.exp.pos_modire_mali.is_signed">#}
+{#                                <div>تایید شده</div>#}
+{#                                <div>در تاریخ#}
+{#                                    //morekhasi.exp.pos_modire_mali.date_of_signed | jalaliDate:'jYYYY/jMM/jDD HH:mm'//#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div style="text-align: center;" ng-show="morekhasi.exp.pos_masoole_edari.is_signed">#}
+{#                                <div>تایید شده</div>#}
+{#                                <div>در تاریخ#}
+{#                                    //morekhasi.exp.pos_masoole_edari.date_of_signed | jalaliDate:'jYYYY/jMM/jDD#}
+{#                                    HH:mm'//#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{##}
+{#                    </div>#}
+
+
+                </div>
+
+            </form>
+
+        {% endif %}
+
+
+    </div>
+
+</div>

@@ -1,0 +1,48 @@
+{% load translators %}
+
+
+
+<div ng-repeat="item in labels.results" on-finish-render="ngRepeatFinished"
+
+         data-drag="true"
+         data-jqyoui-options="{
+                                zIndex: 9999,
+                                placeholder: 'keep',
+                                helper: 'clone',
+                                appendTo:'#body-container',
+                                revert: 'invalid'}"
+         jqyoui-draggable="{
+                        placeholder:'keep',
+                        animate:true}"
+         ng-model="item"
+
+
+     style="line-height: 17px; padding-right: 0px;height: 25px;"
+     ng-click="SelectLabel(node);$event.stopPropagation();"
+
+
+
+     class="inbox-dynamic-items">
+    <span class="pull-left"
+          style="background-color://item.bgcolor//; color://item.color//; padding:2px;width: 15px;text-align: center; border-radius: 0px;margin-left: 5px; margin-right: 5px; font-size: 10px;">//item.title[0]//</span>
+    <a ng-click="searchLabel(item)" style="max-width: 100px;display: inline; color: #666;">//item.title//
+
+    </a>
+    <small class="pull-right">
+            <span class="pull-right" id="inbox_dyna_lbl_//item.id//" style="margin-left: 10px;"></span>
+
+
+
+    </small>
+    <div style="max-width: 40px;display: none; font-size: 13px;margin-top: 3px; margin-left: 10px;"
+         class="pull-left btnss">
+        <i ng-click="editLabel(item)" class="fa fa-edit other-btn"></i>
+        <i ng-click="deleteLabel(item)" class="fa fa-trash other-btn"></i>
+    </div>
+
+</div>
+
+<div class="well well-sm" ng-if="labels.results.length == 0">
+            {{ 'No label created - add folders to organize you letters'|translate}}
+
+</div>

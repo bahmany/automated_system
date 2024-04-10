@@ -1,0 +1,124 @@
+<div style="font-size: 11px;" class="rg-table-container">
+    <div ng-show="draft == true">
+                            <h5>مشخص کردن گروه کالا</h5>
+                    //selectedWorkflow//
+
+        <div layout="row" class="rg-top">
+            <div flex="5" class="rg-header">ردیف</div>
+            <div flex="15" class="rg-header">سرگروه کالا</div>
+            <div flex layout="row">
+                <div class="rg-header" flex="5">ردیف</div>
+                <div class="rg-header" flex="5">انتخاب</div>
+                <div class="rg-header" flex="25">گروه کالا</div>
+                <div class="rg-header" flex="25">درخواست کننده</div>
+                <div class="rg-header" flex="20">تایید کننده</div>
+                <div class="rg-header" flex="20">تصویب کننده</div>
+            </div>
+
+        </div>
+        <div ng-repeat="tos in tableOfSigns" class="rg-body"
+             layout="row">
+            <div flex="5" layout="row" layout-align="center center">
+                //tos.radeef//
+            </div>
+            <div flex="15" layout="row" layout-align="center center">
+                //tos.title//
+            </div>
+            <div flex="" layout="column" class="rg-items">
+                <div ng-click="changeWork(toss.value)" flex ng-repeat="toss in tos.sargroup_kala"
+                     layout="row"
+                     ng-class="{'rg-selected':selectedWorkflow==toss.value}">
+                    <div flex="5" layout="row" layout-align="center center">//toss.value//</div>
+                    <div flex="5" layout="row" layout-align="center center">
+                        <a ng-click="changeWork(toss.value)">انتخاب</a>
+                        {#                    <input type="radio" ng-model="selectedWorkflow" value=//toss.value// name="xczxc" ng-change="changeWork(toss.value)">#}
+                    </div>
+                    <div flex="25" layout="row" layout-align="start center">//toss.group_kala//</div>
+                    <div flex="25" layout="row">
+                        <div flex ng-repeat="ii in toss.runners.request" class="rg-user-det">
+                            <div class="rg-chart-title">//ii.chartTitle//</div>
+                            <div ng-repeat=" iix in ii.positions">
+                                //iix.profileName// (//iix.chartName//)
+                            </div>
+                        </div>
+                    </div>
+                    <div flex="20" layout="row">
+                        <div flex ng-repeat="ii in toss.runners.confirm" class="rg-user-det">
+                            <div class="rg-chart-title">//ii.chartTitle//</div>
+                            <div ng-repeat=" iix in ii.positions">
+                                //iix.profileName// (//iix.chartName//)
+                            </div>
+                        </div>
+                    </div>
+                    <div flex="20" layout="row">
+                        <div flex ng-repeat="ii in toss.runners.approve" class="rg-user-det">
+                            <div class="rg-chart-title">//ii.chartTitle//</div>
+                            <div ng-repeat=" iix in ii.positions">
+                                //iix.profileName// (//iix.chartName//)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div ng-show="draft == false">
+        <h3 style="    border-bottom: 1px solid #c51162;color: black;margin-bottom: 0px;">مشخصات گروه کالای انتخابی </h3>
+        <h4 style="background-color: #C51162;    margin-bottom: 0px;
+    color: white;
+    padding: 12px;
+    margin-top: 0px;
+">//selectedSign.group_kala// </h4>
+        <div layout-gt-sm="row" style="text-align: center;    padding: 9px;
+    background-color: #f9f9f9;">
+            <div flex style="border-left: 1px solid;">
+                <h4>درخواست کننده</h4>
+                <div>
+                    <div><img style="height: 80px;    border-radius: 50%;"
+                              ng-src="//selectedSign.runners.request[0].positions[0].avatar//" alt="">
+                    </div>
+                    <div> //selectedSign.runners.request[0].positions[0].profileName//
+                    </div>
+                    <div> //selectedSign.runners.request[0].positions[0].chartName//
+                    </div>
+                </div>
+            </div>
+            <div flex style="border-left: 1px solid;">
+                <h4>تایید کننده</h4>
+                <div>
+                    <div><img style="height: 80px;    border-radius: 50%;"
+                              ng-src="//selectedSign.runners.confirm[0].positions[0].avatar//" alt="">
+                    </div>
+                    <div> //selectedSign.runners.confirm[0].positions[0].profileName//
+                    </div>
+                    <div> //selectedSign.runners.confirm[0].positions[0].chartName//
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <div flex >
+                <h4>تصویب کننده</h4>
+                <div>
+                    <div><img style="height: 80px;    border-radius: 50%;"
+                              ng-src="//selectedSign.runners.approve[0].positions[0].avatar//" alt="">
+                    </div>
+                    <div> //selectedSign.runners.approve[0].positions[0].profileName//
+                    </div>
+                    <div> //selectedSign.runners.approve[0].positions[0].chartName//
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,131 @@
+<div ng-controller="DashboardCtrl">
+
+
+
+
+
+    <div class="v-what-r-u-t"
+         layout="row"
+         flex-gt-xs="100"
+         flex-gt-lg="25"
+         flex-gt-md="33"
+         flex-gt-sm="50"
+         layout-align="start center">
+        {#            <md-button class="md-fab md-mini md-primary" ng-click="OpenAvatar()">#}
+        <a href="/#/dashboard/MyProfile">
+            <img ng-src="{{ userAvatar }}" alt="{{ currentUser }}" class="vt-toolbar-avatar">
+        </a>
+
+
+        <span flex="3"></span>
+        <span ng-click="OpenNewPost()" style="padding-left: 12px;    padding-right: 12px;    color: lightcoral;">به چه فکر مکنی ؟</span>
+        <span flex="3"></span>
+
+
+        <span flex></span>
+
+
+        <md-button class="md-fab md-mini" style="background-color: lightgray;box-shadow: none">
+            <md-icon md-font-icon="fa fa-camera" style="color: dimgrey;font-size: 18px;"></md-icon>
+        </md-button>
+
+    </div>
+
+
+    <div>
+
+        <div>
+
+
+            <div>
+                <div class="v-what-r-u-t" flex layout="column"
+                     flex-gt-xs="100"
+                     flex-gt-lg="25"
+                     flex-gt-md="33"
+                     flex-gt-sm="50"
+                     layout-align="start center">
+                    <div layout="row" flex style="width: 100%; padding: 12px;">
+                        <img ng-src="{{ userAvatar }}" alt="{{ currentUser }}" class="vt-toolbar-avatar">
+                        <span style="padding-left: 12px; padding-right: 12px;">{{ name }}</span><span flex></span>
+                    </div>
+
+
+                    <div style="width: 100%">
+                        <md-button>متن</md-button>
+                        <md-button>عکس</md-button>
+                        <md-button>نقشه</md-button>
+                        <md-button>نظرسنجی</md-button>
+                        <md-button>آمار</md-button>
+                    </div>
+
+                    <div style="width: 100%">
+                        <div id="postText" class="" style="width: 100%">
+                <textarea name=""
+                          id=""
+                          cols="30"
+                          rows="10"
+                          flex=""
+                          placeholder="به چه فکر میکنید ؟"
+                          style="width: 100%"></textarea>
+
+                        </div>
+
+                        <div id="postPic" class="select-pic">
+                            <div>
+                                <a>
+                                    <div class="virt-pic" layout="row" layout-align="center center">
+                                        <span>  آپلود</span>
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </a>
+                                <a ng-repeat="it in images track by $index">
+                                    <div
+                                            class="virt-pic"
+                                            style="background-image: url('/api/v1/file/upload?q=//it.decodedFileName//');">
+                                    </div>
+                                </a>
+                                <a ng-click="LoadMorePic()" ng-show="infos.next">
+                                    <div class="virt-pic" layout="row" layout-align="center center">
+                                        <span>  فراخوانی بیشتر...</span>
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </a>
+                            </div>
+
+
+                        </div>
+                        <div id="postMap" class="" style="height: 300px; width: 100%">
+
+                        </div>
+                        <div id="postChoices" class="">postChoices</div>
+                        <div id="postStatic" class="">postStatic</div>
+                    </div>
+                    <div style="width: 100%;" layout="row">
+                        <span flex></span>
+                        <md-button class="md-button md-raised md-primary" ng-click="post()">ارسال</md-button>
+                        <md-button class="md-button md-raised" ng-click="cancel()">انصراف</md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&callback=initMap"></script>
+
+    <script>
+        function initMap() {
+            var uluru = {lat: 35.696733, lng: 51.2097359};
+            var map = new google.maps.Map(document.getElementById('postMap'), {
+                zoom: 10,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                draggable: true,
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
+
+
+</div>
+

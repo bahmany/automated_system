@@ -1,0 +1,39 @@
+{% load translators %}
+<md-content
+        class="shadower  bpms-diagram-container"
+{#        id="DoLunchedProcessCtrl"#}
+        style="float: none;margin: 0 auto;"
+>
+    <div layout="row" layout-align="start center" style="color: #A5A5A5;">
+        <h3>{{ 'results'|translate}} [// totalItems //]</h3>
+        <span flex></span>
+        <h6 style="text-align: left;line-height: 14px;"><button class="btn btn-medium btn-primary fa fa-download " tooltip="دانلود فایل اکسل" ng-click="dlXlsFile()" title="دانلود فایل اکسل" style="margin-left: 15px;"></button>
+        </h6>
+
+    </div>
+    <md-divider></md-divider>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>{{ 'jobTitle'|translate}}</th>
+                <th>{{ 'jobStarter'|translate}}</th>
+                <th>{{ 'StartDate'|translate}}</th>
+                <th ng-repeat="itm in selectedNames">//itm//</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="itm in dataList.results">
+                <td>//itm.lpName//</td>
+                <td>//itm.lpPositionName//</td>
+                <td>//itm.lpStartDate | jalaliDate:'jYYYY/jMM/jDD hh:mm'//</td>
+                <td ng-repeat="itm2 in selectedIDs">//itm.formData[itm2]//</td>
+            </tr>
+            </tbody>
+        </table>
+        <pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage"
+                        max-size="maxSize" class="pagination-sm"
+                        boundary-links="true" rotate="true" num-pages="numPages"></pagination>
+</md-content>
+
+

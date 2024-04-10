@@ -1,0 +1,91 @@
+{% load translators %}
+<div ng-controller="LetterInboxCtrl" class="left-inbox-items">
+    <md-content>
+
+
+        <ul class="side-menu letter-inbox-sidebar">
+            <li>
+                <md-menu flex>
+                    <md-button aria-label="secs" class="md-primary btn-side-letter" ng-click="$mdOpenMenu($event)">
+                        // GetDefaultDabir(PermittedSecratraitsList) //
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item ng-repeat="item in PermittedSecratraitsList">
+                            <md-button ng-click="ChangeDefaultSecratrait(item)">
+                                //item.name//
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </li>
+            <li ng-class="{'active_class':ListPosition=='-1,1,1'}">
+                <md-button ng-click="callInboxList(-1, 1, 1)">کارتابل</md-button>
+            </li>
+            <li ng-class="{'active_class':ListPosition=='6,7,1'}">
+                <md-button ng-click="callInboxList(6, 7, 1)">ارسالی ها</md-button>
+            </li>
+            <li ng-class="{'active_class':ListPosition=='9,-1,-1'}">
+                <md-button ng-click="callInboxList(9, -1, -1)">ارجاعیات</md-button>
+            </li>
+            <li ng-class="{'active_class':ListPosition=='-1,4,1'}">
+                <md-button ng-click="callInboxList(-1, 4, 1)">درفت</md-button>
+            </li>
+            <li ng-class="{'active_class':ListPosition=='5,1,1'}">
+                <md-button ng-click="callInboxList(5, 1, 1)">زیرشاخه ها</md-button>
+            </li>
+            <li ng-class="{'active_class':ListPosition=='-1,-1,2'}">
+                <md-button ng-click="callInboxList(-1, -1, 2)">آرشیو</md-button>
+            </li>
+            <li ng-class="{'active_class':ListPosition=='-1,-1,3'}">
+                <md-button ng-click="callInboxList(-1, -1, 3)">حذفیات</md-button>
+            </li>
+
+        </ul>
+
+        <md-list flex>
+
+
+            <md-subheader class="md-no-sticky subheader-inbox">
+                <i class="fa fa-plus other-btn pull-right"
+                   ng-click="openFolderModal()"></i>
+                {{ 'Folders'|translate }}
+            </md-subheader>
+            <md-divider></md-divider>
+            <div class="tool-cont-body">
+                {% include "letter/Sidebar/Folders/foldersList.html" %}
+            </div>
+
+
+            <md-subheader class="md-no-sticky subheader-inbox">
+                <i class="fa fa-plus other-btn pull-right"
+                   ng-click="createLabel()"></i>
+                {{ 'Labels'|translate }}
+            </md-subheader>
+            <md-divider></md-divider>
+            <div class="tool-cont-body">
+                {% include "letter/Sidebar/Labels/labelsList.html" %}
+            </div>
+
+
+            <md-subheader class="md-no-sticky subheader-inbox">
+                <i class="fa fa-plus other-btn pull-right"
+                   ng-click="createGroup(false)"></i>
+                {{ 'Groups'|translate }}
+            </md-subheader>
+            <md-divider></md-divider>
+            <div class="tool-cont-body">
+                {% include "letter/Sidebar/MembersGroups/groupMembersList.html" %}
+            </div>
+
+
+        </md-list>
+
+
+    </md-content>
+
+    {% include "letter/Sidebar/Folders/base.html" %}
+    {% include "letter/Sidebar/Labels/base.html" %}
+    {% include "letter/Sidebar/MembersGroups/base.html" %}
+
+</div>
+

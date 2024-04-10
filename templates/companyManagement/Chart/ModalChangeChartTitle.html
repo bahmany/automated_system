@@ -1,0 +1,32 @@
+{% load translators %}
+
+<div id="modal_change_rename" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+                        تغییر نام سمت
+                    //currentSelectedRAWchart.title//
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <h1 class="md-title">لطفا نام سمت جدید را وارد نمایید</h1>
+                    <div layout="column">
+                        <md-input-container class="md-block">
+                            <label>عنوان سمت ****ی</label>
+                            <input type="text" ng-required ng-model="NewChartRAWTitle" id="id_NewChartRAWTitle">
+                        </md-input-container>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="PostRenameChartRAW()">
+                        تایید
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

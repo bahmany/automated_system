@@ -1,0 +1,83 @@
+{% load translators %}
+
+<div ng-controller="CompanyProcessCtrl">
+
+
+    <md-toolbar class="md-hue-1">
+
+        <div class="md-toolbar-tools">
+
+
+            مدیریت فرآیندهای ساده
+
+            <span flex></span>
+
+            <md-button class="md-fab md-mini"
+                       type="button" ng-click="createBpmn()"
+                       aria-label="secs">
+                <md-tooltip>
+                    ایجاد فرآیند جدید
+                </md-tooltip>
+                <md-icon md-font-icon="fa fa-plus"
+                         aria-hidden="true"></md-icon>
+
+
+            </md-button>
+
+        </div>
+    </md-toolbar>
+    <div id="divBpmn"  >
+        {% load tables_tags %}
+        {% tablePagination main_model_name="Bpmns" table_search_watch_model_name="BpmnsTableSearch" table_go_to_page_func_name="BpmnsTableGoToPage" table_handle_pagination_func_name="HandleBpmnsTablePagination" table_info_model_name="TableBpmns" %}
+
+        <div ng-if="!isSearchCallbackCompleted">
+
+            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+
+        </div>
+
+        <table class="table mini table-has-border">
+            <thead>
+            <tr>
+                <th>نام</th>
+                <th>مشخصات</th>
+                <th>عملیات</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="item in Bpmns.results track by $index" ng-class-odd="'odd'" ng-class-even="'even'">
+                <td>//item.name//</td>
+                <td>//item.description//</td>
+                <td>
+                    <a ng-click="bpmnValidate(item.id)">
+                        اعتبارسنجی
+                        <i class="fa fa-check" style="color: green" ng-if="item.is_valid_form"></i>
+                        <i class="fa fa-warning" style="color: red" ng-if="!item.is_valid_form"></i>
+                    </a> |
+                    <a ng-click="bpmnEdit(item.id)">طراحی فرآیند</a>|
+                    <a ng-click="buildForm(item.id)">طراحی فرم</a>|
+                    <a ng-click="datamodel(item.id)">مدیریت لایه داده ها</a>|
+                    <a ng-click="bpmnPublish(item.id)">انتشار</a>|
+                    <a ng-click="bpmnCopy(item.id)">کپی</a>|
+                    <a ng-click="bpmnDelete(item.id)">حذف</a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+    {#    <div id="divBpmn">#}
+    {#        {% include bpmn_table_template %}#}
+    {#    </div>#}
+    <div id="divRec" style="display: none;">
+        {% include 'share/select-recievers/SelectRecievers.html' %}
+    </div>
+    {% include bpmn_edit_modal %}
+    {% include 'companyManagement/BPMN/validateBpmn.html' %}
+    <br/>
+</div>

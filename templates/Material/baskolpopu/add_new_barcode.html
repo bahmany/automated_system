@@ -1,0 +1,118 @@
+<form name="frmBarcode">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout="row">
+            صدور بارکد
+            <span flex></span>
+            <md-button ng-click="currentPanel = 1">بازگشت</md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+
+        <div class="md-dialog-content">
+            <div class="shadower" layout="row">
+                <div flex="45">
+
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ و ساعت</label>
+                        <input type="text" ng-model="barcode.dateOf" required
+                               name="dateOf"
+                               ui-mask="9999/99/99 99:99"
+                               ng-init="barcode.dateOf = getCurrentDate()"
+                               style="direction: ltr!important;"
+                               model-view-value="true" id="txtDateOf">
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label for="">شماره بارنامه</label>
+                        <input name="barnamehScan" type="text"
+                               ng-model="barcode.shomare_barnameh"
+                               required>
+                    </md-input-container>
+                    {#                    <md-input-container class="md-block">#}
+                    {##}
+                    {#                        <label>سازنده</label>#}
+                    {#                        <input type="text" ng-model="barcode.sazandeh" required>#}
+                    {##}
+                    {##}
+                    {#                    <label for="">شرکت سازنده</label>#}
+                    {#                    <input name="name" type="text"#}
+                    {#                           ng-model="barcode.sherkate_sazandeh"#}
+                    {#                           required>#}
+                    {##}
+                    {#                        <md-select ng-model="barcode.sherkate_sazandeh" required>#}
+                    {#                            <md-option><em>None</em></md-option>#}
+                    {#                            <md-option ng-repeat="state in vendors" ng-value="state.id">#}
+                    {#                                // state.name //#}
+                    {#                            </md-option>#}
+                    {#                        </md-select>#}
+                    {##}
+                    {#                        <input name="name" type="text"#}
+                    {#                               ng-model="barcode.sherkate_sazandeh"#}
+                    {#                               required>#}
+                    {##}
+                    {##}
+                    {#                    </md-input-container>#}
+                    <md-input-container class="md-block">
+                        <label for="">سایز ورق</label>
+                        <input name="size_varagh" type="text"
+                               ng-model="barcode.size_varagh"
+                               required>
+                    </md-input-container>
+
+                </div>
+                <div flex="10"></div>
+                <div flex="45">
+                    <md-input-container class="md-block">
+                        <label for="">وزن خالص</label>
+                        <input name="vazne_khales" type="number"
+                               ng-model="barcode.vazne_khales"
+                               required>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label for="">شماره کلاف</label>
+                        <input name="shomare_kalaf" type="text"
+                               ng-model="barcode.shomare_kalaf"
+                               required>
+                    </md-input-container>
+
+                    <div class="md-block">
+                        <md-button ng-click="AddScanBarname()">اسکن بارنامه</md-button>
+                        <div id="ScanBarnamehDiv" style='min-height: 200px;
+                        min-width: 200px;
+                        background-image: url("/api/v1/file/upload?q=thmum700_//barcode.barnamehUrl//");
+                            background-size: contain;
+                            background-color: gray;
+                            background-repeat: no-repeat;
+                            background-position: center;'>
+
+                        </div>
+                        <input type="file" id="ScanBarnameh" accept="image/jpeg" style="display: none"
+                               name="nfileResume">
+                    </div>
+
+                    {#                    <md-input-container class="md-block">#}
+                    {#                        <label for="">جانمایی</label>#}
+                    {#                        <input name="name" type="text"#}
+                    {#                               ng-model="barcode.javamayee"#}
+                    {#                               required>#}
+                    {#                    </md-input-container>#}
+
+                </div>
+
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+
+        <span flex></span>
+        <md-button
+                class="md-raised md-primary"
+                ng-click="confirmBarcode()"
+                ng-disabled="frmBarcode.$invalid">
+            ثبت و ایجاد بارکد
+        </md-button>
+
+    </md-dialog-actions>
+
+</form>

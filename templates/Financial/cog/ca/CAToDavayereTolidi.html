@@ -1,0 +1,159 @@
+<div ng-controller="CAToDavayereTolidiCtrl">
+
+    <div layout="row">
+
+        <span flex></span>
+
+        <md-button class="md-raised md-primary" ng-click="StoreTable()" loading="در حال دریافت ..."
+                   notloading="ذخیره در سیستم"
+                   disableonrequest></md-button>
+        <md-button class="md-raised md-default" ng-click="ResetTable()" loading="در حال دریافت ..."
+                   notloading="دوباره سازی جدول"
+                   disableonrequest></md-button>
+
+
+    </div>
+    <md-divider></md-divider>
+
+
+    <div style="overflow: scroll; direction: ltr">
+        <hot-table
+                settings="setting"
+                col-headers="true"
+                datarows="percentTable.data"
+                style="direction: ltr; text-align: left"
+                height="300"
+                id="catable"
+                language='en'
+        >
+            <hot-column
+                    ng-repeat="col in percentTable.cols"
+                    formulas="true"
+                    data="//col.title//"
+                    title="col.title"
+                    read-only="col.readOnly"
+                    data-type="col.dataType"
+                    numeric-format="col.numericFormat"
+                    type="col.dataType"
+            ></hot-column>
+        </hot-table>
+    </div>
+
+    <h5>
+        محاسبه ی سربارها و جمع ها
+    </h5>
+    <div layout="row" layout-wrap>
+        <div ng-repeat="(key, value) in percentTable.sums"
+             layout-align="center center"
+             style="width: 250px; height: 70px; border: 1px solid rgb(209,204,199); border-radius: 6px; padding: 6px; margin: 6px; font-size: 12px;">
+            <div>//key//</div>
+
+            <div>//value | number:0//</div>
+        </div>
+
+    </div>
+
+    {#    <md-tabs md-dynamic-height md-border-bottom>#}
+    {#        <md-tab label="جدول اولیه تسهیم بدون درصد">#}
+    {#            <md-content class="md-padding">#}
+    {#                <div class="shadower">#}
+    {#                    <div style="overflow: scroll">#}
+    {#                        <hot-table#}
+    {#                                col-headers="true"#}
+    {#                                datarows="percentTable.data"#}
+    {#                                style="direction: ltr; text-align: left"#}
+    {#                                height="300"#}
+    {#                        >#}
+    {#                            <hot-column#}
+    {#                                    ng-repeat="col in percentTable.cols"#}
+    {#                                    formulas="true"#}
+    {#                                    data="//col.title//"#}
+    {#                                    title="col.title"#}
+    {#                                    read-only="col.readOnly"#}
+    {#                                    numeric_format="col.numericFormat"#}
+    {#                                    type="col.dataType"#}
+    {#                            ></hot-column>#}
+    {##}
+    {##}
+    {#                        </hot-table>#}
+    {##}
+    {##}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </md-content>#}
+    {#        </md-tab>#}
+    {#        <md-tab label="جدول دارای درصدها و محاسبه شده">#}
+    {#            <md-content class="md-padding">#}
+    {#                <div class="shadower">#}
+    {##}
+    {#                </div>#}
+    {#            </md-content>#}
+    {#        </md-tab>#}
+    {#    </md-tabs>#}
+
+    {##}
+    {#    <div layout="row">#}
+    {#        <md-button loading="در حال ساخت ..."#}
+    {#                   notloading="مرحله اول :  ساخت جدول تسهیم همراه با درصدهای صفر شده"#}
+    {#                   disableonrequest class="" ng-click="GenerateTable()"></md-button>#}
+    {##}
+    {#        <md-button loading="در حال محاسبه ..." notloading="مرحله دوم : تایید درصدهای اعطایی"#}
+    {#                   disableonrequest class="" ng-click="storePercent()"#}
+    {#                   disabled></md-button>#}
+    {##}
+    {#        <md-button loading="در حال محاسبه ..." notloading="مرحله دوم : محاسبه نهایی و ذخیره"#}
+    {#                   disableonrequest class="" ng-click="AddToTablePercent()"></md-button>#}
+    {##}
+    {##}
+    {#    </div>#}
+    {##}
+
+
+    {#    <md-divider></md-divider>#}
+    {##}
+    {#    <md-toolbar>#}
+    {#        <div class="md-toolbar-tools">#}
+    {#            <h4>محاسبه نهایی تسهیم#}
+    {#                <small>#}
+    {#                    در این قسمت دوایر مختلف به دوایر تولیدی تسهیم می شوند. مهمترین قسمت در اینجا تکمیل درصدهای#}
+    {#                    تولیدیست#}
+    {#                </small>#}
+    {#            </h4>#}
+    {##}
+    {#        </div>#}
+    {#    </md-toolbar>#}
+    {##}
+    {#    <div style="overflow: scroll; width: 100%; height: 300px">#}
+    {#        <table id="divTablePers" class="stripe" style="font-size: 12px;width: 2000px;">#}
+    {##}
+    {#        </table>#}
+    {#    </div>#}
+    {##}
+    {##}
+    {#    <md-toolbar>#}
+    {#        <h4>#}
+    {#            جدول ایجاد شده#}
+    {#        </h4>#}
+    {#    </md-toolbar>#}
+    {#    <div class="card-body">#}
+    {#        <h4>جدول ایجاد شده</h4>#}
+    {##}
+    {#        <table id="divTable77" class="stripe" style="min-width: 2000px;font-size: 12px;">#}
+    {##}
+    {#        </table>#}
+    {#    </div>#}
+    {##}
+    {##}
+    {#    <div style="display: none;">#}
+    {#        <div class="input-group-prepend">#}
+    {#            <span class="input-group-text">مواد مستقیم</span>#}
+    {#        </div>#}
+    {##}
+    {#        <textarea dir="ltr" class="form-control" aria-label="With textarea"#}
+    {#                  ng-model="JsonOfPercent"></textarea>#}
+    {#    </div>#}
+
+
+</div>
+
+

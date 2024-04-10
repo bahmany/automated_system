@@ -1,0 +1,183 @@
+<div ng-controller="HavalehForooshTraceCtrl">
+    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">
+        <div layout="row">
+            <md-toolbar-filler layout-align="center center" layout="row" style="background-color: rgb(139 159 175)">
+                <md-icon md-font-icon="fa fa-clock-o" style="    font-size: 35px;"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">از حواله فروش تا حواله خروج و میزان باقی مانده</h2>
+
+                <div style="font-size: 12px; color: grey; padding:12px;">
+                    در این قسمت حواله های فروش صادر شده لیست شده و حواله های خروج از آن کسر می گردند و سپس میزان باقی
+                    مانده قابل مشاهده می شود
+                </div>
+            </div>
+
+
+        </div>
+    </md-toolbar>
+
+    <md-progress-linear md-mode="indeterminate" ng-show="is_loading"></md-progress-linear>
+
+    <div class="shadower">
+        <div ng-repeat="item in report_trace_result" layout="row" layout-align="start center"
+             style="border-bottom: 1px solid darkgrey; padding-bottom: 12px; margin-bottom: 12px;">
+            <div flex="15" style="font-size: 12px;" layout-align="center center">
+                <div style="font-weight: bold;">
+                    //item.customerName//
+                </div>
+                <div style="font-weight: bold;">
+                    <span>شماره</span>
+                    <span>//item.Number//</span>
+                </div>
+
+                <div style="padding-right: 12px; color: darkgrey">
+                    <span>صدور</span>
+                    <span>//item.tarikheSodoor | jalaliDate:'jYYYY/jMM/jDD'//</span>
+                </div>
+                <div style="padding-right: 12px; color: darkgrey">
+                    <span>انقضا</span>
+                    <span>//item.tarikheEngheza | jalaliDate:'jYYYY/jMM/jDD'//</span>
+                </div>
+                <div style="padding: 5px;border: 1px solid #d6d6d6;margin: 5px;overflow: hidden">
+                    <div>توضیحات :</div>
+                    <div style="text-align: justify">//item.exp.Description//</div>
+                </div>
+            </div>
+
+            <div flex="" style="padding-right: 12px;font-size: 12px;color: slategray" layout="row"
+                 layout-align="start center">
+                <div flex="20">
+                    <div>
+                        <span>صادر کننده :</span>
+                        <span>//item.exp.CreatorName//</span>
+                    </div>
+
+                    <div>
+                        <span>قیمت اولیه :</span>
+                        <span>//item.exp.NetPrice|number//</span>
+                        <span style="font-size: 10px;">ریال</span>
+                    </div>
+
+                    <div>
+                        <span>میزان سفارش اولیه :</span>
+                        <span>//item.mizanAvaliehSefaresh|number//</span>
+                    </div>
+
+                </div>
+
+                <div flex="">
+
+                    <div ng-repeat="aaa in item.approves">
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <table>
+                            <thead>
+                            <tr>
+
+                                <th>کد</th>
+                                <th>عنوان</th>
+                                <th>واحد</th>
+                                <th>شهر</th>
+                                <th>آدرس</th>
+                                <th>فی</th>
+                                <th>مبلغ</th>
+                                <th>پیش فاکتور</th>
+                                <th>میزان حواله فروش</th>
+
+                            </tr>
+                            </thead>
+                            <tbody ng-repeat="order_detail in aaa.item.items">
+                            <tr
+                                    class="table mini table-bordered table-striped">
+                                <td>//order_detail.OrderItemProductNumber//</td>
+                                <td>//order_detail.OrderItemPrice//</td>
+                                <td>//order_detail.OrderItemPriceBaseUnitName//</td>
+                                <td>//order_detail.OrderItemDeliveryAddressCity1Name//</td>
+                                <td>//order_detail.OrderItemDeliveryAddress//</td>
+                                <td>//order_detail.OrderItemPriceBaseFee|number//</td>
+                                <td>//order_detail.OrderItemPrice|number//</td>
+                                <td>//order_detail.OrderItemSourceNumber//</td>
+                                <td>//order_detail.OrderItemQuantity|number//</td>
+                            </tr>
+
+
+                            <tr>
+                                <td colspan="9"
+                                    style="font-size: 12px;padding: 20px; background-color: #e5e5e5">
+                                    <table class="table mini table-bordered table-striped"
+                                            ng-if="order_detail.exits.length == 0"
+                                           style="background-color: white">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                                حواله (های) خروج
+                                            </th>
+                                        </tr>
+                                        <tr>
+
+                                            <th>شماره</th>
+                                            <th>تاریخ صدور</th>
+                                            <th>میزان</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="grr in order_detail.exits">
+
+                                            <td>//grr.item.Number//</td>
+                                            <td>//grr.item.Date | jalaliDate:'jYYYY/jMM/jDD'//</td>
+                                            <td>//grr.item.MajorUnitQuantity//</td>
+                                        </tr>
+                                        <tr ng-if="order_detail.exits.length != 0"
+                                            style="font-weight: bold">
+                                            <td colspan="2" style="text-align: left">
+                                                جمع
+                                            </td>
+                                            <td>
+                                                //order_detail.exits_totals.sumof | number//
+                                            </td>
+
+                                        </tr>
+                                        <tr ng-if="order_detail.exits.length != 0"
+                                            style="font-weight: bold">
+                                            <td colspan="2" style="text-align: left">
+                                                باقی مانده
+                                            </td>
+                                            <td>
+                                                <span ng-class="{'inbox-notread-color':order_detail.OrderItemQuantity-order_detail.exits_totals.sumof > 0}">//order_detail.OrderItemQuantity-order_detail.exits_totals.sumof | number //</span>
+
+                                            </td>
+
+                                        </tr>
+                                        <tr ng-if="order_detail.exits.length == 0">
+                                            <td colspan="4">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+
+                                    </table>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,64 @@
+{% load translators %}
+
+<div flex-gt-xs="50" style="float: none;margin: 0 auto;">
+    <form ng-submit="myTestForm.$valid && createLunchedProcess()" novalidate action="" name="frmStart">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                <h3>فعالیت جدید</h3>
+                <span flex></span>
+                <h6 style="text-align: left;line-height: 14px;">//lunchedPData.positionName// <br/>
+                    <small style="font-weight: normal; font-size: 11px;">اطلاعات زیر را تکمیل نمایید</small>
+                </h6>
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <md-input-container class="md-block">
+                <label for="">توضیحاتی در خصوص فعالیت جدید وارد نمایید</label>
+                <input name="name" type="text" ng-model="lunchedProcess.name" required>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>فعالیت های مجاز</label>
+                <md-select ng-model="lunchedProcess.bpmnForCreate" name="bpmnForCreate" required>
+                    <md-optgroup label="فعالیت ها">
+                        <md-option ng-value="obj.id" ng-repeat="obj in bpmns">//obj.name//</md-option>
+                    </md-optgroup>
+                </md-select>
+            </md-input-container>
+
+        </div>
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                <span flex></span>
+                <md-button id="newJob" class="md-raised md-primary"
+                           type="button"
+                           ng-click="createLunchedProcess()"
+                           ng-disabled="frmStart.$invalid">
+                    شروع فعالیت
+                    <md-icon md-font-icon="fa fa-check"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+    </form>
+    <!--
+    <div class="panel panel-default panel-new-default" style="border: 1px solid rgb(207,207,207)">
+
+        <div class="panel-body">
+
+            <input name="name" class="form-control" type="text" ng-model="lunchedProcess.name"
+                   placeholder="{{ 'Enter new process details'|translate }}">
+            <br/>
+            <select class="form-control" name="bpmnForCreate" ng-model="lunchedProcess.bpmnForCreate"
+                    ng-options="obj.id as obj.name for obj in bpmns">
+                <option value="">{{ 'select your process'|translate }}...</option>
+            </select>
+            <br/>
+            <div id="newJob"
+                 style="background-color: rgb(60, 162, 224); padding: 4px; cursor: pointer; text-align: center;color:white;padding-top:10px;padding-bottom: 10px; "
+                 ng-click="createLunchedProcess()" class="btn btn-block">شروع فرایند
+            </div>
+        </div>
+    </div>
+
+-->
+
+</div>

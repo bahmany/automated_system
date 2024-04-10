@@ -1,0 +1,74 @@
+{% load translators %}
+
+<md-content id="BAMShowShakhesCtrl"
+            ng-controller="BAMShowShakhesCtrl" class="shadower" layout-padding>
+    <div layout="row" layout-align="start center" style="color: #A5A5A5;"
+         class="layout-align-start-center layout-row">
+        <h3> //bam.name// از فرایند //bam.bpmn_name// </h3>
+        <span flex="" class="flex"></span>
+    </div>
+    <md-divider></md-divider>
+    <div layout-gt-md="row">
+        <div flex-gt-md="80">
+
+                مقدار فعلی شاخص <strong style="    font-size: 20px;
+    margin: 0 3px;
+    font-weight: bold;">//monitorRes.count//</strong> است و در وضعیت <span class="label label-success"
+                                                                           ng-if="monitorRes.status ==0">عادی</span>
+                <span class="label label-warning" ng-if="monitorRes.status ==2">هشدار</span>
+                <span class="label label-danger" ng-if="monitorRes.status ==3">بحران</span>
+                <span class="label label-default" ng-if="monitorRes.status ==1">کمتر از حداقل</span> قرار دارد.
+
+        </div>
+        <div flex-gt-md="18">
+            <div class="label label-default" ng-if="monitorRes.days!=0">
+                 تا //monitorRes.days// روز گذشته
+            </div>
+            <div class="label label-default" ng-if="monitorRes.days ==0">
+                 در تمام مدت
+            </div>
+        </div>
+
+
+    </div>
+        <div layout-gt-md="row">
+        <div flex-gt-md="33">
+            <small>حداقل: //monitorRes.min//</small>
+        </div>
+        <div flex-gt-md="33">
+            <small>شروع هشدار در: //monitorRes.warn//</small>
+        </div>
+        <div flex-gt-md="33">
+            <small>شروع بحران در: //monitorRes.danger//</small>
+        </div>
+    </div>
+    <hr/>
+{#    <div layout-gt-md="row">#}
+{#        <div class="col-md-3">#}
+{#            //'فرایندهای جاری'|translate//: //bam.runningCount//#}
+{#        </div>#}
+{#        <div class="col-md-4">#}
+{#            //'فرایندهای پایان یافته'|translate//: //bam.doneCount//#}
+{#        </div>#}
+{#        <div class="col-md-4">#}
+{#            //'تمام فرایندها'|translate//: //bam.doneCount + bam.runningCount//#}
+{#        </div>#}
+{#    </div>#}
+    <div layout-gt-md="row">
+        <div flex-gt-md="100">
+            <h4 class="md-title" style="color: #969696;">وضعیت فعالیت های جاری</h4>
+            <canvas id="barChartRunning" width="400" height="300"></canvas>
+        </div>
+    </div>
+     <hr/>
+    <div layout-gt-md="row">
+        <div flex-gt-md="100">
+            <h4 class="md-title" style="color: #969696;"> فعالیت های فرایندهای پایان یافته</h4>
+
+            <canvas id="barChartDone" width="400" height="300"></canvas>
+        </div>
+    </div>
+
+
+</md-content>
+

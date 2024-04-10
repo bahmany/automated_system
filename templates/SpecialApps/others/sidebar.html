@@ -1,0 +1,90 @@
+<div class="sidebar" ng-controller="SideBarCtrl">
+        <div class="logopanel">
+            <h1>
+                <a href="dashboard.html"></a>
+            </h1>
+        </div>
+        <div class="sidebar-inner">
+
+
+
+
+{#            <div class="sidebar-top">#}
+{#                <form action="search-result.html" method="post" class="searchform" id="search-results">#}
+{#                    <input type="text" class="form-control" name="keyword" placeholder="Search...">#}
+{#                </form>#}
+{#                <div class="userlogged clearfix">#}
+{#                    <i class="icon icons-faces-users-01"></i>#}
+{#                    <div class="user-details">#}
+{#                        <h4>Mike Mayers</h4>#}
+{#                        <div class="dropdown user-login">#}
+{#                            <button class="btn btn-xs dropdown-toggle btn-rounded" type="button" data-toggle="dropdown"#}
+{#                                    data-hover="dropdown" data-close-others="true" data-delay="300">#}
+{#                                <i class="online"></i><span>Available</span><i class="fa fa-angle-down"></i>#}
+{#                            </button>#}
+{#                            <ul class="dropdown-menu">#}
+{#                                <li><a href="#"><i class="busy"></i><span>Busy</span></a></li>#}
+{#                                <li><a href="#"><i class="turquoise"></i><span>Invisible</span></a></li>#}
+{#                                <li><a href="#"><i class="away"></i><span>Away</span></a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="menu-title">#}
+{#                Navigation#}
+{#                <div class="pull-right menu-settings">#}
+{#                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"#}
+{#                       data-close-others="true" data-delay="300">#}
+{#                        <i class="icon-settings"></i>#}
+{#                    </a>#}
+{#                    <ul class="dropdown-menu">#}
+{#                        <li><a href="#" id="reorder-menu" class="reorder-menu">Reorder menu</a></li>#}
+{#                        <li><a href="#" id="remove-menu" class="remove-menu">Remove elements</a></li>#}
+{#                        <li><a href="#" id="hide-top-sidebar" class="hide-top-sidebar">Hide user &amp; search</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>#}
+
+
+            <ul class="nav nav-sidebar">
+                <li class=" nav-active active"><a ui-sref="dash"><i class="icon-home"></i><span>صفحه اصلی</span></a>
+                </li>
+                <li class="nav-parent">
+                    <a href="#"><i class="icon-puzzle"></i><span>عملیات فروش</span> <span class="fa arrow"></span></a>
+                    <ul class="children collapse">
+                        <li><a ui-sref="SalesTataabogh">تطابق نیاز </a></li>
+                        <li><a ui-sref="SalesConv">مذاکرات</a></li>
+                        <li><a ui-sref="SalesProfile">پروفایل مشتریان</a></li>
+                        <li><a ui-sref="SalesMojoodi">موجودی و در راه</a></li>
+                        <li><a ui-sref="Khorooj">خروج محصول</a></li>
+                        <li><a ui-sref="HavalehForoosh">حواله فروش</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-parent">
+                    <a href="#"><i class="icon-puzzle"></i><span>مشتریان</span> <span class="fa arrow"></span></a>
+                    <ul class="children collapse">
+                        <li><a ui-sref="SalesProfilePhones">شماره موبایل مشتریان</a></li>
+                        <li><a ui-sref="CustomerTahili">تحلیل سوابق مشتری</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-parent">
+                    <a href="#"><i class="icon-bulb"></i><span>تامین</span> <span class="fa arrow"></span></a>
+                    <ul class="children collapse">
+{#                        <li><a ui-sref="TaminExper">کارشناسی تامین</a></li>#}
+                        <li><a ui-sref="Karshenasi">درخواست های مشتریان</a></li>
+                        <li><a ui-sref="KarshenasiTahili">تحلیل درخواست ها</a></li>
+                        <li><a ui-sref="SalesTaminProjects">پروژه های تامین</a></li>
+                        <li><a ui-sref="SalesTaminDetails">در راه ها</a></li>
+                        <li><a ui-sref="TaminDakheliRegistered">ثبت نام تامین کنندها</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+
+{#            </div>#}
+        </div>
+    </div>

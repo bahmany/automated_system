@@ -1,0 +1,57 @@
+{% load translators %}
+
+                <md-content>
+                    <div>
+                        <div class="tbl-container">
+                            <table class="tbl-performer-type" style="width: initial">
+                                <tr>
+                                    <td colspan="4"
+                                        style="text-align: right;font-size: 13px;  font-weight: bold;  border-bottom: 1px solid rgb(207, 207, 207);">
+                                        کپی کردن فرم های قبلی در این محل
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><select name="copyPaste" id="copyPaste" ng-model="selectedFormForCopy">
+                                        <option value="">{{ 'Select a form...'|translate }}</option>
+                                        <option ng-repeat="itm in formsForCopy" value="//itm.id//">//itm.name//
+                                        </option>
+                                    </select></td>
+                                    <td>
+                                        <md-button class="md-button md-raised" ng-click="pasteForm()">
+                                            {{ 'Paste here'|translate }}
+                                        </md-button>
+                                    </td>
+                                    <td>
+                                        <md-button class="md-button md-raised" ng-click="unreadonlyAll()">
+                                            {{ 'unreadonlyAll'|translate }}
+                                        </md-button>
+                                    </td>
+                                    <td>
+                                        <md-button class="md-button md-raised" ng-click="readonlyAll()">
+                                            {{ 'readonlyAll'|translate }}
+                                        </md-button>
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </div>
+
+
+                    </div>
+                    <div flex>
+
+
+                        <div class="form-edit-content">
+                            <div class="form-content-edit">
+
+
+                                <form class="form-horizontal">
+                                    <div fg-edit fg-schema="form.schema"></div>
+                                </form>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </md-content>

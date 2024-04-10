@@ -1,0 +1,123 @@
+<div ng-controller="RialSazi89EbtedayeDorehCtrl">
+    <div class="spacer">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h4>ریالی سازی ابتدای دوره چاپ و لاک
+                </h4>
+
+            </div>
+        </md-toolbar>
+        <table id="divTablecog_89" style="text-align: right">
+
+        </table>
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                قیمت گذاری انبوه
+
+            </div>
+        </md-toolbar>
+        <div dir="ltr">format : PartCode+space+qty+space+rial+Enter</div>
+        <div class="input-group-prepend">
+            <span class="input-group-text">متن های کپی شده</span>
+        </div>
+        <textarea dir="ltr" name="" id="" cols="30" rows="10"
+                  class="form-control" aria-label="With textarea"
+                  ng-model="bulkInsert"></textarea>
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <span flex></span>
+                <md-button
+                        loading="در حال محاسبه ..." notloading="ذخیره و اعمال" disableonrequest
+                        ng-click="postBulk()" class="md-raised">
+                </md-button>
+            </div>
+        </md-toolbar>
+
+    </div>
+
+{#    <div class="row">#}
+{#        <div class="col-12">#}
+{#            <div class="card">#}
+{#                <div class="card-body">#}
+{#                    <h1>ریالی سازی ابتدای دوره ۸۸</h1>#}
+{#                    <p class="docs-lead">#}
+{#                        در این قسمت اگر کالا نیمه ساخته یا کویل ۸۸ دارای موجودی ابتدای دوره باشد#}
+{#                        قیمت دار می شود#}
+{#                    </p>#}
+{#                    <p>#}
+{#                        در این قسمت کالاهای نیمه ساخته یا کویل های قلع اندود شده که دارای موجودی ابتدای دوره هستند ولی#}
+{#                        قیمتی برای آنها ذکر نشده است دارای قیمت می شود البته ذکر این نکته ضروری است که اگر این اطلاعات#}
+{#                        در سال گذشته در بانک اطلاعاتی موجود باشد قیمت ها به صورت خودکار جایگزین میشوند ولی به علت اینکه#}
+{#                        احتمال دارد قیمت ها نباشد یا اینکه به لحاظ ریالی در پایان سال دچار تغییراتی شوند لذا لازم است#}
+{#                        برای این کالاها قیمتی مشخص شود شما میتوانید با کلیک بر روی سلول مورد نظر آن را ویرایش نمایید و#}
+{#                        پس از اینتر اطلاعات به صورت خودکار ثبت می شود ضمناً قسمت دیگری نیز برای سهولت بیشتر در نظر گرفته#}
+{#                        شده است که شما میتوانید با فرمت ای که در همان قسمت توضیح داده شده است از نرم‌افزارهای اکسل یا#}
+{#                        سایر نرم افزارها گزارش تهیه کرده و آن را به صورت انبوه در این نرم افزار وارد نمایید.#}
+{#                    </p>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#            <div class="card">#}
+{#                <div class="card-body">#}
+{#                    <h4>جدول کویل های ۸۸ دارای ابتدای دوره</h4>#}
+{#                    <table id="divTable77" style="text-align: right">#}
+{##}
+{#                    </table>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="card">#}
+{#                <div class="card-body">#}
+{#                    <h4>#}
+{##}
+{#                    </h4>#}
+{##}
+{#                    <table id="divTable88" style="text-align: right">#}
+{##}
+{#                    </table>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="card">#}
+{#                <div class="card-body">#}
+{#                    <h4>#}
+{#                        قیمت گذاری انبوه#}
+{#                    </h4>#}
+{#                    <div dir="ltr">format : PartCode+space+qty+space+rial+Enter</div>#}
+{#                    <div class="docs-example">#}
+{#                        <div class="input-group mb-3" style="height: 300px;">#}
+{#                            <div class="input-group-prepend">#}
+{#                                <span class="input-group-text">متن های کپی شده</span>#}
+{#                            </div>#}
+{#                            <textarea dir="ltr" name="" id="" cols="30" rows="10"#}
+{#                                      class="form-control" aria-label="With textarea"#}
+{#                                      ng-model="bulkInsert"></textarea>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <nav class="navbar navbar-light bg-light justify-content-between"#}
+{#                         style="background-color: #e3f2fd;">#}
+{#                        <a class="navbar-brand"></a>#}
+{#                        <md-button#}
+{#                                loading="در حال محاسبه ..." notloading="ذخیره و اعمال" disableonrequest#}
+{##}
+{#                                type="md-button" ng-click="postBulk()" class="btn btn-brand btn-behance">#}
+{#                            <i class="fa fa-save"></i><span>ذخیره و اعمال</span>#}
+{#                        </md-button>#}
+{#                    </nav>#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+
+    {#    <div>#}
+    {#        <h3>ارسال قیمت گذاری انبود</h3>#}
+    {#        <div>format : PartCode+space+qty+space+rial</div>#}
+    {#    </div>#}
+    {#    <textarea name="" id="" cols="30" rows="10" ng-model="bulkInsert">#}
+    {#    </textarea>#}
+
+
+</div>

@@ -1,0 +1,22 @@
+<h4>ثبت و دریافت کد پیگیری</h4>
+<hr>
+
+
+<ul ng-if="errmsg.length > 0">
+    <li>اطلاعات شما به دلایل زیر ثبت نمی شود :
+        <ul style="list-style: arabic-indic;padding-right: 38px;color: red;">
+            <li ng-repeat="err in errmsg">//err//</li>
+        </ul>
+    </li>
+</ul>
+<span flex></span>
+<md-button ng-if="!(provider.ozviatcode)"
+        class="md-raised md-primary" ng-click="getOzviatCode($event)">
+    دریافت کد پیگیری
+</md-button>
+<h1 ng-if="provider.ozviatcode" style="text-align: center">
+    کد شما //provider.ozviatcode//
+</h1>
+<p style="text-align: center">
+    این کد به منزله ی شناسایی شماست. آن را یادداشت نمایید و از آن جهت پیگیری های بعدی استفاده نمایید
+</p>

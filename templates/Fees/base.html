@@ -1,0 +1,28 @@
+<div ng-controller="FeeBaseCtrl">
+
+    <h2>قیمت فروش محصولات</h2>
+
+    <div style="overflow: scroll; direction: ltr">
+        <hot-table
+                settings="setting"
+                col-headers="true"
+                datarows="fees.data"
+                style="direction: ltr; text-align: left"
+                height="300"
+                id="catable"
+                language='en'
+        >
+            <hot-column
+                    ng-repeat="col in percentTable.cols"
+                    formulas="true"
+                    data="//col.title//"
+                    title="col.title"
+                    read-only="col.readOnly"
+                    data-type="col.dataType"
+                    numeric-format="col.numericFormat"
+                    type="col.dataType"
+            ></hot-column>
+        </hot-table>
+    </div>
+
+</div>

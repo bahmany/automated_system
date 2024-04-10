@@ -1,0 +1,90 @@
+<h4>فهرست ماشین الات ، تجهیزات و دستگاه ها با ارائه مستندات لازم</h4>
+<hr>
+<div>
+    <div layout="column">
+
+
+        <form action="" name="form_frm22">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">دستگاه / تجهیزات</label>
+                        <input type="text" ng-model="provider.frm22.dastgah" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تعداد</label>
+                        <input type="text" ng-model="provider.frm22.tedad">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">ظرفیت</label>
+                        <input type="text" ng-model="provider.frm22.zarfiat">
+                    </md-input-container>
+                </div>
+
+
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">وضعیت مالکیت</label>
+                        <input type="text" ng-model="provider.frm22.vaziateMalekiat" required>
+                    </md-input-container>
+                </div>
+
+
+            </div>
+
+
+            <div layout-gt-xs="row">
+                <span flex></span>
+                <md-button ng-click="addTofrm('22')"
+                           ng-disabled="form_frm22.$invalid"
+                           class="md-raised md-default">
+                    اضافه به لیست
+                </md-button>
+            </div>
+
+        </form>
+
+        <div>
+            <table class="sp-table">
+                <thead>
+                <tr>
+                    <th>دستگاه / تجهیزات</th>
+                    <th>تعداد</th>
+                    <th>ظرفیت</th>
+                    <th>وضعیت مالکیت</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.frm22_list">
+                    <td>//it.dastgah//</td>
+                    <td>//it.tedad//</td>
+                    <td>//it.zarfiat//</td>
+                    <td>//it.vaziateMalekiat//</td>
+                    <td>
+                        <md-button class="md-primary md-default" ng-click="removefrm('22',$index)">حذف</md-button>
+                    </td>
+                </tr>
+
+                <tr ng-if="provider.frm22_list.length == 0">
+                    <td colspan="5">
+                        لیست استانداردهای ****ی خالی است
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,67 @@
+<div ng-controller="BIGroupsCtrl">
+
+
+    <md-toolbar class="md-hue-2" style="background-color: rgb(0 0 0 / 54%);">
+        <div class="md-toolbar-tools" layout="row">
+            <h5>
+                داشبورد مدیریتی
+            </h5>
+            <div flex>
+
+            </div>
+            <md-button class="md-icon-button" aria-label="Settings"  ng-click="createGroup()">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    {#    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">#}
+    {#        <div layout="row" layout-wrap="start center">#}
+    {#            <div style="background-color: red">#}
+    {##}
+    {#            </div>#}
+    {#            <md-toolbar-filler layout-align="center center"#}
+    {#                               layout="row" style="background-color: rgb(139 159 175)">#}
+    {#            </md-toolbar-filler>#}
+    {##}
+    {#            <div layout="row"  layout-wrap="start center">#}
+    {#                <div>#}
+    {#                    گروه های داشبورد#}
+    {#                </div>#}
+    {##}
+    {#                <div flex></div>#}
+    {#                    <md-button class="md-raised" ng-click="createGroup()">#}
+    {#                        گروه جدید#}
+    {#                    </md-button>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </md-toolbar>#}
+    <div class="shadower" layout="row" layout-wrap="">
+        <div ng-repeat="item in groups"
+             style="width: 150px; height: 150px; margin: 3px; padding: 3px; border: 1px solid gainsboro; overflow: hidden"
+             layout="row"
+             layout-align="center center">
+            <div style="font-size: 12px; text-align: center">
+                <div>
+                    <div>
+                        گروه
+                        <br>
+                        //item.groupTitle//
+                    </div>
+                    <div>
+                        تعداد
+                        //item.user_count// عضو
+
+                    </div>
+                </div>
+                <div>
+                    <a ng-click="editGroup(item)">تغییر نام </a> |
+                    <a ng-click="userGroup($even, item)">تغییر اعضا </a> |
+                    <a ng-click="deleteGroup($even, item)"> حذف </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

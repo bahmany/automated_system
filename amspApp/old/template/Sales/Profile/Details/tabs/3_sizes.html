@@ -1,0 +1,168 @@
+<div>
+
+
+    <div layout-gt-sm="row" class="reduce-input-area">
+        <md-input-container flex-gt-sm="20">
+            <label for="">تمپر</label>
+            <input type="number" ng-model="profileSize.desc.temper">
+        </md-input-container>
+        <md-input-container flex-gt-xs="20">
+            <label>سطح</label>
+            <md-select ng-model="profileSize.desc.sath">
+                <md-option value="0"><em>هر دو</em></md-option>
+                <md-option value="Stone">
+                    Stone
+                </md-option>
+                <md-option value="Bright">
+                    Bright
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container flex-gt-sm="20">
+            <label for="">ضخامت</label>
+            <input type="number" ng-model="profileSize.desc.zekhamat">
+        </md-input-container>
+        <md-input-container flex-gt-sm="20">
+            <label for="">عرض</label>
+            <input type="number" ng-model="profileSize.desc.arz">
+        </md-input-container>
+        <md-input-container flex-gt-sm="20">
+            <label for="">طول</label>
+            <input type="number" ng-model="profileSize.desc.tool">
+        </md-input-container>
+    </div>
+    <div layout-gt-sm="row">
+        <md-input-container flex-gt-xs="20">
+            <label>نوع موجودی</label>
+            <md-select ng-model="profileSize.desc.typeOfAsk">
+                <md-option value="کارشناسی">
+                    کارشناسی
+                </md-option>
+                <md-option value="اعلامی">
+                    اعلامی
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container flex-gt-xs="20">
+            <label>نوع اعلام</label>
+            <md-select ng-model="profileSize.desc.sayType">
+                <md-option value="روزانه">
+                    روزانه
+                </md-option>
+                <md-option value="ماهانه">
+                    ماهانه
+                </md-option>
+                <md-option value="فصلی">
+                    فصلی
+                </md-option>
+                <md-option value="سالانه">
+                    سالانه
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container flex-gt-xs="20">
+            <label>ماه</label>
+            <md-select ng-model="profileSize.desc.month">
+                <md-option value="فروردین">
+                    فروردین
+                </md-option>
+                <md-option value="اردیبهشت">
+                    اردیبهشت
+                </md-option>
+                <md-option value="خرداد">
+                    خرداد
+                </md-option>
+                <md-option value="تیر">
+                    تیر
+                </md-option>
+                <md-option value="مرداد">
+                    مرداد
+                </md-option>
+                <md-option value="شهریور">
+                    شهریور
+                </md-option>
+                <md-option value="مهر">
+                    مهر
+                </md-option>
+                <md-option value="آبان">
+                    آبان
+                </md-option>
+                <md-option value="آذر">
+                    آذر
+                </md-option>
+                <md-option value="بهمن">
+                    بهمن
+                </md-option>
+                <md-option value="دی">
+                    دی
+                </md-option>
+                <md-option value="اسفند">
+
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container flex-gt-xs="20">
+            <label>فصل</label>
+            <md-select ng-model="profileSize.desc.sayseason">
+                <md-option value="بهار">
+                    بهار
+                </md-option>
+                <md-option value="تابستان">
+                    تابستان
+                </md-option>
+                <md-option value="پاییز">
+                    پاییز
+                </md-option>
+                <md-option value="زمستان">
+                    زمستان
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container flex-gt-sm="20">
+            <label for="">سال</label>
+            <input type="number" ng-model="profileSize.desc.Year" ng-init="profileSize.desc.Year=1396">
+        </md-input-container>
+
+    </div>
+    <div layout="row">
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-click="addProfileSize()">ثبت</md-button>
+    </div>
+    <div>
+        <md-list>
+            <md-list-item class="md-2-line"
+                          ng-repeat="item in profileSizes.results"
+                          ng-click="null"
+                          ng-class-odd="'odd'"
+                          ng-class-even="'even'">
+                <img ng-src="//item.avatar//" class="md-avatar" alt="//item.positionName//">
+                <div class="md-list-item-text smaller" layout="column">
+
+                    <p layout="row">
+                        <span flex-gt-sm tooltip="تمپر">  تمپر :  //item.desc.temper// </span>
+                        <span flex-gt-sm tooltip="سطح">  سطح :  //item.desc.sath//</span>
+                        <span flex-gt-sm tooltip="ضخامت">  ضخامت :  //item.desc.zekhamat//</span>
+                        <span flex-gt-sm tooltip="عرض">  عرض :  //item.desc.arz//</span>
+                        <span flex-gt-sm tooltip="طول">  طول :  //item.desc.tool//</span>
+                    </p>
+                    <p layout="row">
+                        <span flex-gt-sm>//item.desc.typeOfAsk//</span>
+                        <span flex-gt-sm>//item.desc.sayType//</span>
+                        <span flex-gt-sm>//item.desc.month//</span>
+                        <span flex-gt-sm>//item.desc.sayseason//</span>
+                        <span flex-gt-sm>//item.desc.Year//</span>
+                    </p>
+
+                </div>
+
+                <md-icon class="md-secondary" md-font-icon="fa fa-pencil" ng-click="edit($event, item)"></md-icon>
+                <md-icon class="md-secondary" md-font-icon="fa fa-trash" ng-click="delete($event, item)"></md-icon>
+
+
+            </md-list-item>
+        </md-list>
+    </div>
+
+
+</div>

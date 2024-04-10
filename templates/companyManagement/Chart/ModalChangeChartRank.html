@@ -1,0 +1,32 @@
+{% load translators %}
+
+<div id="modal_change_rank" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+                        تغییر درجه
+                    //currentSelectedRAWchart.title//
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <h1 class="md-title">لطفا درجه ی جدید را وارد نمایید</h1>
+                    <div layout="column">
+                        <md-input-container class="md-block">
+                            <label>درجه ی سمت</label>
+                            <input type="number" ng-required ng-model="NewChartRAWRank" id="id_NewChartRAWTitle">
+                        </md-input-container>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="PostRankChartRAW()">
+                        تایید
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

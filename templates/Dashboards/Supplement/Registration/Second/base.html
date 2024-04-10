@@ -1,0 +1,43 @@
+<div ng-controller="SecondRegistrationStepCtrl" class="doc-demo-content doc-content">
+    <div class="docs-demo">
+        <h2>تکمیل اطلاعات نهایی</h2>
+        <p>
+            جهت استفاده از سامانه می بایست فرم زیر را نیز تکمیل نمایید
+        </p>
+        <section class="demo-container md-whiteframe-z1"
+                 flex-gt-xs="90"
+                 flex-gt-sm="60"
+                 flex-gt-lg="40">
+            <md-toolbar class="demo-toolbar md-primary">
+                <h3 class="md-toolbar-tools"><a class="docs-anchor">تکمیل ثبت نام</a></h3>
+            </md-toolbar>
+
+            <md-content>
+                <form name="frmSecondReg" ng-submit="sendSecondReg($event)">
+
+                    <div class="spacer"></div>
+
+
+                    <md-input-container class="md-block">
+                        <label for="">لطفا نوع همکاری را انتخاب نمایید</label>
+                        <md-select ng-model="hamkariType.type" required>
+                            <md-option value=4>فروشنده کالا</md-option>
+                            <md-option value=5>ارایه دهندگان خدمات</md-option>
+                            <md-option value=6>سازندگان </md-option>
+                            <md-option value=7>علاقمند به همکاری و استخدام</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <div layout="row">
+                        <div flex="">
+
+                        </div>
+                        <md-button class="md-raised md-primary" type="submit" ng-disabled="frmSecondReg.$invalid">
+                            ثبت و ورود به داشبورد
+                        </md-button>
+                    </div>
+                </form>
+            </md-content>
+
+        </section>
+    </div>
+</div>

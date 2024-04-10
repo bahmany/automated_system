@@ -1,0 +1,78 @@
+<div ng-controller="BIChartDesignerCtrl">
+    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">
+        <div layout="row">
+            <md-toolbar-filler layout-align="center center" layout="row" style="background-color: rgb(139 159 175)">
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">
+                    ایجاد یا ویرایش نمودار
+
+                </h2>
+
+                <div>
+
+                    <md-button class="md-raised" ui-sref="bi-charts">
+                        بازگشت
+                    </md-button>
+
+
+                </div>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <div layout="row" class="shadower">
+        <div flex="35">
+            <md-input-container class="md-block">
+                <label>انتخاب اسکریپت</label>
+                <md-select ng-model="chart.details.sql.id">
+                    <md-option ng-value="null">هیچ کدام</md-option>
+                    <md-option ng-repeat="sql in sqls" ng-value="sql.id">//sql.sqlTitle//
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div flex="5">
+
+        </div>
+        <div flex="35">
+            <md-input-container class="md-block">
+                <label>انتخاب نوع نمودار</label>
+                <md-select ng-model="chart.details.chart_type">
+                    <md-option value='line'>Line</md-option>
+                    <md-option value='bar'>Bar</md-option>
+                    <md-option value='radar'>Radar</md-option>
+                    <md-option value='pie'>Doughnut and Pie</md-option>
+                    <md-option value='polarArea'>Polar Area</md-option>
+                    <md-option value='bubble'>Bubble Chart</md-option>
+                    <md-option value='scatter'>Scatter Chart</md-option>
+                    <md-option value='top5'>Top 5</md-option>
+                    <md-option value='table'>Table</md-option>
+                    <md-option value='latestdatatable'>نمایش آخرین ورودی جداول داده ها</md-option>
+                    <md-option value='singlevalue'>نمایش تک عددی</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+
+        <div flex>
+                <md-button class="md-raised" ng-click="save()">
+                    ذخیره
+                </md-button>
+        </div>
+
+    </div>
+
+    <md-tabs style="min-height: 2000px;" ng-if="chart.details.sql">
+        <md-tab label="Chart">
+            {% include 'BI/charts/partial_chart.html' %}
+        </md-tab>
+
+        <md-tab label="SQL"
+                ng-if="chart.details.chart_type === 'table' || chart.details.chart_type === 'line' || chart.details.chart_type === 'bar' || chart.details.chart_type === 'top5' || chart.details.chart_type === 'singlevalue'">
+            {% include 'BI/charts/partial_sql.html' %}
+        </md-tab>
+
+    </md-tabs>
+
+</div>

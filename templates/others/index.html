@@ -1,0 +1,269 @@
+{% load translators %}
+{% load staticfiles %}
+<!doctype html>
+<html lang="en" ng-strict-di>
+<head>
+    <meta charset="utf-8">
+    <title>AMSP</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+
+    {% for css in staticCSS %}
+        <link rel="stylesheet" href="{{ css }}">{% endfor %}
+
+</head>
+<body
+        ng-app="AniTheme"
+        class="docs-body"
+        id="main"
+        layout="row"
+        dir="rtl"
+        ng-cloak>
+
+<sidebar class="sidebar-right-container" id="sidebar-right-container"></sidebar>
+<main layout="column" flex>
+    <topnav></topnav>
+    <md-content md-scroll-y layout="column" flex id="div_main_container">
+        <div class="docs-ng-view layout-padding ng-scope flex-noshrink" layout-padding>
+            {#<div dir="rtl" style="margin-bottom: 15px;z-index: 99998;">#}
+            {#</div>#}
+            <div class="doc-demo-content doc-content">
+                <div dir="rtl">
+
+
+                    <div layout="column" tabIndex="-1" role="main" flex>
+                        <ui-view></ui-view>
+                    </div>
+                    <div style=" color: #949494;    text-align: center;    font-size: 12px; margin-top: 100px;">
+                        <i class="fa fa-heart" style="color: red;"></i>
+                        Copyright {% now "Y" %} by rahsoon.com
+                    </div>
+                </div>
+                {#                <div dir="rtl" class="please-wait-state-loding-layer">#}
+                {##}
+                {#                </div>#}
+                {#                <div dir="rtl" class="please-wait" layout="row" layout-align="center center">#}
+                {#                    <div>لطفا صبر کنید</div>#}
+                {#                    <md-progress-linear md-mode="indeterminate"></md-progress-linear>#}
+                {#                    <div class="wait-layer-msg">#}
+                {##}
+                {#                    </div>#}
+                {#                </div>#}
+
+            </div>
+
+            {% include 'share/imageUploader/base.html' %}
+
+        </div>
+    </md-content>
+</main>
+<div flex-gt-lg="10"
+     flex-gt-md="15"
+     flex-gt-sm="17"
+     flex-gt-xs="20"
+     ng-show="show_notif_sidebar"
+     id="sidebar_notif"
+     class="sidebar_notif"
+     style="overflow-x: hidden;overflow-y: scroll; "
+     ng-controller="NotifCtrl">
+    <div style="padding: 3px;    background-color: #064b82;    color: white;    font-size: 12px;"
+         layout="row">
+        <span>
+        اطلاع رسانی
+
+        </span>
+
+        <span flex></span>
+        <i class="fa fa-close" ng-click="closeLeftSideBar()"></i>
+    </div>
+    <div style="text-align: justify">
+        <div ng-repeat="item in notifs.results track by $index"
+             class="task-item //item.extra.msg_body.alarm//" style="margin-bottom: 12px;">
+            <a ng-show="item.type == 5" class="click-enable"
+               href="//'/#!/Sales/hf/' + item.extra.dbid + '/details'//">
+                <div style="padding: 3px; background-color: lightgrey; font-size: 12px; font-weight: bold">حواله فروش
+                </div>
+                <div style="font-size: 11px; color: gray; padding-right: 6px;padding-left: 6px;">
+                    حواله شماره
+                    //item.extra.havaleNo//
+                    توسط
+                    //item.extra.prevSignerName//
+                    امضا شد
+                </div>
+                <div style="
+                font-size: 11px;
+                color: gray;
+                padding-right: 6px;
+                padding-left: 6px;
+                text-align: left;"
+                     layout="row">
+                    <div> //item.dateOfPost | jalaliDate:'jMM-jDD'//</div>
+                    <div flex=""></div>
+                    <div> //item.dateOfPost | jalaliDate:'hh:mm:ss'//</div>
+
+                </div>
+            </a>
+            <a ng-show="item.type == 4" class="click-enable"
+               href="//'/#!/Sales/kh/' + item.extra.exitID + '/details'//">
+                <div style="padding: 3px; background-color: lightgrey; font-size: 12px; font-weight: bold">حواله خروج
+                </div>
+                <div style="font-size: 11px; color: gray; padding-right: 6px;padding-left: 6px;">
+                    حواله شماره
+                    //item.havaleNo//
+                    توسط
+                    //item.prev.name//
+                    امضا شد
+                </div>
+                <div style="
+                font-size: 11px;
+                color: gray;
+                padding-right: 6px;
+                padding-left: 6px;
+                text-align: left;"
+                     layout="row">
+                    <div> //item.dateOfPost | jalaliDate:'jMM-jDD'//</div>
+                    <div flex=""></div>
+                    <div> //item.dateOfPost | jalaliDate:'hh:mm:ss'//</div>
+
+                </div>
+            </a>
+            <a ng-show="item.type==1" class="click-enable"
+               href="//'/#!/dashboard/Letter/Inbox/' + item.extra.inboxID + '/Preview'//">
+                <div style="padding: 3px; background-color: lightgrey; font-size: 12px; font-weight: bold;">نامه</div>
+                <div style="font-size: 11px; color: gray; padding-right: 6px;padding-left: 6px;">
+                    <div>
+                        //item.senderName// - //item.chartName//
+                    </div>
+
+                    <div>
+                        //item.summery//
+                    </div>
+                </div>
+
+                <div style="font-size: 11px; color: gray; padding-right: 6px;padding-left: 6px; text-align: left;"
+                     layout="row">
+                    <div> //item.dateOfPost | jalaliDate:'jMM-jDD'//</div>
+                    <div flex=""></div>
+                    <div> //item.dateOfPost | jalaliDate:'hh:mm:ss'//</div>
+                </div>
+
+            </a>
+
+            <a ng-show="item.type==546345" class="click-enable"
+               href="//'/#!/edari/morekhasisaati/' + item.extra.id + '/morekhasisaatiadd'//">
+                <div style="padding: 3px; background-color: lightgrey; font-size: 12px; font-weight: bold;">مرخصی
+                    ساعتی
+                </div>
+                <div style="font-size: 11px; color: gray; padding-right: 6px;padding-left: 6px;">
+                    <div>
+                        //item.extra.moteghaziName// - //item.extra.moteghaziChart//
+                    </div>
+
+                    <div>
+                        درخواست استفاده از مرخصی ساعتی در
+                        //item.extra.dateofmorekhasi//
+                        را دارد
+                    </div>
+                </div>
+
+                <div style="font-size: 11px; color: gray; padding-right: 6px;padding-left: 6px; text-align: left;"
+                     layout="row">
+                    <div> //item.dateOfPost | jalaliDate:'jMM-jDD'//</div>
+                    <div flex=""></div>
+                    <div> //item.dateOfPost | jalaliDate:'hh:mm:ss'//</div>
+                </div>
+
+            </a>
+
+            <a ng-show="item.type==798448 || item.type==8675446 || item.type==3462661 " class="click-enable"
+               href="//'/#!/edari/morekhasisaati/' + item.extra.id + '/morekhasisaatiadd'//">
+                <div style="padding: 3px; background-color: lightgrey; font-size: 12px; font-weight: bold;">مرخصی
+                    ساعتی
+                </div>
+                <div style="font-size: 11px; color: gray; padding-right: 6px;padding-left: 6px;">
+                    <div>
+                        //item.extra.moteghaziName// - //item.extra.moteghaziChart//
+                    </div>
+
+                    <div>
+                        مرخصی ساعت در روز
+                        //item.extra.dateofmorekhasi//
+                        امضا شد
+                    </div>
+                    <div>
+                        از
+                        //item.extra.az//
+                        تا
+                        //item.extra.taa//
+
+                    </div>
+                </div>
+
+                <div style="font-size: 11px; color: gray; padding-right: 6px;padding-left: 6px; text-align: left;"
+                     layout="row">
+                    <div> //item.dateOfPost | jalaliDate:'jMM-jDD'//</div>
+                    <div flex=""></div>
+                    <div> //item.dateOfPost | jalaliDate:'hh:mm:ss'//</div>
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+
+
+<script type="text/javascript">
+    var Global$http = undefined;
+    var globalDicKeys = [];
+    var UnknowGlobalDicKeys = [];
+    var companyLogo = "{{companyLogo}}";
+    var companyID = {{ companyID }};
+    var userID = {{ userID }};
+    var companyName = '{{ companyName }}';
+    var token = "{{ basicAuth.token }}";
+    var domainname = "{{ request.get_host }}";
+    {% if request.is_secure %}
+        var ws_protocol = 'wss';
+    {% else %}
+        var ws_protocol = 'ws';
+    {% endif %}
+
+</script>
+
+
+
+{% for js in staticJs %}
+    <script src="{{ js }}"></script>{% endfor %}
+
+
+{#<script defer src="https://www.gstatic.com/firebasejs/7.2.0/firebase-auth.js"></script>#}
+{#<script defer src="https://www.gstatic.com/firebasejs/7.2.0/firebase-firestore.js"></script>#}
+
+
+<script defer src="/static/bower_components/google-firebase/firebase-app.js"></script>
+<script defer src="/static/bower_components/google-firebase/firebase-messaging.js"></script>
+<script defer src="/static/angularThings/script.js"></script>
+
+
+{#<script defer src="/static/bower_components/pivottable/dist/plotly-basic-latest.min.js"></script>#}
+{#<script defer src="/static/bower_components/pivottable/dist/pivot.min.js"></script>#}
+{#<script defer src="/static/bower_components/pivottable/dist/plotly_renderers.min.js"></script>#}
+
+<script type="text/ng-template" id="toast-confirm.html">
+    <md-toast>
+        <span class="md-toast-text" flex>//ctrl.toastMessage//</span>
+        <md-button class="md-raised md-warn" ng-click="confirmToast()">تایید</md-button>
+        <md-button ng-click="closeToast()">انصراف</md-button>
+    </md-toast>
+</script>
+
+
+{#<script defer src="/static/angularThings/init-firebase.js"></script>#}
+</html>

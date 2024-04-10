@@ -1,0 +1,140 @@
+<div ng-controller="Gardeshe77Ctrl">
+    <div class="spacer">
+
+        <md-toolbar>
+            <div class="md-toolbar-tools" layout-gt-xs="row">
+                <h4>محاسبه گردش کویل های ۷۷
+
+                </h4>
+
+                <span flex></span>
+
+                <md-button loading="در حال محاسبه ..."
+                           notloading="محاسبه گردش ..." disableonrequest
+                           class="md-raised" ng-click="StartGardeshProcess()"></md-button>
+            </div>
+
+
+        </md-toolbar>
+
+        <div dir="rtl">
+
+            <table class="table mini table-bordered table-striped" style="    font-size: 12px;    padding: 0;    text-align: center;">
+                <thead>
+                <tr>
+                    <th colspan="2">کل قلع مصرفی</th>
+                    <th colspan="2">تولید</th>
+                    <th colspan="2">قلع مستقیم</th>
+                    <th colspan="2">قلع خدماتی</th>
+
+                </tr>
+                <tr>
+                    <th>kg</th>
+                    <th>ریال</th>
+                    <th>مستقیم kg</th>
+                    <th>خدماتی kg</th>
+                    <th>kg</th>
+                    <th>ریال</th>
+                    <th>kg</th>
+                    <th>ریال</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>//ghal.kg//</td>
+                    <td>//ghal.rial | number:0//</td>
+                    <td>//ghal.tolid | number:0//</td>
+                    <td>//ghal.khadamat | number:0//</td>
+                    <td>//ghal.ghal_tolid | number:0//</td>
+                    <td>//ghal.ghal_rial_mostaghim | number:0//</td>
+                    <td>//ghal.ghal_khadamt | number:0//</td>
+                    <td>//ghal.ghal_rial_khadamat | number:0//</td>
+                </tr>
+                <tr>
+                    <td colspan="2">--</td>
+                    <td colspan="2">جمع تولید :
+                    //ghal.tolid+ghal.khadamat | number:0//
+                        kg
+                    </td>
+                    <td colspan="2">--</td>
+                    <td colspan="2">--</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+{#        <div class="alert alert-danger" ng-show="bugs.length > 0" style="overflow: scroll">#}
+        <div class="alert alert-danger" ng-show="false" style="overflow: scroll">
+            <table style="width: 100%; font-size: 12px; background-color: white"
+                   class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>کد کالا</th>
+                    <th>کد ارتباطی</th>
+                    <th>نوع ارور</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in bugs">
+                    <td>//item.coil77//</td>
+                    <td>//item.link//</td>
+                    <td>//item.bug_reason//</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+        <table id="divTable77" style="min-width: 3501px;font-size: 12px; text-align: center"
+               dir="rtl"></table>
+
+
+    </div>
+
+
+    {#    <div class="row">#}
+    {#        <div class="col-12">#}
+    {#            <div class="card">#}
+    {#                <div class="card-body">#}
+    {#                    <h1>محاسبه گردش کویل های ۷۷</h1>#}
+    {#                    <p class="docs-lead">#}
+    {#                        در اینجا هزینه ی تمام شده ی کویل های ۷۷ با استفاده از مباحث استاندارد مواد بری و#}
+    {#                        الگوریتم میانگین موزون محاسبه می شود#}
+    {##}
+    {#                    </p>#}
+    {##}
+    {##}
+    {#                    <nav class="navbar navbar-expand-lg navbar-light bg-light">#}
+    {#                        <a class="navbar-brand">عملیات</a>#}
+    {#                        <md-button class="navbar-toggler" type="md-button" data-toggle="collapse"#}
+    {#                                   data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"#}
+    {#                                   aria-expanded="false" aria-label="Toggle navigation">#}
+    {#                            <span class="navbar-toggler-icon"></span>#}
+    {#                        </md-button>#}
+    {#                        <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+    {#                            <ul class="navbar-nav mr-auto">#}
+    {#                                <li class="nav-item active">#}
+    {##}
+    {#                                </li>#}
+    {#                            </ul>#}
+    {#                        </div>#}
+    {##}
+    {#                    </nav>#}
+    {##}
+    {##}
+    {##}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {##}
+    {#    <div>#}
+    {#        <md-button class="btn btn-success" ng-click="StartGardeshProcess()">محاسبه گردش</md-button>#}
+    {#    </div>#}
+
+
+    {#</table>#}
+
+</div>

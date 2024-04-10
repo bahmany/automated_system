@@ -1,0 +1,34 @@
+<div>
+
+    <md-button ng-show="(approve | filter:{signStepID:{{ signID }} }).length == 0" class="md-raised md-primary"
+               ng-click="sign({{ signID }}, $event)">{{ btnLabel }}
+    </md-button>
+
+
+</div>
+<div ng-show="(approve | filter:{signStepID:{{ signID }} }).length == 0 && approve.item.closed">
+    امضا نشد
+</div>
+
+
+<div style="text-align: center" ng-show="(approve | filter:{signStepID:{{ signID }} }).length == 1"
+     ng-repeat="sign in approve | filter:{signStepID:{{ signID }} }">
+    <div ng-show="sign.comment" style="
+    border: 1px solid gray;
+    background-color: yellow;
+    border-radius: 5px;
+    padding: 4px;
+    font-size: 12px;
+    margin: 3px;">//sign.comment//
+    </div>
+    <qr text="makeqrcode(sign.id)"
+        size="100"
+        color="#fff"
+        background="#000"></qr>
+    <br>
+    //sign.positionName//<br>
+    //sign.positionchartName// <br>
+    //sign.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+    {#    //sign.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//#}
+    <br>
+</div>

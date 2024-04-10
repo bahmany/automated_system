@@ -1,0 +1,41 @@
+{% load translators %}
+<div ng-controller="HamkariCtrl" layout-gt-sm="row">
+    <div flex-gt-sm="30">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                آگهی های همکاری
+                <span flex>
+
+                </span>
+                <md-button class="md-fab md-mini">
+                    <a ui-sref="job({jobID:''})">
+                        <md-icon md-font-icon="fa fa-plus"></md-icon>
+                    </a>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+
+        <div class="shadower">
+            <div>
+                {% load pager_navigator_tags %}
+                {% pagerNavigator style="text-center" listname="hamkaries" search_ng_model="HamkariSearchText" PageTo="HamkariPageTo" %}
+            </div>
+            <div>
+                <md-progress-linear md-mode="indeterminate" ng-if="wait"></md-progress-linear>
+
+            </div>
+            {% include "companyManagement/Hamkari/list.html" %}
+        </div>
+
+    </div>
+
+    <div flex-gt-sm="70" layout-gt-sm="row" layout-align="center start">
+        <div flex-gt-sm="85" ui-view="">
+
+        </div>
+    </div>
+
+
+</div>
+

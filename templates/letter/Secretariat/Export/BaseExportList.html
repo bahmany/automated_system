@@ -1,0 +1,290 @@
+{% load translators %}
+
+<section layout="row" flex ng-controller="ExportListCtrl">
+
+    <md-sidenav
+            class="md-sidenav-right margin-left"
+            md-component-id="rightInboxList"
+            md-is-locked-open="$mdMedia('gt-sm')"
+            md-whiteframe="4"
+            md-disable-backdrop>
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                <h3>
+                    به دبیرخانه خوش آمدید..
+                </h3>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding>
+            <div>
+                <md-content>
+                    <div class="md-toolbar-tools">
+                        <md-menu>
+                            <md-button aria-label="secs" ng-click="$mdOpenMenu($event)">
+                                // GetDefaultDabir(PermittedSecratraitsList) // ...
+                            </md-button>
+
+                            <md-menu-content>
+                                <md-menu-item ng-repeat="item in PermittedSecratraitsList">
+                                    <md-button ng-click="ChangeDefaultSecratrait(item)">
+                                        //item.name//
+                                        <md-tooltip>تغییر دبیرخانه</md-tooltip>
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+
+
+                    </div>
+                    <md-list flex>
+
+                        <md-subheader class="md-no-sticky subheader-inbox">
+                            عملیات
+                        </md-subheader>
+                        <md-divider></md-divider>
+                        <md-list-item class="md-1-line" href="/#/dashboard/Letter/export//import">
+                            <p>وارده جدید</p>
+                        </md-list-item>
+
+                        <md-list-item class="md-1-line" href="/#/dashboard/Letter/export//new">
+                            <p>صادره جدید</p>
+                        </md-list-item>
+
+                        <md-list-item class="md-1-line" ui-sref="sec-companies">
+                            <p>شرکت جدید</p>
+                        </md-list-item>
+
+                        <md-list-item class="md-1-line" ui-sref="companyGroups">
+                            <p>گروه شرکت جدید</p>
+                        </md-list-item>
+                        <md-subheader class="md-no-sticky subheader-inbox">
+                            واکاوی
+                        </md-subheader>
+                        <md-list-item class="md-1-line" href="/#/dashboard/Letter/export/importList">
+                            <p>لیست نامه های وارده</p>
+                        </md-list-item>
+                        <md-list-item class="md-1-line" ng-click="callInboxList(-1, 1, 1)"
+                                      ng-class="{'active_class':ss.p=='-1,1,1'}">
+                            <p>لیست نامه های صادره</p>
+                        </md-list-item>
+
+
+
+                    </md-list>
+
+                </md-content>
+            </div>
+
+        </md-content>
+
+    </md-sidenav>
+
+
+    <div style="display:none;" flex-gt-md="20" class="margin-left">
+
+
+        <md-content>
+            <div layout="row" layout-align="start center">
+                <md-button class="md-icon-button" aria-label="Open phone interactions menu"
+                           ng-click="GoToPage(ExportletterList.previous)">
+                    <md-icon md-font-icon="fa fa-arrow-right">
+                    </md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Open phone interactions menu"
+                           ng-click="GoToPage(ExportletterList.next)">
+                    <md-icon md-font-icon="fa fa-arrow-left">
+                    </md-icon>
+                </md-button>
+                <span>
+                            //ExportletterList.total//
+                        </span>
+
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="Open phone interactions menu"
+                           ng-click="filtershow()">
+                    <md-icon md-font-icon="fa fa-search">
+                    </md-icon>
+                </md-button>
+
+                <md-menu>
+
+                    <md-button class="md-icon-button" aria-label="secs" ng-click="$mdOpenMenu($event)">
+                        <md-icon md-font-icon="fa fa-navicon"></md-icon>
+                        <md-tooltip>شرکت ها و گروه ها</md-tooltip>
+                    </md-button>
+
+                    <md-menu-content>
+                        <md-menu-item ng-if="item.itemMode!=5">
+                            <md-button ng-click="Recieved(item)">
+                                <a ui-sref="sec-companies"> مدیریت شرکتها
+                                </a>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if="item.itemMode!=5">
+                            <md-button>
+                                <a ui-sref="companyGroups">
+                                    مدیریت گروه شرکت ها
+                                </a></md-button>
+                        </md-menu-item>
+
+
+                    </md-menu-content>
+                </md-menu>
+
+            </div>
+
+            <md-list>
+                <md-list-item
+                        ng-repeat="item in ExportletterList.results"
+                        ng-click="PrePreview(item)"
+                        onclick="$('.lp-inbox-item').removeClass('active');$(this).addClass('active');">
+
+
+                    <div class="sec-items" layout="column" flex>
+                        <p layout="row" layout-align="start center">
+                            <md-icon style="margin: 0; padding: 0" ng-if="item.itemMode==5"
+                                     md-font-icon="fa fa-edit">
+                                <md-tooltip>{{ 'Draft'|translate }}</md-tooltip>
+                            </md-icon>
+                            <md-icon style="margin: 0; padding: 0" ng-if="item.itemMode==9"
+                                     md-font-icon="fa fa-external-link">
+                                <md-tooltip>{{ 'Export'|translate }}</md-tooltip>
+
+                            </md-icon>
+                            <md-icon style="margin: 0; padding: 0" ng-if="item.itemMode==10"
+                                     md-font-icon="fa fa-envelope-square">
+                                <md-tooltip>{{ 'Import'|translate }}</md-tooltip>
+                            </md-icon>
+                            //item.letter.subject//
+
+                            <span flex></span>
+
+                            <md-menu>
+
+                                <md-button class="md-icon-button" aria-label="secs" ng-click="$mdOpenMenu($event)">
+                                    <md-icon md-font-icon="fa fa-navicon"></md-icon>
+                                </md-button>
+
+                                <md-menu-content>
+                                    <md-menu-item ng-if="item.itemMode!=5">
+                                        <md-button ng-click="Recieved(item)">
+                                            {{ 'Recieved'|translate }}
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item ng-if="item.itemMode!=5">
+                                        <md-button ng-click="Scan(item)">
+                                            {{ 'Scan'|translate }}
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item ng-if="item.itemMode!=5">
+                                        <md-button ng-click="Preview(item)">
+                                            استخراج
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item ng-if="item.itemMode==5">
+                                        <md-button ng-click="RemoveExportDraft(item)"
+                                        >
+                                            {{ 'Remove'|translate }}
+                                        </md-button>
+                                    </md-menu-item>
+
+                                </md-menu-content>
+                            </md-menu>
+
+
+                        </p>
+                        <p>//item.letter.sign//</p>
+                        <ul> دریافت کننده :
+                            <li ng-repeat="company in item.letter.company_rec">
+                                //company.name// <br>
+                            </li>
+                        </ul>
+                        <p>
+                            //item.sender.profileName// -
+                            //item.dateOfObservable | jalaliDate:'jYY/jMM/jDD - hh:mm' //
+                        </p>
+
+
+                    </div>
+                    <md-divider></md-divider>
+
+                </md-list-item>
+            </md-list>
+
+
+        </md-content>
+    </div>
+
+    <div flex-gt-md="80" layout="column">
+        <div class="well well-sm hide" flex layout-padding id="filtershow">
+            <div layout="row">
+                <div flex="30">
+                    <md-checkbox ng-model="filter.exportList" aria-label="Checkbox 1">
+                        {{ 'Exported letters'|translate }}
+                    </md-checkbox>
+                </div>
+                <div flex="30">
+                    <md-checkbox ng-model="filter.exportDraftList" aria-label="Checkbox 2">
+                        {{ 'Exported draft letters'|translate }}
+                    </md-checkbox>
+                </div>
+                <div flex="30">
+                    <md-checkbox ng-model="filter.importList" aria-label="Checkbox 2">
+                        {{ 'Imported letters'|translate }}
+                    </md-checkbox>
+                </div>
+            </div>
+            <div layout="row">
+                <div flex="25">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>{{ 'Start date'|translate }}</label>
+                        <input name="social" ng-model="filter.startDate" style="direction: ltr!important;"
+                               ng-pattern="/^[0-9]{4}/[0-9]{2}/[0-9]{2}$/"/>
+
+                        <div style="direction: ltr!important;" class="hint">13##/##/##</div>
+                    </md-input-container>
+
+                </div>
+                <div flex="25">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>{{ 'End date'|translate }}</label>
+                        <input name="social" ng-model="filter.endDate" style="direction: ltr!important;"
+                               ng-pattern="/^[0-9]{4}/[0-9]{2}/[0-9]{2}$/"/>
+
+                        <div style="direction: ltr!important;" class="hint">13##/##/##</div>
+                    </md-input-container>
+
+                </div>
+                <div flex="25">
+                    <md-chips ng-model="filter.selectedCompanies" flex="100"
+                              md-autocomplete-snap
+                              md-transform-chip="transformCompanyChip($chip)"
+                              md-require-match="autocompleteDemoRequireMatch">
+                        <md-autocomplete
+                                md-selected-item="selectedCompanyItem"
+                                md-search-text="searchCompanyText"
+                                md-items="item in queryCompanySearch(searchCompanyText)"
+                                md-item-text="item.name"
+                                placeholder="{{ 'Search for a companies'|translate }}">
+                            <span md-highlight-text="searchCompanyText">// item.name //</span>
+                        </md-autocomplete>
+                        <md-chip-template>
+                            <span>
+                              <strong>//$chip.name//</strong>
+                            </span>
+                        </md-chip-template>
+                    </md-chips>
+                </div>
+                <div flex="25">
+                    <md-input-container>
+                        <label>{{ 'Search Text'|translate }}</label>
+                        <input ng-model="filter.searchString">
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+        <ui-view flex></ui-view>
+
+    </div>
+</section>
+

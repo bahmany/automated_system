@@ -1,0 +1,24 @@
+<div layout="column" class="wait-layer fader" ng-if="isPosting">
+    <div>
+        <p>
+            لطفا صبر کنید - نام های وارده در حال ثبت و یا انتقال به همکاران هستند
+        </p>
+    </div>
+    <div>
+        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+    </div>
+</div>
+
+
+<div class="inbox-sent-information fader" ng-show="sentLetter.sign" layout="column" layout-align="center center">
+    <h3 style="color: yellow">ارسال شد</h3>
+    <div>
+        <img ng-src="/api/v1/file/upload?q=//sentLetter.sign.generatedFileAddr//"
+             alt="//sentLetter.sign.generatedSign//" style="height: 40px;">
+    </div>
+    <div>
+        <md-button class="md-raised md-default" ng-click="sentLetter = {}">
+            تایید
+        </md-button>
+    </div>
+</div>

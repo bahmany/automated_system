@@ -1,0 +1,108 @@
+{% load translators %}
+
+<div ng-controller="step10jobsCtrl">
+    <div id="jobsList">
+        <div ng-repeat="item in Jobs" class="job-items" style="margin: 0 auto;">
+            <div>
+                <h3>//item.title//</h3>
+
+                <p>
+                    از
+
+                    //item.startDate | jalaliDate:'jYY/jMM/jDD - hh:mm' //
+                    تا
+                    //item.endDate | jalaliDate:'jYY/jMM/jDD - hh:mm' //
+                </p>
+            </div>
+            <div style="text-align: left">
+                <md-button class="md-raised md-primary" ng-click="gotoJob(item)">ورود</md-button>
+            </div>
+
+        </div>
+    </div>
+    <div id="jobDetail" style="display: none">
+        <h1>//selectedJob.title//</h1>
+        <p ng-bind-html="selectedJob.exp">
+        </p>
+        <div ng-if="selectedJob.extraFields" layout-padding class="md-whiteframe-9dp">
+            <p>
+                اطلاعات خواسته شده ی زیر را تکمیل کنید
+            </p>
+
+            <div layout="column">
+                <form name="extraForm">
+
+                    <md-input-container ng-repeat="item in selectedJob.extraFields" class="md-block" flex-gt-sm>
+                        <label>//item.name//</label>
+                        <input type="text" ng-model="item.value" required="//item.require//">
+                    </md-input-container>
+
+                    <md-input-container style="text-align: left" class="md-block" flex-gt-sm>
+                        <label></label>
+                        <md-button
+                                class="md-raised md-primary"
+                                ng-click="PostExtra(selectedJob.id, selectedJob.extraFields)">
+                            ثبت پاسخ ها
+
+
+                        </md-button>
+
+                    </md-input-container>
+
+                </form>
+            </div>
+        </div>
+        <br/>
+        <div ng-if="selectedJob.jobs" layout-padding class="md-whiteframe-9dp">
+            <p>
+                شغل هایی که برای آنها به دنیال متقاضی هستیم به شرح زیر است. لطفا یک یا چند گزینه
+                مورد از لیست زیر را انتخاب نمایید
+            </p>
+
+
+            <div ng-repeat="item in selectedJob.jobs" layout="column">
+                    //item.name//
+                <div layout-gt-sm="row" class="frame" ng-class="{'job-selected':item.is_selected}">
+                    <div flex-gt-sm layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>حقوق درخواستی</label>
+                            <input type="text" ng-model="item.Salary">
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>نظر و یا توضیح ضروری</label>
+                            <input type="text" ng-model="item.Exp">
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label></label>
+
+                            <md-button ng-if="!item.is_selected"
+                                    class="md-raised md-primary"
+                                    ng-click="PostReq(selectedJob.id, selectedJob.jobs, item)">
+                                ثبت درخواست
+                            </md-button>
+                            <md-button ng-if="item.is_selected"
+                                    class="md-raised md-primary"
+                                    ng-click="PostCancelReq(item, $index)">
+                                انصراف
+                            </md-button>
+
+                        </md-input-container>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div style="text-align: left">
+            <md-button class="md-raised" ng-click="backToList()">
+                برگشت
+            </md-button>
+        </div>
+    </div>
+</div>

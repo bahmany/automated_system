@@ -1,0 +1,96 @@
+<div class="this-is-mask" id="thisIsAvtarMask" onclick="CloseAvatarPop(event)" style="display: none;">
+    <div class="topnav-avatar-div-arrow"></div>
+    <div class="topnav-avatar-div-arrow-over"></div>
+    <div class="topnav-avatar-div">
+        {% autoescape off %}
+            <div layout="row">
+                <span flex></span>
+                <i class="fa fa-close" onclick="CloseAvatarPopForced()" style="  margin-right: 12px;"></i>
+            </div>
+            <div layout="flex">
+                <div layout="column" style="  padding-top: 12px;margin-right: 100px;">
+                    <div style="font-size: 19px;color: #5a5a5a!important;font-weight: bold;">
+                        {{ name }}
+                    </div>
+                    <div style="color: rebeccapurple!important;  font-size: 12px;  display: inline-block;  width: 156px;  white-space: nowrap;  overflow: hidden !important;  text-overflow: ellipsis;">
+                        {{ title }} - {{ currentCOmpany }}
+                    </div>
+                    <div style="
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+
+  direction: ltr;
+  color: rgba(0,0,0,0.87)!important;
+  font-size: 11px;  text-align: right;" tooltip="{{ rahsoonEmail }}">
+                        {{ rahsoonEmail }}
+                    </div>
+
+                </div>
+                <div flex=""></div>
+                <div>
+                    <a ng-click="openAvatarModal()" class="div-avatar-change-a">
+
+                        <div class="div-avatar-change" style='background-image: url("{{ userAvatar }}")'>
+
+                        </div>
+
+                        <span class="topnav-avatar-pic-change">تغییر</span>
+                    </a>
+
+                </div>
+            </div>
+            <hr style="  margin-top: 16px;  margin-bottom: 1px;">
+            <div layout="row" style="text-align: center;  margin-top: 5px;  font-size: 12px;">
+                <div flex><a style="  color: darkblue!important;"
+                             href="/reg/#/home/profile/introduction">رزومه</a></div>
+                <div flex><a style="  color: darkblue!important;" ui-sref="myProfile">پروفایل</a>
+                </div>
+                <div flex><a style="  color: darkblue!important;"
+                             ui-sref="dashboardSettings">تنظیمات</a></div>
+            </div>
+            <hr style="  margin-top: 16px;  margin-bottom: 1px;">
+            <div layout="row" style="text-align: center;  margin-top: 5px;  font-size: 12px;">
+                <div flex><a style="  color: darkblue!important;" ui-sref="dashboardSettings">
+                    داشبورد</a></div>
+                <div flex><a style="  color: darkblue!important;"
+                             ui-sref="AccessToSecratariat"> دسترسی</a></div>
+                <div flex><a style="  color: darkblue!important;" ui-sref="Change">رمز عبور و
+                    ایمیل</a></div>
+            </div>
+            <hr style="  margin-top: 16px;  margin-bottom: 1px;">
+            <div>تغییر ****</div>
+            <div>
+                <md-menu style="margin: 0">
+
+                    <md-button aria-label="Open phone interactions menu"
+                               ng-click="openMenu($mdOpenMenu, $event)">
+                        <h3 class="md-breadcrumb md-headline">
+                            //currentCompany.name//
+                            <md-icon md-menu-origin md-font-icon="fa fa-chevron-down"></md-icon>
+
+                        </h3>
+                        <md-tooltip>
+                            تغییر شرکت جاری
+                        </md-tooltip>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item ng-repeat="company in ::companies.results"
+                                      ng-if="currentCompany.id!=company.companyID">
+                            <md-button ng-click="setAsCurrent('{{ user.username }}',company.companyID)">
+                                <md-icon md-font-icon="fa fa-institution" md-menu-align-target></md-icon>
+                                //company.companyName//
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+            <div>
+                <div style="margin: 0 10px;font-size: 13px;" layout="row" layout-align="center center">
+                    <a ng-click="logout()">خروج</a>
+                </div>
+            </div>
+
+
+        {% endautoescape %}
+    </div>
+</div>

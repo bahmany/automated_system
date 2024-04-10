@@ -1,0 +1,92 @@
+{% load translators %}
+<div id="callactivity-setup-div" style="display: none;">
+    <div style="margin-right: -6px;" class="panel panel-default col-md-12">
+        <div class="panel-heading">
+            <h3 class="panel-title ">//lastSelected.businessObject.name//'s options
+                <button style="margin-top:-6px;" class="btn btn-sm btn-danger fa fa-times pull-right"
+                        ng-click="cancelSetupCallActivity()"></button>
+                <button style="margin-top:-6px;" class="btn btn-sm btn-warning fa fa-refresh pull-right"
+                        ng-click="resetForm()"></button>
+                <button style="margin-top:-6px;" class="btn btn-sm btn-success fa fa-save pull-right"
+                        ng-click="saveSetupCallActivity()"></button>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <label for=""> فرایند <select name="bpmn" id="bpmn" ng-options="bpmn.id as bpmn.name for bpmn in bpmns"
+                                              ng-model="bpmnSelected"></select></label>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'parentProcessData'|translate}}
+                            </h3>
+                        </div>
+                        <div class="panel-body fit-height">
+
+                            <ul class="list-group" style="padding: 0;">
+                                <li class="list-group-item" ng-repeat="item in parentProcessData"
+                                    ng-show="item.displayName"
+                                    data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                                    data-drop="true" ng-model='childToParent'
+                                    jqyoui-droppable="{multiple:true,onDrop: 'onDropOnParent'}"
+                                    jqyoui-draggable="{index: //$index//, animate: true, placeholder: 'keep'}"
+                                    id="//$index//">
+                                    //item.displayName//
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'childProcessData'|translate}}
+                            </h3>
+                        </div>
+                        <div class="panel-body fit-height">
+
+                            <ul class="list-group" style="padding: 0;">
+                                <li class="list-group-item " ng-repeat="item in childProcessData track by $index"
+                                    ng-show="item.displayName"
+                                    data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                                    data-drop="true" ng-model='parentToChild'
+                                    jqyoui-droppable="{multiple:true,onDrop: 'onDropOnChild'}"
+                                    jqyoui-draggable="{index: //$index//, animate: true, placeholder: 'keep'}"
+                                    id="//$index//">
+                                    //item.displayName//
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'bindingResults'|translate}}
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="list-group col-md-12">
+                                <div class="list-group-item clearfix "
+                                     ng-repeat="item in bindingResults track by $index" ng-class="{'grey-res-binding':item.toBpmn==bpmnSelected}">
+                                    <span><span class="pull-left">//item.fromName//</span><span
+                                            class="pull-left"> --> </span><span
+                                            class="pull-left">//item.toName//</span></span><span
+                                        class="pull-right btn btn-sm btn-danger fa fa-trash"
+                                        ng-click="deleteBindedItm($index)"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

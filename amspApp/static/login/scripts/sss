@@ -1,0 +1,99 @@
+#include <iostream>
+#include <limits>
+
+using namespace std;
+
+int max(int n);	// find maximum number among n numbers
+int min(int n);	// find minimum number among n numbers
+int avg(int n);	// find average number for n numbers
+
+int main()
+{
+
+avarageNo avgNo ();
+
+int choice, count, num;
+count = 0;
+
+cout << "Enter a choice (0 = Max, 1 = Min, 2 = Avg, and 3 = Exit): ";
+cin >> choice;
+
+while (choice != 3)
+{
+if (choice < 0 || choice > 3)
+{
+cout << "Invalid choice. Try again." << endl;
+}
+
+cout << "How many numbers of input? ";
+cin >> num;
+
+if (choice == 0)
+{
+cout << "Max is " << avgNo.max(num) << endl;
+}
+else if (choice == 1)
+{
+cout << "Min is " << avgNo.min(num) << endl;
+}
+else
+{
+cout << "Avg is " << avgNo.avg(num) << endl;
+}
+cout << "Enter a choice (0 = Max, 1 = Min, 2 = Avg, and 3 = Exit): ";
+cin >> choice;
+}
+cout << "Good Bye" << endl;
+
+return 0;
+}
+
+class avarageNo {
+
+
+int max(int n)
+{
+int count = 0, num, maxNum = 0;
+
+cout << "Enter " << n << " numbers" << endl;
+
+while (count < n)
+{
+cin >> num;
+
+if (num > maxNum)
+{
+maxNum = num;
+count++;
+}
+else
+{
+maxNum = maxNum;
+}
+}
+return maxNum;
+}
+
+
+
+
+int avg(int n)
+{
+int avg, sum, count, num;
+sum = 0;
+count = 0;
+
+cout << "Enter " << n << " numbers" << endl;
+
+while (count < n)
+{
+cin >> num;
+sum = sum + num;
+count++;
+}
+
+avg = sum / n;
+return avg;
+}
+
+}

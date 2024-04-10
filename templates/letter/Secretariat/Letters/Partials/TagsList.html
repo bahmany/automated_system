@@ -1,0 +1,25 @@
+<md-subheader class="md-no-sticky subheader-inbox">
+    کلمات کلیدی یا تگ ها
+    <a ng-click="AddNewTag()">(ایجاد)</a>
+    <a ng-if="!EditingMode"  ng-click="makeEdit(1)">(ویرایش)</a>
+    <a ng-if="EditingMode" ng-click="makeEdit(2)">(اتمام ویرایش)</a>
+</md-subheader>
+<div ng-if="!EditingMode" layout="row" layout-wrap="">
+    <md-button ng-repeat="tag in tags track by $index" ng-click="GetTagFilter(tag)">
+
+        // tag.name // (//tag.count//)
+        <md-icon md-font-icon="fa fa-filter" ng-if="tag.selected"></md-icon>
+
+    </md-button>
+
+</div>
+<div ng-if="EditingMode" layout="column" >
+    <div ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="tag in tags track by $index" style="padding: 4px;">
+
+        // tag.name // (//tag.count//) - توسط //tag.creator//
+        <md-icon md-font-icon="fa fa-filter" ng-if="tag.selected"></md-icon>
+        <a ng-click="EditTag(tag)">(ویرایش)</a>
+        <a ng-click="RemoveTagFromSec(tag)">(حذف)</a>
+    </div>
+
+</div>

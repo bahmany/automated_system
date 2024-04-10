@@ -1,0 +1,138 @@
+<md-dialog aria-label="Mango (Fruit)" flex="70">
+
+
+            <md-toolbar class="md-hue-2" style="background-color: rgb(0 0 0 / 54%);">
+        <div class="md-toolbar-tools" layout="row">
+            <h5>
+     تعریف / تغییر منبع جدید
+            </h5>
+            <div flex>
+
+            </div>
+            <md-button class="md-icon-button" aria-label="Settings"  ng-click="cancel()">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+
+{#    <md-toolbar>#}
+{#        <div class="md-toolbar-tools">#}
+{#            <h2>#}
+{#                تعریف / تغییر منبع جدید#}
+{#            </h2>#}
+{#            <span flex></span>#}
+{#            <md-button class="md-icon-button" ng-click="cancel()">#}
+{#                <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>#}
+{#            </md-button>#}
+{#        </div>#}
+{#    </md-toolbar>#}
+
+    <form name="frmPart">
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row">
+                    <div style="width: 250px; font-size: 12px;">
+                        <div>لیست منابع :</div>
+                        <div style="height: 200px; overflow-x: hidden; overflow-y: scroll;">
+                            <div style="padding: 4px;">
+                                <input type="text" ng-model="search_provider" placeholder="search in providers"
+                                       style="width: 100%; font-size: 12px;direction: ltr; text-align: left">
+                            </div>
+                            <div ng-repeat="__provider in providers.providers  | filter:search_provider"
+                                 class="btn-maker"
+                                 ng-click="set_provider(__provider)"
+                                 style="border-bottom: 1px solid lightgrey; direction: ltr;text-align: center"
+                                 layout-padding="">
+                                //__provider.description//
+                            </div>
+                        </div>
+                    </div>
+
+                    <div flex layout-padding="">
+                        <div class="make-all-ltr"
+                             style="margin: 12px;text-align: left;direction: ltr!important; padding: 12px; border: 1px solid lightslategray; border-radius: 5px; font-size: 12px;">
+                            Connection Provider :
+                            <span>//provider.description//</span>
+                            <span ng-show="!(provider.description)"
+                                  style="color: red; ">درایور منبع را انتخاب نمایید</span>
+                        </div>
+
+                        <div>
+                            <table style="font-size: 12px;">
+                                <tbody>
+                                <tr>
+                                    <td>نام ارتباط</td>
+                                    <td style="text-align: left; direction: ltr;">Connection ID</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" ng-model="connection.datasourceTitle"
+                                               style="width: 100%; padding: 5px;" required></td>
+                                    <td><input type="text" ng-model="connection.connection_id"
+                                               style="width: 100%; padding: 5px; direction: ltr!important;text-align: left;"
+                                               required></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left; direction: ltr;">Host</td>
+                                    <td style="text-align: left; direction: ltr;">Login</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" ng-model="connection.host"
+                                               style="width: 100%; padding: 5px; direction: ltr!important;text-align: left;"
+                                               required></td>
+                                    <td><input type="text" ng-model="connection.login"
+                                               style="width: 100%; padding: 5px; direction: ltr!important;text-align: left;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left; direction: ltr;">Schema</td>
+                                    <td style="text-align: left; direction: ltr;">Port</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" ng-model="connection.schema"
+                                               style="width: 100%; padding: 5px; direction: ltr!important;text-align: left;">
+                                    </td>
+                                    <td><input type="number" ng-model="connection.port"
+                                               style="width: 100%; padding: 5px; direction: ltr!important;text-align: left;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left; direction: ltr;">password</td>
+                                    <td style="text-align: left; direction: ltr;">extra</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" ng-model="connection.password"
+                                               style="width: 100%; padding: 5px; direction: ltr!important;text-align: left;">
+                                    </td>
+                                    <td><input type="text" ng-model="connection.extra"
+                                               style="width: 100%; padding: 5px; direction: ltr!important;text-align: left;">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel_connection()">
+                انصراف
+            </md-button>
+
+            <span flex></span>
+            <md-button ng-show="!(PART.Serial)"
+                       class="md-raised md-primary"
+                       ng-click="save_connection()"
+                       ng-disabled="frmPart.$invalid">
+                ثبت
+            </md-button>
+
+
+        </md-dialog-actions>
+    </form>
+
+</md-dialog>

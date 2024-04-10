@@ -1,0 +1,23 @@
+<div ng-controller="sahmCalcCtrl">
+    <div>
+        <md-button ng-click="calculate()">انجام محاسبات</md-button>
+    </div>
+    <div dir="rtl">
+        <div class="row">
+
+
+        </div>
+        <div ng-repeat="item in results.result" class="row oddeven" >
+            <div class="col-md-3">
+                <i class="fa fa-plus" style="margin-left: 5px; padding-left: 5px;"></i>
+                //item.key// - //item.first.rowName//
+            </div>
+            <div ng-repeat="ite in item.details" class="col-md-3">
+                //ite.type// : <strong>//ite.sum|number//</strong>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

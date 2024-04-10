@@ -1,0 +1,107 @@
+<h4>سوابق قراردادهای قبلی - طی ۳ سال گذشته </h4>
+<hr>
+<div>
+    <div layout="column">
+
+
+        <form action="" name="form_frm13">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نام شرکت طرف قرارداد</label>
+                        <input type="text" ng-model="provider.frm13.name" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">مبلغ قرارداد</label>
+                        <input type="text" ng-model="provider.frm13.mablagh">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ شروع</label>
+                        <input type="text" ng-model="provider.frm13.shoroo"                               ui-mask="9999/99/99" dir="ltr"
+>
+                    </md-input-container>
+                </div>
+
+
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ خاتمه</label>
+                        <input type="text" ng-model="provider.frm13.tarikheKhateme"                                ui-mask="9999/99/99" dir="ltr"
+required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">شرح کالا / خدمات</label>
+                        <input type="text" ng-model="provider.frm13.sharh">
+                    </md-input-container>
+                </div>
+
+            </div>
+
+
+
+            <div layout-gt-xs="row">
+                <span flex></span>
+                <md-button ng-click="addTofrm('13')"
+                           ng-disabled="form_frm13.$invalid"
+                           class="md-raised md-default">
+                    اضافه به لیست
+                </md-button>
+            </div>
+
+        </form>
+
+        <div>
+            <table class="sp-table table table-bordered">
+                <thead>
+                <tr>
+                    <th >نام</th>
+                    <th >مبلغ</th>
+                    <th >شروع</th>
+                    <th >خاتمه</th>
+                    <th >عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.frm13_list">
+                    <td >//it.name//</td>
+                    <td >//it.mablagh//</td>
+                    <td >//it.shoroo//</td>
+                    <td >//it.tarikheKhateme//</td>
+                    <td >
+                    {% include "Dashboards/Supplement/Registration/Supply/fileViewTdTable.html" with nm="it" %}
+                    <a ng-click="removefrm('7',$index)">حذف</a>                    </td>
+                </tr>
+
+
+                <tr ng-if="provider.frm13_list.length == 0">
+                    <td colspan="5">
+                        لیست حق امتیازات خالی است
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+        <div>
+        <ul>توضیحات : ارائه مستندات الزامی می باشد - لطفا فایل های مرتبط را آپلود نمایید
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='13' inputid='1' label="ضمائم" %}
+        </ul>
+    </div>
+
+
+            {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm13" %}
+
+</div>

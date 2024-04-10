@@ -1,0 +1,251 @@
+<div ng-controller="cogReportCtrl">
+
+    <div class="spacer">
+
+        <md-toolbar>
+            <div class="md-toolbar-tools" layout-gt-xs="row">
+                <h4>
+                    گزارش
+                </h4>
+
+                <span flex></span>
+
+                <md-button loading="در حال محاسبه ..."
+                           notloading="محاسبه" disableonrequest
+                           class="md-raised" ng-click="calc()"></md-button>
+                <md-button loading="در حال ذخیزه سازی ..."
+                           notloading="ذخیره" disableonrequest
+                           class="md-raised" ng-click="saveIt()"></md-button>
+            </div>
+
+
+        </md-toolbar>
+
+
+        <table class="table-bordered table mini" style="margin: 0 auto; max-width: 400px;">
+            <tbody>
+            <tr>
+                <td colspan="3" class="cell-title" style="text-align: center">قیمت تمام شده
+                    <br>
+                    از
+                    //currentSaleMali[8]//
+                    تا
+                    //currentSaleMali[9]//
+                </td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m1 < 0}">
+                <td>مواد مستقیم</td>
+                <td colspan="2">//mainReport.m1 | number:0//</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m2 < 0}">
+                <td>دستمزد مستقیم</td>
+                <td colspan="2">//mainReport.m2 | number:0//</td>
+            </tr >
+            <tr  ng-class="{'row-minus':mainReport.m3 < 0}" class="tr-divide">
+                <td>سربار</td>
+                <td colspan="2">//mainReport.m3 | number:0//</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m4 < 0}">
+                <td>جمع هزینه های تولید</td>
+                <td colspan="2">//mainReport.m4 | number:0//</td>
+            </tr>
+            <tr>
+                <td colspan="3">اضافه می شود</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m5 < 0}">
+                <td>کالای در جریان ساخت اول دوره</td>
+                <td colspan="2">//mainReport.m5 | number:0//</td>
+            </tr>
+            <tr>
+                <td colspan="3">کسر می شود</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m6 < 0}">
+                <td>کار در جریان ساخت پایان دوره</td>
+                <td style="color: darkred" colspan="2">//mainReport.m6 | number:0//</td>
+            </tr>
+            <tr>
+                <td colspan="3">اضافه می شود</td>
+            </tr>
+            <t ng-class="{'row-minus':mainReport.m7 < 0}"r>
+                <td>کالای ساخته شده اول دوره</td>
+                <td colspan="2">//mainReport.m7 | number:0//</td>
+            </tr>
+            <tr>
+                <td colspan="3">خرید ملزومات</td>
+            </tr>
+
+            <tr>
+                <td colspan="3">کسر می شود</td>
+            </tr>
+            <tr class="tr-divide" ng-class="{'row-minus':mainReport.m8 < 0}">
+                <td>کالای ساخته شده پایان دوره</td>
+                <td colspan="2">//mainReport.m8 | number:0//</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m9 < 0}">
+                <td>بهای تمام شده درآمدهای عملیاتی</td>
+                <td colspan="2">//mainReport.m9 | number:0//</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m10 < 0}">
+                <td>بهاي تمام شده کالاي فروش رفته ساير موجوديها</td>
+                <td colspan="2">//mainReport.m10 | number:0//</td>
+            </tr>
+            <tr class="tr-divide" ng-class="{'row-minus':mainReport.m11 < 0}">
+                <td>کل بهای تمام شده کالای فروش رفته</td>
+                <td colspan="2">//mainReport.m11 | number:0//</td>
+            </tr>
+
+            <tr >
+                <td colspan="3" class="cell-title">سود و زیان
+                    <br>
+                    از
+                    //currentSaleMali[8]//
+                    تا
+                    //currentSaleMali[9]//
+
+
+                </td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m12 < 0}">
+                <td>درآمدهای عملیاتی
+                </td>
+                <td colspan="2">//mainReport.m12 | number:0//</td>
+            </tr>
+            <tr class="tr-divide" ng-class="{'row-minus':mainReport.m21 < 0}">
+                <td>بهای تمام شده درآمدهای عملیاتی
+                </td>
+                <td colspan="2">//mainReport.m21 | number:0//</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m13 < 0}">
+                <td>سود ناخالص
+                </td>
+                <td colspan="2">//mainReport.m13 | number:0//</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m14 < 0}">
+                <td>هزینه های فروش،اداری وعمومی
+                </td>
+                <td colspan="2">//mainReport.m14 | number:0//</td>
+            </tr>
+            <tr style="display: none;" ng-class="{'row-minus':mainReport.m14 < 0}">
+                <td>هزینه های کاهش ارزش دریافتنی ها
+                </td>
+                <td colspan="2">//mainReport.m22 | number:0//</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m15 < 0}">
+                <td>سایر اقلام عملیاتی
+                </td>
+                <td colspan="2">//mainReport.m15 | number:0//</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m16 < 0}">
+                <td>هزینه های مالی
+                </td>
+                <td colspan="2">//mainReport.m16 | number:0//</td>
+            </tr>
+            <tr class="tr-divide" ng-class="{'row-minus':mainReport.m17 < 0}">
+                <td>سایر درآمدها وهزینه های غیر عملیاتی
+                </td>
+                <td colspan="2">//mainReport.m17 | number:0//</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m18 < 0}">
+                <td>سود قبل از کسر مالیات
+                </td>
+                <td colspan="2">//mainReport.m18 | number:0//</td>
+            </tr>
+            <tr class="tr-divide" ng-class="{'row-minus':mainReport.m19 < 0}">
+                <td>مالیات
+                </td>
+                <td colspan="2">//mainReport.m19 | number:0//</td>
+            </tr>
+            <tr ng-class="{'row-minus':mainReport.m20 < 0}">
+                <td>سود خالص
+                </td>
+                <td colspan="2">//mainReport.m20 | number:0//</td>
+            </tr>
+{#            <tr>#}
+{#                <td colspan="3" class="cell-title" style="text-align: center">#}
+{#                    فروش خالص کویل قلع اندود#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr ng-repeat="item in mainReport.fees._77">#}
+{#                <td>//item._id//</td>#}
+{#                <td>//item.meghdar | number:0//</td>#}
+{#                <td>//item.mablagh | number:0//</td>#}
+{#            </tr>#}
+{##}
+{#            <tr>#}
+{#                <td colspan="3" class="cell-title" style="text-align: center">#}
+{#                    فروش خالص شیت قلع اندود#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr ng-repeat="item in mainReport.fees._88s">#}
+{#                <td>//item._id//</td>#}
+{#                <td>//item.meghdar | number:0//</td>#}
+{#                <td>//item.mablagh | number:0//</td>#}
+{#            </tr>#}
+{##}
+{##}
+{#            <tr>#}
+{#                <td colspan="3" class="cell-title" style="text-align: center">#}
+{#                    فروش خالص چاپ#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr ng-repeat="item in mainReport.fees._chaaps">#}
+{#                <td>//item._id//</td>#}
+{#                <td>//item.meghdar | number:0//</td>#}
+{#                <td>//item.mablagh | number:0//</td>#}
+{#            </tr>#}
+{##}
+{##}
+{#            <tr>#}
+{#                <td colspan="3" class="cell-title" style="text-align: center">#}
+{#                    فروش خالص قوطی#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <td>//mainReport.fees._ghootis.meghdar//</td>#}
+{#                <td colspan="2">//mainReport.fees._ghootis.mablagh//</td>#}
+{#            </tr>#}
+{##}
+{##}
+{#            <tr>#}
+{#                <td colspan="3" class="cell-title" style="text-align: center">#}
+{#                    فروش خالص آسان باز شو#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <td>//mainReport.fees._asaans.meghdar//</td>#}
+{#                <td colspan="2">//mainReport.fees._asaans.mablagh//</td>#}
+{#            </tr>#}
+{##}
+{##}
+{#            <tr>#}
+{#                <td colspan="3" class="cell-title" style="text-align: center">#}
+{#                    فروش خالص خدمات قلع کویل#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr ng-repeat="item in mainReport.fees.__75s">#}
+{#                <td>//item._id//</td>#}
+{#                <td>//item.meghdar | number:0//</td>#}
+{#                <td>//item.mablagh | number:0//</td>#}
+{#            </tr>#}
+{##}
+{##}
+{#            <tr>#}
+{#                <td colspan="3" class="cell-title" style="text-align: center">#}
+{#                    فروش خالص خدمات برش#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr ng-repeat="item in mainReport.fees.__85s">#}
+{#                <td>//item._id//</td>#}
+{#                <td>//item.meghdar | number:0//</td>#}
+{#                <td>//item.mablagh | number:0//</td>#}
+{#            </tr>#}
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+</div>

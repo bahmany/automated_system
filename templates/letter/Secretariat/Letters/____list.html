@@ -1,0 +1,39 @@
+<div ng-controller="ExportListCtrl">
+
+    <input type="text" ng-model="CompnaiesTableSearch">
+
+    {% load tables_tags %}
+    {% tablePagination main_model_name="ExportletterList" table_search_watch_model_name="CompnaiesTableSearch" table_go_to_page_func_name="companiesTableGoToPage" table_handle_pagination_func_name="HandleCompaniesTablePagination" table_info_model_name="TableCompanies" %}
+
+
+    <div ng-repeat="item in ExportletterList.results"
+         class="row clearfix items-of-export">
+        <div class="col-md-1 items-export">
+            //item.letter.sign//
+        <span ng-if="item.itemMode == 11">{{ 'Template'|translate}}</span>
+        <span ng-if="item.itemMode == 5">{{ 'Draft'|translate}}</span>
+        </div>
+        <div class="col-md-3 items-export">
+            <div ng-repeat="company in item.letter.company_rec">
+                //company.name//
+            </div>
+        </div>
+        <div class="col-md-3 items-export">//item.letter.subject//</div>
+        <div class="col-md-2 items-export">//item.dateOfObservable | jalaliDate:'jYY/jMM/jDD - hh:mm' //</div>
+        <div class="col-md-2 items-export">//item.sender.profileName//</div>
+        <div class="col-md-1 items-export">
+            <div class="btn-group bt-group-xs">
+
+                <a class="btn btn-xs btn-default">recieved</a>
+                <a class="btn btn-xs btn-default">scan</a>
+                <a class="btn btn-xs btn-default">suspend</a>
+                <a class="btn btn-xs btn-default">view</a>
+                <a class="btn btn-xs btn-default" ng-if="item.itemMode == 5">edit</a>
+                <a class="btn btn-xs btn-default" ng-if="item.itemMode == 5">remove</a>
+                <a class="btn btn-xs btn-default">use as templ</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>

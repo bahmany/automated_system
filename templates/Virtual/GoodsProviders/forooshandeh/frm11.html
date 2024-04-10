@@ -1,0 +1,87 @@
+<h4>محصولات یا خدمات قابل ارائه</h4>
+<hr>
+<div layout="column">
+
+    <form name="frm11_form">
+
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">کد زمینه فعالیت</label>
+                    <input type="text" ng-model="provider.frm11.CodeZaminehFaaliat" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">زمینه فعالیت</label>
+                    <input type="text" ng-model="provider.frm11.zamineh">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">ظرفیت تامین/حجم ریالی</label>
+                    <input type="text" ng-model="provider.frm11.zarfiat">
+                </md-input-container>
+            </div>
+
+
+        </div>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">برندهای قابل ارائه</label>
+                    <input type="text" ng-model="provider.frm11.brand">
+                </md-input-container>
+            </div>
+
+
+
+        </div>
+
+        <div layout-gt-xs="row">
+            <span flex></span>
+            <md-button ng-click="addTofrm('11')" ng-disabled="frm11_form.$invalid" class="md-raised">
+                اضافه به لیست
+            </md-button>
+        </div>
+    </form>
+    <div>
+        <table class="sp-table">
+            <thead>
+            <tr>
+                <th style="text-align: center">کد</th>
+                <th style="text-align: center">زمینه فعالیت</th>
+                <th style="text-align: center">ظرفیت</th>
+                <th style="text-align: center">برندها</th>
+                <th style="text-align: center">عملیات</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="it in provider.frm11_list">
+                <td style="text-align: center">//it.CodeZaminehFaaliat//</td>
+                <td style="text-align: center">//it.zamineh//</td>
+                <td style="text-align: center">//it.zarfiat//</td>
+                <td style="text-align: center">//it.brand//</td>
+                <td style="text-align: center">
+                    <md-button class="md-primary md-default" ng-click="removefrm('11',$index)">حذف</md-button>
+                </td>
+            </tr>
+            <tr ng-if="provider.frm11_list.length == 0">
+                <td colspan="5">
+                    زمینه فعالیتی وارد نشده است
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <md-input-container class="md-block">
+            <label for="">آیا امکان ارسال نمونه تستی وجود دارد ؟</label>
+            <input type="text">
+        </md-input-container>
+    </div>
+
+    <div>
+
+    </div>
+</div>

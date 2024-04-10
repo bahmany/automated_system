@@ -1,0 +1,53 @@
+<div>
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="سایزها">
+            <md-content class="md-padding">
+                <h5>سایزهای مصرفی</h5>
+                {% include "Sales/Profile/Details/tabs/3_sizes.html" %}
+
+            </md-content>
+        </md-tab>
+
+        <md-tab label="مشخصات">
+            <md-content class="md-padding">
+                <h1 class="md-display-2">مشخصات مشتری</h1>
+
+                {% include "Sales/Profile/Details/tabs/1_spec.html"  with form=SaleCustomerFormDetailsFormValidation %}
+
+            </md-content>
+        </md-tab>
+        <md-tab label="تولیدات">
+            <md-content class="md-padding">
+                <h1 class="md-display-2">محصولات تولیدی</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus
+                    volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium
+                </p>
+            </md-content>
+        </md-tab>
+
+        <md-tab label="سابقه خرید">
+            <md-content class="md-padding">
+                <h1 class="md-display-2">سابقه خرید</h1>
+                <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere
+                    molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat,
+                    at posuere mi. Cras eu fermentum nunc.</p>
+            </md-content>
+        </md-tab>
+        <md-tab label="مذاکرات">
+            <md-content class="md-padding">
+                <h1 class="md-display-2">وضعیت مذاکرات</h1>
+                <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere
+                    molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat,
+                    at posuere mi. Cras eu fermentum nunc.</p>
+            </md-content>
+        </md-tab>
+        <md-tab label="مالی">
+            <md-content class="md-padding">
+                <h1 class="md-display-2">وضعیت مالی</h1>
+                <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere
+                    molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat,
+                    at posuere mi. Cras eu fermentum nunc.</p>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</div>

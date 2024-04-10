@@ -1,0 +1,141 @@
+
+<div layout="column" ng-controller="regCtrl">
+
+    <div layout="row" layout-align="center center">
+        <img style="height: 90px;" src="{{ companyDetails.logo }}" alt="Logo of {{ companyDetails.name }}">
+    </div>
+    <h3 layout="row" layout-align="center center"> {{ companyDetails.name }}</h3>
+    <div class="form-top">
+        <div class="form-top-left" style="text-align: right">
+            <p style="text-align: justify">عضو
+                <strong style="color: #008004; font-size: 18px;"> {{ companyDetails.name }}</strong>
+                شوید. چنانچه خواهان همکاری با ما هستید بهتر است اطلاعاتی از خود در اختیار ما قرار دهید. ابتدا ثبت
+                نام
+                کنید و سپس مرحله به مرحله اطلاعات خواسته شده را تکمیل نمایید
+                .
+                این اطلاعات توسط کارشناسان ما بررسی و نتایج برای شما ایمیل خواهد شد
+            </p>
+        </div>
+    </div>
+
+
+    <div>
+        <div class="well well-sm">
+            {% autoescape off %}
+                {{ companyDetails.introduction }}
+            {% endautoescape %}
+        </div>
+    </div>
+
+    <form name="registrationForm">
+        <div style="    padding: 6px;    border: 1px solid #cacaca;    border-radius: 12px;">
+            <div>
+                {% include 'Virtual/Registration/help/name.html' %}
+            </div>
+            <div layout-gt-xs="row">
+                <md-input-container flex-gt-xs="45">
+
+                    <input type="text"
+                           name="name"
+                           style="text-align: right;
+                           direction: rtl"
+                           ng-model="register.name"
+                           placeholder="نام"
+                           ng-required="true"
+                           minlength="3"
+                           maxlength="20"
+                    >
+                    <div ng-messages="errors.json.name">
+                        <div ng-repeat="it in errors.json.name" ng-message="required">//it//</div>
+                    </div>
+                </md-input-container>
+                <span flex-gt-xs="5"></span>
+                <md-input-container flex-gt-xs="45">
+                    <input type="text" placeholder="نام خانوادگی" minlength="3" name="family"
+                           maxlength="20" ng-model="register.family" required>
+                    <div ng-messages="errors.json.family">
+                        <div ng-repeat="it in errors.json.family" ng-message="required">//it//</div>
+                    </div>
+                </md-input-container>
+
+            </div>
+
+            <div>
+                {% include 'Virtual/Registration/help/username.html' %}
+            </div>
+            <md-input-container class="md-block">
+                <input type="text" placeholder="نام کاربری" minlength="4" name="username"
+                       maxlength="20" ng-model="register.username"
+                       class="form-last-name form-control" required>
+                <div ng-messages="errors.json.username">
+                    <div ng-repeat="it in errors.json.username" ng-message="required">//it//</div>
+                </div>
+            </md-input-container>
+            <div>
+                                {% include 'Virtual/Registration/help/email.html' %}
+
+            </div>
+
+            <md-input-container class="md-block">
+                <input type="email" placeholder="ایمیل " minlength="6" name="email"
+                       maxlength="30" ng-model="register.email" required>
+                <div ng-messages="errors.json.email">
+                    <div ng-repeat="it in errors.json.email" ng-message="required">//it//</div>
+                </div>
+            </md-input-container>
+            <div>
+                                                {% include 'Virtual/Registration/help/pass.html' %}
+
+            </div>
+            <div layout-gt-xs="row">
+                <md-input-container flex-gt-xs="45">
+                    <input type="password" placeholder="رمز عبور" minlength="5" name="password"
+                           maxlength="20" ng-model="register.password" required>
+                    <div ng-messages="errors.json.password">
+                        <div ng-repeat="it in errors.json.password" ng-message="required">//it//</div>
+                    </div>
+                </md-input-container>
+                <span flex-gt-xs="5"></span>
+                <md-input-container flex-gt-xs="45">
+                    <input type="password" placeholder="تکرار رمز عبور" name="confirmPassword"
+                           minlength="5" maxlength="20" ng-model="register.passwordConfirm" required>
+                    <div ng-messages="errors.json.passwordConfirm">
+                        <div ng-repeat="it in errors.json.passwordConfirm" ng-message="required">//it//</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="error-after-post" ng-if="errors.message">
+                <div ng-repeat="item in errors.message track by $index">
+                    <span>//item.fieldName// : </span>
+                    <span>//item.message//</span>
+
+                </div>
+            </div>
+            <md-toolbar class="md-hue-1">
+                <div class="md-toolbar-tools">
+                    <div class="form-group captch-login captch-reg" layout="row" layout-align="center center">
+                        <i class="fa fa-warning" style="color: red;" ng-show="errors.json.captcha2"></i>
+                        {{ form.captcha2 }}
+
+                        <button type="button" class="btn btn-ref-cap-reg" ng-click="refreshCaptcha()"
+                                style="  float: right; max-width: 68px;">
+                            <i class="fa fa-refresh"></i>
+                        </button>
+
+                    </div>
+                    <span flex></span>
+                    <md-button type="submit" ng-click="doRegister()"
+                               ng-disabled="registrationForm.$invalid"
+
+                               class="md-primary md-raised">ثبت نام
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+        </div>
+    </form>
+
+</div>
+
+
+

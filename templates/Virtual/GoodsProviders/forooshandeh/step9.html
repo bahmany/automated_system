@@ -1,0 +1,108 @@
+<h4>مرحله نهم - اطلاعات صاحبین امضا: </h4>
+<hr>
+<div>
+    <div layout="column">
+
+
+        <form action="" name="form_step9">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نام و نام خانوادگی</label>
+                        <input type="text" ng-model="provider.step9.name" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">سمت</label>
+                        <input type="text" ng-model="provider.step9.semat">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تا تاریخ</label>
+                        <input type="text" ng-model="provider.step9.taTarikh">
+                    </md-input-container>
+                </div>
+
+
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">رشته تحصیلی</label>
+                        <input type="text" ng-model="provider.step9.reshteh" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">سابقه کار</label>
+                        <input type="text" ng-model="provider.step9.sabegheKar">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">شماره یا شماره های تماس</label>
+                        <input type="text" ng-model="provider.step9.tamas">
+                    </md-input-container>
+                </div>
+
+
+            </div>
+
+
+            <div layout-gt-xs="row">
+                <span flex></span>
+                <md-button ng-click="addToStep9()"
+                           ng-disabled="form_step9.$invalid"
+                           class="md-raised md-default">
+                    اضافه به لیست
+                </md-button>
+            </div>
+
+        </form>
+
+        <div>
+            <table class="sp-table">
+                <thead>
+                <tr>
+                    <th >نام</th>
+                    <th >سمت</th>
+                    <th >تا تاریخ</th>
+                    <th >رشته</th>
+                    <th >سابقه کار</th>
+                    <th >تماس</th>
+                    <th >عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.step9_list">
+                    <td >//it.name//</td>
+                    <td >//it.semat//</td>
+                    <td >//it.taTarikh//</td>
+                    <td >//it.reshteh//</td>
+                    <td >//it.sabegheKar//</td>
+                    <td >//it.tamas//</td>
+                    <td >
+                        <md-button class="md-primary md-default" ng-click="removeStep9($index)">حذف</md-button>
+                    </td>
+                </tr>
+
+                <tr ng-if="provider.step9_list.length == 0">
+                    <td colspan="7">
+                        لیست صاحبین امضا خالی است
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>

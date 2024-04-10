@@ -1,0 +1,157 @@
+<h4>اطلاعات سازندگان</h4>
+<hr>
+<form name="frm_frm3">
+    <div>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">نام فارسی سازنده / شرکت</label>
+                        <input type="text" ng-model="provider.frm3.name" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2">
+                </div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">نام تجاری / برند</label>
+                        <input type="text" ng-model="provider.frm3.brandname">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2">
+                </div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">نام قبلی</label>
+                        <input type="text" ng-model="provider.frm3.prevname">
+                    </md-input-container>
+                </div>
+            </div>
+
+
+        </div>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">شناسه ملی</label>
+                        <input type="text" ng-model="provider.frm3.mellicode">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">کد اقتصادی</label>
+                        <input type="text" ng-model="provider.frm3.economicCode">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">شماره ثبت</label>
+                        <input type="text" ng-model="provider.frm3.regno">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="2"></div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ تاسیس</label>
+                        <input type="text" ng-model="provider.frm3.trikheTasis">
+                    </md-input-container>
+                </div>
+
+            </div>
+
+                    <md-input-container class="md-block">
+                        <label for="">Name of company</label>
+                        <input type="text" ng-model="provider.frm3.enname">
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label for="">Syllable of company name</label>
+                        <input type="text" ng-model="provider.frm3.ennameSyllable">
+                    </md-input-container>
+
+
+        </div>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نوع شرکت</label>
+                        <md-select ng-model="provider.frm3.companyType">
+                            <md-option value>
+                                نامشخص
+                            </md-option>
+                            <md-option value="سهامی خاص">
+                                سهامی خاص
+                            </md-option>
+                            <md-option value="سهامی عام">
+                                سهامی عام
+                            </md-option>
+                            <md-option value="با مسئولیت محدود">
+                                با مسئولیت محدود
+                            </md-option>
+                            <md-option value="تعاونی">
+                                تعاونی
+                            </md-option>
+                            <md-option value="غیره">
+                                غیره
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3">
+                </div>
+                <div flex-gt-xs="70">
+                    <md-input-container class="md-block">
+                        <label for="">توضیحات</label>
+                        <input type="text" ng-model="provider.frm3.expCompType">
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نوع مالکیت</label>
+                        <md-select ng-model="provider.frm3.noeMalekiat">
+                            <md-option value>
+                                نامشخص
+                            </md-option>
+                            <md-option value="سهامی خاص">
+                               خصوصی
+                            </md-option>
+                            <md-option value="سهامی عام">
+                               دولتی
+                            </md-option>
+                            <md-option value="با مسئولیت محدود">
+                               عمومی
+                            </md-option>
+                            <md-option value="تعاونی">
+                               تحت پوشش
+                            </md-option>
+                            <md-option value="غیره">
+                                غیره
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3">
+                </div>
+                <div flex-gt-xs="70">
+                    <md-input-container class="md-block">
+                        <label for="">توضیحات</label>
+                        <input type="text" ng-model="provider.frm3.expNoeMalekiat">
+                    </md-input-container>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <span style="display: none">
+        //frm3_invalid = frm_frm3.$invalid//
+    </span>
+
+</form>

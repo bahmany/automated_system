@@ -1,0 +1,21 @@
+{% load translators %}
+{#<div id="divSecretariat" ng-controller="SecretariatCtrl" class="Secretariat-container-inbox">#}
+{##}
+{##}
+{##}
+{##}
+{#</div>#}
+<div layout="row"
+     ng-controller="SecretariatCtrl">
+    <div flex="20">
+        <md-content>
+            <div ui-view="side"></div>
+        </md-content>
+    </div>
+    <div flex="80">
+        <md-content>
+            <div ui-view=""></div>
+        </md-content>
+    </div>
+</div>
+{#{% include 'letter/Preview/PreviewInbox.html' %}#}

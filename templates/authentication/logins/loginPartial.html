@@ -1,0 +1,84 @@
+<div class="row content">
+    <div class="col-sm-5">
+        <div>وارد شوید</div>
+        <div>
+            نام کاربری و رمز عبور خود را وارد نمایید
+            <i class="fa fa-lock"></i>
+
+        </div>
+        <div>
+            <form role="form" method="post" class="login-form">
+                {% csrf_token %}
+                <div class="form-group error-login">
+
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="username">نام کاربر</label>
+                    <input type="text" name="username" placeholder="نام کاربر"
+                           class="form-username form-control" id="form-username" required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="password">رمز عبور</label>
+                    <input type="password" name="password" placeholder="رمز عبور"
+                           class="form-password form-control" id="form-password" required>
+                </div>
+
+                <div class="form-group captch-login" style="display: none">
+                    {{ form.captcha }}
+                    <button type="button" class="btn btn-ref-cap"
+                            style="  float: right; max-width: 68px;">
+                        <i class="fa fa-refresh"></i>
+                    </button>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-login pull-left">ورود</button>
+
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="social-login " style="direction: rtl">
+            <div>وارد شوید با ...</div>
+            <div class="social-login-buttons">
+                <a class="btn btn-link-2" href="#">
+                    <i class="fa fa-facebook"></i> Facebook
+                </a>
+                <a class="btn btn-link-2" href="#">
+                    <i class="fa fa-twitter"></i> Twitter
+                </a>
+                <a class="btn btn-link-2" href="#">
+                    <i class="fa fa-google-plus"></i> Google Plus
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3>رمز عبور خود را فراموش کرده اید ؟</h3>
+            <div>
+                <a href="/reg/#/forget">بازیابی...</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-1 middle-border"></div>
+    <div class="col-sm-1"></div>
+
+    <div class="col-sm-5">
+        <div>
+            <img src="/static/images/weHire.png" alt="weHire">
+        </div>
+        <div style="text-align: center">
+            <h3>همکاری با ما</h3>
+            <p>فروشندگان ، ارایه دهندگان خدمات و سازندها</p>
+            <div>
+                <a class="btn btn-login" href="/dashboards/">
+ورود به سامانه و ثبت نام
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</div>

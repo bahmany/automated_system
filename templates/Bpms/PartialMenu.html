@@ -1,0 +1,107 @@
+{% load translators %}
+
+{#<div class="sidebar" style="#}
+{#  padding: 0px;#}
+{#  position: absolute;#}
+{#  background-color: #2089C9;#}
+{#  right: -1px;#}
+{#  width: 50px;#}
+{#  top: 0px;#}
+{#  bottom: 0px;#}
+{#">#}
+{#    #}
+{#    #}
+{#    #}
+{#    #}
+{#    <div class="sidenav-outer">#}
+{#        <div class="side-menu">#}
+{#            <div class="menu-body">#}
+{#                <div class="nav nav-pills nav-stacked sidenav">#}
+{#                    <ul class="nav nav-pills nav-stacked sidenav" style="padding: 0px;">#}
+{#                        <li tooltip="کارتابل" title="کارتابل">#}
+{#                            <a tooltip="{{ "inbox" | translate }}" ui-sref="process.inbox"#}
+{#                               ng-class="{active: $state.includes('process.inbox')}"#}
+{#                               class="bpmn-btns-menu"#}
+{#                                    >#}
+{#                                <span class="glyphicon glyphicon-credit-card" style="color:white;"></span>#}
+{##}
+{##}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li tooltip="پیام ها و نتایج" title="پیام ها و نتایج">#}
+{#                            <a class="bpmn-btns-menu" ui-sref="process.message"#}
+{#                               ng-class="{active: $state.includes('process.message')}">#}
+{#                                <span class="glyphicon glyphicon-tag" style="color:white;"></span>#}
+{##}
+{##}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li tooltip="پایش کارها" title="پایش کارها">#}
+{#                            <a class="bpmn-btns-menu" ui-sref="process.lunchedArchive"#}
+{#                               ng-class="{active: $state.includes('process.lunchedArchive')}">#}
+{#                                <span class="glyphicon glyphicon-random" style="color:white;"></span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li tooltip="بایگانی" title="بایگانی">#}
+{#                            <a class="bpmn-btns-menu" ui-sref="process.doneArchive"#}
+{#                               ng-class="{active: $state.includes('process.doneArchive')}">#}
+{#                                <span class="glyphicon glyphicon-th" style="color:white;"></span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li tooltip="گزارشات" title="گزارشات">#}
+{#                            <a class="bpmn-btns-menu" ui-sref="process.reports">#}
+{#                                <span class="glyphicon glyphicon-check" style="color:white;"></span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                    </ul>#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{#</div>#}
+
+
+{#<div class="btn-group btn-group-xs">#}
+{#    <a ng-class="{active: $state.includes('process.inbox')}" ui-sref="process.inbox"#}
+{#       class="btn btn-default btn-xs fa fa-envelope-o">#}
+{#        {{ "inbox" | translate }}<span> - </span><span class="badge info">//statistics.newlp//</span>#}
+{#    </a>#}
+{##}
+{#    <a ng-class="{active: $state.includes('process.message')}" ui-sref="process.message"#}
+{#       class="btn btn-default btn-xs fa fa-envelope-o">#}
+{#        {{ "messages" | translate }}<span> - </span><span class="badge info">//statistics.newmp//</span>#}
+{#    </a>#}
+{##}
+{#    <a ng-class="{active: $state.includes('process.lunchedArchive')}" ui-sref="process.lunchedArchive"#}
+{#       class="btn btn-default btn-xs fa fa-envelope-o">#}
+{#        {{ "lunchedArchive" | translate }}#}
+{#    </a>#}
+{##}
+{#    <a ng-class="{active: $state.includes('process.doneArchive')}" ui-sref="process.doneArchive"#}
+{#       class="btn btn-default btn-xs fa fa-envelope-o">#}
+{#        {{ "doneArchive" | translate }}#}
+{#    </a>#}
+{#</div>#}
+
+{#    <ul class="process-btns clearfix">#}
+{#        <li class="sidemenu-header">{{ "bpms" | translate }}</li>#}
+{#        <li><a ng-class="{active: $state.includes('process.inbox')}" ui-sref="process.inbox">#}
+{#            </a>#}
+{##}
+{#        </li>#}
+{#        <li>#}
+{#            <a ng-class="{active: $state.includes('process.message')}" ui-sref="process.message">//#}
+{#            'messages" | translate }}<span class="badge info">#}
+{#                                //statistics.newmp//#}
+{#                            </span></a>#}
+{##}
+{#        </li>#}
+{#        <li><a ng-class="{active: $state.includes('process.lunchedArchive')}" ui-sref="process.lunchedArchive">{{ "lunchedArchive' |#}
+{#            te}}</a></li>#}
+{#        <li><a ng-class="{active: $state.includes('process.doneArchive')}"  ui-sref="process.doneArchive">{{ "doneArchive' |#}
+{#            te}}</a></li>#}
+{##}
+{#    </ul>#}

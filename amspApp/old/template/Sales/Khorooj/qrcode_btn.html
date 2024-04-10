@@ -1,0 +1,30 @@
+<md-button ng-show="(headerDet.signs | filter:{whichStep:{{ signID }} }).length == 0" class="md-raised md-primary"
+           ng-click="sign({{ signID }}, $event)">{{ btnLabel }}
+</md-button>
+
+    {% if signID == 1 %}
+        <div ng-show="headerDet.signs.length < 2">
+            <md-button class="md-raised md-warn" ng-click="makeItBatel()">ابطال</md-button>
+        </div>
+    {% endif %}
+
+
+
+<div ng-show="(headerDet.signs | filter:{whichStep:{{ signID }} }).length >= 1"
+     ng-repeat="sign in headerDet.signs | filter:{whichStep:{{ signID }} }">
+    <div ng-show="sign.comment" style="    border: 1px solid gray;    background-color: yellow;    border-radius: 5px;    padding: 4px;    font-size: 12px;
+    margin: 3px;">//sign.comment//
+    </div>
+    <qr text="makeqrcode(sign.id)"
+        size="100"
+        color="#fff"
+        background="#000"></qr>
+    <br>
+    //sign.positionName//<br>
+    //sign.positionchartName// <br>
+    //sign.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm:ss'//
+    {#    //sign.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//#}
+    <br>
+
+
+</div>

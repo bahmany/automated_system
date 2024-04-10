@@ -1,0 +1,64 @@
+{% load translators %}
+<md-content id="divProfileCompany" ng-controller="CompanyProfileCtrl" class="shadower-no-padding">
+    <div>
+        <div class="panel" style="border: none;" layout="column">
+            <div>
+                <div >
+                    {% load img_with_uploader_tags %}
+                    {% ImageWithUploader defaultEmptyAvatarUrl="/static/images/default_company_profile_header_background.png" modelName="Profile.extra.background" controllerName="CompanyProfileCtrl" height="224px" imageContainerSize="col-md-12" imageContainerOtherCss="margin:0;border-radius:0;" %}
+                </div>
+            </div>
+            <div class="margin-15">
+                {% ImageWithUploader defaultEmptyAvatarUrl="/static/images/avatar_empty.png" modelName="Profile.extra.logo" controllerName="CompanyProfileCtrl" height="100px" imageContainerSize="col-md-4 profile-pic" imageContainerOtherCss="width: 100px;height: 100px;" %}
+                <div class="col-md-3" style="margin-top:10px; "><h3 style="margin: 0;">
+                    <input type="text" class="form-control underline" ng-model="Profile.extra.name" id="nameOfCompany"
+                           placeholder="{{ 'Enter Company Name'|translate}}">
+
+                </h3>
+                </div>
+            </div>
+        </div>
+        <md-content layout-padding>
+            <md-list flex>
+          <div layout="row" layout-align="start center" style="color: #A5A5A5;"
+             class="layout-align-start-center layout-row">
+            <h3>اطلاعیه ها</h3>
+            <span flex="" class="flex"></span>
+        </div>
+                <md-list-item class="md-1-line">
+                      <textarea ckeditor="editorOptions"
+                                ng-model="Profile.extra.biefIntroduction">
+                            </textarea>
+                </md-list-item>
+
+<div layout="row" layout-align="start center" style="color: #A5A5A5;"
+             class="layout-align-start-center layout-row">
+            <h3>                        معرفی شرکت در همکاری با ما
+</h3>
+            <span flex="" class="flex"></span>
+        </div>
+                <md-list-item class="md-1-line">
+                         <textarea ckeditor="editorOptions"
+                                   ng-model="Profile.extra.introduction">
+        </textarea>
+                </md-list-item>
+        </md-content>
+
+        <md-toolbar>
+            <div class="md-toolbar-tools" layout-align="end center">
+                <md-button
+                        {#                                ng-disabled="step1form.$invalid" #}
+                        class="md-raised"
+                        ng-click="UpdateProfile()"
+                >
+                    ثبت
+                </md-button>
+
+            </div>
+        </md-toolbar>
+    </div>
+
+
+</md-content>
+
+{#</div>#}

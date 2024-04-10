@@ -1,0 +1,178 @@
+<div ng-controller="QCFindingPostCtrl">
+    <div layout="column">
+        <div layout-gt-xs="row">
+            <md-input-container flex-gt-xs="">
+                <label for="">نام و نام خانوادگی بازرس</label>
+                <input type="text" ng-model="finding.desc.nameOfInspector">
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container flex-gt-xs="">
+                <label for="">نام شرکت</label>
+                <input type="text" ng-model="finding.desc.companyName">
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container flex-gt-xs="">
+                <label for="">تاریخ</label>
+                <input type="text" ng-model="finding.desc.dateOf" ng-required="true"
+                       ui-mask="9999/99/99" style="direction: ltr!important;"
+                       model-view-value="true" id="txtDateOf">
+            </md-input-container>
+
+        </div>
+        <div layout-gt-xs="row">
+            واحد یا واحدهای بازرسی شونده :
+            <div flex="5"></div>
+            <md-checkbox aria-label="Disabled checkbox" ng-model="finding.desc.vahed1">
+                عملیات
+            </md-checkbox>
+            <md-checkbox aria-label="Disabled checkbox" ng-model="finding.desc.vahed2">
+                فنی
+            </md-checkbox>
+            <md-checkbox aria-label="Disabled checkbox" ng-model="finding.desc.vahed3">
+                بازرگانی
+            </md-checkbox>
+            <md-checkbox aria-label="Disabled checkbox" ng-model="finding.desc.vahed4">
+                حراست
+            </md-checkbox>
+        </div>
+        <div>نام و نام خانوادگی تیم ممیزی ( تا ۶ نفر )</div>
+        <div layout-gt-xs="row">
+            <md-input-container flex-gt-xs="">
+                <label for="">نام ۱</label>
+                <input type="text" ng-model="finding.desc.Auditor1">
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container flex-gt-xs="">
+                <label for="">نام ۲</label>
+                <input type="text" ng-model="finding.desc.Auditor2">
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container flex-gt-xs="">
+                <label for="">نام ۳</label>
+                <input type="text" ng-model="finding.desc.Auditor3">
+            </md-input-container>
+
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container flex-gt-xs="">
+                <label for="">نام ۴</label>
+                <input type="text" ng-model="finding.desc.Auditor4">
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container flex-gt-xs="">
+                <label for="">نام ۵</label>
+                <input type="text" ng-model="finding.desc.Auditor5">
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container flex-gt-xs="">
+                <label for="">نام ۶</label>
+                <input type="text" ng-model="finding.desc.Auditor6">
+            </md-input-container>
+
+        </div>
+        <md-input-container class="md-block">
+            <label for="">شرح یافته عدم تطابق</label>
+            <textarea type="text" ng-model="finding.desc.Sharh"></textarea>
+        </md-input-container>
+        <div>
+            {% load autocompletePerson_tags %}
+            {% AutocompleteMemberTag modelname="person" caption="انتخاب نام سر ممیز" %}
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container flex-gt-xs>
+                <label>درجه حساسیت</label>
+                <md-select ng-model="finding.desc.Level" required>
+                    <md-option value="Level1">
+                        Level 1
+                    </md-option>
+                    <md-option value="Level2">
+                        Level 2
+                    </md-option>
+                    <md-option value="Level3">
+                        Level 3
+                    </md-option>
+
+                </md-select>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+
+            <md-input-container flex-gt-xs="">
+                <label for="">مهلت تصحیح از</label>
+                <input type="text" ng-model="finding.dueDateStart" ng-required="true"
+                       ui-mask="9999/99/99" style="direction: ltr!important;"
+                       model-view-value="true" id="txtauditFrom">
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+
+            <md-input-container flex-gt-xs="">
+                <label for="">مهلت تصحیح تا</label>
+                <input type="text" ng-model="finding.dueDateEnd" ng-required="true"
+                       ui-mask="9999/99/99" style="direction: ltr!important;"
+                       model-view-value="true" id="txtauditTo">
+            </md-input-container>
+
+        </div>
+
+        <div>
+            <div style="display: none;" id="divUploader">
+                {% load fileuploader_tags %}
+                {% FileUploader width='100%' %}
+                <div>
+                    <md-button ng-click="saveFiles()">ثبت</md-button>
+                    <md-button ng-click="cancelFiles()">انصراف</md-button>
+                </div>
+            </div>
+            <div id="divFiles">
+                <div layout="row" layout-wrap="">
+                    <div ng-repeat="item in finding.Files.uploaded"
+                         class="well well-sm clearfix text-center"
+                         style="width: 100px; height: 125px; padding: 3px; margin: 3px; overflow: hidden">
+
+
+                        <span class="content_right_head">//item.imgInf.name//</span>
+                        <br>
+                        <img ng-src="//item.imgLink//" style="max-width: 50px; max-height: 55px">
+                        <br>
+                        <small>
+                            // item.imgInf.size / 1024 | number:0//kb
+                        </small>
+                        <br>
+
+                        <div class="btn-group btn-group-xs">
+
+                            <button class="btn btn-default btn-xs fa fa-times-circle-o"
+                                    ng-click="RemoveFromUploaded($event, $index);$event.stopPropagation();">
+                            </button>
+
+                            <button class="btn btn-default btn-xs fa fa-arrow-circle-down"
+
+                                    ng-click="Download(item);$event.stopPropagation();"></button>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div>
+                    <md-button ng-click="showUploader()">آپلود فایل</md-button>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div>
+            <md-toolbar class="md-hue-1">
+                <div class="md-toolbar-tools">
+
+                    <span flex></span>
+                    <md-button class="md-raised md-primary" ng-click="post()">
+
+                        ثبت
+
+                    </md-button>
+                </div>
+            </md-toolbar>
+        </div>
+    </div>
+
+</div>

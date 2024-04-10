@@ -1,0 +1,41 @@
+<li layout="row" layout-wrap>
+<a ng-click="uploadDoc($event, {{ inputid }}, {{ form }})" layout="row" layout-align="center center">آپلود فایل</a>
+<div style="    margin-left: 13px;font-weight: 800" layout="row" layout-align="center center">{{ label }}</div>
+
+
+<div ng-repeat="file in provider.frm{{ form }}.files{{ inputid }}" style="border: 1px solid gainsboro;
+    padding: 3px;">
+    <div layout="row">
+        <img style="height: 38px;margin-right: 4px;"
+             ng-src="/api/v1/file/upload?q=thmum100_//file.encoded//" alt="">
+        <div>
+            <div style="width: 100px;overflow: hidden;height: 20px;" layout="row" layout-align="center start">
+                //file.file.name//
+            </div>
+            <div layout="row">
+                <a ng-click="removeFile({{ form }}, {{ inputid }}, $index)" flex style="margin: 0;
+    padding: 0;
+    border: none;text-align: center;border-left: 1px solid #c3c1c1;
+    padding-right: 5px;
+    padding-left: 5px;">حذف</a>
+                <a flex style="margin: 0;
+    padding: 0;
+    border: none;text-align: center;
+    padding-right: 5px;
+    padding-left: 5px;"
+                   href="/api/v1/file/upload?q=//file.encoded//">مرور</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<input type="file" id="fileUploader_{{ inputid }}"
+       style="display: none"
+       nv-file-select=""
+       uploader="uploader{{ inputid }}"
+       multiple>
+
+</li>
+{#<input type="file" nv-file-select="" uploader="uploader" multiple/>#}

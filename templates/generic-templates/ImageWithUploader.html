@@ -1,0 +1,148 @@
+{% load translators %}
+<div class="{{ imageContainerSize }} {{ id }}"
+     style="
+             background-image: url('{{ defaultEmptyAvatarUrl }}');
+             background-size: cover;
+             background-position: center center;
+             background-repeat: no-repeat;
+             overflow:hidden;
+             width: 100%;
+             height: {{ height }};
+             {{ imageContainerOtherCss }}
+
+             "
+
+     id="{{ id }}"
+     name="{{ id }}"
+
+        {{ other }}
+
+
+>
+    <div class="{{ overlayerClass }} {{ change_profile_image }}" style="display: block;">
+                                <span>
+                                    کلیک برای آپلود
+                                </span>
+    </div>
+    <div class="{{ overlayerClass }}  {{ uploading_profile_wait }}">
+                                <span>
+                                    <img src="/static/images/uploading.gif">
+                                </span>
+    </div>
+
+    <input type="file" style="display: none" id="{{ fileUploaderID }}" name="{{ fileUploaderID }}">
+
+</div>
+
+<style type="text/css">
+
+
+    .{{ overlayerClass }} {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.19); /*dim the background*/
+        text-align: center;
+        display: none;
+
+    }
+
+    .{{ overlayerClass }}:hover {
+        cursor: pointer;
+    }
+
+    .{{ overlayerClass }} span {
+        color: white;
+        position: absolute;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        top: 50%;
+    }
+
+
+</style>
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".{{ change_profile_image }}").click(function (event) {
+            $("#{{ fileUploaderID }}").click();
+        });
+        $("#{{fileUploaderID}}").change(function () {
+                            scope = angular.element('[ng-controller={{ controllerName }}]').scope();
+                scope.isUploading = true;
+            {#            debugger;#}
+
+            if ($("#{{fileUploaderID}}").val()) {
+                var frmData = new FormData();
+                if ({{ fileUploaderID }}.toString() == '[object HTMLCollection]'
+            )
+                {
+                    file = {{ fileUploaderID }}[0].files[0]
+
+                }
+            else
+                {
+                    file ={{ fileUploaderID }}.files[0]
+
+                }
+
+
+                if (file.size > (25 * 1024 * 1024)) {
+                    scope.isUploading = false;
+                    swal("خطا","حجم فایل انتخابی زیر ۲۰ مگ باشد","error")
+                    return false;
+                }
+                switch (file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase()) {
+                    case 'gif':
+                    case 'jpg':
+                    case 'tiff':
+                    case 'tif':
+                    case 'pdf':
+                    case 'png':
+                        break;
+                    default:
+                        $(this).val('');
+                            scope.isUploading = false;
+                        // error message here
+                        swal("فایل غیر مجاز", "فایل انتخابی شما برای انتقال به سرور مجاز نیست - لطفا فایل دیگری را انتخاب نمایید", "error");
+                        return false;
+                }
+                frmData.append("file", file);
+                $(".{{ uploading_profile_wait }}").show();
+                $(".{{ change_profile_image }}").hide();
+
+                $.ajax({
+                    url: '/api/v1/file/upload',
+                    type: "POST",
+                    data: frmData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        scope.isUploading = false;
+
+                        $(".{{ overlayerClass }}").hide();
+                        $(".{{ change_profile_image }}").show();
+                        $(".{{ id }}").css("background-image", "url(/api/v1/file/upload?q=" + data.name + ")");
+
+
+                        scope.{{ modelName }} = "/api/v1/file/upload?q=" + data.name;
+
+                    },
+                    error: function (error) {
+                         scope.isUploading = false;
+                        $(".{{ overlayerClass }}").hide();
+                        $(".{{ change_profile_image }}").show();
+                        swal("خطا","عکس مورد نظر شما منتقل نشد - لطفا فایل دیگری را انتخاب و مججدا تلاش نمایید","error");
+                    }
+                });
+            }
+        })
+    })
+</script>
+
+

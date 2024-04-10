@@ -1,0 +1,64 @@
+{% load translators %}
+
+<div class="row">
+    <div class="col-md-11" id="BAMDashboardCtrl" style="float: none;margin: 0 auto;"
+         ng-controller="BAMDashboardCtrl">
+        <div class="panel panel-default panel-new-default pnl-bpms" style="border: 1px solid rgb(207,207,207)">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    //'گزارش کلی'|translate//
+
+                </h3>
+                <h6 style="text-align: left;line-height: 14px;">//'تمام فرایندها'|translate// <br/>
+                    <small style="font-weight: normal; font-size: 11px;">(//lunchedPData.chartTitle//)</small>
+                </h6>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        //'فرایندهای جاری'|translate//: //bam.runningCount//
+                    </div>
+                    <div class="col-md-4">
+                        //'فرایندهای پایان یافته'|translate//: //bam.doneCount//
+                    </div>
+                    <div class="col-md-4">
+                        //'تمام فرایندها'|translate//: //bam.doneCount + bam.runningCount//
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="md-title" style="color: #969696;">تعداد فرایند های جاری</h4>
+                                <canvas id="barChartRunning" width="400" height="300"></canvas>
+                            </div>
+                        </div>
+                        {#                            <div class="row">#}
+                        {#                                <div class="col-md-12">#}
+                        {##}
+                        {#                                </div>#}
+                        {#                            </div>#}
+                    </div>
+                    <hr/>
+
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="md-title" style="color: #969696;">تعداد فرایندهای پایان یافته</h4>
+                                <canvas id="barChartDone" width="400" height="300"></canvas>
+
+                            </div>
+                        </div>
+                        {#                            <div class="row">#}
+                        {#                                <div class="col-md-12">#}
+                        {##}
+                        {#                                </div>#}
+                        {#                            </div>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

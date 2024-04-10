@@ -1,0 +1,50 @@
+<div ng-controller="SalesProfileCtrl">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                پروفایل مشتریان
+            </h2>
+            <span flex></span>
+            <md-button class="md-fab md-mini" ng-click="addNew($event)">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+
+                <md-tooltip>
+                    مشتری جدید
+                </md-tooltip>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <div class="shadower">
+        <div>
+            {% load pager_navigator_tags %}
+            {% pagerNavigator style="text-center" listname="profiles" search_ng_model="profilesSearchText" PageTo="profilesPageTo" %}
+        </div>
+        <div>
+            <md-progress-linear md-mode="indeterminate" ng-if="wait"></md-progress-linear>
+        </div>
+
+        <md-list flex>
+            <div layout-align="start center"
+                    layout="row"   ng-class-odd="'odd'"
+                          ng-class-even="'even'"
+                          class="inbox-item" ng-repeat="profile in profiles.results">
+                <img src="/static/images/avatar_empty.jpg" class="thumber" />
+                <div>
+                    // profile.hamkaranCode // <span ng-if="profile.hamkaranCode"> - </span>
+                    // profile.name //
+                    <span style="font-size: 12px;">//profile.dateOfPost | jalaliDate:'jYYYY/jMM/jDD' //</span>
+                </div>
+                <span flex></span>
+
+
+                <md-button class="md-flat-button"  ng-click="edit($event, profile)">ویرایش کد راهکاران و نمایندگی</md-button>
+                <md-button class="md-flat-button"  ui-sref="SalesProfileDetails({profileID:profile.id})">ویرایش پروفایل</md-button>
+                <md-button class="md-flat-button"  ng-click="delete($event, profile)">حذف</md-button>
+
+            </div>
+        </md-list>
+
+
+    </div>
+</div>

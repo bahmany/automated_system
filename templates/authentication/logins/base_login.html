@@ -1,0 +1,110 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ورود یا ثبت نام </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static "login/styles/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "login/styles/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="{% static "login/styles/form-elements.css" %}">
+    <link rel="stylesheet" href="{% static "login/styles/style.css" %}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="{% static "login/scripts/jquery-1.11.1.min.js" %}"></script>
+    <script src="{% static "login/scripts/jquery.validate.min.js" %}"></script>
+    <script src="{% static "login/scripts/additional-methods.min.js" %}"></script>
+    <script src="{% static "login/scripts/bootstrap.min.js" %}"></script>
+    <script src="{% static "login/scripts/jquery.backstretch.min.js" %}"></script>
+    <script src="{% static "login/scripts/scripts.js" %}"></script>
+
+
+</head>
+
+<body>
+
+
+<div class="top-content">
+    <div class="inner-bg">
+        <div class="container" style=" background-color: rgba(255, 252, 255, 0.95); ">
+            <div class="row" style="  background-color: red;
+  padding-top: 12px;
+  padding-bottom: 12px;">
+                        <img src="/static/images/lower_Rahsoon.png"
+                             style="height: 35px;"
+                             alt="rahsoon.com">
+            </div>
+            <div class="row" style="  direction: rtl; text-align: center;
+  background-color: #c5c5c5;
+  font-size: 15px;padding-bottom: 3px;">
+
+
+اتوماسیون اداری ، مدیریت گردش کار ، مدیریت اسناد ، مدیریت هلدینگ ، جامعه مجازی و ...
+            </div>
+            <div style="font-size: 12px;">
+                آخرین ثبت نام ها :
+                                        تعداد شرکت ها : {{ domainCount }}
+                        -
+                        تعداد کاربران : {{ userCount }}
+            </div>
+
+{% include "authentication/logins/loginPartial.html" %}
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="footer-border">
+
+                </div>
+                <p>ساخته شده توسط
+                    <a href="http://rahsoon.com" target="_blank"><strong>محمد رضا بهمنی</strong></a>
+                   خوش بگذره<i class="fa fa-smile-o"></i>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+<!--[if lt IE 10]>
+            <script src="{% static "login/scripts/placeholder.js" %}"></script>
+        <![endif]-->
+
+
+</body>
+
+<!-- Javascript -->
+
+
+{#<script src="{% static "login/scripts/sketch.js" %}"></script>#}
+{#<script src="{% static "login/scripts/worms.js" %}"></script>#}
+
+{#<script type="text/javascript">#}
+{#    $(function () {#}
+{#        $('body').glassyWorms({colors: ['#fff', '#c2c2c2'], useStyles: true});#}
+{#    });#}
+{#</script>#}
+
+</html>

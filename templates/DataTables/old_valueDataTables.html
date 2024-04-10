@@ -1,0 +1,246 @@
+<div ng-controller="ValueDataTablesCtrl" class="tablewideable">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            ورود اطلاعات جدول داده ها
+            <span flex=""></span>
+            <md-button onclick="$('.tablewideable').toggleClass('screen-wide')" class="md-primary md-raised">تمام صفحه
+            </md-button>
+            {#            <md-button ng-click="convertToNew()" class="md-primary md-raised">تبدیل داده ها</md-button>#}
+            <md-button
+                    class="md-raised"
+                    ng-click="showVFilter()">
+                فیلتر
+            </md-button>
+
+        </div>
+
+    </md-toolbar>
+    <md-content class="shadower">
+        <h3>
+            //dataTable.name//
+            <small>//dataTable.desc//</small>
+        </h3>
+
+        <form name="frmNewVal" ng-if="values.canEdit">
+            <div layout-gt-xs="row" layout-align="start start" layout-wrap>
+                <div ng-repeat="col in values.cols | orderBy:'sort'" flex="25">
+                    <md-input-container class="md-block">
+                        <label for="">//col.fieldname//</label>
+                        <input type="text" ng-if="col.dataType == 'string' " ng-model="col.value" style=""
+                               ng-required="//col.require//">
+                        <input type="text" fcsa-number ng-if="col.dataType == 'int' " ng-model="col.value"
+                               ng-required="//col.require//" style="">
+                        <input type="text" ui-mask="9999/99/99" ng-if="col.dataType == 'date' "
+                               class="picker"
+                               ng-required="//col.require//" ng-model="col.value"
+                               style="direction: ltr!important; padding-left: 20px!important;">
+                        <input type="text" ui-mask="99:99" ng-if="col.dataType == 'time' "
+                               ng-model="col.value"
+                               style="direction: ltr!important;" ng-required="//col.require//">
+
+                        <md-select ng-model="col.value"
+                                   ng-required="//col.require//"
+                                   ng-if="col.dataType == 'lookup'"
+                                   md-on-close="clearSearchTerm()"
+                                   data-md-container-class="selectdemoSelectHeader">
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="lookupsearch[col.english]"
+                                       id="//col.english//"
+                                       type="search"
+                                       placeholder="جستجو"
+                                       class="demo-header-searchbox md-text">
+                            </md-select-header>
+                            <md-optgroup label="lkv">
+
+                                <md-option ng-value="lkv.value"
+                                           ng-repeat="lkv in col.lookupValues | filter:lookupsearch[col.english]">
+                                    // lkv.display //
+                                </md-option>
+
+                            </md-optgroup>
+                        </md-select>
+
+                    </md-input-container>
+                    <span flex="5"></span>
+                </div>
+
+
+            </div>
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <span flex></span>
+                    <md-button
+                            class="md-raised md-primary"
+                            ng-disabled="frmNewVal.$invalid"
+                            type="submit"
+                            ng-click="addValue()">
+                        ثبت
+                    </md-button>
+
+                </div>
+            </md-toolbar>
+        </form>
+
+
+        <div>
+
+            <div class="well" layout-align="start start" ng-show="showFilter">
+                <md-toolbar class="md-hue-1">
+                    <div class="md-toolbar-tools">
+                        فیلتر و جستجو
+                    </div>
+                </md-toolbar>
+                <div layout-gt-xs="row" layout-wrap>
+                    <div ng-repeat="col in filters | orderBy:'sort'" flex="25">
+                        <md-input-container class="md-block">
+                            <label for="">//col.fieldname//</label>
+                            <input type="text" ng-if="col.dataType == 'string' " ng-model="col.value" style=""
+                                   ng-required="//col.require//">
+                            <input type="text" fcsa-number ng-if="col.dataType == 'int' " ng-model="col.value"
+                                   ng-required="//col.require//" style="">
+                            <input type="text" ui-mask="9999/99/99" ng-if="col.dataType == 'date' "
+                                   class="picker"
+                                   ng-required="//col.require//" ng-model="col.value"
+                                   style="direction: ltr!important; padding-left: 20px!important;">
+                            <input type="text" ui-mask="99:99" ng-if="col.dataType == 'time' "
+                                   ng-model="col.value"
+                                   style="direction: ltr!important;" ng-required="//col.require//">
+
+
+                            <md-select ng-model="col.value"
+                                       ng-required="//col.require//"
+                                       ng-if="col.dataType == 'lookup'"
+                                       md-on-close="clearSearchTerm()"
+                                       multiple
+                                       data-md-container-class="selectdemoSelectHeader">
+                                <md-select-header class="demo-select-header">
+                                    <input ng-model="lookupsearch[col.english]"
+                                           id="//col.english//"
+                                           type="search"
+                                           placeholder="جستجو"
+                                           class="demo-header-searchbox md-text">
+                                </md-select-header>
+                                <md-optgroup label="lkv">
+
+                                    <md-option ng-value="lkv.value"
+                                               ng-repeat="lkv in col.lookupValues | filter:lookupsearch[col.english]">
+                                        // lkv.display //
+                                    </md-option>
+
+                                </md-optgroup>
+                            </md-select>
+
+
+                        </md-input-container>
+
+                        <md-input-container
+                                ng-if="col.dataType == 'int' || col.dataType == 'time' || col.dataType == 'date' ">
+                            <md-select ng-model="col.filterType" data-md-container-class="selectdemoSelectHeader">
+                                <md-optgroup label="نوع فیلتر">
+                                    <md-option value>مساوی</md-option>
+                                    <md-option value="gt">بزرگتر از</md-option>
+                                    <md-option value="lt">کوچکتر از</md-option>
+                                    <md-option value="bt"> بین</md-option>
+                                </md-optgroup>
+                            </md-select>
+
+                        </md-input-container>
+
+                        <md-input-container
+                                ng-if="(col.dataType == 'int' || col.dataType == 'time' || col.dataType == 'date') && col.filterType == 'bt'">
+                            <input type="text" fcsa-number ng-if="col.dataType == 'int'" ng-model="col.filterTypeVal">
+                            <input type="text" ui-mask="9999/99/99" ng-if="col.dataType == 'date'" class="picker"
+                                   ng-model="col.filterTypeVal"
+                                   style="direction: ltr!important; padding-left: 20px!important;">
+                            <input type="text" ui-mask="99:99" ng-if="col.dataType == 'time'"
+                                   ng-model="col.filterTypeVal"
+                                   style="direction: ltr!important;">
+                        </md-input-container>
+
+
+                        <span flex="5"></span>
+                    </div>
+
+
+                </div>
+                <md-toolbar class="md-hue-2">
+
+
+                    <div class="md-toolbar-tools">
+                        <span flex=""></span>
+                        <md-button type="button"
+                                   class="md-raised"
+                                   ng-click="makeFilter('no')">
+                            جستجو
+                            <i class="fa fa-search"></i>
+                        </md-button>
+                        <md-button type="button"
+                                   class="md-raised"
+                                   ng-click="makeFilter('yes')">
+                            دانلود اکسل
+                        </md-button>
+                        <md-button type="button"
+                                   class="md-raised"
+                                   ng-click="showVFilter()">
+                            برداشتن فیلتر
+                        </md-button>
+                    </div>
+                </md-toolbar>
+
+            </div>
+            <div layout="row" layout-align="start center">
+                <md-button class="md-icon-button" ng-click="GoToPage(values.data.next)"
+                           ng-disabled="values.data.next == null">
+                    <md-icon md-font-icon="fa fa-chevron-right"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="GoToPage(values.data.previous)"
+                           ng-disabled="values.data.previous == null">
+                    <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+                </md-button>
+                <span flex></span>
+                //values.data.count//
+            </div>
+            <md-divider></md-divider>
+            <div layout-gt-md="row" layout-wrap style="  padding: 5px;
+  margin: 5px;
+  background-color: gainsboro;
+  font-size: 12px;">
+                <span ng-repeat="col in values.cols | orderBy:'sort' " flex="25">
+                   <span style="color: #979797;">//$index+1//  -</span> //col.fieldname//
+                </span>
+            </div>
+
+            <div ng-repeat="col in values.data.results" class="datatable-rows"
+                 style="  border-bottom: solid 1px gray;padding: 5px;margin: 5px;">
+                <div layout-gt-md="row" layout-wrap>
+                <span ng-repeat="val in values.cols | orderBy:'sort'" flex="25">
+                        <md-icon ng-if=" findTrueValue( val, col).owner == 4" ng-click="editValueRow(col)"
+                                 md-font-icon="fa fa-pencil"
+                                 class="click-enable"></md-icon>
+<span style="color: #979797;">//$index+1//  -</span>
+                        //findTrueValue( val, col).val//
+
+                    </span>
+
+
+                </div>
+                <div layout="row">
+                    <span flex></span>
+                    <md-button ng-click="editValueRow(col)" ng-if="col.owner == 1">
+                        ویرایش
+                        <md-icon class="fa fa-pencil"></md-icon>
+                    </md-button>
+                    <md-button ng-click="removeValueRow(col)" ng-if="col.owner == 1">
+                        حذف
+                        <md-icon class="fa fa-trash"></md-icon>
+                    </md-button>
+                    <md-icon md-font-icon="fa fa-lock" ng-if="col.owner == 2"></md-icon>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </md-content>
+</div>

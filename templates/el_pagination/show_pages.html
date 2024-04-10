@@ -1,0 +1,4 @@
+{% load translators %}
+{% for page in pages %}
+    {{ page|default_if_none:'<span class="endless_separator">...</span>' }}
+{% endfor %}

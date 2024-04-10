@@ -1,0 +1,80 @@
+<div ng-controller="RialiAvaleDorehCtrl">
+
+
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">انبار</h2>
+
+                <div>
+                    <md-button loading="در حال ساخت ..."
+                               notloading="مرحله اول : دریافت گردش های انبار از همکاران" disableonrequest
+                               class="" ng-click="Refresh66()"></md-button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </md-toolbar>
+
+
+    <div class="spacer">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h4>فراخوانی از انبار
+                    <small>
+                        در این قسمت دوایر مختلف به دوایر تولیدی تسهیم می شوند. مهمترین قسمت در اینجا تکمیل درصدهای
+                        تولیدیست
+                    </small>
+                </h4>
+
+            </div>
+        </md-toolbar>
+        <div style="font-size: 11px;">
+            <p>
+                در این قسمت تمامی اطلاعات انبارها به از همکاران سیستم به این سیستم منتقل می شود. و در مراحل بعدی
+                اطلاعات انبار
+                فیلتر شده و اطلاعات مورد نیاز از آن استخراح می گردد
+            </p>
+            <p>
+                در اینجا ذکر این نکته ضروری است کتاب است این عملیات تمامی اطلاعات انبار در سال مالی انتخاب شده
+                منتقل می شود و در محاسبات بعدی اطلاعات ویژه از این بانک اطلاعاتی برداشت می شود باید توجه داشت با
+                زدن این دکمه در همان لحظه کپی از تمام اطلاعات آن لحظه انبارها به نرم افزار منتقل می شود و چنانچه
+                پس از اعمال تغییرات در انبار بعد از انتقال اطلاعات در این سامانه محاسبه نمی‌شود و پس از هر بار
+                ویرایش در همکاران سیستم لازم است این فراخوانی مجدد انجام شود
+            </p>
+            <p>
+                ممکن این قسمت ۱۰ دقیقه طول بکشد
+            </p>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+    <div>
+        <md-button href="/Financial/api/v1/cogb/getDtExcel/">دانلود اکسل </md-button>
+    </div>
+
+        <table id="divTableAvalieh" style="width:12500px; text-align: right">
+
+
+        </table>
+
+
+
+
+</div>

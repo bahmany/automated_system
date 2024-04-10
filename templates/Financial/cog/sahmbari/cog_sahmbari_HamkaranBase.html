@@ -1,0 +1,28 @@
+<div ng-controller="sahmHakaranBaseCtrl">
+    <div>
+        <md-button ng-click="callHamkranSahm()">فراخوانی پایه از همکاران</md-button>
+    </div>
+    <div style="overflow: auto!important;" dir="rtl">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th ng-repeat="item in result.colNames track by $index"
+                    ng-class="{'width-350px':$index==0,'width-150px':$index!=0 }"
+                    ng-bind-html="item">
+
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="item in result.result track by $index">
+                <td ng-repeat="it in item track by $index">
+                    //it//
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+

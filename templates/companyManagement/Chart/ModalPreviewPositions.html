@@ -1,0 +1,65 @@
+{% load translators %}
+
+<div id="modal_preview_positions" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+
+                        //currentSelectedRAWchart.title//
+
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <a ng-click="ModalRAWSwitch(1)">فعال در این سمت</a> |
+                        <a ng-click="ModalRAWSwitch(2)">تمامی ثبت نامه کننده ها</a>
+
+                    </div>
+                    <div id="divRAW" style="display: none" ui-view="profileView">
+
+                    </div>
+                    <div id="divPersonel">
+                        <table class="table" >
+                            <thead>
+                            <tr>
+                                <td>نام</td>
+                                <td>نام کاربری</td>
+                                <td>ایمیل</td>
+                                <td>تعداد نامه ها</td>
+                                <td>تعداد فرآیندها</td>
+                                <td>عملیات</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="pos in Positions" ng-class-odd="'odd'" ng-class-even="'even'">
+                                <td ng-if="pos.username">انتخاب</td>
+                                <td ng-if="pos.username">//pos.name//</td>
+                                <td ng-if="pos.username">//pos.username//</td>
+                                <td ng-if="pos.username">//pos.email//</td>
+                                <td ng-if="!pos.username" colspan="2">   همکنون شخصی که قبلا در این سمت بوده معلق شده</td>
+                                <td>//pos.inboxCount//</td>
+                                <td>//pos.processCount//</td>
+                                <td><a ng-if="pos.username" ng-click="ForceOut(pos)">تعلیق از سمت</a></td>
+                            </tr>
+
+                            <tr ng-if="Positions.length == 0">
+                                <td colspan="6">هیچ پرسنلی برای این سمت وجود ندارد</td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

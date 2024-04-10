@@ -1,0 +1,50 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar class="_md _md-toolbar-transitions">
+            <div class="md-toolbar-tools">
+                <h2>گروه های عضو</h2>
+                <span flex="" class="flex"></span>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content" style="width: 600px;">
+
+                <div layout="row">
+                    <div flex="50" layout-padding="">
+                        <h5 style="border-bottom: 1px solid gray;">غیرعضو</h5>
+                        <div layout-padding="" style="height: 200px; overflow-x: hidden; overflow-y: scroll;">
+                            <div ng-repeat="group in allgroups" ng-click="addToMember(group)" layout="row" layout-align="start center" style="border-bottom: 1px solid lightgrey">
+                                <div flex="" style="font-size: 12px;">
+                                    <div>//group.groupTitle//</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex="50"layout-padding="">
+                        <h5  style="border-bottom: 1px solid gray;" >عضوگروه</h5>
+                        <div layout-padding="" style="height: 200px; overflow-x: hidden; overflow-y: scroll;">
+                            <div ng-repeat="member in __selectedMenu.groups_allowed track by $index" ng-click="removeFromList($index)" layout="row" layout-align="start center" style="border-bottom: 1px solid lightgrey">
+
+
+                                <div flex="" style="font-size: 12px;">
+                                    <div>//member.groupTitle//</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+
+            <md-button class="md-primary md-raised" ng-click="savemember()">ثبت</md-button>
+
+        </md-dialog-actions>
+
+    </form>
+
+
+
+</md-dialog>

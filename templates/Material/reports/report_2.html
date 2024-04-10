@@ -1,0 +1,89 @@
+<div ng-controller="MaterialReport2Ctrl">
+    <md-toolbar class="md-menu-toolbar" style="background-color: gray;
+    color: white;">
+        <div layout="row">
+            <div>
+                <h6 class="md-toolbar-tools">
+                    ورودی کلاف سیاه روزانه
+                </h6>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <div layout-gt-xs="row" style="padding: 12px; border: 1px solid gray; border-top: none">
+        <div flex-gt-xs="20">
+            <div style="padding: 4px; font-size: 13px;border-bottom: 1px solid gray;"
+                 ng-repeat="_data in dates.result"
+                 layout="row"
+                 layout-align="center center"
+                 ng-click="loadReport(_data)">
+                <div>//_data._id | jalaliDate:'jYYYY/jMM/jDD'//</div>
+                <div flex style="text-align: center">//_data.count//</div>
+                <div flex style="text-align: left; font-size: 12px; color: grey ">
+                    //_data.sumOfVorood | number// kg
+
+                </div>
+
+            </div>
+            <div style="text-align: center; padding: 4px;">
+                <md-button ng-click="loadMore()">بیشتر...</md-button>
+            </div>
+
+        </div>
+
+        <div flex-gt-xs layout="column" style="    padding-right: 12px;">
+            <div style="font-size: 14px; font-weight: bold" layout="row">
+                    <span>
+                        //currentRep._id | jalaliDate: 'jYYYY/jMM/jDD'//
+                    </span>
+                <span flex></span>
+                <span>
+                    جمع کل
+                    //currentRepSums//
+                    کیلوگرم
+                    </span>
+
+            </div>
+            <table class="table table-striped table-bordered mini">
+                <thead>
+                <tr>
+                    <th colspan="9" style="font-size: 13px; text-align: center; background-color: lightgray">
+                        //rp.forDate | jalaliDate: 'HH:mm:ss'//
+                    </th>
+                </tr>
+                <tr>
+                    <th>شماره کلاف</th>
+                    <th>ضخامت</th>
+                    <th>عرض</th>
+                    <th>کد سازنده</th>
+                    <th>تمپر</th>
+                    <th>زبری سطح</th>
+                    <th>وزن خالص تولیدی</th>
+                    <th>شماره بارنامه</th>
+                    <th>شماره بارکد</th>
+                    <th>جانمایی</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="r in reportResult">
+                    <td>//r.desc.barcode.shomare_kalaf//</td>
+                    <td>//r.desc.product.Code.substring(5,7)//</td>
+                    <td>//r.desc.product.Code.substring(8,11)//</td>
+                    <td>//r.desc.product.Code.substring(2,3)//</td>
+                    <td>//r.desc.product.Code.substring(3,4)//</td>
+                    <td>*</td>
+                    <td>//r.desc.barcode.vazne_khales//</td>
+                    <td>//r.desc.barcode.shomare_barnameh//</td>
+                    <td>//r.barcode//</td>
+                    <td>//r.desc.location.locationTitle//</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,187 @@
+{% load translators %}
+
+<div id="pools" style="display: none">
+
+    <md-toolbar class="md-hue-4">
+        <div class="md-toolbar-tools">
+
+
+            ایجاد پل های ارتباطی
+
+            <span flex></span>
+
+            <md-button class="md-raised md-default" ng-click="AddNewPool()">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+                ایجاد ارتباط عملیات محور
+
+            </md-button>
+
+            <md-button class="md-raised md-default">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+                ایجاد ارتباط جدول محور
+
+            </md-button>
+
+            <md-button class="md-raised md-default" ng-click="BackToConneciotns()">
+
+                برگشت
+
+            </md-button>
+
+
+        </div>
+
+    </md-toolbar>
+
+    <div flex="" layout-gt-xs="row">
+        <div flex-gt-xs="33" class="shadower">
+            <md-list-item class="md-2-line"
+                          ng-class-odd="'odd'" ng-class-even="'even'"
+                          ng-repeat="item in poolsList.results">
+                <div class="md-list-item-text">
+                    <h3>// item.name //</h3>
+                    <div flex="" layout="row">
+                        <span flex></span>
+                        <md-button ng-click="EditPool(item)">
+                            ویرایش
+                        </md-button>
+                        <md-button ng-click="RemovePool(item)">
+                            حذف
+                        </md-button>
+                    </div>
+                </div>
+
+            </md-list-item>
+        </div>
+
+        <div flex-gt-xs layout-gt-xs="row" id="invList">
+            <div flex-gt-xs="80" class="shadower has-shadow" ng-show="showEdit">
+                <div class="code-editor">
+                    <form class="ng-pristine ng-valid">
+                        {#                            <div layout-gt-md="row">#}
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>نام پل ارتباطی</label>
+                            <input ng-model="pool.name">
+                        </md-input-container>
+                        {#                            </div>#}
+                        <div class="well well-sm">
+                            <div ng-repeat="item in pool.sqls track by $index" class="well well-sm">
+                                <md-input-container class="md-block" flex-gt-xs>
+                                    <label>نام متغیر اس کیو ال</label>
+                                    <input ng-model="item.name">
+                                </md-input-container>
+                                <div>
+                                    SQL code container
+                                </div>
+                                <textarea ui-codemirror ui-codemirror-opts="editorOptions" ng-model="item.code">
+                                </textarea>
+
+
+                                <div>
+                                    <md-button aria-label="removejob" style="display:inline-block;"
+                                               class="md-raised"
+                                               ng-click="RemoveSqlCommand($index)">
+                                        حذف
+                                    </md-button>
+                                    {#                                        <md-button aria-label="removejob" style="display:inline-block;"#}
+                                    {#                                                   class="md-raised"#}
+                                    {#                                                   ng-click="TestPool(item)">#}
+                                    {#                                            {{ 'Test sql command'|translate}}#}
+                                    {#                                        </md-button>#}
+                                </div>
+                            </div>
+                            <div layout="row" layout-align="end center">
+                                <md-button aria-label="removejob" style="display:inline-block;"
+                                           class="md-raised"
+                                           ng-click="AddSqlCommand()">
+                                    ایجاد کد جدید اس کیو ال
+                                </md-button>
+
+                            </div>
+                            <div layout="row" layout-align="end center">
+                                <md-button aria-label="removejob" style="display:inline-block;"
+                                           class="md-raised"
+                                           ng-click="TestAllSqlCodes()">
+                                    تست کد اس کیو ال
+                                </md-button>
+                            </div>
+                            <div ng-repeat="command in pool.sqls" class="well well-sm" layout="column">
+                                //command.name//
+
+                                <md-input-container class="md-block"
+                                                    ng-repeat="item in command.controllers track by $index">
+                                    <label>//item.name//</label>
+                                    <input ng-model="item.value" ng-if="item.type=='int'" type="number"
+                                           placeholder="{{ 'Enter Number'|translate }}">
+                                    <input ng-model="item.value" ng-if="item.type=='str'" type="text"
+                                           placeholder="{{ 'Enter text'|translate }}">
+                                    <input ng-model="item.value" ng-if="item.type=='date'" type="text"
+                                           placeholder="{{ 'Enter date like '|translate }}1395/01/01">
+                                    <input ng-model="item.value" ng-if="item.type=='datetime'" type="text"
+                                           placeholder="{{ 'Enter date and time like '|translate }}1395/01/01 22:30">
+                                    <input ng-model="item.value" ng-if="item.type=='time'" type="text"
+                                           placeholder="{{ 'Enter time like '|translate }}22:30">
+                                </md-input-container>
+                                {#                                        </div>#}
+                            </div>
+                            <div class="well well-sm" layout="row" layout-align="end center">
+                                <md-button aria-label="removejob" style="display:inline-block;"
+                                           class="md-raised"
+                                           ng-click="RunAllSqlCodes()">
+                                    اجرای کدهای اس کیو ال
+                                </md-button>
+                            </div>
+                            <div class="well well-sm">
+                                <div ng-repeat="item in runSqlResult track by $index">
+                                    <p>//item.name//</p>
+                                    <div ng-bind-html="item.result">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div>
+                            <div>
+                                محل دریافت کد های پایتون
+                            </div>
+                            <textarea ui-codemirror ui-codemirror-opts="editorOptionsPython"
+                                      ng-model="pool.pythonCode"></textarea>
+                        </div>
+
+                        <div>
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>{{ 'Other Explanation'|translate }}</label>
+                                <textarea ng-model="pool.exp"></textarea>
+                            </md-input-container>
+
+                        </div>
+
+                        <div layout="row" layout-align="end center">
+                            <md-button aria-label="removejob" style="display:inline-block;" class="md-raised"
+                                       ng-click="CancelPool()">
+                                انصراف
+                            </md-button>
+                            <md-button aria-label="removejob" style="display:inline-block;" class="md-raised"
+                                       ng-click="TestPool()">
+                                آزمایش
+                            </md-button>
+                            <md-button aria-label="removejob" style="display:inline-block;"
+                                       class="md-raised md-primary"
+                                       ng-click="PostPool()">
+                                ثبت
+                            </md-button>
+                        </div>
+
+                        <div>
+                            //finalresult//
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

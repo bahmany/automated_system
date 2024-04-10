@@ -1,0 +1,45 @@
+<div ng-controller="ControlProjectProjectsCtrl" layout="column" class="shadower">
+
+
+    {% include "ControlProject/Project/modalAddNewProject.html" %}
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+
+            دوره استراتژیک
+            //year.title//
+            <span flex></span>
+
+            <md-button class="md-fab md-mini" ng-click="AddNewYear()">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+
+            </md-button>
+        </div>
+    </md-toolbar>
+
+
+    <iframe height="500px;" src="/ControlProject/" frameborder="0"></iframe>
+
+
+    <div layout="row">
+        <a ng-click="AddNewProject()">پروژه جدید</a>
+    </div>
+
+    <div>
+
+        <div ng-if="waitForLoading">
+            <md-progress-linear class="fader" md-mode="indeterminate"></md-progress-linear>
+        </div>
+
+        <div>
+            {% load tables_tags %}
+            {% tablePagination2 main_model_name="projects" %}
+        </div>
+
+        <div class="shadower">
+            {% include "ControlProject/Project/list.html" %}
+        </div>
+
+    </div>
+
+
+</div>

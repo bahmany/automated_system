@@ -1,0 +1,58 @@
+{% load translators %}
+
+<div ng-controller="CompanyChartCtrl" id="CompanyChartCtrl" layout-gt-md="column" class="shadower-no-padding">
+    {% include "companyManagement/Chart/ModalChangeTopChart.html" %}
+    {% include "companyManagement/Chart/ModalChangeChartTitle.html" %}
+    {% include "companyManagement/Chart/ModalPreviewPositions.html" %}
+    {% include "companyManagement/Chart/ModalDabirChart.html" %}
+    {% include "companyManagement/Chart/ModalAddNewChart.html" %}
+    {% include "companyManagement/Chart/ModalChangeChart.html" %}
+    {% include "companyManagement/Chart/ModalChangeChartRank.html" %}
+    {% include "companyManagement/Chart/ModalChangeEnterUsername.html" %}
+
+    <md-toolbar class="md-menu-toolbar">
+        <div>
+
+            <md-button ng-click="AddNewChart()">ایجاد سمت جدید</md-button>
+            <md-button ng-click="ShowPanel(1)">مدیریت چارت</md-button>
+            <md-button ng-click="ShowPanel(2)">مشاهده ی چارت</md-button>
+            <md-button ng-click="ShowPanel(3)">تغییر سمت</md-button>
+        </div>
+
+    </md-toolbar>
+
+
+
+    <div id="divRAWChart" class="hide">
+        {% include "companyManagement/Chart/divRAWChart.html" %}
+
+    </div>
+
+
+
+    <div   id="treeContainer" class="hide"  >
+        {% include "companyManagement/Chart/divTreeContainer.html" %}
+
+    </div>
+
+
+    <div id="changeSemat"  class="hide">
+        {% include "companyManagement/Chart/DivChangeChart.html" %}
+    </div>
+
+
+
+
+
+
+    <style type="text/css">
+        {% include "companyManagement/Chart/styles.css" %}
+    </style>
+
+
+    <script type="text/javascript">
+        {% include  "companyManagement/Chart/d3Chart.js"%}
+    </script>
+
+</div>
+    

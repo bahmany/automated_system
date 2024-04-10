@@ -1,0 +1,50 @@
+<div ng-controller="CtrlTolidSaleConv">
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+            <div>
+                <h2 class="md-toolbar-tools">تولید و فروش</h2>
+                <div>
+                    <md-button ui-sref="material_tolid_sale_conv_sale" ui-sref-active="this-menu-selected">
+                        موجودی قابل فروش
+                    </md-button>
+
+                    <md-button ui-sref="material_tolid_sale_conv_ware" ui-sref-active="this-menu-selected">
+                        اعلامی انبار
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <div ui-view>
+
+    </div>
+
+    {#    <div style="overflow: scroll">#}
+    {#        <hot-table#}
+    {#                settings="setting"#}
+    {#                col-headers="true"#}
+    {#                datarows="percentTable.data"#}
+    {#                style="direction: ltr; text-align: left"#}
+    {#                height="300"#}
+    {#                id="catable"#}
+    {#                language='en'#}
+    {#        >#}
+    {#            <hot-column#}
+    {#                    ng-repeat="col in percentTable.cols"#}
+    {#                    formulas="true"#}
+    {#                    data="//col.title//"#}
+    {#                    title="col.title"#}
+    {#                    read-only="col.readOnly"#}
+    {#                    data-type="col.dataType"#}
+    {#                    numeric-format="col.numericFormat"#}
+    {#                    type="col.dataType"#}
+    {#            ></hot-column>#}
+    {#        </hot-table>#}
+    {#    </div>#}
+
+
+</div>

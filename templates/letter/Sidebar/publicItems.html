@@ -1,0 +1,68 @@
+{% load translators %}
+<table class="tbl-cont-s">
+    <tbody>
+    <tr class="btn-rec"
+        ng-click="callInboxList(-1, 1, 1)">
+        <td>
+            <i class="fa fa-arrow-left" ng-if="ss.p=='-1,1,1'" style="color: #057B05"></i>
+            <span class="title"> &nbsp; {{"Inbox"|translate}}</span></td>
+        <td><span ng-if="statics.icu" style="font-size: 12px;  padding-top: 6px;  font-weight: bold;  color: red;">//statics.icu//</span>
+        <td><span class="pull-right  inbox-counters">//statics.ic//</span></td>
+        </td>
+    </tr>
+    <tr class="btn-rec" ng-click="callInboxList(6, 7, 1)"
+        ng-class="{activeli: itemType==6 && itemMode==7 && itemPlace==1}" ng-click="callInboxList(6, 7, 1)">
+        <td>
+            <i class="fa fa-arrow-left" ng-if="ss.p == '6,7,1'"
+               style="color: #057B05"></i>
+            <span class="title"> &nbsp; {{"Sent"|translate}}</span></td>
+        <td></td>
+        <td><span class="pull-right inbox-counters">//statics.sc//</span></td>
+    </tr>
+    <tr class="btn-rec"
+        ng-click="callInboxList(9, -1, -1)"
+        ng-class="{activeli: itemType==9 && itemMode==-1 && itemPlace==-1}" >
+        <td>
+            <i class="fa fa-arrow-left" ng-if="ss.p == '9,-1,-1'"
+               style="color: #057B05"></i>
+            <span class="title"> &nbsp; {{"Forwarded"|translate}}</span></td>
+        <td></td>
+        <td><span class="pull-right inbox-counters">//statics.sc//</span></td>
+    </tr>
+    <tr class="btn-rec" ng-click="callInboxList(-1, 4, 1)"
+        ng-class="{activeli: itemType==-1 && itemMode==4 && itemPlace==1}">
+        <td><i class="fa fa-arrow-left" ng-if="ss.p == '-1,4,1'"
+               style="color: #057B05"></i>
+            <span class="title"> &nbsp; {{"Draft"|translate}}</span></td>
+        <td></td>
+        <td><span class="pull-right inbox-counters">//statics.dc//</span></td>
+    </tr>
+    <tr class="btn-rec" ng-click="callInboxList(5, 1, 1)"
+        ng-class="{activeli: itemType==5 && itemMode==1 && itemPlace==1}">
+        <td><i class="fa fa-arrow-left" ng-if="ss.p == '5,1,1'"
+               style="color: #057B05"></i>
+            <span class="title"> &nbsp; {{"Automate"|translate}}</span></td>
+        <td></td>
+        <td><span class="badge pull-right inbox-counters" ng-if="statics.aacu"
+                  style="font-size: 12px; padding-top: 6px;">//statics.aacu//</span></td>
+    </tr>
+    <tr class="btn-rec" ng-click="callInboxList(-1, -1, 2)"
+        ng-class="{activeli: itemType==-1 && itemMode==-1 && itemPlace==2}">
+        <td><i class="fa fa-arrow-left" ng-if="ss.p == '-1,-1,2'"
+               style="color: #057B05"></i>
+            <span class="title"> &nbsp; {{"Archive"|translate}}</span></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr class="btn-rec" ng-click="callInboxList(-1, -1, 3)"
+        ng-class="{activeli: itemType==-1 && itemMode==-1 && itemPlace==3}">
+        <td><i class="fa fa-arrow-left" ng-if="ss.p == '-1,-1,3'"
+               style="color: #057B05"></i>
+            <span class="title"> &nbsp; {{"Trash"|translate}}</span></td>
+        <td></td>
+        <td> <span class="badge pull-right" ng-if="statics.tcu"
+                   style="font-size: 12px; padding-top: 6px;">//statics.aacu//</span></td>
+    </tr>
+    </tbody>
+</table>
+

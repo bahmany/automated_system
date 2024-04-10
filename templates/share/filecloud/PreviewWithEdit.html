@@ -1,0 +1,24 @@
+{% load translators %}
+
+<div class="pull-left clearfix text-center thumb-spec"
+     ng-repeat="item in UploadedFiles.files"
+     style="width: 100px; height: 155px; padding: 3px; margin: 3px; overflow: hidden">
+    <span class="content_right_head" style="font-size: 11px">//item.imgInf.name//</span>
+    <br>
+    <img ng-src="//item.imgLink//" style="max-width: 50px; max-height: 55px">
+    <br>
+    <small>
+        // item.imgInf.size / 1024 | number:0//kb
+    </small>
+    <br>
+
+    <div class="btn-group btn-group-xs">
+        <a class="btn btn-default btn-xs fa fa-cloud-download"
+           tooltip="{{ 'Download'|translate}}"
+           ng-click="$event.stopPropagation();"
+           href="//prepareDownloadUrl(item.imgLink)//"></a>
+        <a class="btn btn-default btn-xs fa fa-times"
+           tooltip="{{ 'Download'|translate}}"
+           ng-click="UploadedFiles.files.splice($index,1)"></a>
+    </div>
+</div>

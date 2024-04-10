@@ -1,0 +1,20 @@
+{% load translators %}
+<div class="modal-header">
+        <h4 class="modal-title"> //thisStep.desc//</h4>
+
+</div>
+<div class="modal-body" >
+
+    <form novalidate class="form" >
+        <div fg-form ng-class="{'is_readonly':thisStep.isReadOnly}"
+             fg-form-data="thisStep.formData"
+             fg-schema="thisStep.form">
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer center clearfix">
+    <button data-ng-click="$dismiss()" type="button" class="btn btn-info pull-left fa fa-check"></button>
+
+
+</div>

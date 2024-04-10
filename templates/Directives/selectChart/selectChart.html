@@ -1,0 +1,27 @@
+<div>
+    <md-autocomplete
+            md-no-cache="noCache"
+            md-selected-item="ngModel"
+            md-delay="100"
+            md-require-match="true"
+            md-search-text="setSearchText()"
+            md-selected-item-change="selectedItemChange(item)"
+            md-items="item in querySearch()"
+            md-item-text="ngModel.profileName"
+            md-min-length="0"
+            placeholder="جستجوی سمت"
+            md-menu-class="autocomplete-custom-template">
+        <md-item-template>
+          <span class="item-title">
+            <img ng-src="//item.avatar//" class="md-avatar"
+                 style="height: 41px;    width: 41px; border-radius: 50%; margin-left: 5px; margin-bottom: 5px;">
+            <span>  //item.profileName// </span>
+          </span>
+            <span class="item-metadata">
+            <span>
+              <strong>//item.chartName//</strong>
+            </span>
+          </span>
+        </md-item-template>
+    </md-autocomplete>
+</div>

@@ -1,0 +1,43 @@
+{% load translators %}
+{% load staticfiles %}
+{% load sekizai_tags %}
+{% load i18n %}
+{#<fieldset>#}
+    <div class="row">
+        <section class="col col-6">
+            <label>پست الکترونیکی</label>
+            <label class="input">
+                <input type="email" dir="ltr"  placeholder="example@host.com" ng-model="Estekhdam.Email">
+            </label>
+        </section>
+        <section class="col col-6">
+            <label>تکرار پست الکترونیکی</label>
+            <label class="input">
+                <input type="email" dir="ltr"  placeholder="example@host.com" ng-model="Estekhdam.ConfirmEmail">
+            </label>
+        </section>
+    </div>
+
+        <section>
+            <label>کدملی</label>
+            <label class="input">
+                <input type="text"  placeholder="00346105812" ng-model="Estekhdam.InternationalCode">
+            </label>
+        </section>
+
+    <div class="row">
+        <section class="col col-6">
+            <label>{% trans 'Password' %}</label>
+            <label class="input">
+                <input type="password"  ng-model="Estekhdam.Password">
+            </label>
+        </section>
+        <section class="col col-6">
+            <label>{% trans 'Confirm Password' %}</label>
+            <label class="input">
+                <input type="password"  ng-model="Estekhdam.ConfirmPassword">
+            </label>
+        </section>
+    </div>
+
+{#</fieldset>#}

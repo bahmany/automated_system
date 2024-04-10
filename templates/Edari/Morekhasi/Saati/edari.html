@@ -1,0 +1,67 @@
+<div ng-controller="MorekhasiSaatiEdariCtrl" class="shadower">
+    <h5 md-truncate>تایید اداری</h5>
+    <div class="shadower">
+        <form ng-submit="getlist()">
+            <div layout="row" layout-align="center center">
+                <div flex-gt-lg="25" flex-lt-lg="50">
+                    <md-input-container>
+                        <label>تاریخ مورد نظر</label>
+                        <input ng-model="dateofmorekhasi" required
+                               mask="1499/99/99"
+                               dir="ltr"
+                               placeholder="مثال 1400/01/01"
+                               style="direction: ltr!important;">
+                    </md-input-container>
+                    <md-button type="submit" class="md-primary md-raised" ng-click="getlist()">فراخوانی</md-button>
+                </div>
+                <div flex layout-padding="">
+
+                </div>
+
+            </div>
+        </form>
+        <div>
+            <table class="table mini table-bordered table-striped">
+                <thead>
+                <tr>
+                    <td>کد پرسنلی</td>
+                    <td>نام</td>
+                    <td>سمت</td>
+                    <td>ساعت شروع</td>
+                    <td>ساعت پایان</td>
+                    <td>میزان</td>
+                    <td></td>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in result track by $index">
+                    <td>//item.exp.pos_vahede_darkhat.personnel_code//</td>
+                    <td>//item.exp.pos_vahede_darkhat.profileName//</td>
+                    <td>//item.exp.pos_vahede_darkhat.chartName//</td>
+                    <td>//item.exp.az//</td>
+                    <td>//item.exp.taa//</td>
+                    <td>//item.exp.mizan//</td>
+                    <td>
+                        <div ng-repeat="it in item.exp.pos_vahede_darkhat.karaweb_times" layout="row" layout-align="center center" style="padding: 3px; border-bottom: 1px solid #ffffff">
+                            <span>karaweb :</span>
+                            <span>//it.Time//</span>
+                            <button ng-click="updatekaraweb(item.id, it.Id, $event)" ng-show="showline(item,it.Id)" style="margin-right: 12px;">مرخصی ساعتی شود</button>
+                            <button ng-click="delupdatekaraweb(item.id, it.Id, $event)" ng-show="!(showline(item,it.Id))" style="margin-right: 12px;">از مرخصی خارج شود</button>
+
+                        </div>
+                    </td>
+                </tr>
+
+                <tr ng-show="result.length == 0">
+                    <td colspan="8" style="text-align: center">
+                        مرخصی برای امروز صادر نشده است
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

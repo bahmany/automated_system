@@ -1,0 +1,51 @@
+{% load translators %}
+<div ng-controller="AddJobItemCtrl">
+
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            شغل های مورد نیاز
+            <span flex>
+
+                </span>
+            <md-button class="md-fab md-mini" ng-click="AddNew($event)">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+                <md-tooltip>
+                    شغل مورد نیاز جدید
+                </md-tooltip>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class="shadower">
+        <div>
+            {% load pager_navigator_tags %}
+            {% pagerNavigator style="text-center" listname="jobItems" search_ng_model="jobItemsSearchText" PageTo="jobItemsPageTo" %}
+        </div>
+        <md-list flex>
+
+            <md-divider></md-divider>
+            <md-list-item class="md-1-line low-padding" ng-repeat="item in jobItems.results" ng-class-odd="'odd'"
+                          ng-class-even="'even'">
+                <p layout="row" layout-align="start center">
+                    //item.name//
+                    <span flex></span>
+                    <md-button style="background-color: lightgreen;" ng-if="item.publish" ng-click="publish(item)">منتشر
+                        شده
+                    </md-button>
+                    <md-button style="background-color: lightgray;" ng-if="!item.publish" ng-click="unpublish(item)">
+                        منتشر نشده
+                    </md-button>
+                    <md-button ui-sref="requestHamkari({item:item.id})"> متقاضیان
+                        <md-icon md-font-icon="fa fa-users"></md-icon>
+                        //item.registered_count//
+                    </md-button>
+                    <md-button ng-click="edit($event, item)">ویرایش</md-button>
+                    <md-button ng-click="delete($event,item)">حذف</md-button>
+                </p>
+            </md-list-item>
+        </md-list>
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,46 @@
+<div ng-controller="LetterBaseCtrl" layout="column">
+
+    <aside class="inbox-sidebar">
+        <div class="ibs-tools">
+            <span>{{ 'Tools'|translate}}</span>
+
+            <a class="pull-right fa fa-chevron-right pps" ng-click="HideInboxSidebar()"></a>
+            <a class="pull-right fa fa-chevron-left poos" ng-click="ShowInboxSidebar()"></a>
+
+        </div>
+        <div class="ibtopssss">
+            {% include 'letter/Sidebar/base.html' %}
+
+        </div>
+
+    </aside>
+    <div class="letter-box " ui-view="">
+<div>
+
+
+
+    <div ui-view="compose" id="divPrev">
+
+    </div>
+
+    <div ui-view="replay" id="divReplay" style="display: none">
+
+    </div>
+
+    <div ui-view="history" id="divHistory" style="display: none">
+
+    </div>
+    <div ui-view="recievers" id="divForward" style="display: none">
+
+    </div>
+
+</div>
+    </div>
+
+
+{#                {% include 'letter/Sidebar/base.html' %}#}
+
+
+</div>
+
+

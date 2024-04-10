@@ -1,0 +1,60 @@
+{% load staticfiles %}
+{% load sekizai_tags %}
+{% load i18n %}
+<fieldset>
+    <div class="row">
+        <section class="col col-3">
+            <label>نام نرم افزار<span style="color: #d12210">(*)</span></label>
+            <label class="input">
+                <input type="text" ng-model="Software.Name">
+            </label>
+        </section>
+        <section class="col col-3">
+            <label>{% trans 'level of ability' %}</label>
+            <label class="input">
+                <input type="text" ng-model="Software.Level">
+            </label>
+        </section>
+        <section class="col col-3">
+            <label>توضیحات</label>
+            <label class="input">
+                <input type="text" ng-model="Software.Explanations">
+            </label>
+        </section>
+        <section class="col col-3">
+            <label></label>
+            <label class="input">
+                <a class="btn btn-success" ng-click="SoftwaresAddToList(Software)">{% trans 'Add To List' %}<i class="fa fa-plus-square "></i></a>
+            </label>
+        </section>
+
+    </div>
+    <section>
+        <table class="table-responsive table table-bordered table-striped">
+            <thead>
+            <tr>
+                <td>نام نرم افزار</td>
+                <td>{% trans 'level of ability' %}</td>
+                <td>توضیحات</td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in Estekhdam.Softwares track by $index">
+                <td>// item.Name //</td>
+                <td>// item.Level //</td>
+                <td>// item.Explanations //</td>
+                <td><a class="btn btn-default"
+                       ng-click="Estekhdam.Softwares.splice($index,1)">{% trans 'Remove' %}</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align: center" ng-show="!Estekhdam.Softwares.length">
+                    {% trans 'There is no data' %}
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </section>
+</fieldset>

@@ -1,0 +1,90 @@
+<div ng-controller="LoginCtrl" class="doc-demo-content doc-content"style="    margin: 0 auto;
+    border: 1px solid #d6d6d6;
+    border-top: none;
+    border-bottom: none;">
+
+    <div style="    background-image: url(/static/images/login.jpg);
+    height: 200px;    background-size: cover;">
+
+    </div>
+
+    <div class="docs-demo">
+        <h4>ورود به سامانه</h4>
+        <hr>
+        <p>
+            اگر قبلا در سامانه ثبت نام کرده اید می توانید از این طریق وارد سامانه شوید.
+
+        </p>
+        <section class="demo-container md-whiteframe-z1"
+                 flex-gt-xs="90"
+                 flex-gt-sm="60"
+                 style="margin: 0 auto"
+                 flex-gt-lg="40">
+            <md-toolbar class="demo-toolbar md-primary">
+                <h3 class="md-toolbar-tools"><a class="docs-anchor">ورود</a></h3>
+            </md-toolbar>
+
+            <div layout="column">
+                <form action="" name="frmLogin" ng-submit="doLogin($event)">
+                    <div class="spacer"></div>
+                    <md-input-container class="md-block">
+                        <label for="">شماره موبایل / نام کاربری / ایمیل</label>
+                        <input type="text" required ng-model="loginInf.username" style="direction: ltr">
+                        <div style="font-size: 11px;    text-align: left;    color: gray;">
+                            Sample mobile : 09123365952 <br>
+                            Sample email : mohammadi@******.com <br>
+                            Sample username : mohammadi
+
+
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label for="">رمز عبور</label>
+                        <input type="password" required ng-model="loginInf.password" style="direction: ltr">
+                    </md-input-container>
+
+                    <div class="reg-error" ng-show="loginErr.message">
+                        //loginErr.message//
+                    </div>
+
+                    <div layout-gt-xs="row" class="captcha-container"
+                         layout-align="start center">
+                        {{ form.captcha }}
+                        <md-button class="md-raised md-default" ng-click="refreshCaptcha()">
+                            تغییر عکس
+                        </md-button>
+                    </div>
+
+
+                    <div class="divider"></div>
+                    <div layout="row">
+                        <span flex></span>
+                        <md-button
+                                type="submit"
+                                ng-disabled="frmLogin.$invalid"
+                                class="md-raised md-primary">
+                            ورود به سامانه
+                        </md-button>
+                    </div>
+                    <div class="divider"></div>
+                    <div layout="row">
+                        <md-button
+                                class="md-raised" ui-sref="firstReg">
+                            ثبت نام
+                        </md-button>
+                        <md-button
+                                class="md-raised" ui-sref="forgetPass">
+                            فراموشی رمز عبور
+                        </md-button>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,407 @@
+{% load translators %}
+
+<section id="secEstekhdamList">
+    <section>
+        <table class="table-responsive table table-bordered table-striped smart-form">
+            <tbody>
+            <tr>
+                <td>تعداد ثبت نام کننده ها</td>
+                <td>// RegisteredCount //</td>
+                <td><a class="btn btn-default btn-xs" ng-click="GetCountOfRegistered()">دریافت تعداد ثبت نام کننده
+                    ها</a></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <table class="table-responsive table table-bordered table-striped smart-form">
+            <thead>
+            <tr>
+                <td>جنسیت</td>
+                <td>تاهل</td>
+                <td>نظام وظیفه</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <label class="checkbox">
+                        <input type="checkbox" checked="checked" name="checkbox" ng-model="SearchFilter.Jesiat._1">
+                        <i></i>مرد</label>
+                    <label class="checkbox">
+                        <input type="checkbox" checked="checked" name="checkbox" ng-model="SearchFilter.Jesiat._2">
+                        <i></i>زن</label>
+                </td>
+                <td>
+                    <label class="checkbox">
+                        <input type="checkbox" checked="checked" name="checkbox" ng-model="SearchFilter.Married._1">
+                        <i></i>مجرد</label>
+                    <label class="checkbox">
+                        <input type="checkbox" checked="checked" name="checkbox" ng-model="SearchFilter.Married._2">
+                        <i></i>متاهل</label>
+                </td>
+                <td>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" checked="checked" name="checkbox"
+                                           ng-model="SearchFilter.Soldier._1">
+                                    <i></i>انجام شده</label>
+                                <label class="checkbox">
+                                    <input type="checkbox" checked="checked" name="checkbox"
+                                           ng-model="SearchFilter.Soldier._2">
+                                    <i></i>قبل از انجام</label>
+                                <label class="checkbox">
+                                    <input type="checkbox" checked="checked" name="checkbox"
+                                           ng-model="SearchFilter.Soldier._3">
+                                    <i></i>غایب</label>
+                            </td>
+                            <tD>
+                                <label class="checkbox">
+                                    <input type="checkbox" checked="checked" name="checkbox"
+                                           ng-model="SearchFilter.Soldier._4">
+                                    <i></i>معافیت خرید</label>
+                                <label class="checkbox">
+                                    <input type="checkbox" checked="checked" name="checkbox"
+                                           ng-model="SearchFilter.Soldier._5">
+                                    <i></i>معافیت بیماری</label>
+                                <label class="checkbox">
+                                    <input type="checkbox" checked="checked" name="checkbox"
+                                           ng-model="SearchFilter.Soldier._6">
+                                    <i></i>سایر</label>
+                            </tD>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="row">
+                        <section class="col col-8">
+                            <label class="input">
+                                <input type="text" placeholder="جستجو" ng-model="SearchFilter.SearchText">
+                            </label>
+                        </section>
+                        <section class="col col-2">
+                            <button class="btn btn-default" ng-click="GetListOfRegisteredUsers($event)">جستجو...
+                            </button>
+                        </section>
+
+                        <section class="col col-2">
+                            <a class="btn btn-default" ng-click="GetAllExcel($event)">نتیجه ی جستجو در اکسل</a>
+                        </section>
+                    </div>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div ng-repeat="item in Estekhdam track by $index" class="well">
+
+
+        <table style="width: 800px">
+
+            <style>
+                @page {
+                    direction: rtl;
+                }
+
+
+            </style>
+
+            <tbody>
+            <tr vvv="vvv">
+                <td colspan="2"><a class="btn btn-default" ng-click="SendToPdfGet($event, item)">get pdf</a></td>
+            </tr>
+            <tr>
+                <td style="width: 80px; height: 80px; border:solid 1px #000000; padding: 0px; margin: 0px; vertical-align: middle; text-align: center">
+                    <img src="// item.ProfileImageAddress //"
+                         style="width: 60px; height: 80px;  margin:8px;">
+                </td>
+                <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;"
+                    dir="rtl">
+                    <strong style="font-size: 15px; font-weight: bold">// item.Name // // item.Family //</strong>
+                    <hr>
+
+
+                    کد ملی : // item.InternationalCode // -
+                    تاریخ تولد: // item.BirthDate // -
+                    محل تولد :// item.BirthPlace // -
+                    شهرسکونت :// item.CityHome //
+                    <br>
+                    <small>// item.Email //</small>
+                    <br>
+                    آدرس منزل : // item.HomeAddress //
+                    // item.TelHome // - // item.Mobile //
+                    <br>
+
+                    <div style="text-align: right; direction: rtl; unicode-bidi: embed">
+                        <b>شغل های مد نظر :
+                            <span ng-repeat="_item in item.SelectedJobs"> // _item //</span></b>
+                    </div>
+                    <div>
+                        نحوه ی همکاری : <span ng-repeat="_item in item.SelectedTimes"> // _item //</span>
+
+                    </div>
+                    <span drma="">حقوق درخواستی : // item.Salary //</span>
+                        <span drma="" ng-class="{'hidden':!item.ProfileResume}">
+                            <a class="btn btn-success btn-xs" href="// item.ProfileResume //">دانلود رزومه</a>
+                        </span>
+                    {#                    <span drma=""></span>#}
+                    <br>
+
+                    <span ng-class="{'hidden': item.Jensiat == '2' }">مرد</span>
+                    <span ng-class="{'hidden': item.Jensiat == '1' }">زن</span>
+
+                    -
+                    <span ng-class="{'hidden': item.Married == '2' }">مجرد</span>
+                    <span ng-class="{'hidden': item.Married == '1' }">متاهل</span>
+
+                    -
+                    <span ng-class="{'visible': item.Mazhab == '1', 'hidden': item.Mazhab != '1'}">مسلمان</span>
+                    <span ng-class="{'visible': item.Mazhab == '2', 'hidden': item.Mazhab != '2'}">مسیحی</span>
+                    <span ng-class="{'visible': item.Mazhab == '3', 'hidden': item.Mazhab != '3'}">سایر ادیان</span>
+                    -
+
+                    نظام وظیفه :
+                    <span ng-class="{'visible': item.Soldier == '1', 'hidden': item.Soldier != '1'}">انجام شده</span>
+                    <span ng-class="{'visible': item.Soldier == '2', 'hidden': item.Soldier != '2'}">قبل از انجام</span>
+                    <span ng-class="{'visible': item.Soldier == '3', 'hidden': item.Soldier != '3'}">غایب</span>
+                    <span ng-class="{'visible': item.Soldier == '4', 'hidden': item.Soldier != '4'}">معافیت خرید</span>
+                    <span ng-class="{'visible': item.Soldier == '5', 'hidden': item.Soldier != '5'}">معافیت خرید</span>
+                    <span ng-class="{'visible': item.Soldier == '6', 'hidden': item.Soldier != '6'}">کفالت - سایر - محصل</span>
+
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div style="text-align: right">
+            <section ng-repeat="item in item.Educations">
+                <div class="alert alert-success alert-block"
+                     ng-class="{'hidden': item.LevelofEducation != 'زیر دیپلم'}">
+                    <a href="#" data-dismiss="alert" class="close"
+                       ng-click="Estekhdam.Educations.splice($index,1)">×</a>
+                    <h4 class="alert-heading">زیر دیپلم</h4>
+                    شما زیر دیپلم را انتخاب نموده اید - یعنی شما فقط قادر به نوشتن و خواندن هستید
+                </div>
+                <div class="alert alert-success alert-block"
+                     ng-class="{'hidden': item.LevelofEducation != 'دیپلم'}">
+                    <h4 class="alert-heading">دیپلم</h4>
+                    دیپلم را در <strong>// item.EndYear //</strong> با <strong>//
+                    item.Branch //</strong> رشته و با معدل <strong>// item.AverageOfLicense
+                    //</strong>
+                </div>
+                <div class="alert alert-success alert-block"
+                     ng-class="{'hidden': item.LevelofEducation == 'زیر دیپلم' || item.LevelofEducation == 'دیپلم' || item.LevelofEducation == '0'}">
+
+                    <h4 class="alert-heading">// item.LevelofEducation //</h4>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                رشته
+                            </td>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                کشور
+                            </td>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                دانشگاه
+                            </td>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                معدل مدرک
+                            </td>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                سال
+                            </td>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                مدرک اخذ شده است ؟
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                // item.Branch // - // item.Gerayesh //
+                            </td>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                // item.Country //
+                            </td>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                // item.UnivasityType // - // item.EducationalPlaceName //
+                            </td>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                // item.AverageOfLicense //
+                            </td>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                // item.StartYear // تا // item.EndYear //
+                            </td>
+                            <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">
+                                // item.HasLicense //
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <table>
+                <thead>
+                <tr>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">نام زبان</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">میزان مهارت</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">عنوان مدرک اخذ شده</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">توضیحات</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in item.Languages">
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Name //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Skill //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.LatestCertificateName //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Explaination //</td>
+                </tr>
+                <tr>
+                    <td colspan="4"  ng-show="!item.Languages.length" style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: center;">
+                        اطلاعاتی وارد نشده است
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                <tr>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">نام دوره</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">سال برگزاری</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">موسسه</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">میزان ساعت فعالیت</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">عنوان گواهینامه</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">میزان آشنایی</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in item.Dorehs">
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.WorkshopName //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.DateOfWorkshop //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Institute //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.TimeAmount //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.HaveCertificate //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.KindOfKnowing //</td>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: center" ng-show="!item.Dorehs.length">
+                        اطلاعاتی وارد نشده است
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+            <table>
+                <thead>
+                <tr>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">نام مهارت</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">میزان تسلط</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">تعداد روز</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">توضیحات</td>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in item.Experiences">
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Name //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Level //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.AgeOfPracticalSkills //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Explanations //</td>
+
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center" ng-show="!item.Experiences.length">
+                        اطلاعاتی وارد نشده است
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+            <table>
+                <thead>
+                <tr>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">نام نرم افزار</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">میزان تسلط</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">توضیحات</td>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in item.Softwares">
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Name //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Level //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Explanations //</td>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: center" ng-show="!item.Softwares.length">
+                        اطلاعاتی وارد نشده است
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+            <table>
+                <thead>
+                <tr>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">عنوان شغلی</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">شرکت</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">حقوق</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">سال شروع تا سال پایان</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">توضیحات</td>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in item.Jobs">
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Name //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Company //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.Salary //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.StartYear // - // item.EndYear //</td>
+                    <td style="border:solid 1px #000000; font-size: 12px; direction: rtl; padding: 7px; text-align: right;">// item.CauseOfLeftingJob // <br> // item.InsuranceNoandExplanation // <br> //
+                        item.OtherExplanations //
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="5" style="text-align: center" ng-show="!item.Jobs.length">
+                        اطلاعاتی وارد نشده است
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+
+    </div>
+</section>
+
+
+<style>
+
+    #secEstekhdamList li {
+        float: right;
+        border: 1px solid #9d9d9d;
+        border-radius: 4px;
+        padding: 4px;
+        margin: 2px;
+        list-style: none;
+        font-size: 12px;
+    }
+
+</style>

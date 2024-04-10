@@ -1,0 +1,27 @@
+<table class="table mini table-bordered table-striped">
+    <thead>
+    <tr>
+        <th><a ng-click="projectsChangeOrdering('name')">عنوان</a></th>
+        <th><a ng-click="projectsChangeOrdering('postDate')">ثبت</a></th>
+        <th><a ng-click="projectsChangeOrdering('startDate')"> شروع</a></th>
+        <th><a ng-click="projectsChangeOrdering('endDate')"> پایان</a></th>
+        <th><a ng-click="projectsChangeOrdering('positionID')">ثبت کننده</a></th>
+        <th>عملیات</th>
+    </tr>
+    </thead>
+    <tr ng-repeat="item in projects.results track by $index">
+        <td>//item.name//</td>
+        <td>//item.postDate | jalaliDate:'jYY/jMM/jDD'//</td>
+        <td>//item.startDate //</td>
+        <td>//item.endDate //</td>
+        <td>//item.profileName//</td>
+        <td>
+            <a ui-sref="SubProjects({YearID:yearID, ProjectID:item.id})">ورود</a> |
+            <a ui-sref="Share({YearID:item.id})">اشتراک</a> |
+            <a ng-click="Edit(item)">ویرایش</a> |
+            <a ng-click="Delete($index, item)">حذف</a>
+        </td>
+    </tr>
+    <tbody>
+    </tbody>
+</table>

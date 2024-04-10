@@ -1,0 +1,155 @@
+<div ng-controller="PishfactorBaseCtrl" layout="column">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 md-truncate>پیش فاکتور</h2>
+
+            <div flex>
+
+            </div>
+
+        </div>
+    </md-toolbar>
+
+
+    {#        <md-content flex="15">#}
+    {##}
+    {#        </md-content>#}
+
+    <div flex class="shadower">
+        <div layout-gt-sm="row" layout-padding="" class="pish_div_main">
+            <div flex-gt-xs="30" class="pish_div_cell">
+                <div class="pish_div_cell_title">مرکز فروش</div>
+                <div class="pish_div_cell_value">//pish.pishfator_main.QuotationSalesOfficeName//</div>
+            </div>
+            <div flex-gt-xs></div>
+            <div flex-gt-xs="30" class="pish_div_cell">
+                <div class="pish_div_cell_title">پرداخت کننده</div>
+                <div class="pish_div_cell_value">مشتری</div>
+
+            </div>
+            <div flex-gt-xs></div>
+            <div flex-gt-xs="30" class="pish_div_cell">
+                <div class="pish_div_cell_title">شماره</div>
+                <div class="pish_div_cell_value">//pish.pishfator_main.QuotationNumber//</div>
+
+            </div>
+        </div>
+        <div layout-gt-sm="row" layout-padding="" class="pish_div_main">
+            <div flex-gt-xs="30" class="pish_div_cell">
+                <div class="pish_div_cell_title">حوزه فروش</div>
+                <div class="pish_div_cell_value">//pish.pishfator_main.QuotationSalesAreaName//</div>
+            </div>
+            <div flex-gt-xs></div>
+            <div flex-gt-xs="30" class="pish_div_cell">
+                <div class="pish_div_cell_title">نحوه فروش</div>
+                <div class="pish_div_cell_value">//pish.pishfator_main.QuotationSalesType//</div>
+
+            </div>
+            <div flex-gt-xs></div>
+            <div flex-gt-xs="30" class="pish_div_cell">
+                <div class="pish_div_cell_title">تاریخ</div>
+                <div class="pish_div_cell_value">//pish.pishfator_main.QuotationDate | jalaliDate:'jYYYY/jMM/jD'//</div>
+
+            </div>
+        </div>
+        <div layout-gt-sm="row" layout-padding="" class="pish_div_main">
+            <div flex-gt-xs="30" class="pish_div_cell">
+                <div class="pish_div_cell_title">مشتری</div>
+                <div class="pish_div_cell_value">//pish.pishfator_main.QuotationCustomerName//</div>
+            </div>
+            <div flex-gt-xs></div>
+            <div flex-gt-xs="30" class="pish_div_cell">
+                <div class="pish_div_cell_title">حساب</div>
+                <div class="pish_div_cell_value">//pish.pishfator_main.QuotationPayerAccountNumber//</div>
+
+            </div>
+            <div flex-gt-xs></div>
+            <div flex-gt-xs="30" class="pish_div_cell">
+                <div class="pish_div_cell_title">اعتبار</div>
+                <div class="pish_div_cell_value">//pish.pishfator_main.QuotationExpirationDate |
+                    jalaliDate:'jYYYY/jMM/jD'//
+                </div>
+
+            </div>
+        </div>
+        <div layout-gt-sm="row" layout-padding="" class="pish_div_main">
+            <div flex-gt-xs class="pish_div_cell">
+                <div class="pish_div_cell_title">توضیحات</div>
+                <div class="pish_div_cell_value" ng-repeat="iii in pish.pishfator_descs">
+                    //iii.Description//
+                </div>
+            </div>
+        </div>
+        <div layout-gt-md="row">
+            <div flex style="overflow: scroll">
+                <table class="table mini table-bordered table-striped lightGrayTable"
+                >
+                    <thead>
+                    <tr>
+                        <th>ردیف</th>
+                        {# QuotationItemRowNumber #}
+                        <th>کد محصول</th>
+                        {# QuotationItemProductNumber #}
+                        <th>نام محصول</th>
+                        {# QuotationItemProductName #}
+                        <th>مقدار</th>
+                        {# QuotationItemQuantity #}
+                        <th>واحد</th>
+                        {# QuotationItemMajorUnitName #}
+                        <th>فی</th>
+                        {# QuotationItemPriceBaseFee #}
+                        <th>مبلغ</th>
+                        {# QuotationItemPrice #}
+                        <th>وضعیت</th>
+                        {# QuotationItemState #}
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="pis in pish.pishfator_items">
+                        <td style="min-width: 120px;">//pis.QuotationItemRowNumber//</td>
+                        <td style="min-width: 120px;">//pis.QuotationItemProductNumber//</td>
+                        <td style="min-width: 120px;">//pis.QuotationItemProductName//</td>
+                        <td style="min-width: 120px;">//pis.QuotationItemQuantity | number//</td>
+                        <td style="min-width: 120px;">//pis.QuotationItemMajorUnitName//</td>
+                        <td style="min-width: 120px;">//pis.QuotationItemPriceBaseFee | number//</td>
+                        <td style="min-width: 120px;">//pis.QuotationItemPrice | number//</td>
+                        <td style="min-width: 120px;">//pis.QuotationItemState//</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div flex-gt-md="30" style="font-size: 12px; padding: 12px;">
+                <div layout="row">
+                    <div flex="30">جمع مقدار</div>
+                    <div flex style="font-weight: bold">
+                        //pish.pishfator_box.jame_meghdar | number//
+                    </div>
+                </div>
+                <div layout="row">
+                    <div flex="30">مبلغ ناخالص</div>
+                    <div flex style="font-weight: bold"> //pish.pishfator_box.mablaghe_nakhales | number//
+                    </div>
+                </div>
+                <div layout="row">
+                    <div flex="30">اضافات</div>
+                    <div flex style="font-weight: bold"> //pish.pishfator_box.ezafaat | number//
+                    </div>
+                </div>
+                <div layout="row">
+                    <div flex="30">کسور</div>
+                    <div flex style="font-weight: bold"> //pish.pishfator_box.kosoor | number//
+                    </div>
+                </div>
+                <div layout="row">
+                    <div flex="30">مبلغ خالص</div>
+                    <div flex style="font-weight: bold"> //pish.pishfator_box.malaghe_khales | number//
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

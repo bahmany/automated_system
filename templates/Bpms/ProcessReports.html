@@ -1,0 +1,94 @@
+{% load translators %}
+<div
+        layout-gt-md="row"
+        flex
+        ng-controller="ReportsCtrl"
+        id="ReportsCtrl">
+    <div flex-gt-md="25" flex class="myInbox">
+        <md-content>
+            <md-toolbar class="md-hue-1">
+                <div class="md-toolbar-tools">
+                    <h3>{{ 'filters'|translate }}</h3>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+            <div style="padding: 5px 10px;">
+                <div layout="row">
+                    <div flex-gt-md="45" flex>
+                        <div class="form-group">
+
+                            <select class="form-control" id="bpmnSe" name="bpmn" ng-model="searchData.bpmn"
+                                    ng-options="obj.id as obj.name for obj in bpmns" aria-invalid="false"
+                                    ng-change="changeBpmn()">
+                                <option value="">{{ 'select your process'|translate }}...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span flex></span>
+
+                    <div flex-gt-md="45" flex>
+                        <div class="form-group">
+                            <input type="text" class="form-control underline"
+                                   placeholder="{{ 'starter ...'|translate }}" ng-model="searchData.starter"/>
+                        </div>
+                    </div>
+                </div>
+                <div layout="row">
+                    <div flex-gt-md="45" flex>
+                        <div class="form-group">
+                            <input type="text" class="form-control underline" style="direction: ltr"
+                                   placeholder="از تاریخ" mask="9999/19/39" ng-model="searchData.fromDate"/>
+                        </div>
+                    </div>
+                    <span flex></span>
+
+                    <div flex-gt-md="45" flex>
+                        <div class="form-group">
+                            <input type="text" class="form-control underline" style="direction: ltr"
+                                   placeholder="تا تاریخ" mask="9999/19/39" ng-model="searchData.toDate"/>
+                        </div>
+                    </div>
+                </div>
+                <div layout="row">
+                    <div flex-gt-md="45" flex>
+                        <div class="form-group">
+                            <select class="form-control" id="isDoneSe" name="isDone" ng-model="searchData.isDone"
+                                    aria-invalid="false">
+                                <option value="2" selected>{{ 'both'|translate }}...</option>
+                                <option value="1">{{ 'done process'|translate }}...</option>
+                                <option value="0">{{ 'lunched process'|translate }}...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span flex></span>
+
+                    <div flex-gt-md="45" flex>
+                        <button class="btn btn-primary btn-block"
+                                ng-click="ShowReport()">{{ 'filter result'|translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </md-content>
+
+
+        <md-content style="padding-top: 20px;">
+            <div layout="row" layout-align="start center" style="color: #A5A5A5;">
+                <h3>//selectedBpmn//:</h3>
+                <span flex></span>
+            </div>
+<div class="report-filed-list" ng-repeat="itm in fieldsList" felx>
+                            <label>//itm.displayName//</label> <label class="checkbox1"> <input type="checkbox"
+                                                                                                ng-model="selected[itm.name]"
+                                                                                                ng-click="ShowReport()">
+                            <span></span></label>
+                        </div>
+        </md-content>
+
+
+    </div>
+    <div flex-gt-md="75" flex >
+        {% include 'Bpms/ProcessReportsInner.html' %}
+    </div>
+
+</div>
+

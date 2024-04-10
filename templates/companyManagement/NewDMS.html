@@ -1,0 +1,157 @@
+{% load translators %}
+
+<div class="col-md-6 " style="float: none;margin: 0 auto;" ng-controller="DMSNewCtrl">
+    <div class="panel panel-default panel-new-default" style="border: 1px solid rgb(207,207,207)">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                شروع کار جدید
+                {#            <div class="btn btn-sm btn-danger fa fa-trash"></div>#}</h3>
+            <h6>لطفا فرم زیر را تکمیل نمایید </h6>
+        </div>
+        <div class="panel-body newDms">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <input name="name" class="form-control" type="text" ng-model="newDMS.name"
+                           placeholder="{{ 'doc name'|translate }}">
+                    <div class="alert alert-warning   alert-dismissable " role="alert"
+                         style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                         ng-repeat="(key,val) in errors" ng-if="key == 'name'">
+
+                        <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                </div>
+                <div class="col-md-6">
+
+                    <input name="docCode" class="form-control" type="text" ng-model="newDMS.docCode"
+                           placeholder="{{ 'doc code'|translate }}">
+                    <div class="alert alert-warning   alert-dismissable " role="alert"
+                         style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                         ng-repeat="(key,val) in errors" ng-if="key == 'docCode'">
+
+                        <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <select class="form-control" name="docType" ng-model="newDMS.docType"
+                            ng-options="obj.id as obj.name for obj in docdata.docType">
+                        <option value="">{{ 'select your docType'|translate }}...</option>
+                    </select>
+                    <div class="alert alert-warning   alert-dismissable " role="alert"
+                         style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                         ng-repeat="(key,val) in errors" ng-if="key == 'docType'">
+
+                        <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                </div>
+                <div class="col-md-6">
+
+                    <select class="form-control" name="docZone" ng-model="newDMS.docZone"
+                            ng-options="obj.id as obj.name for obj in docdata.docZone">
+                        <option value="">{{ 'select your docZone'|translate }}...</option>
+                    </select>
+                    <div class="alert alert-warning   alert-dismissable " role="alert"
+                         style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                         ng-repeat="(key,val) in errors" ng-if="key == 'docZone'">
+
+                        <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <select class="form-control" name="docFormat" ng-model="newDMS.docFormat"
+                            ng-options="obj.id as obj.name for obj in docdata.docFormat">
+                        <option value="">{{ 'select your docFormat'|translate }}...</option>
+                    </select>
+                    <div class="alert alert-warning   alert-dismissable " role="alert"
+                         style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                         ng-repeat="(key,val) in errors" ng-if="key == 'docFormat'">
+
+                        <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-control" name="docRelated" ng-model="newDMS.docRelated"
+                            ng-options="obj.id as obj.name for obj in docdata.docRelated">
+                        <option value="">{{ 'select your docRelated'|translate }}...</option>
+                    </select>
+                    <div class="alert alert-warning   alert-dismissable " role="alert"
+                         style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                         ng-repeat="(key,val) in errors" ng-if="key == 'docRelated'">
+
+                        <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <select class="form-control" name="docModel" ng-model="newDMS.docModel"
+                            ng-options="obj.id as obj.name for obj in docdata.docModel">
+                        <option value="">{{ 'select your docModel'|translate }}...</option>
+                    </select>
+                    <div class="alert alert-warning   alert-dismissable " role="alert"
+                         style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                         ng-repeat="(key,val) in errors" ng-if="key == 'docModel'">
+
+                        <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_visible">قابل مشاهده
+                        <input id="id_visible" type="checkbox" ng-model="newDMS.visible" checked="checked"/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>نام</th>
+                        <th>تاریخ</th>
+                        <th>پیش فرض</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="itm in newDMS.allFiles">
+                        <td>//itm.name//</td>
+                        <td>//itm.date | jalaliDate:'jYYYY/jMM/jDD'//</td>
+                        <td><input type="checkbox" ng-model="itm.isCurr" ng-change="fixCheckCurr(itm.dir)"/></td>
+                        <td>
+                            <a href="//itm.dir//">دانلود</a>
+                        </td>
+                        <td>
+                            <div class="btn btn-xs btn-danger" ng-click="newDMS.allFiles.splice($index,1)"><i
+                                    class="fa fa-trash"></i></div>
+                        </td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>
+                            <div class="btn btn-medium btn-primary"
+                                 ngf-select="upload($files)">
+                                <i ng-if="pleaseWait  == false" class="fa fa-plus"></i>
+                                <i ng-if="pleaseWait  == true" class="fa fa-spinner fa-spin"></i>
+
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="newJob" ng-disabled="pleaseWait"
+                 style="background-color: rgb(60, 162, 224); padding: 4px; cursor: pointer; text-align: center;color:white;padding-top:10px;padding-bottom: 10px; "
+                 ng-click="createDMS($event)" class="btn btn-block">
+                <span ng-if="pleaseWait == false">  ساخت سند</span>
+                <span ng-if="pleaseWait == true">  لطفا صبر کنید ...</span>
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .newDms .row {
+        margin-bottom: 15px;
+    }
+</style>

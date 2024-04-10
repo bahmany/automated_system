@@ -1,0 +1,149 @@
+<div ng-controller="MaterialBakolToAnbarCtrl">
+
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">از باسکول به انبار</h2>
+            </div>
+
+        </div>
+    </md-toolbar>
+
+    <md-divider></md-divider>
+    <md-input-container class="md-block">
+        <label for="">جستجو</label>
+        <md-icon md-font-icon="fa fa-search" class="name"></md-icon>
+        <input ng-model="search_barcode" type="text" ng-model-options="{debounce: 800}">
+    </md-input-container>
+
+{#    <div>#}
+{#        <md-button ng-click="testws()">test ws</md-button>#}
+{#    </div>#}
+
+    <div ng-show="goods.length == 0"  layout-align="center center" layout="row" style="height: 100px;">
+        هیچ باری برای تخلیه وجود ندارد
+    </div>
+    <div class="spacer" layout-gt-xs="row" layout-wrap="">
+
+        <md-card ng-repeat="item in goods track by $index"
+                 layout-margin
+                 flex-gt-xs=""
+                 flex-gt-sm="50"
+                 flex-gt-md="33"
+                 class="task-item"
+                 flex-gt-lg="25">
+            <md-card-title>
+                <md-card-title-text>
+                        <span class="md-headline"
+                              style="    min-width: 100px;    background-color: black;    color: wheat;    padding: 4px;">
+                            //getChar(64+item.desc.location.x)//
+                            //item.desc.location.z-1//
+                            //checkIntAnbar(item.desc.location.y)//
+                        </span>
+                    <span class="md-subhead" style="min-width: 200px;">//item.barcode//</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <table flex="" class="table table-striped mini"
+                       style="min-width: 300px;">
+                    <tbody>
+                    <tr>
+                        <td>تاریخ ثبت</td>
+                        <td>//item.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</td>
+                    </tr>
+                    <tr>
+                        <td>شماره کلاف</td>
+                        <td>//item.desc.barcode.shomare_kalaf //</td>
+                    </tr>
+                    <tr>
+                        <td>سایز ورق</td>
+                        <td>//item.desc.barcode.size_varagh //</td>
+                    </tr>
+                    <tr>
+                        <td>وزن ادعایی</td>
+                        <td>//item.desc.barcode.vazne_khales//</td>
+                    </tr>
+
+                    <tr>
+                        <td>کد کالا</td>
+                        <td>//item.desc.product.Code//</td>
+                    </tr>
+
+                    <tr>
+                        <td>نام کالا</td>
+                        <td>//item.desc.product.Name//</td>
+                    </tr>
+
+                    <tr>
+                        <td>انبار مقصد</td>
+                        <td>//item.locationLink.name//</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+            </md-card-content>
+
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" ng-click="GoodStayInLocation(item, $index)">تخلیه شد</md-button>
+                <md-button class="md-raised md-warn" ng-click="qcmustsee(item, $event, $index)">آسیب دیده است</md-button>
+{#                <md-button class="md-raised md-default">منتظر</md-button>#}
+            </md-card-actions>
+
+
+        </md-card>
+
+    </div>
+
+</div>
+
+
+<script type="text/ng-template" id="findQC_Claim">
+
+    <md-dialog aria-label="Mango (Fruit)">
+        <form ng-cloak>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>مشکلات QC</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                        <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+            <md-dialog-content>
+                <div class="md-dialog-content">
+                    <h4>
+                        کالای دریافتی دچار مشکل است
+                    </h4>
+                    <p>
+                        می توان کالای مورد نظر را بنا به نظر واحد کیفیت در همان محل
+                        و یا محل دیگری که اعلام میکند قرار داد.
+                        این تصمیم بنا به صورتجلسه ای گرفته شده است که واحد کنترل کیفیت می بایست تمامی مدارک و مستنداتش
+                        را در همین سامانه و محل
+                        مخصوص خود ثبت نماید
+                    </p>
+                </div>
+            </md-dialog-content>
+
+            <md-dialog-actions layout="row">
+                <md-button class="md-raised md-default" md-autofocus ng-click="cancel()">
+                    بستن این پنجره
+                </md-button>
+                <md-button class="md-raised md-primary" md-autofocus ng-click="good_stay_in_location_with_QC_argue()">
+                    تخلیه
+                </md-button>
+                <span flex></span>
+                <md-button class="md-raised md-primary" ng-click="good_moved_another_location_with_QC_argue()">
+                    انتقال به انبار دیگر
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+</script>

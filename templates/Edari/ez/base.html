@@ -1,0 +1,41 @@
+<div ng-controller="EZCtrl" layout="column">
+
+
+    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">
+        <div layout="row">
+            <md-toolbar-filler layout-align="center center" layout="row" style="background-color: rgb(139 159 175)">
+                <md-icon  md-font-icon="fa fa-dashboard" style="    font-size: 35px;"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">اضافه کاری</h2>
+
+                <div>
+                    <md-button ui-sref="ezlist" style="background-color: #f1f1f1;">
+                        کارتابل اضافه کاری ها
+                    </md-button>
+
+                    <md-button ui-sref="ezitem({id:'0'})" style="background-color: #f1f1f1;">
+                        <md-icon md-font-icon="fa fa-plus" style="color: blue"></md-icon>
+                        درخواست جدید
+                    </md-button>
+
+                    <md-button ui-sref="ezreport" style="background-color: #f1f1f1;">
+                        کارتابل انتظامات
+                    </md-button>
+                </div>
+            </div>
+
+        </div>
+    </md-toolbar>
+
+
+
+
+
+    <div ui-view>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,204 @@
+/*@font-face {*/
+/*    font-family: 'DroidArabicNaskh';*/
+/*    src: url('/static/fonts/DroidNaskh-Bold.eot?v=4.2.0');*/
+/*    src: url('/static/fonts/DroidNaskh-Bold.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('/static/fonts/DroidNaskh-Bold.woff?v=4.2.0') format('woff'), url('/static/fonts/DroidNaskh-Bold.ttf?v=4.2.0') format('truetype'), url('/static/fonts/DroidNaskh-Bold.svg?v=4.2.0#fontawesomeregular') format('svg');*/
+/*    font-weight: normal;*/
+/*    font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+/*    font-family: 'Yekan';*/
+/*    src: url('/static/fonts/Yekan.eot?v=4.2.0');*/
+/*    src: url('/static/fonts/Yekan.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('/static/fonts/Yekan.woff?v=4.2.0') format('woff'), url('/static/fonts/Yekan.ttf?v=4.2.0') format('truetype'), url('/static/fonts/Yekan.svg?v=4.2.0#fontawesomeregular') format('svg');*/
+/*    font-weight: normal;*/
+/*    font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+/*    font-family: 'cent';*/
+/*    src: url('/static/fonts/centurygothic_ufont.ir-webfont.eot?v=4.2.0');*/
+/*    src: url('/static/fonts/centurygothic_ufont.ir-webfont.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('/static/fonts/centurygothic_ufont.ir-webfont.woff?v=4.2.0') format('woff'), url('/static/fonts/centurygothic_ufont.ir-webfont.ttf?v=4.2.0') format('truetype'), url('/static/fonts/centurygothic_ufont.ir-webfont.svg?v=4.2.0#fontawesomeregular') format('svg');*/
+/*    font-weight: normal;*/
+/*    font-style: normal;*/
+/*}*/
+
+html {
+    direction: rtl;
+    /*font-family: Yekan, cent;*/
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+* {
+    font-family: Yekan, cent;
+    font-size: 12px;
+}
+
+input, .plain-text, .radiolblspan, .selected-options {
+    border: none;
+    /*border-bottom: 1px solid lightgray;*/
+    width: auto;
+}
+
+textarea {
+    width: 100%;
+}
+
+.fg-form-fields > fieldset > div {
+    margin: 3px;
+    padding: 3px;
+    float: right;
+    border: 1px solid #808080;
+    border-radius: 3px;
+    min-height: 45px;
+}
+
+.ccxq {
+    border: none;
+    /*border-top: solid 1px #d3d3d3;*/
+    /*border-bottom: solid 1px #d3d3d3;*/
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+
+}
+
+.panel {
+    border: none !important;
+}
+
+button, .tooltip, hr {
+    display: none !important;
+}
+
+.hasTextArea {
+    width: 100%;
+}
+
+.control-label {
+    font-size: 10px;
+}
+
+.panel {
+    border: none;
+}
+
+.panel-heading img {
+    display: none;
+}
+
+h3, h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h3 {
+    padding-top: 15px;
+}
+
+.panel-heading {
+    border-bottom: solid 1px gray;
+    padding-bottom: 4px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+table {
+    border: solid 1px #d3d3d3;
+    border-radius: 4px;
+    border-spacing: 0px;
+}
+
+table thead tr {
+    background-color: #d3d3d3;
+}
+
+table td {
+    border: solid 1px #d3d3d3;
+}
+
+#qrcode {
+    margin: 5px;
+    float: right;
+}
+
+.signs {
+    width: 300px;
+    height: 100px;
+    float: right;
+    border: solid 1px #808080;
+    border-radius: 5px;
+    line-height: 21.5px;
+}
+
+.signs > div {
+
+}
+
+.signs canvas {
+    /*float: left;*/
+}
+
+h3 {
+    text-align: center;
+}
+
+h3 img {
+    float: right;
+}
+
+.header_top {
+    font-size: 15px;
+}
+
+
+
+.letter .letterBody{
+    text-align: justify;
+}
+.letter {
+    direction: rtl;
+}
+
+.letter .senderBody{
+    text-align: left;
+}
+
+.letter .letterTop {
+    border-bottom: 1px solid gray;
+    height: 80px;
+}
+
+.letter .companylogo {
+    display: initial;
+    width: 55px;
+    float: right;
+}
+
+.letter .number {
+    display: initial;
+    float: left;
+}
+
+.letter .number img {
+    height: 17px;
+}
+
+.letter .letterNo {
+    display: initial;
+    float: left;
+}
+
+
+.letterBody p {
+    width: 100%;
+    word-break: break-word;
+}
+
+.hamesh{
+    padding: 5px;
+    margin: 10px;
+    border: 1px solid darkgrey;
+    border-radius: 12px;
+}

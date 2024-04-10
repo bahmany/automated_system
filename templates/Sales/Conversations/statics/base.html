@@ -1,0 +1,608 @@
+<div class="static-profile-sale">
+    <div>
+        <a href="/api/v1/salesConv/getMojoodiExcel/">دریافت اکسل</a>
+        <a href="/api/v1/salesConv/getMojoodiCsv/">دریافت CSV</a>
+    </div>
+    <div layout-gt-xs="row">
+
+
+        <md-input-container flex-gt-xs="20">
+            <label for="">ضخامت</label>
+            <input type="number" ng-model="searchProduct.zekhamat" ng-model-options="{debounce: 500}">
+        </md-input-container>
+
+        <md-input-container flex-gt-xs="20">
+            <label for="">عرض</label>
+            <input type="number" ng-model="searchProduct.arz" ng-model-options="{debounce: 500}">
+        </md-input-container>
+
+        <md-input-container flex-gt-xs="20">
+            <label for="">طول</label>
+            <input type="number" ng-model="searchProduct.tool" ng-model-options="{debounce: 500}">
+        </md-input-container>
+
+        <md-input-container flex-gt-xs="20">
+            <label for="">تمپر</label>
+            <input type="number" ng-model="searchProduct.temper" ng-model-options="{debounce: 500}">
+        </md-input-container>
+
+
+        <md-input-container flex-gt-xs="20">
+            <label>سطح</label>
+            <md-select ng-model="searchProduct.sath" ng-model-options="{debounce: 500}" ng-init="searchProduct.sath=0">
+                <md-option value="0"><em>هر دو</em></md-option>
+                <md-option value="Stone">
+                    Stone
+                </md-option>
+                <md-option value="Bright">
+                    Bright
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+
+    </div>
+    <div layout-gt-xs="row">
+
+
+        <md-input-container flex-gt-xs="20">
+            <label for="">تلورانس</label>
+            <input type="number" ng-model="searchProduct.zekhamat_tolerance"
+                   ng-model-options="{debounce: 500}"
+                   ng-init="searchProduct.zekhamat_tolerance=0">
+        </md-input-container>
+
+
+        <md-input-container flex-gt-xs="20">
+            <label for="">تلورانس</label>
+            <input type="number" ng-model="searchProduct.arz_tolerance" ng-model-options="{debounce: 500}"
+                   ng-init="searchProduct.arz_tolerance=0">
+        </md-input-container>
+
+
+        <md-input-container flex-gt-xs="20">
+            <label for="">تلورانس</label>
+            <input type="number" ng-model="searchProduct.temper_tolerance" ng-model-options="{debounce: 500}"
+                   ng-init="searchProduct.temper_tolerance=0">
+        </md-input-container>
+
+        <md-input-container flex-gt-xs="20">
+            <label for="">تلورانس</label>
+            <input type="number" ng-model="searchProduct.tool_tolerance" ng-model-options="{debounce: 500}"
+                   ng-init="searchProduct.tool_tolerance=0">
+        </md-input-container>
+
+        <div flex-gt-xs="20">
+
+        </div>
+
+
+    </div>
+    <div>
+
+
+        <div>
+            <md-progress-linear md-mode="indeterminate" ng-if="wait"></md-progress-linear>
+
+            <div>
+                <div>
+                    <div layout="row">
+                        موجودی
+                        <span flex=""></span>
+                        <md-button class="md-raised" ng-click="updateCache($event)||!(wait)">
+                            بروز رسانی
+                        </md-button>
+                        <md-button ng-disabled="">
+                            //Mojoodi.count// رکورد
+                        </md-button>
+                        <md-button class="md-icon-button" ng-click="PageNext(Mojoodi)">
+                            <md-icon md-font-icon="fa fa-arrow-right">
+                            </md-icon>
+                        </md-button>
+                        <md-button ng-disabled="">
+                            //Mojoodi.page// از //Mojoodi.page_count//
+                        </md-button>
+
+
+                        <md-button class="md-icon-button" ng-click="PagePrev(Mojoodi)">
+                            <md-icon md-font-icon="fa fa-arrow-left">
+                            </md-icon>
+                        </md-button>
+
+
+                    </div>
+
+                    <div layout-gt-xs="row" layout-align="start center"
+                         style="background-color: darkgoldenrod;color: white;padding: 6px;">
+
+                        <div flex-gt-xs="20">
+                            <div layout="row" ng-click="sortIt('Mojoodi')"> موجودی قابل فروش
+                                <i class="fa" ng-class="
+                                {
+                                'fa-arrow-up':(getSortIcon('Mojoodi')=='+'),
+                                'fa-arrow-down':(getSortIcon('Mojoodi')=='-'),
+                                'hide': getSortIcon('Mojoodi')==''
+                                }"></i>
+
+                            </div>
+                            <div>جمع : //Mojoodi.totals.saleTotal | number:0//</div>
+
+                        </div>
+                        <div flex-gt-xs="40">
+                            <div> مشخصات کالا
+                            </div>
+                            <div layout="row">
+                                <div flex><span ng-click="sortIt('keifiat')">کیفیت</span>
+                                    <i class="fa" ng-class="
+                                {
+                                'fa-arrow-up':(getSortIcon('keifiat')=='+'),
+                                'fa-arrow-down':(getSortIcon('keifiat')=='-'),
+                                'hide': getSortIcon('keifiat')==''
+                                }"></i>
+                                </div>
+                                <div flex><span ng-click="sortIt('keshvar')">سازنده</span>
+                                    <i class="fa" ng-class="
+                                {
+                                'fa-arrow-up':(getSortIcon('keshvar')=='+'),
+                                'fa-arrow-down':(getSortIcon('keshvar')=='-'),
+                                'hide': getSortIcon('keshvar')==''
+                                }"></i></div>
+                                <div flex><span ng-click="sortIt('sath')">سطح</span> <i class="fa" ng-class="
+                                {
+                                'fa-arrow-up':(getSortIcon('sath')=='+'),
+                                'fa-arrow-down':(getSortIcon('sath')=='-'),
+                                'hide': getSortIcon('sath')==''
+                                }"></i></div>
+                                <div flex><span ng-click="sortIt('temper')">تمپر</span>
+                                    <i class="fa" ng-class="
+                                {
+                                'fa-arrow-up':(getSortIcon('temper')=='+'),
+                                'fa-arrow-down':(getSortIcon('temper')=='-'),
+                                'hide': getSortIcon('temper')==''
+                                }"></i></div>
+                                <div flex><span ng-click="sortIt('arz')">عرض</span>
+                                    <i class="fa" ng-class="
+                                {
+                                'fa-arrow-up':(getSortIcon('arz')=='+'),
+                                'fa-arrow-down':(getSortIcon('arz')=='-'),
+                                'hide': getSortIcon('arz')==''
+                                }"></i></div>
+                                <div flex><span ng-click="sortIt('zekhamat')">ضخامت</span>
+                                    <i class="fa" ng-class="
+                                {
+                                'fa-arrow-up':(getSortIcon('zekhamat')=='+'),
+                                'fa-arrow-down':(getSortIcon('zekhamat')=='-'),
+                                'hide': getSortIcon('zekhamat')==''
+                                }"></i></div>
+                            </div>
+
+                        </div>
+                        <div layout-gt-xs="row" flex-gt-xs="40">
+                            <div flex-gt-xs="">
+
+
+                                <div layout="row" ng-click="sortIt('anbar')">
+                                    موجودی در انبار
+
+                                    <i class="fa" ng-class="
+                                {
+                                'fa-arrow-up':(getSortIcon('anbar')=='+'),
+                                'fa-arrow-down':(getSortIcon('anbar')=='-'),
+                                'hide': getSortIcon('anbar')==''
+                                }"></i>
+                                </div>
+
+                                <div>جمع : //Mojoodi.totals.anbarTotal | number:0//</div>
+
+
+                            </div>
+                            <div flex-gt-xs="">
+                                <div layout="row" ng-click="sortIt('pish')">
+                                    پیش فاکتورها
+                                    <i class="fa" ng-class="
+                                {
+                                'fa-arrow-up':(getSortIcon('pish')=='+'),
+                                'fa-arrow-down':(getSortIcon('pish')=='-'),
+                                'hide': getSortIcon('pish')==''
+                                }"></i>
+                                </div>
+                                <div>جمع : //Mojoodi.totals.pishTotal | number:0//</div>
+
+
+                            </div>
+                            <div flex-gt-xs="">
+                                <div layout="row" ng-click="sortIt('conv')">
+                                    مذاکرات
+                                    <i class="fa" ng-class="
+                                {
+                                'fa-arrow-up':(getSortIcon('conv')=='+'),
+                                'fa-arrow-down':(getSortIcon('conv')=='-'),
+                                'hide': getSortIcon('conv')==''
+                                }"></i>
+                                </div>
+                                <div>
+
+
+                                    جمع : //Mojoodi.totals.convTotal | number:0//
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div layout-gt-xs="row" layout-align="start center">
+                        <div flex-gt-xs="20"></div>
+                        <div flex-gt-xs="40"></div>
+                        <div flex-gt-xs="40"></div>
+                    </div>
+                    <div ng-class-odd="'odd'" ng-class-even="'even'"
+                         ng-repeat="item in Mojoodi.results track by $index">
+                        <div layout-gt-xs="row"
+                             layout-align="start center">
+                            <div flex-gt-xs="20">
+                                <md-button
+                                        class="md-icon-button md-primary"
+
+                                        ng-click="AddToBasket($event, item)">
+                                    <md-icon md-font-icon="fa fa-shopping-cart"></md-icon>
+                                </md-button>
+
+                                <md-button class="md-raised" disabled
+                                           ng-class="{itisplus_back:item.total>0, itisminus_back:item.total<=0}">
+                                    //item.total|number:0//
+                                    <md-tooltip>
+                                        مقدار قابل فروش
+                                    </md-tooltip>
+                                </md-button>
+                            </div>
+                            <div class="md-list-item-text" flex-gt-xs="40">
+                                <div>
+                                <span style="direction: ltr">
+                                <span style="color: lightslategray">XX</span>
+                                //item.PartCode//
+                                <span style="color: lightslategray">XXX</span>
+                            </span>
+                                </div>
+                                <div layout-gt-xs="row" dir="ltr">
+                                    <span flex-gt-xs>//item.zekhamat|number//<md-tooltip>ضخامت</md-tooltip></span>
+                                    <span flex-gt-xs>//item.arz|number//<md-tooltip>عرض</md-tooltip></span>
+                                    <span flex-gt-xs>//item.temper|number//<md-tooltip>تمپر</md-tooltip></span>
+                                    <span flex-gt-xs>//item.sath//<md-tooltip>سطح</md-tooltip></span>
+                                    <span flex-gt-xs>//item.keshvar// <md-tooltip>سازنده</md-tooltip></span>
+                                    <span flex-gt-xs>//item.keifiat|number//<md-tooltip>کیفیت</md-tooltip></span>
+                                </div>
+                            </div>
+                            <div layout-gt-xs="row" flex-gt-xs="40" layout-align="start start">
+                                <div flex-gt-xs>
+                                    <div class="md-list-item-text">
+                                        <div ng-class="{itisplus:item.qty>0, itisminus:item.qty<=0}">
+                                            <md-icon class="md-primary" md-font-icon="fa fa-plus"
+                                                     ng-if="!(item.showDetail1)"
+                                                     style="padding-top: 7px; padding-right: 6px;"
+                                                     ng-click="item.showDetail1 = !(item.showDetail1)"></md-icon>
+                                            <md-icon class="md-primary" md-font-icon="fa fa-minus"
+                                                     ng-if="item.showDetail1"
+                                                     style="padding-top: 7px; padding-right: 6px;"
+                                                     ng-click="item.showDetail1 = !(item.showDetail1)"></md-icon>
+
+                                            //item.qty|number:0//
+                                        </div>
+                                    </div>
+
+
+                                    <div ng-show="item.showDetail1" class="divstartnested">
+                                        <div>
+                                            <div layout="row" ng-repeat="it in item.details"
+                                                 layout-align="center center">
+                                                <span style="padding-right: 12px;padding-left: 12px;">//it.noe//</span>
+                                                <div class="nested"
+                                                     style="border-right: 1px solid lightgray;margin-left: 5px;padding: 5px; margin-bottom: 5px;">
+                                                    <div layout="row" class="nested-header">
+                                                        <span flex style="padding-left: 6px;">طول</span>
+                                                        <span flex="5"></span>
+                                                        <span flex>مقدار</span>
+
+                                                    </div>
+                                                    <div layout="row" class="nested-detail" ng-repeat="i in it.details">
+                                                        <span flex>//i.tool|number:0//</span>
+                                                        <span flex="5"></span>
+                                                        <a flex ng-click="openCardex(i,it,item)">//i.qty|number:0//</a>
+                                                    </div>
+                                                    <div layout="row" class="nested-subtotal">
+                                                        <span flex></span>
+                                                        <span flex="5"></span>
+                                                        <span flex>//it.qty|number:0//</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div flex-gt-xs>
+                                    <div class="md-list-item-text">
+
+                                        <div ng-class="{itisplus:item.qtyPish>0, itisminus:item.qtyPish<=0}">
+                                            <md-icon class="md-primary" md-font-icon="fa fa-plus"
+                                                     ng-if="!(item.showDetail2)"
+                                                     style="padding-top: 7px; padding-right: 6px;"
+                                                     ng-click="item.showDetail2 = !(item.showDetail2)"></md-icon>
+                                            <md-icon class="md-primary" md-font-icon="fa fa-minus"
+                                                     ng-if="item.showDetail2"
+                                                     style="padding-top: 7px; padding-right: 6px;"
+                                                     ng-click="item.showDetail2 = !(item.showDetail2)"></md-icon>
+                                            //item.qtyPish|number:0// <span ng-if="!(item.qtyPish)">0</span></div>
+                                    </div>
+                                    <div ng-show="item.showDetail2" class="divstartnested">
+                                        <div>
+                                            <div layout="row" ng-repeat="it in item.Pishs" layout-align="center center">
+                                                <span style="padding-right: 12px;padding-left: 12px;">//it.noe//</span>
+                                                <div class="nested"
+                                                     style="border-right: 1px solid lightgray;margin-left: 5px;padding: 5px; margin-bottom: 5px;">
+                                                    <div layout="row" class="nested-header">
+                                                        <span flex style="padding-left: 6px;">طول</span>
+                                                        <span flex="5"></span>
+                                                        <span flex>مقدار</span>
+                                                    </div>
+                                                    <div layout="row" class="nested-detail" ng-repeat="i in it.details">
+                                                        <span flex>//i.tool|number:0//</span>
+                                                        <span flex="5"></span>
+                                                        <a flex
+                                                           ng-click="openPishFactors(i,it,item)">//i.qty|number:0//</a>
+                                                    </div>
+                                                    <div layout="row" class="nested-subtotal">
+                                                        <span flex></span>
+                                                        <span flex="5"></span>
+                                                        <span flex>//it.qty|number:0//</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div flex-gt-xs>
+                                    <div class="md-list-item-text">
+
+
+                                        <div ng-class="{itisplus:item.qtyConv>0, itisminus:item.qtyConv<=0}">
+                                            <md-icon class="md-primary" md-font-icon="fa fa-plus"
+                                                     ng-if="!(item.showDetail3)"
+                                                     style="padding-top: 7px; padding-right: 6px;"
+                                                     ng-click="item.showDetail3 = !(item.showDetail3)"></md-icon>
+                                            <md-icon class="md-primary" md-font-icon="fa fa-minus"
+                                                     ng-if="item.showDetail3"
+                                                     style="padding-top: 7px; padding-right: 6px;"
+                                                     ng-click="item.showDetail3 = !(item.showDetail3)"></md-icon>
+                                            //item.qtyConv|number:0// <span ng-if="!(item.qtyConv)">0</span></div>
+                                    </div>
+                                    <div ng-show="item.showDetail3" class="divstartnested">
+                                        <div>
+                                            <div layout="row" ng-repeat="it in item.Convs" layout-align="center center">
+                                                <span style="padding-right: 12px;padding-left: 12px;">//it.noe//</span>
+                                                <div class="nested"
+                                                     style="border-right: 1px solid lightgray;margin-left: 5px;padding: 5px; margin-bottom: 5px;">
+                                                    <div layout="row" class="nested-header">
+                                                        <span flex style="padding-left: 6px;">طول</span>
+                                                        <span flex="5"></span>
+                                                        <span flex>مقدار</span>
+
+                                                    </div>
+                                                    <div layout="row" class="nested-detail" ng-repeat="i in it.details">
+                                                        <span flex>//i.tool|number:0//</span>
+                                                        <span flex="5"></span>
+                                                        <a ng-click="openConv(i,it,item)" flex>//i.qty|number:0//</a>
+                                                    </div>
+                                                    <div layout="row" class="nested-subtotal">
+                                                        <span flex></span>
+                                                        <span flex="5"></span>
+                                                        <span flex>//it.qty|number:0//</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div ng-show="item.showCardex"
+                             style="padding: 15px; border: 3px solid gray;">
+                            <div>کاردکس انبار</div>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>مانده</th>
+                                    <th>مقدار</th>
+                                    <th>تاریخ</th>
+                                    <th>توضیحات</th>
+                                    <th>کد</th>
+                                    <th>نام</th>
+
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr ng-repeat="ii in item.cardex.results" ng-class-odd="'odd'"
+                                    ng-class-even="'even'">
+                                   <td style="color: darkgreen; font-weight: bold">//ii.sum//</td>
+                                   <td ng-class="{'text-blue': ii.XQtyRatio > 0, 'text-red': ii.XQtyRatio < 0,'text-gray': ii.XQtyRatio == 0}">
+                                       //ii.XQtyRatio//
+                                   </td>
+                                   <td>//ii.shamsi//</td>
+                                   <td>//ii.DsVchDesc//</td>
+                                   <td>//ii.PartCode//</td>
+                                   <td>//ii.PartName//</td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+
+
+                        <div ng-show="item.showPishLevel3"
+                             style="padding: 15px; border: 3px solid gray;">
+                            <div>پیش فاکتورها</div>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>خریدار</th>
+                                    <th>شماره پیش</th>
+                                    <th>تاریخ</th>
+                                    <th>کد</th>
+                                    <th>نام محصول</th>
+                                    <th>تعداد</th>
+                                    <th>فی</th>
+                                    <th>قیمت</th>
+                                    <th>قیمت کل</th>
+                                    <th>عملیات</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr ng-repeat="ii in item.leve3Pish.results" ng-class-odd="'odd'"
+                                    ng-class-even="'even'">
+                                    <td>//ii.CstmrName//</td>
+                                    <td>//ii.VchNo//</td>
+                                    <td>//ii.VchDate | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</td>
+                                    <td>//ii.PartCode//</td>
+                                    <td>//ii.PartName//</td>
+                                    <td>//ii.Qty|number:0//</td>
+                                    <td>//ii.PreFactPrice / ii.Qty|number:0//</td>
+                                    <td>//ii.PreFactPrice|number:0//</td>
+                                    <td>//ii.PreFactTotalPrice|number:0//</td>
+                                    <td>
+                                        <md-checkbox ng-click="IgnorePish(ii)" ng-model="ii.isAccountable"
+                                                     aria-label="Checkbox 1">
+                                            <div ng-if="!(ii.isAccountable)">
+                                                <img ng-src="//ii.isAccDetails.avatar//"
+                                                     alt="//ii.isAccDetails.profileName//"
+                                                     style="max-width: 50px; max-height: 55px; border-radius: 40px;"
+                                                >
+                                                <span>//ii.isAccDetails.dateOfPost | jalaliDateFromNow:'jYYYY-jMM-jDD hh:mm:ss' //</span>
+                                            </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                        <div ng-show="item.showConvLevel3"
+                             style="padding: 15px; border: 3px solid gray;">
+                            <div>مذاکرات</div>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>مذاکره کننده</th>
+                                    <th>تاریخ</th>
+                                    <th>خریدار</th>
+                                    <th>کد</th>
+                                    <th>نام محصول</th>
+                                    <th>تعداد</th>
+                                    <th>فی</th>
+                                    <th>قیمت</th>
+                                    <th> قیمت کل با ارزش افزوده</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr ng-repeat="ii in item.leve3Pish.results" ng-class-odd="'odd'"
+                                    ng-class-even="'even'">
+                                    <td><a ui-sref="SalesConversationsItems({ConvID:ii.ConvID})">//ii.details.profileName//</a></td>
+                                    <td>//ii.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</td>
+                                    <td>//ii.CstmrName//</td>
+                                    <td>//ii.PartCode//</td>
+                                    <td>//ii.PartName//</td>
+                                    <td>//ii.Qty|number:0//</td>
+                                    <td>//ii.Price//</td>
+                                    <td>//ii.TotalPrice|number:0//</td>
+                                    <td>//ii.TotalPrice * 1.9|number:0//</td>
+
+                                </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div>در راه ها</div>
+        <div class="divMojoodi" style="overflow: scroll">
+            <md-progress-linear md-mode="indeterminate" ng-if="wait"></md-progress-linear>
+
+            <table class="table mini table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>کشور</th>
+                    <th>تمپر</th>
+                    <th>سطح</th>
+                    <th>ضخامت</th>
+                    <th>عرض</th>
+                    <th>عرض بعد از تریم</th>
+                    <th>طول</th>
+                    <th>وزن مذاکره شده</th>
+                    <th>وزن</th>
+                    <th>موجودی قابل فروش</th>
+                    <th>محل انبار</th>
+                    <th>وضعیت کالا</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in Futures track by $index">
+                    <td>//item[0]//</td>
+                    <td>//item[1]|number//</td>
+                    <td>//item[2]//</td>
+                    <td>//item[3]|number//</td>
+                    <td>//item[4]|number//</td>
+                    <td>//item[5]|number//</td>
+                    <td>//item[6]|number//</td>
+                    <td>//item[7]|number//</td>
+                    <td>//item[8]|number//</td>
+                    <td>//item[10]|number//</td>
+                    <td>//item[11]//</td>
+                    <td>//item[13]//</td>
+                </tr>
+                </tbody>
+
+            </table>
+            //item//
+
+        </div>
+    </div>
+
+    <style>
+        .divMojoodi {
+            overflow: scroll;
+            max-width: 100%;
+            max-height: 300px;
+        }
+
+        .divMojoodi td, .divMojoodi th {
+            min-width: 100px;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+
+</div>

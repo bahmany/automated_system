@@ -1,0 +1,116 @@
+<div id="modal_sec_newedit_company" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+
+                    ایجاد یا ویرایش شرکت </h4>
+            </div>
+            <div class="modal-body">
+
+                <form name="companyMngFrm" layout-padding="">
+
+                    <md-input-container class="md-block">
+                        <label>نام شرکت</label>
+                        <input type="text" ng-model="Company.name" ng-required="true">
+                    </md-input-container>
+
+                    <div>
+                        <span>انتخاب گروه</span>
+                        <div class="input-group" ng-click="ShowHideDropDown()" layout="row" flex>
+
+                            <md-icon ng-if="Table.isShow == false" md-font-icon="fa fa-arrow-down"></md-icon>
+                            <md-icon ng-if="Table.isShow == true" md-font-icon="fa fa-arrow-up"></md-icon>
+                            <span flex>
+                                //SelectedCompanyGroup.name//
+                            </span>
+                        </div>
+                        <div class="search-drop-down hide">
+                            <div id="search_with_pagination">
+                                <div class="input-group input-group-sm">
+                                    <a class="input-group-addon input-group-addon-rtl-right btn-maker"
+                                       ng-class="{disablecontrol:CompanyGroups.current_page == 1}"
+                                       ng-click="TableGoToPage(CompanyGroups.first)">
+                                        <i class="fa fa-step-forward"></i>
+                                    </a>
+
+                                    <a class="input-group-addon input-group-addon-rtl-right btn-maker"
+                                       ng-class="{disablecontrol:!CompanyGroups.previous}"
+                                       ng-click="TableGoToPage(CompanyGroups.previous)">
+                                        <i class="fa fa-arrow-right"></i></a>
+
+
+                                    <a class="input-group-addon input-group-addon-rtl-right btn-maker"
+                                       ng-repeat="itemA in CompanyGroups.page_myrange"
+                                       ng-class="{'selectedpaging': CompanyGroups.current_page == itemA.index,disablecontrol: CompanyGroups.num_pages < itemA.index || 1 > itemA.index }"
+                                       ng-click="TableGoToPage(itemA.addr)">
+                                        //itemA.index//
+                                    </a>
+
+                                    <a
+                                            class="input-group-addon input-group-addon-rtl-right btn-maker"
+                                            ng-class="{disablecontrol:!CompanyGroups.next}"
+                                            ng-click="TableGoToPage(CompanyGroups.next)"
+                                    >
+
+                                        <i class="fa fa-arrow-left"></i>
+                                    </a>
+
+                                    <a class="input-group-addon input-group-addon-rtl-right btn-maker"
+                                       ng-class="{disablecontrol:CompanyGroups.current_page == CompanyGroups.num_pages}"
+                                       ng-click="TableGoToPage(CompanyGroups.last)">
+                                        <i class="fa fa-step-backward"></i>
+                                    </a>
+
+
+                                    <span class="input-group-addon input-group-addon-rtl-right">
+                                    //CompanyGroups.count//
+                                    </span>
+                                    <span class="input-group-addon input-group-addon-rtl-right">
+                                    <i class="fa fa-search"></i></span>
+                                    <input type="text" class="form-control" ng-model="TableSearchString"
+                                           ng-model-options="{debounce: 1000}"/>
+
+                                    <a class="input-group-addon input-group-addon-rtl-right btn-maker"
+                                       style="
+                                       border-right: none!important;
+                                       border-left: 1px solid rgb(204, 204, 204)!important;"
+                                       ng-click="HandleTablePagination()">
+                                        <i class="fa fa-chevron-up"></i> //Table.pagination.size//
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div id="table_area" class="dropdown-table-items">
+                                <div ng-repeat="itemB in CompanyGroups.results" class="items"
+                                     ng-click="DropTableSelected(itemB)">
+                                    //itemB.name//
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </form>
+
+
+            </div>
+
+
+            <div class="modal-footer">
+                <span flex></span>
+                <md-button type="submit" ng-disabled="companyMngFrm.$invalid" class="md-raised md-primary"
+                        data-dismiss="modal"   ng-click="PostCompany()">ثبت
+                </md-button>
+                <md-button data-dismiss="modal" class="md-raised" ng-click="CancelCompany()">انصراف</md-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+</div>

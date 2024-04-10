@@ -1,0 +1,100 @@
+{% load translators %}
+<div layout-gt-md="row" ng-controller="BAMCtrl" id="BAMCtrl" layout-align="space-around start">
+    <div flex-gt-md="33" >
+        <md-content>
+            <md-toolbar class="md-hue-1">
+                <div class="md-toolbar-tools">
+                    <h3>{{ 'monitor activities'|translate }}</h3>
+                    <span flex></span>
+                    <md-button class="md-fab md-mini md-button" aria-label="Favorite">
+                        <md-icon md-font-icon="fa fa-plus" ng-click="newBAM()"></md-icon>
+                        <md-tooltip>افزودن شاخص</md-tooltip>
+                    </md-button>
+                </div>
+            </md-toolbar>
+        <div class="lp-inbox-item"
+             ui-sref="dashboard-bam"
+             onclick="$('.lp-inbox-item').removeClass('active');$(this).addClass('active');">
+            <div class=" lp-body">
+                <div flex-gt-md="100" >
+                    <div class="row firstRow" layout-gt-md="row">
+                        <div flex-gt-md="75" ><h4>//'dashboard'| translate//</h4></div>
+                        <div flex-gt-md="25"  title="بازه زمانی"><p class="timeShow">
+                            //'all time'| translate//</p></div>
+                    </div>
+                    <div class="row secondRow" layout-gt-md="row">
+                        <p title="نام فرایند" class="col-md-9">
+                            //'all proccess'| translate//</p>
+
+                        <p title="وضعیت شاخص" class="col-md-3 pull-right pltr"><span
+                                class="label label-defult">تعریف نشده</span></p>
+                    </div>
+                    <div class="row thirdRow">
+                        <p title="فعالیت">//'all activities'| translate//</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row lp-footer">
+                <div class="col-md-7 pull-left" title="سازنده شاخص"><p>//'system'| translate//</p></div>
+                <div class="col-md-3 pull-left" title="تاریخ ساخت شاخص"><p class="timeShow">//'unknown'| translate//</p>
+                </div>
+                <div class="col-md-2 pull-right">
+
+                </div>
+            </div>
+        </div>
+        <div class="lp-inbox-item"
+             ng-repeat="item in data.results" ng-click="showShakhes(item.id, item)"
+             onclick="$('.lp-inbox-item').removeClass('active');$(this).addClass('active');">
+            <div class=" lp-body" layout-gt-md="row">
+                <div flex-gt-md="100" >
+                    <div class="row firstRow" layout-gt-md="row">
+                        <div flex-gt-md="100"><h4>//item.name//</h4></div>
+                        <div class="col-md-3 pull-right" title="بازه زمانی"><p class="timeShow">
+                            //item.time_period//</p></div>
+                    </div>
+                    <div class="row secondRow" layout-gt-md="row">
+                        <p title="نام فرایند" class="col-md-9">
+                            //item.bpmn_name//</p>
+
+{#                        <p ng-if="item.‌shakhesStatus==1"#}
+{#                           title="وضعیت شاخص" class="col-md-3 pull-right pltr"><span#}
+{#                                class="label label-danger">عادی</span></p>#}
+{##}
+{#                        <p ng-if="item.‌shakhesStatus==2"#}
+{#                           title="وضعیت شاخص" class="col-md-3 pull-right pltr"><span#}
+{#                                class="label label-warning">هشدار</span>#}
+{#                        </p>#}
+{##}
+{#                        <p ng-if="item.‌shakhesStatus==3"#}
+{#                           title="وضعیت شاخص" class="col-md-3 pull-right pltr"><span#}
+{#                                class="label label-danger">بحرانی</span>#}
+{#                        </p>#}
+                    </div>
+                    <div class="row thirdRow">
+                        <p title="فعالیت">//item.step_name//</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row lp-footer">
+                <div class="col-md-7 pull-left" title="سازنده شاخص"><p>//item.position_name//</p></div>
+                <div class="col-md-3 pull-left" title="تاریخ ساخت شاخص"><p class="timeShow">//item.postDate |
+                    jalaliDateFromNow//</p>
+                </div>
+                <div class="col-md-2 pull-right">
+                    <i class="fa fa-trash pull-right click-enable"
+                       ng-click="$event.stopPropagation();destroyShakhes(item);" title="حذف شاخص"></i>
+                    <i class="fa fa-pencil pull-right click-enable" tooltip="ویرایش"
+                       ng-click="$event.stopPropagation();editShakhes(item.id, item);"
+                       onclick="$('.lp-inbox-item').removeClass('active');$(this).parent().parent().parent().addClass('active');"></i>
+                </div>
+            </div>
+        </div>
+        </md-content>
+    </div>
+    <div flex-gt-md="66" layout-align="start">
+        <div ui-view ></div>
+    </div>
+
+
+</div>

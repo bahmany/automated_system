@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block main_content %}
+
+
+    <div ng-app="appEstekhdam" ng-controller="Estekhdam" id="divEstekhdam" ng-cloak>
+        {% include "dms/Person/Estekhdam/EstekhdamList.html" %}
+    </div>
+
+
+    {% load staticfiles %}
+    {% load sekizai_tags %}
+
+
+    {% addtoblock "js_script" %}
+        <script>
+            var appEstekhdam = angular.module("appEstekhdam", []);
+            appEstekhdam.config(function ($interpolateProvider) {
+                $interpolateProvider.startSymbol('//');
+                $interpolateProvider.endSymbol('//');
+            });
+            appEstekhdam.controller("Estekhdam", function ($scope, $http) {
+                $http.defaults.headers.post['rahsoon-csrftoken'] = $.cookie('rahsoon-CSRF-TOKEN');
+                $scope.Estekhdam = {};
+                $scope.SearchFilter = {};
+                $scope.RegisteredCount = "";
+
+
+                $scope.GetListOfRegisteredUsers = function (event) {
+                    $scope.Estekhdam = {};
+                    $(event.currentTarget).prop('disabled', true).html("<i class='fa fa-refresh fa-spin'></i> Please Wait...");
+                    $http.post("/dms/get-estekhdam-list/", {searchText: $scope.SearchFilter}).success(function (data) {
+                        $scope.Estekhdam = data.result;
+                        $(event.currentTarget).prop('disabled', false).html("جستجو...");
+
+                    });
+                }
+
+                $scope.GetCountOfRegistered = function () {
+                    $http.get("/dms/get-reg-count/").success(function (data) {
+                        $scope.RegisteredCount = data.count;
+                    })
+                }
+
+                $scope.SendToPdfGet = function (event, item) {
+
+{#                    debugger;#}
+                    var tbl = $(event.target).parent().parent().parent().parent().parent().html();
+
+
+                    var dateToSend = {
+                        htmltbl: tbl,
+                        item: item
+                    };
+
+                    $http.post("/dms/get-estekhdam-getpdf/", dateToSend).success(function(data){
+{#                        localtion.url(data[0]);#}
+                       window.open((data[0]),"_self");
+                    });
+
+                };
+
+
+                $scope.GetAllExcel = function (event) {
+                    $scope.Estekhdam = {};
+                    $(event.currentTarget).prop('disabled', true).html("<i class='fa fa-refresh fa-spin'></i> Please Wait...");
+                    $http.post("/dms/get-reg-excel/", {searchText: $scope.SearchFilter}).success(function (data) {
+                        $scope.Estekhdam = [];
+
+                        $(event.currentTarget).prop('disabled', false).html("نتیجه ی جستجو در اکس");
+                        window.location = "/static/img/profiles/" + data.filename;
+
+                    });
+                }
+                //$scope.GetListOfRegisteredUsers();
+
+            });
+
+        </script>
+
+    {% endaddtoblock %}
+    {% addtoblock "js_file" %}
+
+    {% endaddtoblock %}
+
+    {% addtoblock "css_file" %}
+
+    {% endaddtoblock %}
+
+    {% addtoblock "css_script" %}
+    {% endaddtoblock %}
+
+{% endblock %}
+
+

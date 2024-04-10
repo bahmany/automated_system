@@ -1,0 +1,122 @@
+<div layout-gt-xs="row" flex ng-controller="DataTablesCtrl">
+
+    <div flex-gt-xs="30">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                جداول داده
+                <span flex></span>
+
+                <md-button class="md-fab md-mini">
+                    <a ui-sref="new-datatable({'DataTableId':'0'})">
+                        <md-icon md-font-icon="fa fa-plus"></md-icon>
+                    </a>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <div>
+                <md-input-container class="md-block">
+                    <label>جستجو</label>
+                    <input ng-model="filter.search" type="text" ng-model-options="{debounce: 500}">
+                </md-input-container>
+                <div layout="row" layout-align="start center">
+                    <md-button class="md-icon-button" ng-click="GoToPage(dataTables.next)"
+                               ng-disabled="dataTables.next == null">
+                        <md-icon md-font-icon="fa fa-chevron-right"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="GoToPage(dataTables.previous)"
+                               ng-disabled="dataTables.previous == null">
+                        <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+                    </md-button>
+
+                    <span flex=""></span>
+{#                    //dataTables.count//#}
+                </div>
+            </div>
+            <md-divider></md-divider>
+
+            <md-list flex>
+
+
+                <md-list-item ng-repeat="item in dataTables.results" layout="row"
+                              ui-sref="value-datatables({DataTableId: item.id})">
+
+
+                    {#                              ui-sref="statistics.data({MSTemplateId: item.id})"#}
+
+                    {#                    <md-icon md-font-icon="fa //item.icon//" class="md-icon-avatar"></md-icon>#}
+                    {#                    <div class="md-list-item-text" layout="row">#}
+                    <div flex="" style="font-size: 12px;">
+
+                        //item.name//
+                    </div>
+                    <md-menu ng-if="item.permission == 1">
+                        <md-button aria-label="Open phone interactions menu" class="md-icon-button"
+                                   ng-click="openMenu($mdMenu, $event)">
+                            <md-icon md-menu-origin md-font-icon="fa fa-bars"></md-icon>
+                        </md-button>
+
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button ng-click="delete(item);">
+                                    <md-icon md-font-icon="fa fa-trash"></md-icon>
+                                    حذف جدول
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button  ui-sref="share-datatables({'DataTableId':item.id})">
+                                    <md-icon md-font-icon="fa fa-users"></md-icon>
+به اشتراک گذاری
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button  ui-sref="new-datatable({'DataTableId':item.id})">
+                                    <md-icon md-font-icon="fa fa-pen"></md-icon>
+                                    ویرایش جدول
+                                </md-button>
+
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button
+                                           ui-sref="datatables.auto({'DataTableId':item.id})">
+                                    <md-icon md-font-icon="fa fa-clock-o"></md-icon>
+                                    اجرای خودکار
+                                </md-button>
+
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button
+                                           ui-sref="script-datatable({'DataTableId':item.id})">
+                                    <md-icon md-font-icon="fa fa-server"></md-icon>
+                                    ویرایش اسکریپت
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                        {#                        <md-menu-content>#}
+                        {#                            <md-menu-item>#}
+                        {#                                <div layout="row" ng-if="item.permission != 1" style="font-size: 11px;">#}
+                        {#                                    <span flex></span>#}
+                        {#                                    <md-icon md-font-icon="fa fa-lock"></md-icon>#}
+                        {#                                    <span> توسط </span>#}
+                        {#                                    //item.ownerPos.profileName// - //item.ownerPos.chartName//#}
+                        {#                                </div>#}
+                        {#                            </md-menu-item>#}
+                        {#                        </md-menu-content>#}
+                    </md-menu>
+
+
+                    {#                    </div>#}
+                    <md-divider></md-divider>
+
+                </md-list-item>
+            </md-list>
+        </div>
+
+    </div>
+
+
+    <div flex layout="row" layout-align="center start">
+        <ui-view flex-gt-sm="95"></ui-view>
+    </div>
+
+</div>

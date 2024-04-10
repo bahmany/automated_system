@@ -1,0 +1,45 @@
+<h4>مرحله سوم - آپلود فایل :</h4>
+<hr>
+
+<div layout="column" style="direction: ltr">
+
+    <div id="divUploader">
+        {% load fileuploader_tags %}
+        {% FileUploader2 width='100%' readonly='false' %}
+
+    </div>
+    {#    <div id="divFiles">#}
+    {#        <div layout="row" layout-wrap="">#}
+    {#            <div ng-repeat="item in currentConv.Files.uploaded"#}
+    {#                 class="well well-sm clearfix text-center"#}
+    {#                 style="width: 100px; height: 125px; padding: 3px; margin: 3px; overflow: hidden">#}
+    {##}
+    {##}
+    {#                <span class="content_right_head">//item.imgInf.name//</span>#}
+    {#                <br>#}
+    {#                <img ng-src="//item.imgLink//" style="max-width: 50px; max-height: 55px">#}
+    {#                <br>#}
+    {#                <small>#}
+    {#                    // item.imgInf.size / 1024 | number:0//kb#}
+    {#                </small>#}
+    {#                <br>#}
+    {##}
+    {#                <div class="btn-group btn-group-xs">#}
+    {##}
+    {#                    <button class="btn btn-default btn-xs fa fa-times-circle-o"#}
+    {#                            ng-click="RemoveFromUploaded($event, $index);$event.stopPropagation();">#}
+    {#                    </button>#}
+    {##}
+    {#                    <button class="btn btn-default btn-xs fa fa-arrow-circle-down"#}
+    {##}
+    {#                            ng-click="Download(item);$event.stopPropagation();"></button>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div>#}
+    {#            <md-button ng-click="showUploader()">آپلود فایل</md-button>#}
+    {#        </div>#}
+    {#    </div>#}
+
+
+</div>

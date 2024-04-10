@@ -1,0 +1,72 @@
+<div ng-controller="PostNewsCtrl">
+
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            ایجاد / ویرایش خبر
+        </div>
+    </md-toolbar>
+    <form name="frmNewStat">
+        <div class="shadower">
+            <md-input-container class="md-block">
+                <label for="">عنوان خبر</label>
+                <input type="text" ng-model="news.title" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>نوع خبر</label>
+                <md-select ng-model="news.type" required>
+                    <md-option value="1">
+                        خبر اصلی
+                    </md-option>
+                    <md-option value="2">
+                        اصلی ۱
+                    </md-option>
+                    <md-option value="3">
+                        اصلی ۲
+                    </md-option>
+                    <md-option value="4">
+                        اصلی ۳
+                    </md-option>
+                    <md-option value="5">
+                        اصلی ۴
+                    </md-option>
+                    <md-option value="6">
+                        فرعی ۱
+                    </md-option>
+                    <md-option value="7">
+                        فرعی ۲
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+
+            <div class="clearfix">
+            {% load img_with_uploader_tags %}
+            {% ImageWithUploader defaultEmptyAvatarUrl="/static/images/avatar_empty.png" modelName="news.pic1" controllerName="PostNewsCtrl" height="100px" imageContainerSize="col-md-4 profile-pic news-uploader" imageContainerOtherCss="width: 130px;height: 100px;" other="data-step='2' data-intro='upload your profile image'" %}
+
+            </div>
+
+            <div>
+                <div>متن خبر</div>
+                <textarea ckeditor="editorOptions"
+                          ng-model="news.body">
+        </textarea>
+            </div>
+
+
+        </div>
+        <md-toolbar class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span flex></span>
+                <md-button class="md-raised md-primary"
+                           type="submit"
+                           ng-disabled="frmNewStat.$invalid"
+                           ng-click="post()">ثبت
+                </md-button>
+
+
+            </div>
+        </md-toolbar>
+    </form>
+
+
+</div>

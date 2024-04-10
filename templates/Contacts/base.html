@@ -1,0 +1,91 @@
+{% load translators %}
+<div ng-controller="ContactsCtrl">
+    <md-toolbar layout="row" class="md-hue-4">
+        <div class="md-toolbar-tools">
+            <span>{{ "Contacts"|translate }}</span>
+            <div flex></div>
+            <md-button ng-click="AddContact()"
+                       class="md-fab md-mini md-warn" aria-label="Profile">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div layout-gt-sm="row">
+
+        <div class="shadower" flex-gt-sm="20">
+
+
+            <md-list>
+                <md-subheader class="md-no-sticky">
+                    {{ "Groups"|translate }}
+                </md-subheader>
+                <md-list-item class="secondary-button-padding" ng-click="AllContacts()">
+                    <p>{{ "All contacts"|translate }}</p>
+                </md-list-item>
+                <md-list-item class="secondary-button-padding" ng-repeat="item in ContactGroups.results"
+                              ng-click="FilterContacts(item.id)">
+                    <p>//::item.name//</p>
+                    <md-menu class="md-secondary">
+                        <md-button aria-label="Open phone interactions menu" class="md-icon-button"
+                                   ng-click="openMenu($mdOpenMenu, $event)">
+                            <md-icon md-menu-origin md-font-icon="fa fa-ellipsis-v"></md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button ng-click="EditGroup(item)">
+                                    {{ "Edit"|translate }}
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="RemoveGroup(item)">
+                                    {{ "Delete"|translate }}
+                                </md-button>
+                            </md-menu-item>
+
+                        </md-menu-content>
+
+                    </md-menu>
+
+                </md-list-item>
+                <md-list-item class="secondary-button-padding" ng-click="AddNewGroup()">
+                    <md-icon md-font-icon="fa fa-plus"></md-icon>
+                    <p>گروه جدید</p>
+                </md-list-item>
+
+            </md-list>
+        </div>
+
+        <div flex-gt-sm="80" layout="row" layout-align="center start">
+            <div class="shadower" flex="90">
+            <div>
+                <md-input-container class="md-icon-float md-block">
+                    <!-- Use floating label instead of placeholder -->
+                    <label>{{ 'Search'|translate }}</label>
+                    <md-icon md-font-icon="fa fa-search"
+                             class="name"></md-icon>
+                    <input type="text" ng-model="SearchText" ng-model-options="{debounce: 1000}">
+
+
+                </md-input-container>
+            </div>
+            <div>
+                <md-list flex>
+                    <md-subheader class="md-no-sticky">{{ "Starred"|translate }}</md-subheader>
+                                        <md-divider></md-divider>
+
+                    {% include "Contacts/contact_starred_list.html" %}
+
+                    <md-subheader class="md-no-sticky">{{ "All"|translate }}</md-subheader>
+                    <md-divider></md-divider>
+                    {% include "Contacts/contact_list.html" %}
+                </md-list>
+
+            </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

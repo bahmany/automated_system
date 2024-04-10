@@ -1,0 +1,306 @@
+{% load translators %}
+
+<div class="login-box col-sm-12 col-md-12 col-xs-12" id="">
+    <div class="row" style="border-bottom: 1px solid #fdffff;">
+        <div class="login-container clearfix">
+            <div class="login-header clearfix">
+                <div class="col-md-6 logo-container pull-left">
+                    <span style="color: white;font-size: 50px;">mapraan.com</span>
+                </div>
+                <div class="col-md-4 pull-right subcribe-container">
+
+                    <form class="login-form form-inline">
+                        {% csrf_token %}
+                        <div class="invalid" style="display: none;font-size: 12px;margin: 0;padding: 0;color: #FF9C9C;">
+                            رمز عبور یا نام کاربری صحیح نیست
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control input-xs" id="login__username"
+                                   ng-model="login.username" placeholder="name">
+                            <a href="/reg/#/register" class="forget">ثبت نام</a>
+
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control input-xs" id="login__password"
+                                   ng-model="login.password" placeholder="password">
+                            <a ng-click="forgetPassPanel()" class="forget">فراموشی رمز عبور</a>
+                        </div>
+                        <button type="submit" ng-click="login()" class="btn btn-white btn-outline btn-sm btn-login">
+                            ورود
+                        </button>
+                    </form>
+                    <form role="form" class="forget-pass form-inline" style="display: none">
+                        <span style="color: white">فراموشی رمز عبور</span>
+
+                        <div class="form-content">
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="forget_email" style="min-width: 207px;"
+                                       ng-model="ForgetEmail"
+                                       placeholder=" ایمیل خود را وارد نمایید">
+                                <button type="submit" ng-click="forgetpass($event)" class="btn btn-default btn-sm">
+                                    ارسال ایمیل
+                                </button>
+                                &nbsp;
+                                <button type="submit" class="btn btn-default btn-sm"
+                                        ng-click="backReg()">برگشت
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="background: url('/static/images/BGBGNEW.jpg');background-size:cover;">
+        <div class="login-container clearfix">
+            <div class="login-inner clearfix">
+
+                <div class="col-md-7 col-sm-6 hidden-xs pull-left">
+                    <h1>بازده ای بیشتر در کار...</h1>
+
+                    <p>رسالت ما تولید و ارائه خدمات به هم میهنان، حفظ سرمایه ملی و افزایش تولید داخلی از بهترین مواد
+                        اولیه و بهره گیری از آخرین تکنولوژی های روز دنیا جهت بسته بندی یا تولید قطعات بزرگ فلزی است. که
+                        این امر با جذب سرمایه گذاری خارجی، دستیابی به روشها و فن آوری نوین و همگام سازی با روند سریع
+                        پیشرفت های جهانی صورت می پذیرد. </p>
+                </div>
+                <div class="col-md-4 subcribe-container pull-right">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="border-top: 1px solid #fefffa;">
+        <div class="login-container clearfix">
+            <div class="login-footer clearfix">
+
+                <div class="col-md-3" style="text-align: center">
+                    <h5>مدیرت فرایندها</h5>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a>
+                </div>
+                <div class="col-md-3" style="text-align: center">
+                    <h5>اتوماسیون</h5>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a>
+                </div>
+                <div class="col-md-3" style="text-align: center">
+                    <h5>مدیریت مستندات</h5>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a>
+                </div>
+                <div class="col-md-3" style="text-align: center">
+                    <h5>ابر فایل ها</h5>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a><br/>
+                    <a href="http://****.ir">www.****.ir</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .login-container {
+            width: 1180px;
+            margin: 0 auto;
+        }
+
+        .login-logo {
+            width: 150px;
+            height: 47px;
+            margin-top: -9px;
+        }
+
+        .login-header {
+            padding: 6px 0;
+            margin: 21px 0;
+        }
+
+        .login-header a.forget {
+            font-size: 11px;
+            color: #FFFFFF;
+            margin-top: 3px;
+            display: block;
+            margin-bottom: -13px;
+            height: 10px;
+        }
+
+        .login-inner .register {
+            margin-top: 5px;
+            color: white;
+        }
+
+        .login-inner h4 span {
+            font-weight: bold;
+
+        }
+
+        .login-inner h1 {
+            color: white;
+            font-weight: bold;
+            font-size: 48px;
+            padding-left: 40px;
+        }
+
+        .login-inner p {
+            color: #DCDCDC;
+            font-size: 20px;
+            line-height: 35px;
+            word-wrap: break-word;
+            word-break: break-word;
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+
+        .login-inner {
+            padding: 5px 0;
+
+            margin: 30px 0;
+
+        }
+
+        .col-md-4.subcribe-container {
+            width: 380px;
+        }
+
+        .login-header > .col-md-4 > .login-form > .form-group > .form-control {
+            width: 135px;
+        }
+
+        .login-box {
+            background: #2A2A2C;
+            min-height: 100%;
+        }
+
+        .signup-box .form-control {
+            line-height: 25px;
+
+        }
+
+        .login-footer a {
+            color: #DCDCDC;
+        }
+
+        .login-footer h5 {
+            color: white;
+
+        }
+
+        .login-footer {
+            padding: 6px 0;
+            margin: 21px 0;
+        }
+
+        .signup-box {
+            width: 100%;
+            padding: 5px 6px 5px 5px;
+        }
+
+        .login-form {
+            margin-top: 15px;
+        }
+
+        .logo-container {
+            height: 60px;
+        }
+
+        @media (max-width: 1210px) {
+            .login-container {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .col-md-4.subcribe-container {
+                width: 80%;
+            }
+
+            .col-md-6.logo-container {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .col-md-4.subcribe-container {
+                width: 90%;
+            }
+
+            .col-md-6.logo-container {
+                width: 90%;
+            }
+        }
+
+        @media (min-width: 440px) {
+            .form-inline .form-group {
+                display: inline-block;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .hidden-xs {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .ui-base.ng-scope {
+                overflow-x: hidden;
+                overflow-y: scroll;
+            }
+
+            .form-inline .form-group {
+                margin-bottom: 15px;
+                display: block;
+            }
+
+            .login-header > .col-md-4 > .login-form > .form-group > .form-control {
+                width: 100%;
+            }
+
+            .col-md-6.logo-container, .col-md-4.subcribe-container {
+                width: 80%;
+                text-align: center;
+                float: none !important;
+                margin: 0 auto;
+            }
+        }
+
+        input[type=text], input[type=password], input[type=email] {
+            font-size: 12px;
+            height: 20px;
+            padding: 3px;
+            line-height: 0;
+            margin: 3px;
+        }
+
+        input::-webkit-input-placeholder { /* WebKit browsers */
+            line-height: 1.5em;
+        }
+
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            line-height: 1.5em;
+        }
+
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+            line-height: 1.5em;
+        }
+
+        input:-ms-input-placeholder { /* Internet Explorer 10+ */
+            line-height: 1.5em;
+        }
+
+    </style>
+
+
+</div>

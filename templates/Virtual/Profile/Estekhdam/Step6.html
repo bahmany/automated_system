@@ -1,0 +1,100 @@
+{% load translators %}
+{% load staticfiles %}
+{% load i18n %}
+
+
+<h1 class="md-title">نرم افزارها</h1>
+<div layout-gt-sm="column"   ng-controller="step6Ctrl">
+    <div class="frame firstreg">
+        <div flex-gt-sm layout-padding>
+            <div class="toolbar">
+                دوره های آموزش سپری شده را وارد نمایید
+            </div>
+            <form name="SoftwareItemForm">
+                <md-content layout-padding>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>نام نرم افزار</label>
+                            <input type="text" ng-model="SoftwareItem.Name" required="">
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm required="">
+                            <label>میزان آشنایی</label>
+                            <input type="text" ng-model="SoftwareItem.Level">
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>توضیحات</label>
+                            <input type="text" ng-model="SoftwareItem.Explanations">
+                        </md-input-container>
+
+
+                        <md-input-container class="md-block addtolist" flex-gt-sm>
+                            <label></label>
+                            <md-button
+                                    ng-disabled="SoftwareItemForm.$invalid"
+                                    class="md-raised md-primary"
+                                    ng-click="AddToList(SoftwareItem)">
+                                اضافه به لیست سوابق
+                            </md-button>
+
+                        </md-input-container>
+
+
+                    </div>
+
+                </md-content>
+            </form>
+        <section>
+            <table class="table-responsive table">
+                <thead>
+                <tr>
+                    <td>نام نرم افزار</td>
+                    <td>میزان آشنایی</td>
+                    <td>توضیحات</td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in Software.items track by $index">
+                    <td>// item.Name //</td>
+                    <td>// item.Level //</td>
+                    <td>// item.Explanations //</td>
+
+
+                    <td>
+
+                        <md-button class="md-raised" ng-click="itemEdit(item, $index)">ویرایش</md-button>
+                        <md-button class="md-raised" ng-click="Software.items.splice($index,1)">حذف
+                        </md-button>
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="text-align: center" ng-show="!Software.items.length">
+                                هیچ سابقه ای وارد نشده است
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </section>
+
+        <md-toolbar>
+            <div class="md-toolbar-tools" layout-align="end center">
+                <md-button class="md-raised" ng-click="Post('6', Software)">ذخیره در سوابق و مرحله ی بعد</md-button>
+
+            </div>
+        </md-toolbar>
+        </div>
+
+    </div>
+
+</div>
+
+

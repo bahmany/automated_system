@@ -1,0 +1,92 @@
+<md-dialog aria-label="آپلود فایل">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>آپلود فایل</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div>
+                    <input type="file" nv-file-select="" uploader="uploader" multiple/>
+                </div>
+                <div class="div-table">
+
+                    <div layout-gt-xs="row" class="div-table-header">
+                        <div flex-gt-xs="20">نام فایل</div>
+                        <div flex-gt-xs="10">سایز</div>
+                        <div flex-gt-xs="20">عکس</div>
+                        <div flex-gt-xs></div>
+                    </div>
+
+                    <div ng-repeat="item in uploader.queue">
+                        <div layout-gt-xs="row" class="div-table-details">
+                            <div flex-gt-xs="20" layout-align="center center" layout="row">//item.file.name//</div>
+                            <div flex-gt-xs="10" layout-align="center center" layout="row">
+                                //item.file.size/1024/1024|number:2 // مگابایت
+                            </div>
+                            <div flex-gt-xs="20" layout-align="center center" layout="row">
+                                <div class="no-border" ng-thumb="{ file: item._file, height: 100 }"></div>
+                            </div>
+                            <div flex-gt-xs layout-align="center center" layout="row">
+                                <md-button class="md-raised md-primary" ng-click="item.upload()"
+                                           ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                    آپلود
+                                    <span ng-show="item.progress != 0">//item.progress//%</span>
+                                </md-button>
+                                <md-button ng-click="item.cancel()" ng-disabled="!item.isUploading">انصراف</md-button>
+                                <md-button ng-click="item.remove()">حذف</md-button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    {#                    <ul>#}
+                    {#            <li ng-repeat="item in uploader.queue">#}
+                    {#                <div>Name: // item.file.name //</div>#}
+                    {#                <div>Size: //item.file.size/1024/1024|number:2 // Mb</div>#}
+                    {#                <div ng-show="uploader.isHTML5">#}
+                    {#                    Progress: {{ item.progress }}#}
+                    {#                    <div class="item-progress-box">#}
+                    {#                        <div class="item-progress" ng-style="{ 'width': item.progress + '%' }"></div>#}
+                    {#                    </div>#}
+                    {#                </div>#}
+                    {#                <div ng-if="controller.isImage(item._file)">#}
+                    {#                    Thumbnail (only images):#}
+                    {#                        <!-- Image preview -->#}
+                    {#                        <!--auto height-->#}
+                    {#                        <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->#}
+                    {#                        <!--auto width-->#}
+                    {#                        <div ng-thumb="{ file: item._file, height: 100 }"></div>#}
+                    {#                        <!--fixed width and height -->#}
+                    {#                        <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->#}
+                    {#                </div>#}
+                    {#                <div>#}
+                    {#                    <button ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">Upload</button>#}
+                    {#                    <button ng-click="item.cancel()" ng-disabled="!item.isUploading">Cancel</button>#}
+                    {#                    <button ng-click="item.remove()">Remove</button>#}
+                    {#                </div>#}
+                    {#            </li>#}
+                    {#        </ul>#}
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button class="md-primary md-raised" ng-click="answer('ok')">
+                تایید
+            </md-button>
+            <md-button ng-click="answer('cencel')">
+                انصراف
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

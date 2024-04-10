@@ -1,0 +1,151 @@
+{% load translators %}
+
+<div class="container">
+<div class="row" style="padding: 15px 0 12px 0">
+    <ul>
+        <li style="width: auto;text-align: right"> <a href="http://taraan.com" >خانه</a></li>
+        <li><a href="/login">ورود</a></li>
+        <li class="pull-right" style="width: auto">
+            <img style="width: 75px;" src="http://taraan.com/wp-content/uploads/2016/02/logoRahsoon.png" alt=""/></li>
+    </ul>
+</div>
+<div class="row" style="    background-color: #03a9f5;
+    color: white;
+    padding: 8px 15px;
+    line-height: 23px;
+    font-size: 16px;
+">
+    <p style="margin: 0">ابر تاران - تحولی نو در مدیریت</p>
+</div>
+<div class="row" style="    background-color: rgb(50,50,50);
+    color: white;
+    padding: 15px;
+">
+       <div class="col-md-1 pull-left">
+        <i class="fa fa-cloud" style="font-size:85px "></i>
+    </div>
+    <div class="col-md-7 pull-left" style="margin-right: 25px;">
+        <h4 style="font-size: 27px;font-weight: bold">رایگان در ابر تاران...</h4>
+        <h4 style="font-size: 27px;font-weight: bold">ابزار های پیشرفته کسب و کار</h4>
+
+        <p style="width: 67%;    font-size: 17px;    color: rgb(220,220,220);">چرا هزینه های کلان برای خرید نرم افزار های پیشرفته اداری؟ شما در ابر تاران می توانید <span
+                style="font-size: 110%;font-weight: bold"> رایگان </span>از این ابزار ها بهره مند شوید.</p>
+    </div>
+
+
+</div>
+<div class="row">
+    <div class="col-md-5 pull-left">
+        <h4 style="font-size: 27px;font-weight: bold">مزایای عضویت رایگان</h4>
+        <ol>
+            <li>سیستم مدیریت فرایندها (BPMS)</li>
+            <li>نامه نگاری و اتوماسیون اداری</li>
+            <li>مدیریت مستندات (DMS)</li>
+            <li>مدیریت شرکت های هلدینگ</li>
+            <li>داشبورد و میزکار حرفه ای</li>
+            <li>سیستم آمارها</li>
+            <li>ابر فایل ها (اشتراک گذاری فایل)</li>
+            <li>...</li>
+        </ol>
+    </div>
+
+      <div class="col-md-4 pull-right" style="padding: 15px;width: 270px;margin-left: 90px;margin-top: -120px;border:8px solid white;background-color: #03a9f5;">
+          <div >
+              <div class="row" style="    background: rgb(50,50,50);
+    width: 254px;
+    margin-right: -15px;
+    margin-top: -15px;
+    padding: 9px 11px;
+    padding-top: 6px;">
+                  <h4 style="font-size: 27px; color:white;">عضویت رایگان در تاران</h4>
+              </div>
+              <div class="row" style="margin: 10px 0">
+                  <p style="font-size: 15px; color:white;">شما به کمک ابزارهای پیشرفته و رایگان تاران می توانید کسب و کار خود را به راحتی گسترش دهید.</p>
+              </div>
+<form role="form" ng-submit="vm.register()" >
+                {% csrf_token %}
+                <div class="form-content">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="register__username"
+                               ng-model="vm.username" placeholder=" {{ "username" | translate }}">
+
+                        <div class="alert alert-warning   alert-dismissable " role="alert" style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                             ng-repeat="(key,val) in errors" ng-if="key == 'username'">
+
+                            <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="register__email"
+                               ng-model="vm.email" placeholder="{{ "email" | translate }}">
+
+                        <div class="alert alert-warning   alert-dismissable " role="alert" style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                             ng-repeat="(key,val) in errors" ng-if="key == 'email'">
+
+                            <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="register__password"
+                               ng-model="vm.password" placeholder="{{ "password" | translate }}">
+
+                        <div class="alert alert-warning   alert-dismissable " role="alert" style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                             ng-repeat="(key,val) in errors" ng-if="key == 'password'">
+
+                            <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="register__password"
+                               ng-model="vm.password2" placeholder="{{ "repeatpass" | translate }}">
+
+                        <div class="alert alert-warning   alert-dismissable " role="alert" style="margin: 0;padding-top: 0;padding-bottom: 0;"
+                             ng-repeat="(key,val) in errors" ng-if="key == 'confirm_password'">
+
+                            <p ng-repeat="a in val" style="font-size:14px;margin:0;">//a//</p></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-block pull-right btn-danger pull-left">مرا هم رایگان عضو کن
+                </button>
+            </form>
+    </div></div>
+
+
+</div>
+    <style>
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 730px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 950px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 980px;
+    }
+}
+        ol li{
+            font-size: 17px;
+        }
+        ul li{
+            list-style: none;
+            display: inline-block;
+            width: 80px;
+            font-size: 17px;
+            text-align: center;
+        }
+    </style>
+</div>

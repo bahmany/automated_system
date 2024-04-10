@@ -1,0 +1,108 @@
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+
+        <md-button class="md-raised md-default" ui-sref="list">
+            بازگشت
+        </md-button>
+
+
+        <div flex></div>
+
+        <md-button class="md-icon-button"
+                   ng-click="OpenPrev()"
+                   aria-label="trash">
+            <md-icon md-font-icon="fa fa-chevron-right"></md-icon>
+            <md-tooltip>بعدی</md-tooltip>
+        </md-button>
+
+        <md-button class="md-icon-button"
+                   ng-click="OpenNext()"
+                   aria-label="trash">
+            <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+            <md-tooltip>قبلی</md-tooltip>
+        </md-button>
+
+        <md-button class="md-icon-button"
+                   ng-click="OpenPrint()"
+                   aria-label="trash">
+            <md-icon md-font-icon="fa fa-print"></md-icon>
+            <md-tooltip>چاپ</md-tooltip>
+        </md-button>
+        <md-menu md-offset="0 -7">
+            <md-button aria-label="Open phone interactions menu"
+                       class="md-icon-button"
+                       ng-click="openMenu($mdOpenMenu, $event)">
+                <md-icon md-menu-origin md-font-icon="fa fa-navicon"></md-icon>
+            </md-button>
+            <md-menu-content width="2">
+                <md-menu-item ng-if="CurrentLetter.itemMode == 4">
+                    <md-button ng-click="OpenEdit(CurrentLetter)">
+                        <md-icon md-font-icon="fa fa-pencil" md-menu-align-target></md-icon>
+                        ویرایش
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="MakeLetterUnRead(CurrentLetter)">
+                        <md-icon md-font-icon="fa fa-history" md-menu-align-target></md-icon>
+                        خوانده نشده
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="OpenHistory(CurrentLetter)">
+                        <md-icon md-font-icon="fa fa-history" md-menu-align-target></md-icon>
+                        تاریخچه
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="OpenReplay(CurrentLetter)">
+                        <md-icon md-font-icon="fa fa-mail-reply" md-menu-align-target></md-icon>
+                        پاسخ
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="ForwardSelected()">
+                        <md-icon md-font-icon="fa fa-mail-forward" md-menu-align-target></md-icon>
+                        ارجاع
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="ForwardSelectedArchive()">
+                        <md-icon md-font-icon="fa fa-mail-forward" md-menu-align-target></md-icon>
+                        ارجاع و آرشیو
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item ng-if="CurrentLetter.itemPlace != 2 ">
+                    <md-button ng-click="MoveToArchive(CurrentLetter)">
+                        <md-icon md-font-icon="fa fa-archive" md-menu-align-target></md-icon>
+                        انتقال به آرشیو
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item ng-if="CurrentLetter.itemPlace == 2 ">
+                    <md-button ng-click="MoveFromArchive(CurrentLetter)">
+                        <md-icon md-font-icon="fa fa-archive" md-menu-align-target></md-icon>
+                        خروج از آرشیو
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item ng-if="CurrentLetter.itemPlace != 3">
+                    <md-button ng-click="moveToTrash(CurrentLetter)">
+                        <md-icon md-font-icon="fa fa-trash" md-menu-align-target></md-icon>
+                        انتقال به حذفیات
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item ng-if="CurrentLetter.itemPlace == 3">
+                    <md-button ng-click="deleteForEver(CurrentLetter)">
+                        <md-icon md-font-icon="fa fa-trash-o" md-menu-align-target></md-icon>
+                        حذف همیشگی
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+    </div>
+
+    {#        <md-toolbar-filler layout="row" layout-align="center center">#}
+    {#        </md-toolbar-filler>#}
+
+</md-toolbar>
+
+

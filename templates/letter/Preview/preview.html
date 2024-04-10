@@ -1,0 +1,277 @@
+{% load translators %}
+
+<md-content
+        class="inbox"
+
+        id="divPrev"
+        ng-controller="LetterPrevCtrl">
+
+    <div
+            id="divPrevLayer"
+            ng-click="hideLayer()"
+            style="
+            display: none;
+            position: fixed;
+            z-index: 999999;
+            background-color: rgba(4, 20, 82, 0.51);
+            overflow: scroll;
+            color: white;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;"
+            layout="row"
+            layout-align="center center">
+        <img ng-src="//prevImgLink//" alt="">
+    </div>
+
+    {% include "letter/Preview/header.html" %}
+    {#    <div layout-gt-xs="row">#}
+    {#        <img ng-if="CurrentLetter.itemMode != 7 && CurrentLetter.itemType != 9"#}
+    {#             ng-src="//CurrentLetter.sender.avatar//"#}
+    {#             class="md-avatar">#}
+    {##}
+    {#            <div class="md-list-item-text">#}
+    {#        <h3 class="" style="padding-right: 12px;">#}
+    {#            //CurrentLetter.letter.subject// <br/>#}
+    {##}
+    {#            <p style="font-size: 12px;  width: 250px;  white-space: nowrap;  overflow: hidden !important;  text-overflow: ellipsis;">#}
+    {##}
+    {#                    <span class="title-type-inbox"#}
+    {#                          ng-if="CurrentLetter.itemMode == 7 && CurrentLetter.itemPlace == 1 && CurrentLetter.itemType == 6 ">ارسال شده به : </span>#}
+    {#                <span ng-repeat="ii in CurrentLetter.reciever.others"#}
+    {#                      ng-if="CurrentLetter.itemType != 3">//ii.profileName// - (//ii.chartName//)</span>#}
+    {#                <span ng-if="CurrentLetter.itemType == 3">//CurrentLetter.sender.profileName// - (//CurrentLetter.sender.chartName//)</span>#}
+    {#            </p>#}
+    {#        </h3>#}
+    {#                        <span flex></span>#}
+    {#        <div class="md-secondary" style="font-size: 12px;font-family: Yekan; ">#}
+    {#            <p class="no-margin">{{ 'Sign ID'|translate }}:#}
+    {#                <img tooltip="{{ 'Sign ID'|translate }}"#}
+    {#                     style="width: 45px;"#}
+    {#                     ng-src="//CurrentLetter.letter.sign.generatedFileAddr//"></p>#}
+    {##}
+    {#            <p class="no-margin" style="font-family: cent;    font-size: 13px;">#}
+    {#                //CurrentLetter.dateOfObservable//</p>#}
+    {#        </div>#}
+    {##}
+    {##}
+    {#    </div>#}
+    <md-list class="md-dense">
+        <md-list-item layout="column" layout-gt-sm="row">
+            <img ng-if="CurrentLetter.itemMode != 7 && CurrentLetter.itemType != 9"
+                 ng-src="//CurrentLetter.sender.avatar//"
+                 class="md-avatar">
+
+            <div class="md-list-item-text" flex>
+                <h3 style="padding-right: 12px;">
+                    //CurrentLetter.letter.subject// <br/>
+
+                </h3>
+                <div style="font-size: 12px;  width: 100%;   ">
+
+                    <p style="font-size: 12px;    margin: 0;" class="title-type-inbox" ng-if="CurrentLetter.itemMode == 7 && CurrentLetter.itemPlace == 1 && CurrentLetter.itemType == 6 ">ارسال شده به : </p>
+
+                     <p style="font-size: 12px;    margin: 0;" ng-repeat="ii in CurrentLetter.reciever.others"  >به : //ii.profileName// - (//ii.chartName//)</p>
+
+                    <p style="font-size: 12px;margin: 0;">از : //CurrentLetter.sender.profileName// - (//CurrentLetter.sender.chartName//)</p>
+                </div>
+                {#                <span flex></span>#}
+
+
+            </div>
+            <div style="text-align: center">
+
+
+                <img
+                        style="width: 100px;    border: 1px solid gray;    border-radius: 7px;    padding: 2px;"
+                        ng-src="//CurrentLetter.letter.sign.generatedFileAddr//">
+                <p class="no-margin" style="font-family: cent;    font-size: 13px;">
+                    //CurrentLetter.dateOfObservable//</p>
+            </div>
+
+            {#            <div class="md-list-item-text">#}
+
+            {#            </div>#}
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-if="CurrentLetter.folders.length > 0" layout="row"
+                      style="padding-left: 5px; padding-right: 5px">
+            <span>پوشه ها : </span>
+            <span ng-repeat="itt in CurrentLetter.folders">|
+                //::itt.title//
+                <md-button class="md-icon-button" ng-click="RemoveFromFolders($index, CurrentLetter, itt)">
+                    <md-icon md-font-icon="fa fa-times"></md-icon>
+                </md-button>
+                 </span>
+
+            <md-divider></md-divider>
+
+        </md-list-item>
+        <md-list-item ng-if="CurrentLetter.labels.length > 0" layout="row"
+                      style="padding-left: 5px; padding-right: 5px">
+            <span>برچسب ها : </span>
+            <span ng-repeat="itt in CurrentLetter.labels"
+            > |
+                <span style="background-color://itt.bgcolor//!important; color://itt.color//!important;">
+                    //::itt.title//
+
+                </span>
+                <md-button class="md-icon-button" ng-click="RemoveFromLabels($index, CurrentLetter, itt)">
+                    <md-icon md-font-icon="fa fa-times"></md-icon>
+                </md-button>
+                </span>
+
+            <md-divider></md-divider>
+
+        </md-list-item>
+
+    </md-list>
+
+    <md-list ng-show="CurrentLetter.reciever.option.hamesh" style="background-color: #ffd488">
+        <md-list-item class="md-2-line">
+            <img class="md-avatar" ng-src="//CurrentLetter.sender.avatar//">
+            <div class="md-list-item-text" layout="column">
+                <h5>
+                    <small>دارای هامش توسط</small>
+
+                    //CurrentLetter.sender.profileName// (//CurrentLetter.sender.chartName//)
+                </h5>
+
+
+                <p>//CurrentLetter.reciever.option.hamesh//</p>
+            </div>
+        </md-list-item>
+        <md-list-item
+                class="md-2-line"
+                ng-repeat="item in CurrentLetter.letter.exp.export.hameshRecievers">
+            <h5> هامش این نامه :</h5>
+            <p ng-repeat="item in CurrentLetter.letter.exp.export.hameshRecievers">
+                //item.profileName//(//item.chartName//):<strong style="color:#ff0000">
+                //item.hamesh// </strong></p>
+        </md-list-item>
+
+
+    </md-list>
+    <md-list ng-show="CurrentLetter.reciever.hamesh" style="background-color: #ffd488">
+        <md-list-item
+                class="md-2-line"
+                ng-repeat="item in CurrentLetter.letter.exp.export.hameshRecievers">
+            <h5> هامش این نامه :</h5>
+            <p>
+                //item.profileName//(//item.chartName//):<strong>
+                //item.hamesh// </strong></p>
+        </md-list-item>
+    </md-list>
+    {#    <div layout="row" ng-if="CurrentLetter.reciever.option.hamesh">#}
+    {#        <div>#}
+    {#            <blockquote class="pull-right pptu">#}
+    {#                <small> هامش این نامه :</small>#}
+    {#                <small>توسط :#}
+    {#                <strong>#}
+    {#                    //CurrentLetter.sender.profileName// (//CurrentLetter.sender.chartName//)#}
+    {#                </strong>#}
+    {#                </small>#}
+    {#                <pre>//CurrentLetter.reciever.option.hamesh//</pre>#}
+    {#            </blockquote>#}
+    {#        </div>#}
+    {#        <div ng-if="CurrentLetter.reciever.hamesh">#}
+    {#            <blockquote class="pull-right pptu" style="font-size:12px;">#}
+    {#                <small> هامش این نامه :</small>#}
+    {#                <p ng-repeat="item in CurrentLetter.letter.exp.export.hameshRecievers">#}
+    {#                    //item.profileName//(//item.chartName//):<strong style="color:#ff0000">#}
+    {#                    //item.hamesh// </strong></p>#}
+    {#            </blockquote>#}
+    {#        </div>#}
+
+    {#    </div>#}
+
+    <span flex></span>
+    <div class="letter-body-prev">
+        <div ng-bind-html="CurrentLetter.letter.body | to_trusted"
+             class="clearfix bg-white" layout-padding="">
+        </div>
+
+
+        <div class="bg-white clearfix">
+            <div class="pull-left well well-sm clearfix text-center thumb-atts"
+                 style="width: 100px; padding:3px; margin:3px; overflow: hidden;"
+                 ng-repeat="pics in CurrentLetter.letter.exp.extraAttachments track by $index">
+
+                <span class="content_right_head ng-binding">//pics.imgInf.name//</span>
+                <br>
+                <img style="width: 80px;" ng-src="//pics.imgLink//">
+                <br>
+                <small class="ng-binding">
+                    //pics.imgInf.size / 1024 | number//kb
+                </small>
+                <br>
+
+
+                <div class="btn-group btn-group-xs">
+                    <a class="btn btn-default btn-xs fa fa-search" tooltip=" مرور "
+                       ng-click="previewAtt(pics.imgLink)"></a>
+                    <a class="btn btn-default btn-xs fa fa-arrow-circle-down" tooltip=" دانلود"
+                       ng-click="download(pics.imgLink)"></a>
+                </div>
+            </div>
+        </div>
+        <div layout="column"
+             ng-if="(CurrentLetter.letter.exp.extraAttachments.length > 0)">
+
+            <div ng-repeat="item in CurrentLetter.letter.attachments" class="selected-file-name" layout="row"
+                 ng-class-odd="'odd'" ng-class-even="'even'">
+                <i class="glyphicon glyphicon-folder-open mr2"></i>
+                <span ng-if="item.type=='file'">فایل</span>
+                <span ng-if="item.type=='dir'">پوشه</span></span>
+                </span> //item.name//</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="spacer_10px" layout="row">
+            <span flex></span>
+            <md-button class="md-button md-raised md-primary" ng-click="downloadLetterAtt($event)">
+                دانلود ضمایم بصورت یکجا
+            </md-button>
+
+
+        </div>
+    </div>
+
+    <div class="spacer" ng-show="CurrentLetter.hameshHistory.length > 0">
+        <div style="color: gray; border-top: 1px solid lightgray;">
+            <h5>
+                تاریخچه ی هامش ها
+            </h5>
+        </div>
+        <div style="border-bottom: 1px solid lightgray; color: gray; font-size: 12px;"
+             ng-repeat="ittt in CurrentLetter.hameshHistory">
+            <div>
+                هامش توسط
+                //ittt.sender//
+                مورخه
+                //ittt.dateOf//
+
+            </div>
+            <div style="color: black; font-size: 13px;">
+                هامش :
+                //ittt.message//
+            </div>
+            <div>
+                به :
+                //ittt.rec//
+            </div>
+        </div>
+    </div>
+
+
+    {% include "letter/Preview/history.html" %}
+
+
+</md-content>
+
+
+<div ui-view="recievers" id="divForward" style="display: none;position: initial;">
+
+</div>

@@ -1,0 +1,72 @@
+{% load translators %}
+
+<div id="modal_add_new_income_type" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+
+ایجاد و یا ویرایش منابع                </h4>
+            </div>
+            <form id="frmPostYear" name="frmPostYear">
+                <div class="modal-body">
+                    <h1 class="md-title">
+
+                        لطفا نام و نوع شمارش و محاسبه ی منبع مورد نظر را وارد نمایید
+
+                    </h1>
+                    <div layout="column">
+
+                        <md-input-container class="md-block">
+                            <label for="">عنوان</label>
+                            <input type="text" ng-required="true" ng-model="incomeType.name">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label for="">نحوه ی شمارش</label>
+                            <md-select ng-model="incomeType.countType" required>
+                                <md-option value="1">
+                                    کیلوگرم
+                                </md-option>
+                                <md-option value="2">
+                                    عدد
+                                </md-option>
+                                <md-option value="3">
+                                    ریال
+                                </md-option>
+                                <md-option value="4">
+                                    دلار
+                                </md-option>
+                                <md-option value="5">
+                                    یوان
+                                </md-option>
+                                <md-option value="6">
+                                    یورو
+                                </md-option>
+                                <md-option value="7">
+                                    بسته
+                                </md-option>
+                                <md-option value="8">
+                                    جین
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal"
+                            ng-disabled="frmPostYear.$invalid"
+                            ng-click="Post()">ثبت
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

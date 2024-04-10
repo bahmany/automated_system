@@ -1,0 +1,88 @@
+{% load translators %}
+
+<div ng-controller="CompanyCtrl" layout="column">
+    <md-toolbar class="md-hue-5">
+        <div class="md-toolbar-tools">
+            {% for x in sideBarMenu %}
+                <a
+                        ng-class="{'active-company-mng-menu': $state.includes('{{ x.3 }}')}"
+                        style="font-size: 13px;padding-right:8px;padding-left:8px"
+                        ui-sref="{{ x.2 }}">
+                    {{ x.1 }}
+                </a> |
+            {% endfor %}
+        </div>
+    </md-toolbar>
+
+    {#    <div flex="" style="    margin-bottom: -42px;#}
+    {#    margin-top: -20px;#}
+    {#    margin-left: -20px;">#}
+    {#        <md-fab-toolbar md-open="demo.isOpen" count="demo.count"#}
+    {#                        md-direction="left">#}
+    {#            <md-fab-trigger class="align-with-text">#}
+    {#                <md-button aria-label="menu" class="md-fab md-accent md-primary">#}
+    {#                    <md-icon md-font-icon="fa fa-th"></md-icon>#}
+    {#                </md-button>#}
+    {#            </md-fab-trigger>#}
+    {#            <md-toolbar>#}
+    {#                <md-fab-actions class="md-toolbar-tools" style=" padding-left: 5px; margin-left: 3px;">#}
+    {#                    {% for x in sideBarMenu %}#}
+    {#                        <a style="font-size: 13px;padding-right:8px;padding-left:8px"#}
+    {#                           ui-sref="{{ x.2 }}">#}
+    {#                            {{ x.1 }}#}
+    {#                        </a>#}
+    {#                    {% endfor %}#}
+    {##}
+    {#                </md-fab-actions>#}
+    {#            </md-toolbar>#}
+    {#        </md-fab-toolbar>#}
+    {#    </div>#}
+
+
+    <section layout="row" flex>
+
+
+        <md-sidenav style="display: none;"
+                    class="md-sidenav-right"
+                    md-component-id="right"
+                    md-is-locked-open="$mdMedia('gt-sm')"
+                    md-whiteframe="4"
+                    md-disable-backdrop>
+            <md-content>
+
+
+                <md-list flex>
+                    <md-subheader class="md-no-sticky subheader-inbox">
+                        <header class="nav-header" style="text-align: center">
+                            <a class="docs-logo">
+                                <img src="{{ logo }}" alt="" style="height: 100px;"/>
+                                <h3 class="docs-logotype md-heading">{{ companyName }}</h3>
+                            </a>
+                            <small><a href="#/dashboard/Companies">(بازگشت به لیست)</a></small>
+                        </header>
+                    </md-subheader>
+                    <md-divider></md-divider>
+
+                    {% for x in sideBarMenu %}
+                        <md-list-item
+                                class="md-1-line"
+                                ui-sref="{{ x.2 }}">
+                            <p>{{ x.1 }}</p>
+                        </md-list-item>
+                    {% endfor %}
+
+                </md-list>
+
+            </md-content>
+        </md-sidenav>
+
+
+        <div class="shadower"
+             flex ui-view>
+
+        </div>
+
+    </section>
+</div>
+
+

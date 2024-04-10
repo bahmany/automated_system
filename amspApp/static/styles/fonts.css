@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'DroidArabicNaskh';
+    src: url('/static/fonts/DroidArabicKufiBoldwwwlimoographiccom.eot?v=4.2.0');
+    src: url('/static/fonts/DroidArabicKufiBoldwwwlimoographiccom.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('/static/fonts/DroidArabicKufiBoldwwwlimoographiccom.woff?v=4.2.0') format('woff'), url('/static/fonts/DroidArabicKufiBoldwwwlimoographiccom.ttf?v=4.2.0') format('truetype'), url('/static/fonts/DroidArabicKufiBoldwwwlimoographiccom.svg?v=4.2.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Yekan';
+    src: url('/static/fonts/Yekan.eot?v=4.2.0');
+    src: url('/static/fonts/Yekan.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('/static/fonts/Yekan.woff?v=4.2.0') format('woff'), url('/static/fonts/Yekan.ttf?v=4.2.0') format('truetype'), url('/static/fonts/Yekan.svg?v=4.2.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'cent';
+    src: url('/static/fonts/centurygothic_ufont.ir-webfont.eot?v=4.2.0');
+    src: url('/static/fonts/centurygothic_ufont.ir-webfont.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('/static/fonts/centurygothic_ufont.ir-webfont.woff?v=4.2.0') format('woff'), url('/static/fonts/centurygothic_ufont.ir-webfont.ttf?v=4.2.0') format('truetype'), url('/static/fonts/centurygothic_ufont.ir-webfont.svg?v=4.2.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    font-family: Yekan, cent;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    position: static !important;
+}
+
+
+
+span, a, td, th, tr {
+    font-family: Yekan, cent;
+}
+
+input {
+    font-family: Yekan, cent !important;
+
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: DroidArabicNaskh, cent!important;
+    font-weight: bold;
+}
+
+ul li a, button, label, em, p, button, .ng-binding, timeline-heading, strong, div, option, select{
+    font-family: Yekan, RobotoDraft, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif !important;
+    letter-spacing: 0!important;
+
+}
+
+
+.htCore *{
+    font-family: Arial, Helvetica, sans-serif!important;
+    font-size: 12px!important;;
+    line-height: normal!important;;
+}

@@ -1,0 +1,44 @@
+<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+            md-component-id="left"
+            hide-print
+            md-is-locked-open="$mdMedia('gt-xs')">
+    <header class="nav-header">
+    </header>
+    <md-content flex role="navigation">
+
+        <div style="text-align: center">
+            <img src="/static/images/******logo.png" alt="">
+        </div>
+
+{#        <div ng-show="action == 'start'" style="#}
+{#        position: absolute;#}
+{#    top: 0px;#}
+{#    bottom: 0px;#}
+{#    left: 0px;#}
+{#    right: 0px;#}
+{#    padding: 12px;#}
+{#    background-color: rgba(0, 0, 0, 0.86);#}
+{#    z-index: 9999;#}
+{#    color: wheat;#}
+{#    text-align: justify;#}
+{#    font-size: 13px;#}
+{#    color: wheat;" layout="row" layout-align="top center">#}
+{#            تغییراتی در اطلاعات اعمال کرده اید لطفا قبل از مراجعه به سایر صفحه ها تغییرات فرم جاری را ذخیره نمایید#}
+{#        </div>#}
+
+        <ul class="docs-menu">
+            <li class="parent-list-item ">
+                <h5>اطلاعات تکمیلی</h5>
+                <ul>
+                    <li>
+                        <a class="md-button md-ink-ripple" ui-sref-active="menu-acitive" ui-sref="home">خانه</a>
+                    </li>
+                    <li ng-repeat="index in pages_order[type]" ui-sref-active="menu-acitive">
+                        <a class="md-button md-ink-ripple" ui-sref="s//index//" >//menuTitles[index]//</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </md-content>
+
+</md-sidenav>

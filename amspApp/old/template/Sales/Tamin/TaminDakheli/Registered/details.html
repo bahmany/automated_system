@@ -1,0 +1,38 @@
+<div ng-controller="TaminDakheliRegisteredDetailsCtrl">
+    <div dir="rtl">
+        <div class="panel">
+            <div layout="row" layout-align="start center"
+                 style="padding: 5px;     background-color: #4a89dc; color: white">
+                //instance.name// - //instance.reg_type_str//
+                <span flex> </span>
+                <md-button ui-sref="TaminDakheliRegistered">
+                    برگشت
+                </md-button>
+            </div>
+
+
+            <div class="panel-content pagination2 table-responsive" layout="row">
+                <div style="padding-left: 12px;    margin-left: 12px;    border-left: solid 1px #d2d2d2;">
+
+                    <ul style="list-style: none">
+                        <li ng-repeat="index in pages_order[instance.reg_type]" ui-sref-active="menu-acitive">
+                            <a ng-click="null"
+                               ui-sref="s//index//({details:'//instance.id//'})">//menuTitles[index]//</a>
+                        </li>
+                    </ul>
+
+
+                </div>
+                <div flex>
+
+                    <ui-view></ui-view>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,92 @@
+<div ng-controller="HavalehForooshChangeCtrl">
+    <form name="frmUpdate">
+        <div class="panel">
+            <div class="md-panel-controls ui-sortable-handle"
+                 style="font-family: DroidArabicNaskh, cent!important; font-size: 15px; padding: 12px;"
+                 layout="row" layout-align="center center">
+                <span style="font-family: DroidArabicNaskh, cent!important; font-size: 15px;">
+                    <i class="fa fa-table" style="padding-top: 10px;"></i>جزئیات تاییدیه من
+                </span>
+                                <span flex></span>
+                <a ng-click="goback()">برگشت</a>
+
+            </div>
+            <div layout="row">
+
+            </div>
+            <div class="panel-content pagination2 table-responsive" layout="column">
+                <div>
+                    در این صفحه من میخواهم جزئیات تاییدیه خود را وارد نمایم - احتمال دارد بنا به بررسی هایی که انجام
+                    داده ام
+                    با میزان های ذکر شده در حواله فروش مخالف بوده و نظر دیگری دارم
+                    در این قسمت نظراتم را بصورت عدد وارد نموده و سپس
+                    دلیل مخالفت یا اصلاح مقادیر را ذکر میکنم
+
+                </div>
+
+
+                <div style="    border: 2px solid black;">
+                    <div style="padding: 4px;">
+                        <span>//approve.reason//</span>
+                        <span ng-if="approve.positionID">//approve.positionID//</span>
+
+                    </div>
+                    <div class="div-table" flex-gt-sm>
+                        <div layout-gt-xs="row" class="header-of-div-table">
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">ردیف</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">کد کالا</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">مشخصات کالا</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">واحد کالا</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">مقدار سفارش</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">مقدار پیشنهادی</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">مانده سفارش</div>
+                        </div>
+                        <div layout-gt-xs="row" ng-repeat="item in approve.item.items">
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">//$index+1//</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">//item.PartCode//</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">//item.PartName//</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">//item.UnitName//</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">//item.Qty//</div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">
+                                <md-input-container>
+                                    <label for=""></label>
+                                    <input
+                                            type="number"
+                                            required
+                                            valid-number="0,//item.Qty//"
+                                            ng-model="item.AQty"
+                                            ng-change="item.MQty = item.Qty - item.AQty;"
+                                            max="item.Qty">
+
+                                </md-input-container>
+                            </div>
+                            <div class="" flex-gt-xs="" layout-wrap="center center" layout="row">//item.MQty//</div>
+
+                        </div>
+                    </div>
+
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>دلیل تغییر حواله فروش</label>
+                            <textarea name="txta_reason" id="txta_reason"
+                                      ng-model="approve.reason"></textarea>
+                        </md-input-container>
+                    </div>
+
+                    <div flex layout="row">
+                        <span flex></span>
+                        <md-button class="md-raised md-primary" ng-click="save($event)" ng-disabled="frmUpdate.$invalid">
+                            تایید
+                        </md-button>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </form>
+</div>

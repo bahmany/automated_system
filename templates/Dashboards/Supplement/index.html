@@ -1,0 +1,76 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" class="rtl" dir="rtl" ng-app="Supplement" ng-controller="AppCtrl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="admin-themes-lab">
+    <meta name="author" content="themes-lab">
+    <meta http-equiv="Expires" content="-1">
+
+    <link rel="shortcut icon" href={% static "images/favicon-16x16.png" %} type="image/png">
+    <title>Make Admin Template &amp; Builder</title>
+
+    {% include 'Dashboards/Supplement/css_script.html' %}
+
+</head>
+
+
+<body class="docs-body"
+      dir="rtl"
+      layout="row"
+      ng-app="Supplement" ng-cloak=""
+>
+
+<div style="    position: fixed;    z-index: 99999999;    background-color: #f0f8ffc9;    top: 0;
+    left: 0;    right: 0;    bottom: 0;" layout="row" layout-align="center center"
+     ng-show="isUploading == 'start'"
+
+>
+
+    در حال آپلود فایل...
+
+
+</div>
+
+
+{% include "Dashboards/Supplement/others/sidebar.html" %}
+
+
+<div flex tabindex="-1" role="main"
+     ng-controller="navCtrl"
+     class="layout-column flex">
+    <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
+        <div class="md-toolbar-tools">
+            <span> همکاری با **** ****</span>
+
+            <span flex=""></span>
+
+            <md-button class="md-fab" ng-click="gotoProfile()" style="padding: 0;">
+                <img src="{{ avatar }}" alt="" style="height: 58px;border-radius: 50%;">
+            </md-button>
+
+            <md-button ng-click="logout()">خروج
+            </md-button>
+        </div>
+
+    </md-toolbar>
+
+
+    <md-content md-scroll-y layout="column" flex ui-view="">
+
+    </md-content>
+
+
+</div>
+
+</body>
+
+
+{#<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>#}
+
+
+{% include 'Dashboards/Supplement/js_scripts.html' %}
+
+
+</html>

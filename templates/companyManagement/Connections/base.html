@@ -1,0 +1,30 @@
+{#'/static/angularThings/companiesManagement/Connections/ConnectionCtrl.js'#}
+{% load translators %}
+
+<div ng-controller="ConnectionCtrl" id="ConnectionCtrl">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            مدیریت ارتباطات
+            <span flex=""></span>
+            <md-button class="md-fab md-mini" ng-click="add()">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+            </md-button>
+        </div>
+
+    </md-toolbar>
+
+    {% include "companyManagement/Connections/addEditTableConnections.html" %}
+
+
+    {% include "companyManagement/Connections/AddEditConnections.html" %}
+    {% include "companyManagement/Connections/divListConnections.html" %}
+    {% include "companyManagement/Connections/addEditPools.html" %}
+
+
+
+</div>
+
+
+<script>
+
+</script>

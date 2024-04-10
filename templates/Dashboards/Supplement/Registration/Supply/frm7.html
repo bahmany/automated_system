@@ -1,0 +1,100 @@
+<h4>عضویت در لیست تامین کنندگان سایر شرکت ها</h4>
+<hr>
+
+
+<div layout="column">
+    <form action="" name="frm7form">
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام شرکت</label>
+                    <input type="text" ng-model="provider.frm7.nameSherkat" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تاریخ عضویت</label>
+                    <input type="text" ng-model="provider.frm7.tarikheOzaviat" ui-mask="9999/99/99" dir="ltr"
+                    >
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="" layout-align="center center" layout="row">
+                <div ng-show="provider.frm7.zamineh_faaliat"
+                     style="font-size: 12px;    border: 1px solid gainsboro;    padding: 2px;    text-align: center;    background-color: rgb(245, 232, 229);    text-align: center;">
+                    <span style="font-weight: bold">زمینه فعالیت : </span>
+                    //provider.frm7.zamineh_faaliat.name// -
+                    <a href="" ng-click="openZamineh($event)">تغییر</a>
+                </div>
+                <md-button class="md-raised md-default" ng-click="openZamineh($event)"
+                           ng-show="!(provider.frm7.zamineh_faaliat)">
+                    انتخاب زمینه فعالیت ...
+                </md-button>
+
+
+            </div>
+            <div flex-gt-xs="3"></div>
+        </div>
+
+
+        {#        {% include "Dashboards/Supplement/Registration/Supply/imageUploaderArea.html" with formStep="7" %}#}
+
+        <div layout-gt-xs="row">
+            <span flex></span>
+
+            <md-button class="md-primary md-raised" ng-disabled="frm7form.$invalid" ng-click="addTofrm('7')">
+                اضافه به لیست
+            </md-button>
+        </div>
+
+        {#        <div layout-gt-xs="row">#}
+        {##}
+        {#            <div nv-file-drop="" nv-file-over="" uploader="uploader" options="{url: '/api/v1/file/upload'}"#}
+        {#                 over-class="other-over-zone" class="other-drop-zone zone" style="float: right;">#}
+        {#                One more drop zone with its own settings (and indication)#}
+        {#            </div>#}
+        {##}
+        {#        </div>#}
+
+
+    </form>
+    <div>
+        <table class="sp-table table table-bordered">
+            <thead>
+            <tr>
+                <th>نام شرکت</th>
+                <th>تاریخ عضویت</th>
+                <th>زمینه فعالیت</th>
+                <th>عملیات</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="st in provider.frm7_list track by $index">
+                <td style="text-align: center">//st.nameSherkat//</td>
+                <td style="text-align: center">//st.tarikheOzaviat//</td>
+                <td style="text-align: center">//st.zamineh_faaliat.name//</td>
+                <td style="text-align: right">
+                    {% include "Dashboards/Supplement/Registration/Supply/fileViewTdTable.html" with nm="st" %}
+                    <a ng-click="removefrm('7',$index)">حذف</a>
+                </td>
+            </tr>
+            <tr ng-if="provider.frm7_list.length == 0">
+                <td colspan="4">
+                    هیچ عضویتی وارد نشده است
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <ul>توضیحات :
+            در صورتی که تعداد سایر لیست های تامین کننده عضو زیاد می باشد آن را بر روی سربرگ مکتوب نموده و پیوست نمایید.
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='7' inputid='1' label="ضمائم" %}
+        </ul>
+    </div>
+
+    {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm7" %}
+
+</div>

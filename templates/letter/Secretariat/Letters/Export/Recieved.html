@@ -1,0 +1,88 @@
+{% load translators %}
+<div ng-controller="ExportRecievedCtrl">
+    <div layout="column" layout-padding>
+
+
+        <div class="col-md-11" style="float: none;margin: 0 auto;">
+            <div class="panel panel-default panel-new-default" style="border: 1px solid rgb(207,207,207)">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+
+                        دریافت کننده ها
+                        <a ui-sref="exportList">(بازگشت)</a>
+
+                    </h3>
+                    <h6>لطفا فرم زیر را تکمیل نمایید</h6>
+                </div>
+
+                <div class="panel-body">
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>زمان دریافت نامه</label>
+                            <input required ng-model="Recieve.timeOf">
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>دریافت کننده</label>
+                            <input required ng-model="Recieve.reciever">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>مشخصات</label>
+                            <input ng-model="Recieve.desc">
+                        </md-input-container>
+                    </div>
+
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>نحوه ارسال</label>
+                            <input ng-model="Recieve.how">
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>ارسال کننده / تحصیلدار</label>
+                            <input ng-model="Recieve.sender">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>زمان تحویل به تحصیلدار</label>
+                            <input ng-model="Recieve.whenSender">
+                        </md-input-container>
+                    </div>
+                    <div layout="row" layout-align="end center" flex="100" style="max-height: 100px">
+
+                        <md-button ng-click="Delete()" ng-if="Recieve.id" class="md-raised md-default">
+                            حذف
+                        </md-button>
+
+                        <md-button ng-click="Clear()" class="md-raised md-default">
+                            انصراف
+                        </md-button>
+
+                        <md-button ng-click="Post()" class="md-raised md-primary">
+                            ثبت
+                        </md-button>
+
+                    </div>
+
+
+                    <md-list>
+                        <md-list-item class="md-3-line" ng-repeat="item in Recieveds.results">
+                            <div class="md-list-item-text">
+                                <h3> // item.timeOf //</h3>
+                                <h4> // item.reciever //</h4>
+                                <p> // item.sender //</p>
+                            </div>
+                            <md-button class="md-secondary md-raised" ng-click="edit(item)">ویرایش</md-button>
+
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>

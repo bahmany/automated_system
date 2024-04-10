@@ -1,0 +1,74 @@
+<h4>حسن سابقه</h4>
+<hr>
+<form action="" name="frm_frm14">
+
+    <div layout="column">
+
+        <div layout-gt-xs="row">
+
+
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام شرکت ارائه دهنده رضایت نامه</label>
+                    <input type="text" ng-model="provider.frm14.nameSherkat" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تاریخ دریافت رضایتنامه</label>
+                    <input type="text" ng-model="provider.frm14.tarikheDaryaft">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">موضوع قرارداد فروش / خدمت</label>
+                    <input type="text" ng-model="provider.frm14.mozooGharadad">
+                </md-input-container>
+            </div>
+
+
+        </div>
+        <div layout-gt-xs="row">
+            <span flex></span>
+            <md-button class="md-default md-raised"
+                       ng-click="addTofrm('14')"
+                       ng-disabled="frm_frm14.$invalid">
+                اضافه به لیست
+            </md-button>
+        </div>
+
+        <div>
+            <table class="sp-table">
+                <thead>
+                <tr>
+                    <th>نام</th>
+                    <th>تاریخ دریافت</th>
+                    <th>موضوع</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.frm14_list">
+                    <td>//it.nameSherkat//</td>
+                    <td>//it.tarikheDaryaft//</td>
+                    <td>//it.mozooGharadad//</td>
+                    <td>
+                        <md-button class="md-primary md-default" ng-click="removefrm('14',$index)">حذف</md-button>
+                    </td>
+                </tr>
+
+                <tr ng-if="provider.frm14_list.length == 0">
+                    <td colspan="4">
+                        لیست حسن سابقه خالی است
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</form>
+

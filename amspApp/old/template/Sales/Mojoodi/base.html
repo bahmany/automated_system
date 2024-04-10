@@ -1,0 +1,254 @@
+<div ng-controller="MojoodiGhabeleForooshBaseCtrl" layout="column">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 md-truncate>موجودی قابل فروش</h2>
+
+            <div flex>
+
+            </div>
+
+        </div>
+    </md-toolbar>
+
+
+    <div layout="row">
+        <md-content flex="15">
+
+        </md-content>
+
+        <div flex class="shadower">
+            <div>
+                {{ current_year }}
+                <md-button class="md-raised"
+                           ng-click="update_from_rahkaraan()">update from rahkaraan
+                </md-button>
+                <md-button class="md-raised"
+                           ng-click="get_anbar_cardex()">get from cardex
+                </md-button>
+
+                <md-button class="md-raised"
+                           ng-click="get_pish_from_rahkaraan()">
+                    پیش فاکتورهای باز
+                </md-button>
+
+            </div>
+
+            <div class="shadower" style="overflow: scroll; height: 200px;">
+                <table style="min-width: 1000px;" class="table mini table-bordered table-striped lightGrayTable">
+                    <thead>
+                    <tr>
+                        <th style="padding: 3px;">وضعیت</th>
+                        <th style="padding: 3px;">نوع</th>
+                        <th style="padding: 3px;">میزان</th>
+                        <th style="padding: 3px;">کد کالا</th>
+                        <th style="padding: 3px;">مشتری</th>
+                        <th style="padding: 3px;">تاریخ</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in mandeh_from_pish">
+                        <td>//item.vaziat//</td>
+                        <td>//item.Noe//</td>
+                        <td>//item.mandeh//</td>
+                        <td>//item.QuotationItemProductNumber//</td>
+                        <td>//item.QuotationCustomerName//</td>
+                        <td>//item.QuotationDatePersian//</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="shadower" style="overflow: scroll; height: 400px;">
+                <div ng-repeat="bp in cardex_anbar" layout="row" class="cardex-mojoodi" style="min-width: 1000px;">
+                    <div style="padding: 5px;width: 40px;" layout="row" layout-align="center start">
+                        //bp.QuotationItemProductNumber_sharh//
+                    </div>
+                    <div class="cardex-mojoodi-bp" layout="column" flex>
+                        <div ng-repeat="sharh in bp.details" layout="row"
+                             class="cardex-mojoodi-sharh">
+                            <div layout="column" layout-align="start start" style="padding: 5px; width: 90px;">
+                                <div>//sharh.SazandehTitle//</div>
+                                <div>( //sharh.QuotationItemProductNumber_BP// )</div>
+                            </div>
+                            <div flex="" layout="column" class="cardex-mojoodi-bp">
+                                <div class="cardex-mojoodi-details" layout="row"
+                                     style="    background-color: #d5ebff;">
+                                    <div class="cardex-mojoodi-details-cell-header" style="width: 30px;">
+                                        <div style="padding: 5px;">تمپر</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header" style="width: 33px;">
+                                        <div style="padding: 5px;">SUR</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header" style="width: 43px;">
+                                        <div style="padding: 5px;">ضخامت</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header" style="width: 38px;">
+                                        <div style="padding: 5px;">عرض</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header" style="width: 35px;">
+                                        <div style="padding: 5px;">درجه</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header"
+                                         style="width: 53px; font-size: 11px;">
+                                        <div style="padding: 5px;">طول برش</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header" style="width: 60px;">
+                                        <div style="padding: 10px;">موجودی</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header" style="width: 170px;">
+                                        <div style="padding: 10px;">نکات کیفی کالا</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header" style="width: 110px;">
+                                        <div style="padding: 10px;">سفارشات</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header" style="width: 40px;">
+                                        <div style="padding: 10px;">ستاره دار</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header" style="width: 110px;">
+                                        <div style="padding: 10px;">آنیلینگ</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell-header" flex>
+                                        <div style="padding: 10px;">توضیحات</div>
+                                    </div>
+                                </div>
+
+                                <div ng-repeat="detail in sharh.details" class="cardex-mojoodi-details" layout="row">
+                                    <div class="cardex-mojoodi-details-cell" style="width: 30px;">
+                                        <div style="padding: 5px;">//detail.QuotationItemProductNumber_TEMPER//</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" style="width: 33px;">
+                                        <div style="padding: 5px;">//detail.QuotationItemProductNumber_sath//</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" style="width: 43px;">
+                                        <div style="padding: 5px;">//detail.QuotationItemProductNumber_zekhamat//</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" style="width: 38px;">
+                                        <div style="padding: 5px;">//detail.QuotationItemProductNumber_arz//</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" style="width: 35px;">
+                                        <div style="padding: 5px;">//detail.QuotationItemProductNumber_darajeh//</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" style="width: 53px;">
+                                        <div style="padding: 5px;">//detail.QuotationItemProductNumber_tool//</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" style="width: 60px;">
+                                        <div style="padding: 5px; font-weight: bold">//detail.Meghdar | number//</div>
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" style="width: 170px;" layout="row">
+                                        <div style="padding: 5px; border-left: 1px solid lightgrey"
+                                             class="onhover-change"
+                                             ng-click="add_keifi_issue($event, detail)">
+                                            <a tooltip="ثبت نکته کیفی جدید">
+                                                <i class="fa fa-plus" style="color: #dfb074;    padding: 2px;"></i>
+                                            </a>
+                                        </div>
+                                        <div flex="">
+                                            <div ng-repeat="itt in detail.details.keifi" class="keifi-comments">
+
+                                                <hr>
+                                                <h3 style="text-align: center">
+                                                    <span style="color: darkred;font-weight: bold;"
+                                                          ng-if="itt.kasrAsMojoodi === true">//itt.mizan | number//</span>
+                                                    <span style="color: darkred;font-weight: bold;"
+                                                          ng-if="itt.kasrAsMojoodi === false">//itt.mizan | number//</span>
+                                                    <span style="color: #727272;font-weight: bold;"
+                                                          ng-if="itt.kasrAsMojoodi === null">//itt.mizan | number//</span>
+                                                    <span style="color: darkred;font-weight: bold;"
+                                                          ng-if="itt.kasrAsMojoodi === true">-</span>
+
+                                                </h3>
+                                                <hr>
+                                                <div style="color: darkred;padding: 3px;" tooltip="//itt.dateof_sh// - //itt.user.profileName// -
+                                                    //itt.user.chartName//">
+                                                    //itt.dalil//
+
+                                                    <a style="margin-right: 12px; padding-right: 12px;"
+                                                       ng-click="delete_keifi_issue(itt)"> <i
+                                                            class="fa fa-trash"></i></a>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" style="width: 110px;" layout="row">
+                                        <div style="padding: 5px; border-left: 1px solid lightgrey"
+                                             class="onhover-change"
+                                             ng-click="add_sefaresh(detail)">
+                                            <a tooltip="ثبت سفارش جدید">
+                                                <i class="fa fa-plus" style="color: #dfb074;    padding: 2px;"></i>
+                                            </a>
+                                        </div>
+
+                                        <div flex="">
+                                        </div>
+
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" style="width: 40px;"
+                                         layout="row">
+                                        {#                                        <md-button class="md-icon-button">#}
+                                        {#                                            <md-icon md-font-icon="fa fa-star"></md-icon>#}
+                                        {#                                        </md-button>#}
+
+
+                                        <div style="padding: 5px; text-align: center"
+                                             flex
+                                             class="onhover-change"
+                                             ng-click="toggle_setareh(detail)">
+                                            <a tooltip="ثبت ستاره">
+                                                <i class="fa fa-star"
+                                                   ng-class="{'color-gray':detail.details.details.star==false, 'color-gray':detail.details.details.star == undefined, 'color-gold':detail.details.details.star == true }"
+                                                   style="    padding: 2px;"></i>
+                                            </a>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" style="width: 110px;" layout="row">
+                                        <select ng-model="detail.details.details.aneal"
+                                                ng-change="change_aneal(detail)"
+                                                style=" height: 26px; font-size: 10px; margin: 2px!important;">
+                                            <option value>هیچ</option>
+                                            <option value="BA">BA</option>
+                                            <option value="CA">CA</option>
+                                        </select>
+                                        {#                                        <div style="padding: 5px; border-left: 1px solid lightgrey"#}
+                                        {#                                             class="onhover-change"#}
+                                        {#                                             ng-click="add_aniling(detail)">#}
+                                        {#                                            <a tooltip="ثبت آنیلینگ">#}
+                                        {#                                                <i class="fa fa-plus" style="color: #dfb074;    padding: 2px;"></i>#}
+                                        {#                                            </a>#}
+                                        {#                                        </div>#}
+                                        {#                                        <div flex="">#}
+                                        {#                                        </div>#}
+
+                                    </div>
+                                    <div class="cardex-mojoodi-details-cell" layout="row" flex>
+                                        <div style="padding: 5px; border-left: 1px solid lightgrey"
+                                             class="onhover-change"
+                                             ng-click="add_tozihat(detail)">
+                                            <a tooltip="ثبت توضیحات">
+                                                <i class="fa fa-plus" style="color: #dfb074;    padding: 2px;"></i>
+                                            </a>
+                                        </div>
+                                        <div flex="">
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

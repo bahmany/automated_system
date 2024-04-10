@@ -1,0 +1,158 @@
+    <h4>اطلاعات تماس  سازندگان</h4>
+    <hr>
+    <form name="frm_frm5">
+    <div>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">پست الکترونیکی</label>
+                        <input type="email" ng-model="provider.frm5.email" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="5">
+                </div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">دورنگار (فکس)</label>
+                        <input type="text"  ng-model="provider.frm5.fax" required>
+                    </md-input-container>
+                </div>
+            </div>
+
+
+        </div>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">تارنما (وب سایت)</label>
+                        <input type="text"  ng-model="provider.frm5.web">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="5">
+
+                </div>
+                <div flex-gt-xs>
+                    <md-input-container class="md-block">
+                        <label for="">صندوق پستی</label>
+                        <input type="text"  ng-model="provider.frm5.postalcode">
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+        <md-input-container class="md-block">
+            <label for="">آدرس محل فروشگاه / دفتر یا نمایندگی</label>
+            <input type="text"  ng-model="provider.frm5.address1">
+        </md-input-container>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">کد پستی</label>
+                        <input type="text"  ng-model="provider.frm5.postalcode2">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3">
+
+                </div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تلفن ثابت</label>
+                        <input type="text"  ng-model="provider.frm5.phone1">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3">
+
+                </div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تلفن همراه</label>
+                        <input type="text"  ng-model="provider.frm5.cell1">
+                    </md-input-container>
+                </div>
+
+            </div>
+
+        </div>
+        <md-input-container class="md-block">
+            <label for="">آدرس محل فروشگاه / دفتر یا نمایندگی</label>
+            <input type="text" ng-model="addressForooshgah">
+        </md-input-container>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">کد پستی</label>
+                        <input type="text"  ng-model="provider.frm5.postalcode3">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3">
+
+                </div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تلفن ثابت</label>
+                        <input type="text"  ng-model="provider.frm5.phone2">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3">
+
+                </div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تلفن همراه</label>
+                        <input type="text" ng-model="provider.frm5.cell2">
+                    </md-input-container>
+                </div>
+
+            </div>
+
+        </div>
+        <md-input-container class="md-block">
+            <label for="">آدرس کارخانه</label>
+            <input type="text" ng-model="addresskarkhaneh">
+        </md-input-container>
+        <div layout="column">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">کد پستی</label>
+                        <input type="text" ng-model="provider.frm5.postalCodeKarkhaneh">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3">
+
+                </div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تلفن ثابت</label>
+                        <input type="text" ng-model="provider.frm5.phoneKarkhaneh">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3">
+
+                </div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تلفن همراه</label>
+                        <input type="text" ng-model="provider.frm5.cellKarkhaneh">
+                    </md-input-container>
+                </div>
+
+            </div>
+
+        </div>
+{#                {% include "Dashboards/Supplement/Registration/Supply/imageUploaderArea.html" with formStep="5" %}#}
+
+    </div>
+    <span style="display: none">
+        // form_invalid = frm_frm5.$invalid//
+        // form_current = frm_frm5 //
+
+    </span>
+
+            {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm5" %}
+
+
+    </form>

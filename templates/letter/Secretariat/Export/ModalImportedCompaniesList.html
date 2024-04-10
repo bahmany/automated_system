@@ -1,0 +1,61 @@
+{% load translators %}
+
+<div id="modal_select_imported_companies" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+
+                    انتخاب شرکت
+                </h4>
+            </div>
+            <form id="newChartFrm" name="newChartFrm">
+                <div class="modal-body">
+                    <h1 class="md-title">
+                        لطفا یکی از شرکت های زیر را انتخای نمایید
+                    </h1>
+                    <div ng-if="isLoading">
+                        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                    </div>
+                    <div>
+
+                        {% load tables_tags %}
+                        {% tablePaginationSimple main_model_name="Companies" table_search_watch_model_name="CompnaiesTableSearch" table_go_to_page_func_name="companiesTableGoToPage" table_handle_pagination_func_name="HandleCompaniesTablePagination" table_info_model_name="TableCompanies" %}
+
+                        <table class="table has-border mini">
+                            <thead>
+                            <tr>
+                                <td>نام شرکت</td>
+                                <td>نام گروه</td>
+                                <td></td>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in Companies.results" ng-class-odd="'odd'" ng-class-even="'even'">
+                                <td>//item.name//</td>
+                                <td>//item.group.name//</td>
+                                <td>
+                                    <a data-dismiss="modal" ng-click="SelectCompanyToImported(item)">
+                                        انتخاب
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

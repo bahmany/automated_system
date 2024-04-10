@@ -1,0 +1,22 @@
+            <md-toolbar class="md-hue-1">
+                <div class="md-toolbar-tools" tabIndex="-1">
+                    {{ completeName }}
+                    عزیز خوش آمدید
+                    <div flex></div>
+
+
+                    <md-button ng-click="Logout()">
+                        خروج
+                    </md-button>
+                    <md-button class="md-icon-button md-raised" href="/">
+                        <md-icon md-font-icon="fa fa-puzzle-piece"></md-icon>
+                        <md-tooltip>
+                            ورود به راهسون
+                        </md-tooltip>
+                    </md-button>
+
+                    <md-button class="md-icon-button" ng-click="openMenu()" hide-gt-sm aria-label="Toggle Menu">
+                        <md-icon md-font-icon="fa fa-navicon"></md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>

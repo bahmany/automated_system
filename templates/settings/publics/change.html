@@ -1,0 +1,82 @@
+{% load translators %}
+
+<div ng-controller="ChangeCrtl">
+    <md-content class="md-no-momentum">
+        <div layout-padding>
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>{{ 'Change password'|translate}}</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+            <md-input-container class="md-icon-float md-block">
+                <label>{{ 'Current password'|translate}}</label>
+                <input ng-model="password.current" type="password">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+                <label>{{ 'New password'|translate}}</label>
+                <input ng-model="password.new" type="password">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+                <label>{{ 'Conform new password'|translate}}</label>
+                <input ng-model="password.newConfirm" type="password">
+            </md-input-container>
+            <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <md-button ng-click="ChangePassword()" class="md-raised md-primary">{{ 'Change password'|translate}}</md-button>
+            </section>
+        </div>
+        <div layout-padding>
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>رمز امضا</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+
+            <md-input-container class="md-icon-float md-block">
+                <label>رمز جدید</label>
+                <input ng-model="signpassword.new" type="password">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+                <label>رمز جدید مجدد</label>
+                <input ng-model="signpassword.newConfirm" type="password">
+            </md-input-container>
+            <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <md-button ng-click="ChangeSignPassword()" class="md-raised md-primary">دریافت پیام کوتاه رمز دوم</md-button>
+            </section>
+            <md-input-container class="md-icon-float md-block">
+                <label>رمز پیام کوتاه شده</label>
+                <input ng-model="signpassword.smsCode" type="password">
+            </md-input-container>
+            <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <md-button ng-click="SubmitSMSPass()" class="md-raised md-primary">تغییر</md-button>
+            </section>
+        </div>
+        <div layout-padding>
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>{{ 'Change email address'|translate}}</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+            <md-input-container class="md-icon-float md-block">
+                <label>{{ 'Current email'|translate}}</label>
+                <input ng-model="email.current" type="email" ng-init="email.current='{{ email }}'">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+                <label>{{ 'New email'|translate}}</label>
+                <input ng-model="email.new" type="email">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+                <label>{{ 'Confirm new email'|translate}}</label>
+                <input ng-model="email.newConfirm" type="email">
+            </md-input-container>
+            <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <md-button ng-click="ChangeEmail()" class="md-raised md-primary">{{ 'Change email'|translate}}</md-button>
+            </section>
+        </div>
+    </md-content>
+</div>

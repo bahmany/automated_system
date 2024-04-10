@@ -1,0 +1,268 @@
+{% load translators %}
+
+<div ng-controller="HamkarijobsCtrl" layout-gt-sm="row" layout-padding>
+    <div flex="30" class="table-search-filter">
+        <div layout="row" class="title">
+            <span>
+فیلتر لیست
+
+            </span>
+            <span flex>
+
+            </span>
+            <i class="fa fa-filter"></i>
+        </div>
+        <table ng-repeat="item in leftMenu track by $index" class="table-search">
+            <thead>
+            <tr>
+                <td colspan="2" class="table-search-header">//item.name//</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="text" ng-model="item.search" placeholder="جستجو در //item.name//"
+                           class="search-textbox"/>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-click="AddToFilters(it, item)" ng-repeat="it in item.result  | filter:{_id:item.search}"
+                ng-class-odd="'odd'" ng-class-even="'even'">
+                <td>
+                    <span ng-if="!it._id">نامشخص</span>
+                    <span ng-if="it._id != 0">//it._id//</span>
+                </td>
+                <td>//it.count// نفر</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+    <div flex="70" class="table-search-filter">
+        <div id="divList">
+            {#            <div layout="row">#}
+            {#                <p>جستجو بر اساس </p>#}
+            {##}
+            {#                <div>#}
+            {#                    <md-checkbox ng-model="searchFilter.CheckAll" aria-label="Checkbox 1">#}
+            {#                        تمام گزینه ها#}
+            {#                    </md-checkbox>#}
+            {#                    <md-checkbox ng-model="searchFilter.Name" aria-label="Checkbox 1">#}
+            {#                        نام#}
+            {#                    </md-checkbox>#}
+            {#                    <md-checkbox ng-model="searchFilter.Family" aria-label="Checkbox 1">#}
+            {#                        نام خانوادگی#}
+            {#                    </md-checkbox>#}
+            {#                    <md-checkbox ng-model="searchFilter.BirthDate" aria-label="Checkbox 1">#}
+            {#                        تاریخ تولد#}
+            {#                    </md-checkbox>#}
+            {##}
+            {#                    <md-checkbox ng-model="searchFilter.BirthPlace" aria-label="Checkbox 1">#}
+            {#                        محل تولد#}
+            {#                    </md-checkbox>#}
+            {##}
+            {#                    <md-checkbox ng-model="searchFilter.InternationalCode" aria-label="Checkbox 1">#}
+            {#                        کد ملی#}
+            {#                    </md-checkbox>#}
+            {##}
+            {#                    <md-checkbox ng-model="searchFilter.Mobile" aria-label="Checkbox 1">#}
+            {#                        تلفن همراه#}
+            {#                    </md-checkbox>#}
+            {##}
+            {#                    <md-checkbox ng-model="searchFilter.OstanHome" aria-label="Checkbox 1">#}
+            {#                        استان#}
+            {#                    </md-checkbox>#}
+            {##}
+            {#                    <md-checkbox ng-model="searchFilter.CityHome" aria-label="Checkbox 1">#}
+            {#                        شهر#}
+            {#                    </md-checkbox>#}
+            {##}
+            {#                    <md-checkbox ng-model="searchFilter.HomeAddress" aria-label="Checkbox 1">#}
+            {#                        آدرس منزل#}
+            {#                    </md-checkbox>#}
+            {##}
+            {##}
+            {#                </div>#}
+            {#            </div>#}
+            <div layout="row" ng-if="Filters.length > 0">
+                <span>فیلتر</span>
+
+                <md-button ng-repeat="item in Filters track by $index" class="md-raised"
+                           ng-click="removeFilter($index)">
+                    //item.title | translate// : <strong> //item.value//</strong>
+                </md-button>
+
+            </div>
+
+            <div>
+                <div layout="row">
+                    {% load tables_tags %}
+                    {% tablePagination main_model_name="list" table_search_watch_model_name="listSearch" table_go_to_page_func_name="listTableGoToPage" table_handle_pagination_func_name="HandlelistTablePagination" table_info_model_name="Tablelist" %}
+                </div>
+                <table class="table-search table mini table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <td>ثبت نام</td>
+                        <td>نام کاربری</td>
+                        <td>نام</td>
+                        <td>تولد</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in list.results" ng-class-odd="'odd'" ng-class-even="'even'"
+                        ng-class="{'green-background':item.hasPosition}">
+                        <td>//item.dateOfPost | jalaliDate:'jYYYY/jMM/jDD'//</td>
+                        <td>//item.username//</td>
+                        <td>//item.extra.job.Shenasnameh.Name// //item.extra.job.Shenasnameh.Family//</td>
+                        <td ng-if="item.hasPosition" colspan="4">
+                            دارای سمت //item.positionName//
+                            <a ng-click="ForceOut(item)">(تعلیق)</a>
+                        </td>
+                        <td ng-if="!item.hasPosition" ng-bind-html="getLicense(item) | to_trusted"></td>
+                        <td>
+                            <md-button
+                                    class="md-raised"
+                                    ng-if="!item.hasPosition"
+                                    ng-click="addPersonToNewPosition(item.id)">
+                                سمت دهی
+                            </md-button>
+                        </td>
+                        <td>
+                            <md-button
+                                    class="md-raised"
+                                    ng-if="!item.hasPosition"
+                                    ng-click="DeleteAccount(item)">
+                                حذف
+                            </md-button>
+
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            {#            <div layout="column" ng-repeat="item in list.results" style="border-bottom: solid 1px #d3d3d3">#}
+            {#                <div>#}
+            {#                    //item.id//#}
+            {#                </div>#}
+            {#                <div layout-gt-xs="row" layout-align="start center">#}
+            {#                    <img ng-src="//getImage(item)//" alt=""#}
+            {#                         style="  border: solid 3px white;border-radius: 72px; height: 70px; float: right; margin: 5px;"/>#}
+            {##}
+            {##}
+            {#                    <div flex>#}
+            {#                        <span ng-if="item.extra.job.Shenasnameh.Name">#}
+            {#                                                    //item.extra.job.Shenasnameh.Name// //item.extra.job.Shenasnameh.Family//#}
+            {#                        </span>#}
+            {#                        <span ng-if="!item.extra.job.Shenasnameh.Name">#}
+            {#                            // item.extra.Name //#}
+            {#                        </span>#}
+            {#                        <br/>#}
+            {#                        <small>//item.extra.job.Shenasnameh.BirthDate//</small>#}
+            {#                        <br/>#}
+            {#                        <small> از //item.extra.job.Shenasnameh.BirthPlace//</small>#}
+            {#                        <br/>#}
+            {#                        <small>//item.extra.job.Shenasnameh.CityHome//</small>#}
+            {#                    </div>#}
+            {#                    <div flex ng-bind-html="getLicense(item) | to_trusted">#}
+            {##}
+            {#                    </div>#}
+            {##}
+            {#                    <div flex style="text-align: left">#}
+            {#                        <a class="btn" ng-click="OpenResume(item)">اطلاعات بیشتر</a><br/>#}
+            {#                        <a class="btn" ng-click="OpenChart(item)">استخدام و سمت دهی</a><br/>#}
+            {#                    </div>#}
+            {##}
+            {#                </div>#}
+            {#            </div>#}
+        </div>
+
+        <div id="divCharts" style="display: none">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {{ "Invitations"|translate }}
+
+                        <small><a ng-click="OpenChartBack()">({{ 'Back to list' | translate }})</a>
+                        </small>
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+                    <form class="ng-pristine ng-valid">
+                        <h3>
+                            //SelectedPerson.Name//
+                        </h3>
+
+                        <div class="row">
+                            <div class="col-md-6 well well-sm">
+                                <form class="ng-pristine ng-valid">
+
+                                    <h3><strong>{{ 'All Charts'|translate }}</strong></h3>
+                                    <small>{{ 'Select to invite'|translate }}</small>
+
+                                    {% load pager_navigator_tags %}
+                                    {% autoescape off %}
+                                        {% pagerNavigator style="text-center" listname="ChartSimpleList" search_ng_model="ChartSearch" PageTo="ChartPageTo" %}
+                                    {% endautoescape %}
+                                    <div class="well well-sm" style="color: white"
+                                         ng-class="chart.isEmpty ? 'emptyclass':'filledclass'"
+                                         ng-repeat="chart in ChartSimpleList.results track by $index">
+                                        <label class="checkbox1 pull-right" for="Option//$index//_//chart.isEmpty//"
+                                               tooltip="{{ 'Click here to send/remove invitation'|translate }}">
+                                            <input id="Option//$index//_//chart.isEmpty//"
+                                                   type="checkbox"
+                                                   ng-model="chart.selected"
+                                                   ng-change="SelectDeselectChart(chart)">
+                                            <span></span> </label>
+
+                                        <span>//chart.title// <br><small>//chart.CompanyName//</small></span>
+
+                                        <h3 ng-if="chart.isEmpty">{{ 'Empty Position' | translate }}</h3>
+                                    </div>
+                                </form>
+                            </div>
+
+
+                            <div class="col-md-6  well well-sm">
+                                <h3>{{ 'Invitation'|translate }}</h3>
+                                <small>{{ 'See selected user invitations'|translate }}</small>
+                                {% pagerNavigator style="text-center" listname="Invitations" search_ng_model="InvitationsSearch" PageTo="InvitationsPageTo" %}
+                                <div ng-repeat="inv in Invitations.results" class="well well-sm clearfix"
+                                     style="background-color: #1f9d45; color: white">
+
+                                    <strong>//inv.companyName//</strong><br>
+                                    <small>
+                                        //inv.chartName// <span ng-if="inv.isEmpty"
+                                                                style="font-weight: bold">({{ 'Empty Position'|translate }})</span>
+                                    </small>
+                                    <br>
+                                    <small>//inv.dateOfPost//</small>
+
+                                    <div class="btn-group btn-group-xs pull-right">
+                                        <button class="btn btn-default btn-xs fa fa-sign-in"
+                                                ng-click="ApproveInvitation(inv)"
+                                                tooltip="{{ 'Click here to approve'|translate }}">
+
+                                        </button>
+                                        <button
+                                                class="btn btn-default btn-xs fa fa-trash-o"
+                                                ng-click="RemoveInvitation(inv)"
+                                                tooltip="{{ 'Click here to remove invitation'|translate }}">
+
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

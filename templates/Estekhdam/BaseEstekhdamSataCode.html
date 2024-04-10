@@ -1,0 +1,105 @@
+{% extends "baseWithoutBound.html" %}
+{% load i18n %}
+
+
+{% block main_content %}
+
+
+    <div ng-app="appEstekhdam" ng-controller="Estekhdam" id="divEstekhdam" ng-cloak>
+
+
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+            <div class="well no-padding">
+
+
+                <form method="post" id="login_form" class="smart-form client-form">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="ChgWDQb543chIy0CYsH3EEQfkcpDTBap">
+                    <header>
+                        ثبت شماره شناسایی **** بازنشستگی ****های ****
+                    </header>
+
+                    <fieldset>
+
+                        <section>
+                            <label class="label">لطفا کد ملی ثبت شده در سامانه را وارد نمایید</label>
+                            <label class="input"> <i class="icon-append fa fa-user"></i>
+                                <input type="text" name="username" id="username" ng-model="sata.melliCode">
+                            </label>
+                        </section>
+
+                        <section>
+                            <label class="label">شماره ۱۳ رقمی شناسایی **** بازنشستگی ****های ****</label>
+                            <label class="input"> <i class="icon-append fa fa-lock"></i>
+                                <input type="input" name="satacode" id="id_password" ng-model="sata.sataCode">
+                            </label>
+
+
+                        </section>
+
+
+                    </fieldset>
+                    <footer>
+                        <button type="button" class="btn btn-primary" ng-click="PostIt()">
+                            ثبت
+                        </button>
+                    </footer>
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    {% load staticfiles %}
+    {% load sekizai_tags %}
+
+
+    {% addtoblock "js_script" %}
+        <script>
+
+            var appEstekhdam = angular.module("appEstekhdam", []);
+            appEstekhdam.config(function ($interpolateProvider) {
+                $interpolateProvider.startSymbol('//');
+                $interpolateProvider.endSymbol('//');
+            });
+            appEstekhdam.controller("Estekhdam", function ($scope, $http) {
+                $http.defaults.headers.post['rahsoon-csrftoken'] = $.cookie('rahsoon-CSRF-TOKEN');
+                $scope.sata = {};
+
+
+                $scope.PostIt = function () {
+                    $http.post("/dms/post-sata/", $scope.sata).success(function (data) {
+                        $scope.sata = {};
+                        smartAlert_OK('ثبت شد', 'با تشکر از شما - کد ملی و شماره شناسایی ۱۳ رقمی مد نظر شما بدرستی ثبت شد.');
+                        return;
+                    }).error(function (data) {
+                        smartAlert_Error('خطا', "کد ملی شما در سامانه یافت نشد - لطفا کد ملی را تصحیح نموده و یا در صورت عدم ثبت نام در سامانه ثبت نام نمایید");
+                        return;
+
+                    })
+                }
+            });
+
+
+        </script>
+
+    {% endaddtoblock %}
+    {% addtoblock "js_file" %}
+
+    {% endaddtoblock %}
+
+    {% addtoblock "css_file" %}
+
+    {% endaddtoblock %}
+
+    {% addtoblock "css_script" %}
+    {% endaddtoblock %}
+
+{% endblock %}
+
+

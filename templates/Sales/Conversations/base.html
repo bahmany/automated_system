@@ -1,0 +1,56 @@
+<div ng-controller="SalesConversationCtrl" style="width: 100%">
+    <div layout-padding>
+
+        <a ui-sref="SalesConversations">مذاکرات و جستجوها</a> |
+        <a ui-sref="SalesProfile">پروفایل مشتریان</a>
+
+    </div>
+    <div layout="row" style="width: 100%">
+        <div flex="">
+            <div class="shadower">
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="تطابق مشتری">
+                        <md-content class="md-padding">
+                            <div>
+                                {% include "Sales/Conversations/tataabogh.html" %}
+
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="جستجو">
+                        <md-content class="md-padding">
+                            <div>
+                            </div>
+
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="مذاکرات">
+                        <md-content class="md-padding">
+
+                        </md-content>
+                    </md-tab>
+
+                </md-tabs>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    {#    <md-toolbar class="md-hue-1">#}
+    {#        <div class="md-toolbar-tools">#}
+    {#            مذاکرات با مشتری#}
+    {#            <span flex></span>#}
+    {##}
+    {#            <md-button class="md-fab md-mini" ng-click="addNew($event)">#}
+    {#                <md-icon md-font-icon="fa fa-plus"></md-icon>#}
+    {##}
+    {#                <md-tooltip>#}
+    {#                    مذاکره جدید#}
+    {#                </md-tooltip>#}
+    {#            </md-button>#}
+    {#        </div>#}
+    {#    </md-toolbar>#}
+
+</div>

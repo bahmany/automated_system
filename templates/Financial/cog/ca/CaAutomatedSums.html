@@ -1,0 +1,195 @@
+<div ng-controller="CaAutomatedSumsCtrl">
+    <div layout="row">
+
+        <span flex></span>
+
+        <md-button class="md-raised md-primary" ng-click="getCalcFromSG($event)" loading="در حال دریافت ..."
+                   notloading="دریافت گزارش سهمبری از همکاران سیستم"
+                   disableonrequest></md-button>
+
+
+    </div>
+    <md-divider></md-divider>
+
+
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="مواد مستقیم">
+            <md-content class="md-padding">
+                <div class="shadower">
+                    <h5>مواد مستقیم</h5>
+
+                    <div style="overflow: scroll;height: 350px;">
+                        <table class="table table-bordered table-striped" style="min-width: 19500px; font-size: 12px;">
+                            <thead>
+                            <tr>
+
+                                <th>
+                                    معیین تفضیل
+                                </th>
+                                <th ng-repeat="item in tashimAvalieh.tableInfo.DLs">
+                                    //item.AccNum// <br>
+                                    //item.Title//
+                                </th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="item in tashimAvalieh.DasmozdMostaghim">
+                                <td>
+                                    //item.moeen_tafzil//
+                                </td>
+                                <td ng-repeat="col in tashimAvalieh.tableInfo.DLs">
+                                    //item[col.AccNum]//
+                                </td>
+                            </tr>
+
+                            <tr style="background-color: steelblue; color: white; font-weight: bold">
+                                <td>
+                                    جمع
+                                </td>
+                                <td ng-repeat="col in tashimAvalieh.tableInfo.DLs">
+                                    //tashimAvalieh.sum.DasmozdMostaghim[col.AccNum]//
+                                </td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+            </md-content>
+        </md-tab>
+        <md-tab label="دستمزد مستقیم">
+            <md-content class="md-padding">
+                <div class="shadower">
+                    <h5>دستمزد مستقیم</h5>
+
+                    <div style="overflow: scroll;height: 350px;">
+                        <table class="table table-bordered table-striped" style="min-width: 19500px; font-size: 12px;">
+                            <thead>
+                            <tr>
+
+                                <th>
+                                    معیین تفضیل
+                                </th>
+                                <th ng-repeat="item in tashimAvalieh.tableInfo.DLs">
+                                    //item.AccNum// <br>
+                                    //item.Title//
+                                </th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="item in tashimAvalieh.MavadeMostaghim">
+                                <td>
+                                    //item.moeen_tafzil//
+                                </td>
+                                <td ng-repeat="col in tashimAvalieh.tableInfo.DLs">
+                                    //item[col.AccNum]//
+                                </td>
+                            </tr>
+                            <tr style="background-color: steelblue; color: white; font-weight: bold">
+                                <td>
+                                    جمع
+                                </td>
+                                <td ng-repeat="col in tashimAvalieh.tableInfo.DLs">
+                                    //tashimAvalieh.sum.MavadeMostaghim[col.AccNum]//
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </md-content>
+        </md-tab>
+        <md-tab label="سربار">
+            <md-content class="md-padding">
+                <div class="shadower">
+                    <h5>سربار</h5>
+
+                    <div style="overflow: scroll; max-height: 350px;">
+                        <table class="table table-bordered table-striped" style="min-width: 19500px; font-size: 12px;">
+                            <thead>
+                            <tr>
+
+                                <th>
+                                    معیین تفضیل
+                                </th>
+                                <th ng-repeat="item in tashimAvalieh.tableInfo.DLs">
+                                    //item.AccNum// <br>
+                                    //item.Title//
+                                </th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="item in tashimAvalieh.Sarbar">
+                                <td>
+                                    //item.moeen_tafzil//
+                                </td>
+                                <td ng-repeat="col in tashimAvalieh.tableInfo.DLs">
+                                    //item[col.AccNum]//
+                                </td>
+                            </tr>
+
+                            <tr style="background-color: steelblue; color: white; font-weight: bold">
+                                <td>
+                                    جمع
+                                </td>
+                                <td ng-repeat="col in tashimAvalieh.tableInfo.DLs">
+                                    //tashimAvalieh.sum.Sarbar[col.AccNum]//
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+            </md-content>
+        </md-tab>
+    </md-tabs>
+
+
+    {#    <md-toolbar>#}
+    {#        <div class="md-toolbar-tools">#}
+    {#            <span>#}
+    {#                توضیحات#}
+    {#            </span>#}
+    {##}
+    {##}
+    {#        </div>#}
+    {#    </md-toolbar>#}
+    {#    <div style="font-size: 12px; color: darkgray">#}
+    {#        <div>#}
+    {#            در اینجا جدول تسهیم از همکاران سیستم فراخوانی می شود و سپس#}
+    {#            دستمزد ، سربار و مواد محاسبه می گردد. جدول محاسبه شده در سال مد نظر ذخیره میگردد و کمک حال#}
+    {#            جدول های بعدی می شود#}
+    {#        </div>#}
+    {#        <ul>#}
+    {#            برای کار با این قسمت می بایست قسمت های زیر تکمیل شده باشد :#}
+    {#            <li>در منوی تنظیمات :#}
+    {#                <ul>#}
+    {#                    <li>تکمیل مواد مستقیم</li>#}
+    {#                    <li>دستمزد مستقیم</li>#}
+    {#                    <li>سربار</li>#}
+    {#                    <li>واحدهای تولیدی</li>#}
+    {#                    <li>واحدهای مستقیم تولیدی#}
+    {#                    </li>#}
+    {#                </ul>#}
+    {#            </li>#}
+    {#            <li>#}
+    {#                قمست های ذکر شده در بالا می بایست بصورت کد مرکزهزینه ۶ رقمی از همکاران سیستم دریافت شده باشد#}
+    {#            </li>#}
+    {##}
+    {##}
+    {#        </ul>#}
+    {#    </div>#}
+
+
+</div>

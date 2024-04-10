@@ -1,0 +1,157 @@
+<div ng-controller="sample_page_for_ceo_ctrl">
+    <md-toolbar class="md-menu-toolbar" style="background-color: #d2d2d2;">
+        <div layout="row">
+            <h2 class="md-toolbar-tools">
+                گزارشات اصلی
+
+                <a ng-click="convert_last()">تبدیل</a>
+
+            </h2>
+
+
+        </div>
+    </md-toolbar>
+    <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left" md-component-id="left"
+                    md-disable-backdrop="" md-whiteframe="4">
+
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+            </md-toolbar>
+
+            <md-content layout-margin="">
+                <p>
+                    This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
+                </p>
+                <md-button ng-click="toggleLeft()" class="md-accent">
+                    Close this Sidenav
+                </md-button>
+            </md-content>
+
+        </md-sidenav>
+    </section>
+
+    <div class="shadower">
+
+        <div layout="row">
+
+            <div style="width: 200px;">
+
+
+                <table class="table table-striped table-bordered mini" style="width: 100%">
+
+                    <tbody ng-repeat="amar in amare_forooshe_koli">
+                    <tr>
+                        <th colspan="3" style="border-bottom:2px solid gray">
+                            فاکتورهای صادره
+                            // amar.title //
+                            <br>
+                            <span style="padding: 3px; font-weight: normal; color: grey">
+                                آخرین فاکتور صادره :
+                                //amar.lastFactorDate | jalaliDate:'jYYYY/jMM/jDD'//
+                            </span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>موضوع</th>
+                        <th>میلیون ریال</th>
+                        <th>تعداد</th>
+                    </tr>
+                    <tr ng-repeat="dt in amar['dates']">
+                        <td>//dt.timeof//</td>
+                        <td>//dt.sum_InvoiceItemTotalPrice|number//</td>
+                        <td>//dt.sum_InvoiceItemQuantity|number//</td>
+                    </tr>
+                    </tbody>
+
+
+                </table>
+            </div>
+            <div flex class="shadower">
+                <div layout="column">
+                    <div class="shadower" style="border: 1px solid lightgrey; border-radius: 6px; ">
+                        <canvas id="chart_foroosh_ghal" style="height:300px; width:100%"></canvas>
+                        <div ng-show="previous_chart !== null">
+                            <a ng-click="previous_chart()" class="btn-maker">بازگشت</a>
+                        </div>
+                        <div style="font-size: 13px; text-align: center;">
+                            بررسی
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div layout-padding="">
+                    <div class="shadower  md-block"
+                         style="border: 1px solid lightgrey; border-radius: 6px; width: 100%;">
+                        <canvas id="chart_foroosh_ghal_daily" style="height:300px; width:100%"></canvas>
+                        <div style="font-size: 13px; text-align: center;">
+                            بررسی
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div layout-padding="">
+                        <div layout="row">
+                            <div flex="25" style="border: 1px solid lightgrey;" layout-padding="">
+                                <h5 style="text-align: center">تامین کل در امسال</h5>
+                                <p style="text-align: center">
+                                    <span style="font-size: 25px; font-weight: bold">255</span>
+                                    <span style="font-size: 11px; color: gray">تن</span>
+                                </p>
+
+                                <canvas id="gauge_tamine_emsaal" style="height:150px;"></canvas>
+
+
+                            </div>
+                            <div flex></div>
+                            <div flex="25" style="border: 1px solid lightgrey;" layout-padding="">
+                                <h5 style="text-align: center">تامین خارجی این ماه</h5>
+                                <p style="text-align: center">
+                                    <span style="font-size: 25px; font-weight: bold">255</span>
+                                    <span style="font-size: 11px; color: gray">تن</span>
+                                </p>
+                                <canvas id="gauge_tamine_khreji_een_mah" style="height:150px;"></canvas>
+
+                            </div>
+                            <div flex></div>
+                            <div flex="25" style="border: 1px solid lightgrey;" layout-padding="">
+                                <h5 style="text-align: center">تامین داخلی این ماه</h5>
+                                <p style="text-align: center">
+                                    <span style="font-size: 25px; font-weight: bold">255</span>
+                                    <span style="font-size: 11px; color: gray">تن</span>
+                                </p>
+                                <canvas id="gauge_tamine_dakheli_een_maah" style="height:150px;"></canvas>
+
+                            </div>
+                            <div flex></div>
+                            <div flex="25" style="border: 1px solid lightgrey;" layout-padding="">
+                                <h5 style="text-align: center">تامین نورد این ماه</h5>
+                                <p style="text-align: center">
+                                    <span style="font-size: 25px; font-weight: bold">255</span>
+                                    <span style="font-size: 11px; color: gray">تن</span>
+                                </p>
+                                <canvas id="gauge_tamine_navarde_een_mah" style="height:150px;"></canvas>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+</script>

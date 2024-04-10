@@ -1,0 +1,96 @@
+{% load translators %}
+
+
+<div ng-controller="AddJobCtrl">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            آگهی جدید
+
+        </div>
+    </md-toolbar>
+    <form name="frmPostJob">
+
+        <div class="shadower">
+            <md-input-container class="md-block">
+                <label>عنوان آگهی</label>
+                <input ng-model="hamkari.title" required>
+            </md-input-container>
+            <div layout-gt-sm="row">
+                <div flex-gt-md="45">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>{{ 'Start Date'|translate }}</label>
+                        <input ng-model="hamkari.startDate" required
+                               ui-mask="9999/99/99"
+                               style="direction: ltr!important;"
+                               model-view-value="true"
+                               id="txt_dateOfStart"
+                               ng-pattern="/13[0-9]{2}/[0-9]{2}/[0-9]{2}$/">
+
+                        <div class="hint"
+                             ng-if="showHints">13##/##/##
+                        </div>
+                        <div ng-messages="hamkari.startdate.$error"
+                             ng-if="!showHints"
+                        >
+                            <div ng-message="pattern">
+                                <p dir="ltr" style="direction: ltr!important;">13##/##/##</p>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <span flex-gt-md="10">
+            </span>
+                <div flex-gt-md="45">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>{{ 'End Date'|translate }}</label>
+                        <input ng-model="hamkari.endDate" required
+                               ui-mask="9999/99/99"
+                               style="direction: ltr!important;"
+                               model-view-value="true"
+                               id="txt_dateOfEnd"
+                               ng-pattern="/13[0-9]{2}/[0-9]{2}/[0-9]{2}$/">
+
+                        <div class="hint"
+                             ng-if="showHints">13##/##/##
+                        </div>
+                        <div ng-messages="hamkari.enddate.$error" ng-if="!showHints">
+                            <div ng-message="pattern">
+                                <p dir="ltr" style="direction: ltr!important;">13##/##/##</p>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div>
+            <textarea style="width: 100%"
+                      ckeditor="editorOptions"
+                      ng-model="hamkari.exp">
+            </textarea>
+
+            </div>
+
+
+            <br>
+            <div>
+                <md-toolbar class="md-hue-3">
+                    <div class="md-toolbar-tools">
+                        <span flex></span>
+                        <md-button aria-label="removejob" style="display:inline-block;" class="md-raised"
+                                   ng-click="Cancel()">
+                            {{ 'Cancel'|translate }}
+                        </md-button>
+                        <md-button ng-disabled="frmPostJob.$invalid" aria-label="postJob" style="display:inline-block;"
+                                   class="md-raised md-primary"
+                                   ng-click="Post()">ثبت
+                        </md-button>
+
+                    </div>
+
+                </md-toolbar>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+

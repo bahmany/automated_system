@@ -1,0 +1,16 @@
+{% load translators %}
+<div ng-controller="profileCtrl" >
+    <div layout="row"  style="margin: 0 auto; max-height: inherit; background-color: white; padding: 10px;"  flex-gt-md="70" flex-gt-lg="60" flex-gt-sm="80" flex-gt-xs="95">
+{#        <div>#}
+{#            {% include "Virtual/Profile/toolbar.html" %}#}
+{#        </div>#}
+        <div layout="row">
+            {% include "Virtual/Profile/sidebar.html" %}
+            <div layout="column" tabIndex="-1" role="main" flex style="background-color: #d3d3d3">
+{#                <div ui-view layout-padding flex class="stepscontainer"></div>#}
+                <div   style="background-color: white; padding: 10px;"  ui-view flex ></div>
+            </div>
+        </div>
+    </div>
+
+</div>

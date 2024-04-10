@@ -1,0 +1,204 @@
+<div ng-controller="ExportCtrl">
+
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {{"Add new export letter"|translate}}
+                <div class="panel-control pull-right"><a class="panelButton"><i class="fa fa-refresh"></i></a> <a
+                        class="panelButton"><i class="fa fa-minus"></i></a> <a class="panelButton"><i
+                        class="fa fa-remove"></i></a></div>
+            </h3>
+        </div>
+        <div class="panel-body">
+
+            <div>{{"Select Company Recievers"|translate}}</div>
+            <div class="row well well-sm">
+                <div class="col-md-6">
+                    {% load tables_tags %}
+                    {% tablePaginationSimple main_model_name="Companies" table_search_watch_model_name="CompnaiesTableSearch" table_go_to_page_func_name="companiesTableGoToPage" table_handle_pagination_func_name="HandleCompaniesTablePagination" table_info_model_name="TableCompanies" %}
+                    <br>
+                    <table class="comp-export-select-tbl">
+                        <tbody>
+                        <tr ng-repeat="item in Companies.results">
+                            <td>//item.group.name//</td>
+                            <td>//item.name//</td>
+                            <td>
+                                <div class="btn-group btn-group-xs">
+                                    <a class="btn btn-default fa fa-plus"
+                                       ng-click="SelectCompany(item)"></a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table class="comp-export-select-tbl selected">
+                        <tbody>
+                        <tr>
+                            <td>Company Name</td>
+                            <td>Reciever Name</td>
+                            <td></td>
+                        </tr>
+                        <tr ng-repeat="item in SelectedCompnaies track by $index">
+                            <td><input type="text" ng-model="item.name"
+                                       style="width: 110px;"/></td>
+                            <td><input type="text" ng-model="item.recieverName"
+                                       style="width: 100px;"/></td>
+                            <td><a class="btn btn-default btn-xs fa fa-minus"
+                                   ng-click="RemoveCompany($index)"></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div>{{"Select hamesh users"|translate}}</div>
+                <div class="row well well-sm">
+                    <div class="col-md-6">
+                        {% load tables_tags %}
+                        {% tablePaginationSimple main_model_name="Members" table_search_watch_model_name="MembersTableSearch" table_go_to_page_func_name="membersTableGoToPage" table_handle_pagination_func_name="HandleMembersTablePagination" table_info_model_name="TableMembers" %}
+                        <table class="comp-export-select-tbl">
+                            <tbody>
+                            <tr ng-repeat="item in Members.results">
+                                <td>//item.profileName//
+                                    <small>(//item.chartName//)</small>
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-xs">
+                                        <a class="btn btn-default fa fa-plus"
+                                           ng-click="SelectPerson(item)"></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="comp-export-select-tbl selected">
+                            <tbody>
+                            <tr>
+                                <td>Person Name</td>
+                                <td>Hamesh</td>
+                                <td></td>
+                            </tr>
+                            <tr ng-repeat="item in SelectedMemebrs track by $index">
+                                <td><input type="text" ng-model="item.profileName"
+                                           style="width: 110px;"/></td>
+                                <td><input type="text" ng-model="item.hamesh"
+                                           style="width: 100px;"/></td>
+                                <td><a class="btn btn-default btn-xs fa fa-minus"
+                                       ng-click="RemoveMember($index)"></a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ExportLetter_subject">{{ 'Subject'|translate}}</label>
+                        <input id="ExportLetter_subject" type="text" class="form-control"
+                               ng-model="ExportLetter.subject"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="txt_dateOfSent"> {{ 'Sent Date'|translate}} </label>
+                        <input type="text" class="control-expo" id="txt_dateOfSent"
+                               ng-model="ExportLetter.exp.dateOfSent"
+                               ui-mask="9999/99/99" dir="ltr"
+                               style="direction: ltr!important;"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ExportLetter_exp_timeOfSent"> {{ 'Sent Time'|translate}}</label>
+                        <input type="text" class="control-expo" id="ExportLetter_exp_timeOfSent"
+                               ng-model="ExportLetter.exp.timeOfSent"
+                               ui-mask="99:99" dir="ltr"
+                               style="direction: ltr!important;"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ExportLetter_exp_attsCount">{{ 'Atts Count'|translate}}</label>
+                        <input type="text" class="control-expo" id="ExportLetter_exp_attsCount"
+                               ng-model="ExportLetter.exp.attsCount"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ExportLetter_exp_sentType">{{ 'Sent Type'|translate}}</label>
+                        <input type="text" class="control-expo" id="ExportLetter_exp_sentType"
+                               ng-model="ExportLetter.exp.sentType"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ExportLetter_exp_signText">{{ 'Sign Text'|translate}}</label>
+                        <textarea ng-model="ExportLetter.exp.signText" id="ExportLetter_exp_signText"
+                                  class="control-expo" cols="30"
+                                  rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ExportLetter_exp_footerText">{{ 'Footer Text'|translate}}</label>
+                        <textarea ng-model="ExportLetter.exp.footerText" id="ExportLetter_exp_footerText"
+                                  class="control-expo" cols="30"
+                                  rows="10"></textarea>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ExportLetter_exp_headerText">{{ 'Header Text'|translate}}</label>
+                        <textarea ng-model="ExportLetter.exp.headerText" id="ExportLetter_exp_headerText"
+                                  class="control-expo" cols="30"
+                                  rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {{ "Body"|translate}}
+            </div>
+            <div class="row">
+                <textarea ckeditor="editorOptions" ng-model="ExportLetter.body">
+
+                </textarea>
+            </div>
+            <div class="row">
+                {{"Select Attachments"|translate}}
+            </div>
+            <div class="row">
+                <div class="well well-sm clearfix">
+                    <div ng-repeat="item in UploadedFiles"
+                         class="pull-left well well-sm clearfix text-center final-atts"
+                         style="width: 100px; height: 155px; padding: 3px; margin: 3px; overflow: hidden; background-color: white;">
+                        {% include "share/filecloud/AttsThumb.html" %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% include "share/filecloud/FilesCloud.html" %}
+
+            </div>
+            <div class="row">
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default" ng-click="Save()">{{"Save"|translate}}</a>
+                    <a class="btn btn-default">{{"Preview"|translate}}</a>
+                    <a class="btn btn-default" ng-click="SaveAsDraft()">{{"Save as Draft"|translate}}</a>
+{#                    <a class="btn btn-default" ng-click="SaveAsTemplate()">{{"Save as Template"|translate}}</a>#}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

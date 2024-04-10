@@ -1,0 +1,41 @@
+{% load translators %}
+
+                <div class="code-editor this_task">
+                    <div>
+                        Python code container
+                    </div>
+
+                    <div class="well well-sm">
+                        <div>
+                            وقتی فرم ساخته می شود
+                            onFormCreate
+                        </div>
+
+                        <textarea ui-codemirror
+                                  ui-codemirror-opts="editorOptionsPython"
+                                  ng-model="form.oncreate">
+
+                    </textarea>
+                    </div>
+                    <div class="well well-sm">
+
+
+                        <div>
+
+                            وقتی فرم ارسال می شود
+                            onFormSend
+
+                        </div>
+
+                        <textarea ui-codemirror
+                                  ui-codemirror-opts="editorOptionsPython"
+                                  ng-model="form.onsend">
+
+                    </textarea>
+                    </div>
+                    <style>
+                        .this_task .CodeMirror pre {
+                            padding-left: 35px !important;
+                        }
+                    </style>
+                </div>

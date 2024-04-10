@@ -1,0 +1,45 @@
+<div ng-controller="SendSMSBaseCtrl">
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+            <div>
+                <h2 class="md-toolbar-tools">ارسال پیام کوتاه</h2>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <div class="shadower">
+        <div layout="row">
+            <div flex="45">
+                <md-input-container class="md-block">
+                    <label>شماره موبایل</label>
+                    <input type="text" style="direction: ltr; text-align: left" ng-model="sms.number">
+
+                </md-input-container>
+            </div>
+            <div flex="45">
+                <md-input-container class="md-block">
+                    <label>متن پیام</label>
+                    <textarea ng-model="sms.body">
+
+                    </textarea>
+
+                </md-input-container>
+            </div>
+
+        </div>
+        <div>
+            <md-button ng-click="send_sms()">
+                ارسال
+            </md-button>
+            <md-button ng-click="send_sms_async()"> 
+                send async
+            </md-button>
+        </div>
+    </div>
+</div>

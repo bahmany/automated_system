@@ -1,0 +1,50 @@
+<div layout-gt-xs="row" ng-controller="QCBaseController">
+    <div flex-gt-xs="30">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                کنترل کیفیت
+                <span flex></span>
+
+{#                <md-button ng-click="PdfParse()">QCBaseController</md-button>#}
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <md-list flex>
+                <md-list-item ng-click="null" ui-sref="QCSchedule">
+                    <div class="md-list-item-text" layout="row">
+                        <md-icon md-font-icon="fa fa-users"></md-icon>
+
+                        <span>
+                      برنامه های نظارت
+                        </span>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-click="null" ui-sref="QCFindingList">
+                    <div class="md-list-item-text" layout="row">
+                        <md-icon md-font-icon="fa fa-users"></md-icon>
+
+                        <span>
+                            یافته ها
+                        </span>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-click="null" ui-sref="QCManual">
+                    <div class="md-list-item-text" layout="row">
+                        <md-icon md-font-icon="fa fa-users"></md-icon>
+
+                        <span>
+                            منابع و استانداردها
+                        </span>
+                    </div>
+                </md-list-item>
+
+            </md-list>
+        </div>
+
+    </div>
+
+    <div flex layout="row" layout-align="center start">
+        <ui-view flex-gt-sm="95"></ui-view>
+    </div>
+
+</div>

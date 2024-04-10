@@ -1,0 +1,132 @@
+<h4>زمینه فعالیت فروشندگان</h4>
+<hr>
+<div layout="column">
+
+    <form name="frm19_form">
+
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام کالا</label>
+                    <input type="text" ng-model="provider.frm19.nameKala" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">زمینه فعالیت</label>
+                    <input type="text" ng-model="provider.frm19.zaminehFaaliat">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">برند تجاری</label>
+                    <input type="text" ng-model="provider.frm19.berandTejari">
+                </md-input-container>
+            </div>
+
+
+        </div>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">واحد</label>
+                    <input type="text" ng-model="provider.frm19.vehed">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">ظرفیت عرضه سالانه</label>
+                    <input type="text" ng-model="provider.frm19.zarfiateArazehSalaneh">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">مدت گارانتی بر حسب ماه</label>
+                    <input type="number" ng-model="provider.frm19.modateGaranti">
+                </md-input-container>
+            </div>
+
+
+        </div>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">مدت خدمات پس از فروش ماه</label>
+                    <input type="number" ng-model="provider.frm19.modatKhadamatePasAzForoosh">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">قابلیت ارائه مشاوره فنی</label>
+                    <input type="text" ng-model="provider.frm19.ghabeliateEraeeMoshavereh">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">محل تحویل کالا</label>
+                    <input type="text" ng-model="provider.frm19.mahaleTahvil">
+                </md-input-container>
+            </div>
+        </div>
+
+        <div layout-gt-xs="row">
+            <span flex></span>
+            <md-button ng-click="addTofrm('19')" ng-disabled="frm19_form.$invalid" class="md-raised">
+                اضافه به لیست
+            </md-button>
+        </div>
+    </form>
+    <div>
+        <table class="sp-table">
+            <thead>
+            <tr>
+                <th style="text-align: center">نام کالا</th>
+                <th style="text-align: center">زمینه فعالیت</th>
+                <th style="text-align: center">برند تجاری</th>
+                <th style="text-align: center">واحد</th>
+                <th style="text-align: center">ظرفیت</th>
+                <th style="text-align: center">مدت گارانتی</th>
+                <th style="text-align: center">خدمات</th>
+                <th style="text-align: center">مشاوره</th>
+                <th style="text-align: center">محل تحویل</th>
+                <th style="text-align: center">عملیات</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="it in provider.frm19_list">
+                <td style="text-align: center">//it.nameKala//</td>
+                <td style="text-align: center">//it.zaminehFaaliat//</td>
+                <td style="text-align: center">//it.berandTejari//</td>
+                <td style="text-align: center">//it.vehed//</td>
+                <td style="text-align: center">//it.zarfiateArazehSalaneh//</td>
+                <td style="text-align: center">//it.modateGaranti//</td>
+                <td style="text-align: center">//it.modatKhadamatePasAzForoosh//</td>
+                <td style="text-align: center">//it.ghabeliateEraeeMoshavereh//</td>
+                <td style="text-align: center">//it.mahaleTahvil//</td>
+                <td style="text-align: center">
+                    <md-button class="md-primary md-default" ng-click="removefrm('19',$index)">حذف</md-button>
+                </td>
+            </tr>
+            <tr ng-if="provider.frm19_list.length == 0">
+                <td colspan="10">
+                    زمینه فعالیتی وارد نشده است
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <md-input-container class="md-block">
+            <label for="">آیا امکان ارسال نمونه تستی وجود دارد ؟</label>
+            <input type="text">
+        </md-input-container>
+    </div>
+
+    <div>
+
+    </div>
+</div>

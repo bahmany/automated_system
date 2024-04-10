@@ -1,0 +1,179 @@
+{% load translators %}
+{% load staticfiles %}
+
+{% load i18n %}
+
+
+<h1 class="md-title">سوابق شغلی</h1>
+<div layout-gt-sm="column" ng-controller="step7Ctrl">
+    <div class="frame firstreg">
+        <div flex-gt-sm layout-padding>
+            <div class="toolbar">
+                سوابق شغلی خود را وارد کنید
+            </div>
+            <form name="JobForm">
+                <md-content layout-padding>
+
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>سمت</label>
+                            <md-select class="input-sm" ng-model="JobItem.Name"
+                                       required>
+                                <md-option value="بازرس">بازرس</md-option>
+                                <md-option value="خدمات">خدمات</md-option>
+                                <md-option value="کارشناس">کارشناس</md-option>
+                                <md-option value="سرپرست">سرپرست</md-option>
+                                <md-option value="سرشیفت">سرشیفت</md-option>
+                                <md-option value="رییس">رییس</md-option>
+                                <md-option value="مسئول">مسئول</md-option>
+                                <md-option value="مدیر">مدیر</md-option>
+                                <md-option value="معاون">معاون</md-option>
+                                <md-option value="متصدی">متصدی</md-option>
+                                <md-option value="مدیرعامل">مدیرعامل</md-option>
+                                <md-option value="نگهبان">نگهبان</md-option>
+                                <md-option value="سایر">سایر</md-option>
+                            </md-select>
+
+                            <div class="hint">
+                                انتخاب یکی از سمت ها ضروریست
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>عنوان شغلی</label>
+                            <input type="text" ng-model="JobItem.NameOnvan" required="">
+
+                            <div class="hint">
+                                بعنوان مثال متصدی انبارها
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>شرکت</label>
+                            <input type="text" ng-model="JobItem.Company" required="">
+                        </md-input-container>
+
+
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>سال شروع</label>
+                            <input type="number" ng-model="JobItem.StartYear">
+
+                            <div class="hint">مثال : 1384</div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>سال پایان</label>
+
+                            <input type="number" ng-model="JobItem.EndYear">
+
+                            <div class="hint">
+                                مثال : 1386
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> حقوق ماهانه</label>
+
+                            <input type="text" ng-model="JobItem.Salary">
+
+                        </md-input-container>
+
+                    </div>
+
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> علت ترک </label>
+
+                            <input type="text" ng-model="JobItem.CauseOfLeftingJob">
+
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> توضیحات بیمه </label>
+
+                            <input type="text" ng-model="JobItem.InsuranceNoandExplanation">
+
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> سایر توضیحات </label>
+
+                            <input type="text" ng-model="JobItem.OtherExplanations">
+
+                        </md-input-container>
+
+                    </div>
+                    <div>
+                        <div layout-gt-sm="row" layout-align="end center">
+                            <md-button class="md-raised md-primary"
+                                       ng-disabled="JobForm.$invalid"
+                                       ng-click="AddToList(JobItem)">
+                                اضافه به لیست سوابق
+                            </md-button>
+                        </div>
+                    </div>
+                    <section>
+                        <table class="table-responsive table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <td>عنوان شغلی</td>
+                                <td>شرکت</td>
+                                <td>حقوق پرداختی</td>
+                                <td>سال های فعالیت</td>
+                                <td>توضیحات</td>
+                                <td></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in Job.items track by $index">
+                                <td>// item.Name //</td>
+                                <td>// item.Company //</td>
+                                <td>// item.Salary //</td>
+                                <td>// item.StartYear // - // item.EndYear //</td>
+                                <td>// item.CauseOfLeftingJob // <br> // item.InsuranceNoandExplanation // <br> //
+                                    item.OtherExplanations //
+                                </td>
+                                <td style="text-align: left">
+                                    <md-button class="md-raised" ng-click="itemEdit(item, $index)">ویرایش</md-button>
+                                    <md-button class="md-raised" ng-click="Job.items.splice($index,1)">حذف
+                                    </md-button>
+                                </td>
+                            </tr>
+                            <tr>
+
+
+                                <td colspan="6" style="text-align: center" ng-show="!Job.items.length">
+                                    هیچ سابقه ای وارد نشده است
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </section>
+
+                </md-content>
+            </form>
+            <md-toolbar>
+                <div class="md-toolbar-tools" layout-align="end center">
+                    <md-button class="md-raised" ng-click="Post('7', Job)">ذخیره در سوابق و مرحله ی بعد</md-button>
+                </div>
+            </md-toolbar>
+        </div>
+    </div>
+</div>
+
+

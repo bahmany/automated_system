@@ -1,0 +1,55 @@
+{% load translators %}
+<div id="search_with_pagination">
+    <div class="input-group input-group-sm">
+        <a class="input-group-addon input-group-addon-rtl-right btn-maker"
+                ng-if="!({{ main_model_name }}.current_page == 1)"
+                ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.first)">
+            <i class="fa fa-step-forward"></i>
+        </a>
+
+        <a class="input-group-addon input-group-addon-rtl-right btn-maker"
+                ng-if="({{ main_model_name }}.previous)"
+                ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.previous)">
+            <i class="fa fa-arrow-right"></i></a>
+
+        <a class="input-group-addon input-group-addon-rtl-right btn-maker" ng-class="{'selectedpaging' : {{ main_model_name }}.page_myrange[0].index == {{ main_model_name }}.current_page}" ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.page_myrange[0].addr)" ng-if="{{ main_model_name }}.page_myrange.length > 0">//{{ main_model_name }}.page_myrange[0].index//</a>
+        <a class="input-group-addon input-group-addon-rtl-right btn-maker" ng-class="{'selectedpaging' : {{ main_model_name }}.page_myrange[1].index == {{ main_model_name }}.current_page}" ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.page_myrange[1].addr)" ng-if="{{ main_model_name }}.page_myrange.length > 1">//{{ main_model_name }}.page_myrange[1].index//</a>
+        <a class="input-group-addon input-group-addon-rtl-right btn-maker" ng-class="{'selectedpaging' : {{ main_model_name }}.page_myrange[2].index == {{ main_model_name }}.current_page}" ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.page_myrange[2].addr)" ng-if="{{ main_model_name }}.page_myrange.length > 2">//{{ main_model_name }}.page_myrange[2].index//</a>
+        <a class="input-group-addon input-group-addon-rtl-right btn-maker" ng-class="{'selectedpaging' : {{ main_model_name }}.page_myrange[3].index == {{ main_model_name }}.current_page}" ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.page_myrange[3].addr)" ng-if="{{ main_model_name }}.page_myrange.length > 3">//{{ main_model_name }}.page_myrange[3].index//</a>
+        <a class="input-group-addon input-group-addon-rtl-right btn-maker" ng-class="{'selectedpaging' : {{ main_model_name }}.page_myrange[4].index == {{ main_model_name }}.current_page}" ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.page_myrange[4].addr)" ng-if="{{ main_model_name }}.page_myrange.length > 4">//{{ main_model_name }}.page_myrange[4].index//</a>
+        <a class="input-group-addon input-group-addon-rtl-right btn-maker" ng-class="{'selectedpaging' : {{ main_model_name }}.page_myrange[5].index == {{ main_model_name }}.current_page}" ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.page_myrange[5].addr)" ng-if="{{ main_model_name }}.page_myrange.length > 5">//{{ main_model_name }}.page_myrange[5].index//</a>
+
+        <a      class="input-group-addon input-group-addon-rtl-right btn-maker"
+                ng-if="({{ main_model_name }}.next)"
+                ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.next)"
+                >
+
+            <i class="fa fa-arrow-left"></i>
+        </a>
+
+        <a
+                class="input-group-addon input-group-addon-rtl-right btn-maker"
+                ng-if="!({{ main_model_name }}.current_page == {{ main_model_name }}.num_pages)"
+                ng-click="{{ table_go_to_page_func_name }}({{ main_model_name }}.last)">
+            <i class="fa fa-step-backward"></i>
+        </a>
+
+
+
+                        <span class="input-group-addon input-group-addon-rtl-right" style="background-color:white; border:none;">
+                                    //{{ main_model_name }}.count//
+                                    </span>
+                                <span class="input-group-addon input-group-addon-rtl-right">
+                                    <i class="fa fa-search"></i></span>
+        <input type="text" placeholder="جستجو" class="form-control" ng-model="{{ table_search_watch_model_name }}"
+               ng-model-options="{debounce: 500}"/>
+
+        <a class="input-group-addon input-group-addon-rtl-right btn-maker"
+           style="
+                                       border-right: none!important;
+                                       border-left: 1px solid rgb(204, 204, 204)!important;"
+           ng-click="{{ table_handle_pagination_func_name }}()">
+            <i class="fa fa-chevron-up"></i> //{{ table_info_model_name }}.pagination.size//
+        </a>
+    </div>
+</div>

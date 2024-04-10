@@ -1,0 +1,87 @@
+<div ng-controller="TolidMavadAzBarnameriziCtrl">
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+            <div>
+                <h2 class="md-toolbar-tools">اقدام به تولید</h2>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <div class="spacer" layout-gt-xs="row" layout-wrap="">
+        <md-card ng-repeat="item in coils track by $index"
+                 layout-margin
+                 flex-gt-xs=""
+                 flex-gt-sm="50"
+                 flex-gt-md="33"
+                 class="task-item"
+                 flex-gt-lg="25">
+
+
+            <md-card-content>
+                <div style="padding: 5px;    margin: 5px;    border: 1px solid lightblue;">
+                    برنامه برای
+                    //item.forDate | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+                </div>
+                <div ng-repeat="coil in item.items" layout="row"
+                     ng-class-odd="'odd'" ng-class-even="'even'">
+                    <div>
+                        <div layout="row">
+
+                            <div style="background-color: black; color: white; padding: 2px; margin: 2px;">
+                                //coil.linkBarcode.desc.location.locationTitle//
+                            </div>
+                            <div flex="">
+
+                            </div>
+
+                            <div>
+                                //coil.mizaneMasraf | number// kg
+                            </div>
+
+                        </div>
+                        <div style="padding: 3px; margin: 3px;">
+                            //coil.linkBarcode.barcode//
+                        </div>
+                    </div>
+                    <div flex>
+
+                    </div>
+                    <div>
+                        <md-button ng-show="!(coil.desc.done)" class="md-raised md-primary"
+                                   ng-click="getToLine(item, coil, $event, $index)">
+                            منتقل شد
+                        </md-button>
+                        <md-button ng-show="coil.desc.done">
+                            <md-icon md-font-icon="fa fa-check" style="color: darkgreen"></md-icon>
+                            <br>
+                            //coil.desc.done_date | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+                        </md-button>
+                    </div>
+                </div>
+
+                <a ng-repeat="file in item.desc.files" class="ellipsis-oneline" href="/api/v1/file/upload?q=//itm.dir//">
+
+
+                                //file.filename//
+
+
+
+
+
+
+                </a>
+
+            </md-card-content>
+
+            <md-card-actions layout="row" layout-align="end center">
+
+            </md-card-actions>
+
+
+        </md-card>
+    </div>
+
+</div>

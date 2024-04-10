@@ -1,0 +1,145 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="generator" content="Jekyll v3.8.0">
+
+    <link rel="shortcut icon" href={% static "/Financial/assets/global/images/favicon.png" %} type="image/png">
+    <title>COG ******</title>
+
+
+{#    <link rel="stylesheet" type="text/css"#}
+{#          href={% static "Financial/coreui/my-project/dist/vendors/@coreui/icons/css/coreui-icons.min.css" %}>#}
+    <link rel="stylesheet" type="text/css"
+          href={% static "Financial/bower_components/components-font-awesome/css/all.min.css" %}>
+    <link href={% static "Financial/assets/styles/my.css" %} rel="stylesheet">
+
+
+
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@core_ui">
+    <meta name="twitter:creator" content="@core_ui">
+    <meta name="twitter:title" content="Browsers and devices">
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+
+
+
+<link rel="stylesheet" type="text/css" href={% static "Financial/bower_components/datatables/datatables.min.css" %}>
+
+<link rel="stylesheet" href="{% static "styles/fonts.css" %}?v=0.01">
+
+
+</head>
+
+
+<body ng-app="AniTheme" ng-cloak="" class="app header-fixed sidebar-md-show sidebar-fixed" dir="rtl">
+
+<header class="app-header navbar" ng-controller="HeaderCtrl">
+    
+
+    <md-button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="md-button" data-toggle="sidebar-show">
+        <span class="navbar-toggler-icon"></span>
+    </md-button>
+
+    <ul class="nav navbar-nav mr-auto d-md-down-none">
+
+        <li class="nav-item px-3">
+            <a class="btn btn-warning" ng-click="setCurrentYear()" dir="ltr"> //saleMali[1]// (change)</a>
+        </li>
+
+    </ul>
+
+
+</header>
+
+
+
+<div class="app-body">
+    {% include "Financial/others/sidebar.html" %}
+    <main class="main">
+        <nav aria-label="breadcrumb" ng-controller="BreadcrumbCtrl">
+            <ol class="breadcrumb">
+                <a ui-sref="cog_report">گزارش</a>
+
+            </ol>
+            <div ui-view>
+
+            </div>
+
+
+        </nav>
+
+    </main>
+</div>
+
+
+
+
+
+</body>
+
+
+<script src={% static "Financial/bower_components/jquery/dist/jquery.min.js" %}></script>
+<script src={% static "Financial/coreui/my-project/dist/vendors/popper.js/js/popper.min.js" %}></script>
+<script src={% static "Financial/bower_components/bootstrap/dist/js/bootstrap.min.js" %}></script>
+{#<script src={% static "Financial/coreui/my-project/node_modules/@coreui/coreui/dist/js/coreui.min.js" %}></script>#}
+<script src={% static "Financial/bower_components/jquery.cookie/jquery.cookie.js" %}></script>
+<script src={% static "Financial/bower_components/angular/angular.min.js" %}></script>
+<script src={% static "Financial/bower_components/angular/angular-sanitize.min.js" %}></script>
+<script src={% static "Financial/bower_components/angular-animate/angular-animate.min.js" %}></script>
+{#<script src={% static "Financial/bower_components/angular-aria/angular-aria.min.js" %}></script>#}
+<script src={% static "Financial/bower_components/angular-route/angular-ui-router.min.js" %}></script>
+
+<script src={% static "Financial/bower_components/angular-messages/angular-messages.min.js" %}></script>
+<script src={% static "Financial/bower_components/angular-route/angular-route.min.js" %}></script>
+
+<script src={% static "Financial/bower_components/angular/angular-translate.min.js" %}></script>
+<script src={% static "Financial/bower_components/angular/angular-breadcrumb.min.js" %}></script>
+<script src={% static "Financial/bower_components/angular/loading-bar.min.js" %}></script>
+
+<script src={% static "Financial/bower_components/angular-ui-router/release/angular-ui-router.min.js" %}></script>
+<script src={% static "Financial/bower_components/oclazyload/dist/ocLazyLoad.require.min.js" %}></script>
+<script src={% static "Financial/bower_components/oclazyload/dist/ocLazyLoad.min.js" %}></script>
+<script src={% static "Financial/bower_components/moment/min/moment-with-locales.min.js" %}></script>
+<script src={% static "Financial/app.js" %}></script>
+<script src={% static "Financial/others/BreadcrumbCtrl.js" %}></script>
+<script src={% static "Financial/others/TopNavCtrl.js" %}></script>
+<script src={% static "Financial/others/SideBarCtrl.js" %}></script>
+<script src={% static "Financial/others/HeaderCtrl.js" %}></script>
+
+
+<script src={% static "Financial/bower_components/datatables/datatables.js" %}></script>
+<script src={% static "Financial/my.js" %}></script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#icons-list .icon").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+<script type="text/javascript">require(["mojo/signup-forms/Loader"], function (L) {
+    L.start({"baseUrl": "mc.us12.list-manage.com", "uuid": "272317181a81e4571a8dc53e0", "lid": "7a9caf510c"})
+})</script>
+
+
+</html>

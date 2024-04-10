@@ -1,0 +1,130 @@
+{% include "Sales/Conversations/items/partial_products.html" %}
+<div class="profConv">
+    <div style="display: none;" id="divUploader">
+        {% load fileuploader_tags %}
+        {% FileUploader width='100%' %}
+        <div>
+            <md-button ng-click="saveFiles()">ثبت</md-button>
+            <md-button ng-click="cancelFiles()">انصراف</md-button>
+        </div>
+    </div>
+    <div id="divFiles">
+        <div layout="row" layout-wrap="">
+            <div ng-repeat="item in currentConv.Files.uploaded"
+                 class="well well-sm clearfix text-center"
+                 style="width: 100px; height: 125px; padding: 3px; margin: 3px; overflow: hidden">
+
+
+                <span class="content_right_head">//item.imgInf.name//</span>
+                <br>
+                <img ng-src="//item.imgLink//" style="max-width: 50px; max-height: 55px">
+                <br>
+                <small>
+                    // item.imgInf.size / 1024 | number:0//kb
+                </small>
+                <br>
+
+                <div class="btn-group btn-group-xs">
+
+                    <button class="btn btn-default btn-xs fa fa-times-circle-o"
+                            ng-click="RemoveFromUploaded($event, $index);$event.stopPropagation();">
+                    </button>
+
+                    <button class="btn btn-default btn-xs fa fa-arrow-circle-down"
+
+                            ng-click="Download(item);$event.stopPropagation();"></button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <md-button ng-click="showUploader()">آپلود فایل</md-button>
+        </div>
+    </div>
+
+</div>
+<md-divider></md-divider>
+
+<div id="addConv">
+    <div>
+        <h3>گفتگو</h3>
+    </div>
+    <form name="frmConv">
+        <div>
+                        <textarea ckeditor="publicEditorOptions"
+                                  required
+                                  ng-model="conv.comment">
+                            </textarea>
+        </div>
+        <div layout="row">
+            <span flex></span>
+            <md-button ng-disabled="frmConv.$invalid" class="md-primary md-raised"
+                       ng-click="postConv()">ثبت
+            </md-button>
+
+            <md-button ng-if="conv.id" ng-click="cancelConv()">انصراف</md-button>
+        </div>
+
+    </form>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <!-- BEGIN TIMELINE CONTENT -->
+        {#        <div class="timeline-btn-day"><i class="icon-custom-left"></i>#}
+        {#            <button type="button" class="btn btn-primary f-16" ng-click="addNewConv()"><strong>نظر جدید</strong>#}
+        {#            </button>#}
+        {#        </div>#}
+
+        <section id="timeline">
+            <div class="timeline-block" ng-repeat="item in Convs.results">
+                <div class="timeline-icon bg-primary">
+                    <img
+                            style="height: 61px;border-radius: 55px;"
+                            ng-src="// item.avatar //" alt="// item.positionName //" class="md-avatar"/>
+                </div>
+                <div class="timeline-content">
+                    <div>
+                        <h4>//item.positionName//
+                            <small>//item.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</small>
+                        </h4>
+                    </div>
+                    <p ng-bind-html="item.comment | to_trusted"></p>
+                    <div layout="row">
+
+                        <span flex></span>
+
+                        <md-button class="md-icon-button" ng-click="deleteConv($event, item)"
+                                   ng-if="item.isEditable">
+                            <md-icon md-font-icon="fa fa-trash-o"></md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button md-primary" ng-click="editConv(item)"
+                                   ng-if="item.isEditable">
+                            <md-icon md-font-icon="fa fa-pencil"></md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button md-primary" ng-click="replayConv($event, item)">
+                            <md-icon md-font-icon="fa fa-reply"></md-icon>
+                        </md-button>
+
+                    </div>
+                    <div ng-if="item.replays.length > 0" style="font-size: 11px;">
+                        <div>نظرات</div>
+                        <md-divider></md-divider>
+                        <div ng-repeat="replay in item.replays track by $index">
+                            <span>//replay.positionName//</span> <span>(//replay.dateOfPost | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//) : </span><span>//replay.comment//</span>
+
+                            <a ng-click="removeReplay(item, replay)">حذف</a>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </section>
+        <!-- END TIMELINE CONTENT -->
+    </div>
+</div>
+
+
+<md-divider></md-divider>

@@ -1,0 +1,41 @@
+<div style="width: 100%; margin: 0; padding: 0; color: white">
+
+    <canvas class="chartPlace" height="150"></canvas>
+    <br>
+    <div layout="row" layout-padding="" style="background-color: rgba(0, 0, 0, 0.29);">
+         ده ورودی آخر //current.name//
+<span flex></span>
+                    <a ui-sref="dashboard.statics({tmplID:current.tmpl})" style="direction: rtl; color: white"> بیشتر...</a>
+
+    </div>
+
+    <div layout-padding="">
+        آخرین مقدار
+        <div layout="row" style="padding: 0; margin: 0">
+            <div> //current.items[0].val | number//
+            </div>
+            <span flex=""></span>
+            <div> //current.items[0].dt//
+            </div>
+
+        </div>
+    </div>
+
+    <div layout-padding="">بالاترین
+        <div layout="row" style="padding: 0; margin: 0">
+            <div> //current.max | number//
+            </div>
+            <span flex=""></span>
+            <div> //current.maxTime//
+            </div>
+
+        </div>
+    </div>
+
+    <div layout-padding="">میانگین
+        <div style="padding: 0; margin: 0">//current.avg | number//</div>
+    </div>
+
+
+</div>
+

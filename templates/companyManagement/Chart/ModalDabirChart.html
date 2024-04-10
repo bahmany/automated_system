@@ -1,0 +1,70 @@
+{% load translators %}
+
+<div id="modal_access_dabir" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    دسترسی به //currentSelectedRAWchart.title//
+                </h4>
+            </div>
+            <div class="modal-body">
+
+                <h1 class="md-title">می توانید دسترسی های مورد نیاز را اعطا نمایید</h1>
+                <div>هر گونه تغییر همان لحظه ذخیره میشود - لذا در این قسمت دکمه ی ثبت وجود ندارد</div>
+                <div layout="row">
+
+                    <table class="table table-condensed table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>{{ 'Name'|translate }}</th>
+                            <th>{{ 'Default'|translate }}</th>
+                            <th>{{ 'Access'|translate }}</th>
+                            <th>{{ 'Export'|translate }}</th>
+                            <th>{{ 'Import'|translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in SecratraitsList track by $index">
+                            <td>//item.Name//</td>
+                            <td>
+                                <label class="checkbox1" for="xxOption//item.Id//">
+                                    <input id="xxOption//item.Id//" type="checkbox" ng-model="item.default"
+                                           ng-change="CheckOtherSecPer(item)">
+                                    <span></span> </label>
+
+                            </td>
+
+                            <td ng-repeat="ii in item.perm track by $index">
+                                <label class="checkbox1" for="xxxOption//item.Id//qq//items.length - $index - 1//">
+                                    <input id="xxxOption//item.Id//qq//items.length - $index - 1//" type="checkbox"
+                                           ng-model="ii"
+                                           ng-change="UpdatePerSecWithSelect(item,ii,$index)">
+                                    <span></span> </label>
+
+                            </td>
+
+                        </tr>
+
+                        <tr ng-if="SecratraitsList == []">
+                            <td colspan="5">{{ "Please select a chart item to edit"|translate }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+{#                <button type="button" class="btn btn-primary" data-dismiss="modal"#}
+{#                        ng-click="PostTopChartRAW(selectedTopChartRAW.id)">تایید#}
+{#                </button>#}
+            </div>
+        </div>
+
+    </div>
+</div>

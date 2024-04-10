@@ -1,0 +1,53 @@
+<div>
+
+    <div style="overflow: scroll; height: 400px;">
+    <md-progress-linear md-mode="indeterminate"
+                        ng-show="is_loading_data"></md-progress-linear>
+
+    <table class="table table-striped row-border hover mini">
+        <thead>
+        <tr ng-if="chart_data.fields">
+            <th colspan="//chart_data.fields.length//"
+
+                style="
+            background-color: #a5afc1;
+    text-align: right;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    word-spacing: 3px;
+">
+                //chart.chartTitle//
+            </th>
+        </tr>
+        <tr style="background-color: #999999;    color: white;">
+            <th ng-repeat="hh in chart_data.fields track by $index" ng-click="orderBy(hh, $index)">
+                //hh//
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="ss in chart_data.data">
+            <td ng-repeat="hh in chart_data.fields" style="min-width: 120px;">
+                //ss[hh]//
+            </td>
+
+        </tr>
+        </tbody>
+
+        <tfooter>
+            <tr style="border-top: 6px solid #79869d;
+    border-left: 6px solid #79869d;">
+                <td colspan="//chart_data.fields.length//">
+                    //chart.details.description// | <a ng-click="get_request_data()">
+                        بروز رسانی
+                    </a>
+
+                </td>
+            </tr>
+        </tfooter>
+    </table>
+
+    </div>
+
+</div>

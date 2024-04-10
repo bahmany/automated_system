@@ -1,0 +1,53 @@
+{% load translators %}
+<div id="divPostCompany" ng-controller="SecCompaniesCtrl" style="background-color: white">
+
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            مدیریت شرکت ها
+            <span flex></span>
+            <md-button
+                    class="md-fab md-mini"
+                    aria-label="ایجاد"
+                    ng-click="ShowNewCompany()">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+                <md-tooltip>ایجاد شرکت جدید</md-tooltip>
+            </md-button>
+        </div>
+
+
+    </md-toolbar>
+
+
+    <div class="tbl-container">
+
+
+        {% load tables_tags %}
+        {% tablePagination main_model_name="Companies" table_search_watch_model_name="CompnaiesTableSearch" table_go_to_page_func_name="companiesTableGoToPage" table_handle_pagination_func_name="HandleCompaniesTablePagination" table_info_model_name="TableCompanies" %}
+
+        <table class="table table-has-border">
+            <thead>
+            <tr>
+                <td>نام گروه</td>
+                <td>نام شرکت</td>
+                <td>عملیات</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in Companies.results"  ng-class-odd="'odd'" ng-class-even="'even'">
+                <td>//item.group.name//</td>
+                <td>//item.name//</td>
+                <td>
+                    <div class="btn-group btn-group-xs">
+                        <a ng-click="EditCompany(item)">ویرایش</a>
+                        |
+                        <a ng-click="DeleteCompany(item)">حذف</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% include "letter/Secretariat/SecCompanies/modalAddEditCompany.html" %}
+
+</div>

@@ -1,0 +1,293 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<h1 class="md-title">اطلاعات تحصیلی</h1>
+<div layout-gt-sm="column">
+    <div class="frame">
+        <div flex-gt-sm layout-padding>
+            <div class="toolbar">
+                <span>مرحله اول :</span>
+                <span>انتخاب تحصیلات</span>
+            </div>
+            <md-content>
+                <p class="help">
+                    <md-icon md-font-icon="fa fa-info-circle"
+                             style="    font-size: 24px;    color: rgb(97, 58, 0);">
+
+                    </md-icon>
+                    در اولین گام لطفا یکی از انواع تحصیلات را انتخاب نمایید
+                    - با انتخاب انواع مختلف سوابق تحصیلی صفحه ای باز می شود و جزییات بیشتری از شما در یافت می کند
+                </p>
+                <md-radio-group ng-model="Education.EducationType" layout-gt-sm="row">
+                    <md-radio-button value="دارای تحصیلات دانشگاهی" class="md-primary">دارای تحصیلات دانشگاهی
+                    </md-radio-button>
+                    <md-radio-button value="دیپلمه">دیپلمه</md-radio-button>
+                    <md-radio-button value="سیکل">سیکل</md-radio-button>
+                    <md-radio-button value="بی سواد">بی سواد</md-radio-button>
+                </md-radio-group>
+
+
+                <div flex-gt-sm layout-padding>
+                    <div class="frame" ng-if='Education.EducationType == "دارای تحصیلات دانشگاهی"'>
+                        <div class="toolbar">
+                            <span>مرحله دوم :</span>
+                            <span>انتخاب سطح تحصیلات</span>
+
+                            <p class="help">
+                                <md-icon md-font-icon="fa fa-info-circle"
+                                         style="    font-size: 24px;    color: rgb(97, 58, 0);">
+
+                                </md-icon>
+
+                                در این قسمت شما می توانید اطلاعات کاملی از سوابق تحصیلی خود ثبت نمایید ، بعنوان مثال اگر
+                                فارغ التحصیل ارشد هستید
+                                می توانید اطلاعات کاردانی را وارد
+                                سپس اطلاعات کارشناسی را وارد
+                                و در انتها اطلاعات کارشناسی ارشد را وارد نمایید
+                                با انتخاب نوع مدرک ، تکمیل فرم اطلاعات و کلیک بروی دکمه ی اضافه به لیست در انتهای فرم
+                                می توانید اطلاعات خود را در سوابق اضافه نموده و با فشردن دکمه
+                                ذخیره در سوابق آنرا در بانک اطلاعاتی ثبت نمایید
+
+                            </p>
+                        </div>
+
+                        <md-content layout-padding>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm id="secUniversityType">
+                                    <label>نوع مدرک</label>
+                                    <md-select name="EducationItem_LicenseType" class="input-sm"
+                                               ng-model="EducationItem.LicenseType"
+                                               required>
+                                        <md-option value="کاردانی">کاردانی</md-option>
+                                        <md-option value="کارشناسی">کارشناسی</md-option>
+                                        <md-option value="کارشناسی ارشد">کارشناسی ارشد</md-option>
+                                        <md-option value="دکتری">دکتری</md-option>
+                                        <md-option value="حوزوی">حوزوی</md-option>
+                                        <md-option value="پزشکی">پزشکی</md-option>
+                                    </md-select>
+                                    <div class="hint">
+                                        در این قسمت نوع مدرک اخذ شده را مشخص می نمایید - مشخص نموده این قسمت ضروریست
+
+                                    </div>
+                                    <div ng-messages="educationForm.EducationItem_LicenseType.$error"
+                                         ng-if="educationForm.EducationItem_LicenseType.$touched">
+                                        <div ng-message="required">انتخاب نوع مدرک ضروریست</div>
+                                    </div>
+                                </md-input-container>
+                                <div flex="5" hide-xs hide-sm></div>
+                                <md-autocomplete required flex
+                                                 id="educationnnSelectAut"
+                                                 ng-disabled="Education_isDisabled"
+                                                 md-no-cache="noCache"
+                                                 md-selected-item="Education_selectedItem"
+                                                 md-search-text-change="Education_searchTextChange(Education_searchText)"
+                                                 md-search-text="Education_searchText"
+                                                 md-selected-item-change="Education_selectedItemChange(item)"
+                                                 md-items="item in Education_querySearch(Education_searchText)"
+                                                 md-item-text="item.display"
+                                                 md-min-length="0"
+                                                 md-input-name="autocompleteField"
+                                                 md-floating-label="رشته تحصیلی">
+                                    <div class="hint">
+                                        در این قسمت
+                                        می توانید رشته ی تحصیلی خود را انتخاب نمایید
+                                        توجه داشته باشید می بایست
+                                        یکی از رشته هایی که در جدول ظاهر می شود را انتخاب نمایید
+                                        و در صورتی که رشته ی خود را نیافتید سایر را انتخاب نمایید
+                                    </div>
+                                    <md-item-template>
+                            <span md-highlight-text="Education_searchText"
+                                  md-highlight-flags="^i">// item.display //</span>
+
+                                    </md-item-template>
+                                    <md-not-found>پیدا نشد</md-not-found>
+
+                                    <div ng-messages="educationForm.autocompleteField.$error"
+                                         ng-if="educationForm.autocompleteField.$touched">
+                                        <div ng-message="required">انتخاب رشته ضروریست</div>
+                                    </div>
+
+                                </md-autocomplete>
+                            </div>
+                            <form name="educationForm">
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm id="secGerayesh">
+                                        <label>گرایش</label>
+                                        <input type="text" ng-model="EducationItem.Gerayesh">
+                                    </md-input-container>
+                                    <div flex="5" hide-xs hide-sm>
+                                        <!-- Spacer //-->
+                                    </div>
+                                    <md-input-container class="md-block" flex-gt-sm id="secUniversityType">
+                                        <label>نوع دانشگاه</label>
+                                        <md-select class="input-sm" ng-model="EducationItem.UniversityType"
+                                                   required>
+                                            <md-option value="دولتی">دولتی</md-option>
+                                            <md-option value="آزاد">آزاد</md-option>
+                                            <md-option value="پیام نور">پیام نور</md-option>
+                                            <md-option value="علمی کاربردی">علمی کاربردی</md-option>
+                                            <md-option value="تربیت معلم">تربیت معلم</md-option>
+                                            <md-option value="سایر">سایر</md-option>
+                                            <md-option value="خارجی">خارجی</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                    <div flex="5" hide-xs hide-sm>
+                                        <!-- Spacer //-->
+                                    </div>
+                                    <md-input-container class="md-block" flex-gt-sm
+                                                        id="secEducationalPlaceName">
+                                        <label>عنوان محل تحصیل</label>
+                                        <input type="text" ng-model="EducationItem.EducationalPlaceName" required>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm id="secStartYear">
+                                        <label>سال شروع</label>
+                                        <input type="text" ng-pattern="/^[0-9]{4}$/" ng-model="EducationItem.StartYear"
+                                               id="txtStartYear"
+                                               required>
+
+                                        <div class="hint">مثال :‌1381</div>
+
+                                    </md-input-container>
+                                    <div flex="5" hide-xs hide-sm>
+                                        <!-- Spacer //-->
+                                    </div>
+                                    <md-input-container class="md-block" flex-gt-sm id="secEndYear">
+                                        <label>سال پایان</label>
+                                        <input type="text" ng-pattern="/^[0-9]{4}$/" ng-model="EducationItem.EndYear"
+                                               id="txtEndYear"
+                                               required>
+
+                                        <div class="hint">مثال :‌1383</div>
+
+                                    </md-input-container>
+                                    <div flex="5" hide-xs hide-sm>
+                                        <!-- Spacer //-->
+                                    </div>
+                                    <md-input-container class="md-block" flex-gt-sm id="secAverageOfLicense">
+                                        <label>معدل کل</label>
+                                        <input type="number"
+                                               ng-model="EducationItem.AverageOfLicense"
+                                               id="txtAverageOfLicense"
+                                               required>
+
+                                        <div class="hint">مثال :16.5</div>
+
+                                    </md-input-container>
+                                    <div flex="5" hide-xs hide-sm>
+                                        <!-- Spacer //-->
+                                    </div>
+                                    <md-input-container class="md-block" flex-gt-sm id="secCountry">
+                                        <label>کشور</label>
+                                        <input type="text" ng-model="EducationItem.Country"
+                                               ng-init="EducationItem.Country = 'ایران'">
+                                    </md-input-container>
+                                    <div flex="5" hide-xs hide-sm>
+                                        <!-- Spacer //-->
+                                    </div>
+                                    <md-input-container class="md-block" flex-gt-sm id="secHasLicense">
+                                        <label>مدرک اخد شده ؟</label>
+                                        <input type="text" ng-model="Education.HasLicense"
+                                               ng-init="Education.HasLicense='بله'">
+                                    </md-input-container>
+
+
+                                </div>
+                                <div layout-gt-sm="row" layout-align="end center">
+                                    <md-button class="md-raised md-primary"
+                                               ng-disabled="educationForm.$invalid"
+                                               ng-click="EducationAddToList(EducationItem)">
+                                        اضافه به لیست سوابق
+                                    </md-button>
+                                </div>
+
+
+                            </form>
+                            <div layout-gt-sm="row">
+                                <md-list flex
+                                         style="border: 1px solid #CDCDCD;    border-radius: 5px;    padding: 6px;    background-color: darkcyan;    color: white;">
+                                    <md-subheader class="md-no-sticky">لیست سوابق تحصیلی</md-subheader>
+                                    <md-list-item class="md-3-line" ng-repeat="item in Educations">
+                                        <div class="md-list-item-text">
+                                            <h1> // item.LicenseType //</h1>
+
+                                            <p style="color: #ffffff">// item.SelectedBranch // - // item.Gerayesh
+                                                //</p>
+
+                                            <p style="color: #ffffff"> //item.UniversityType// //item.StartYear// -
+                                                //item.EndYear// </p>
+                                        </div>
+                                        <div class="md-list-item-text" layout="row" layout-sm="column"
+                                             layout-align="end center"
+                                             layout-wrap>
+                                            <md-button class="md-raised" ng-click="EditEducationItem(item,$index)">
+                                                ویرایش
+                                            </md-button>
+                                            <md-button class="md-raised" ng-click="RemoveEducationItem($index)">حذف
+                                            </md-button>
+
+                                        </div>
+
+
+                                    </md-list-item>
+
+
+                                </md-list>
+
+                            </div>
+                        </md-content>
+                    </div>
+                    <div class="frame" ng-if='Education.EducationType == "دیپلمه"'>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>رشته ی تحصیلی</label>
+                                <input type="text" ng-model="Estekhdam.SelectedBranch" required>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm>
+                                <!-- Spacer //-->
+                            </div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>سال اخذ مدرک</label>
+                                <input type="number" ng-model="Estekhdam.EndYear" required>
+
+                                <div class="hint">مثال 1382</div>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm>
+                                <!-- Spacer //-->
+                            </div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>معدل</label>
+                                <input type="number" ng-model="Estekhdam.AverageOfLicense" required>
+
+                                <div class="hint">مثال 15.5</div>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm>
+                                <!-- Spacer //-->
+                            </div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>محل اخذ مدرک</label>
+                                <input type="text" ng-model="Estekhdam.EducationalPlaceName" required>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </md-content>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools" layout-align="end center">
+    <md-button class="md-raised" ng-click="SaveStep2()">ذخیره در سوابق</md-button>
+
+        </div>
+        </md-toolbar>
+
+        </div>
+
+
+    </div>
+</div>
+
+

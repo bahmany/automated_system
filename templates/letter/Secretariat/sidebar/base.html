@@ -1,0 +1,52 @@
+<md-sidenav
+        class="md-sidenav-right margin-left left-inbox-items"
+        style="background-color: white!important;width: 200px;"
+        md-component-id="rightInboxList"
+        md-is-locked-open="$mdMedia('gt-md')"
+        id="rightInboxList"
+        {#                md-is-locked-open="$mdMedia('gt-sm')"#}
+        md-whiteframe="4"
+>
+    <div>
+        <md-content>
+            <ul class="side-menu letter-inbox-sidebar">
+                <li>
+                    {% include "letter/Secretariat/sidebar/dabirSwitcher.html" %}
+
+                </li>
+
+
+                <li>
+                    <md-button ui-sref="importNew({importid:null})">وارده جدید</md-button>
+                </li>
+
+                <li>
+                    <md-button ng-click="NewExport()">صادره جدید</md-button>
+                </li>
+
+
+                <li>
+                    <md-button ui-sref="sec-companies">مدیریت شرکت ها</md-button>
+                </li>
+
+                <li>
+                    <md-button ui-sref="companyGroups">مدیریت گروه شرکت ها</md-button>
+                </li>
+
+
+                <li>
+                    <md-button ui-sref="importList">لیست نامه های وارده</md-button>
+                </li>
+
+                <li>
+                    <md-button ui-sref="exportList">لیست نامه های صادره</md-button>
+                </li>
+
+
+            </ul>
+
+
+        </md-content>
+    </div>
+
+</md-sidenav>

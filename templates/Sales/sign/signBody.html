@@ -1,0 +1,60 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar class="_md _md-toolbar-transitions">
+            <div class="md-toolbar-tools">
+                <h2>امضای سند</h2>
+                <span flex="" class="flex"></span>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <h4>
+                    <md-icon md-font-icon="fa fa-lock"></md-icon>
+                    لطفا رمز دوم خود را وارد نمایید
+                </h4>
+                <p>
+                    فشردن دکمه ی تایید پس از وارد نمودن رمز امضا یا رمز دوم نشان دهنده ی امضای فیزیکی شماست. در صورتی که
+                    می خواهید کپی از رمز امضای خود را در گشی موبایلتان داشته باشید
+                    می توانید شماره موبایل خود را وارد و پس از امضا آنرا بصورت پیامک دریافت نمایید
+
+                </p>
+                <div layout="column">
+                    <md-input-container flex class="md-block" md-auto-focus="">
+                        <label for="">رمز امضا یا رمز دوم</label>
+                        <input type="password" id="thisispass" ng-model="sign.signpass">
+                    </md-input-container>
+                    <md-input-container flex class="md-block">
+                        <label for="">توضیحات ضروری</label>
+                        <input type="text" ng-model="sign.comment" maxlength="200">
+                    </md-input-container>
+                    {#                    <md-input-container flex>#}
+                    {#                        <label for="">شماره موبایل دریافت کننده کد امضا</label>#}
+                    {#                        <input type="text" ng-model="sign.cellno">#}
+                    {#                    </md-input-container>#}
+                </div>
+
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button href="/#!/dashboard/Settings/Change" target="_blank" class="md-default md-raised">
+                تغییر رمز امضا
+            </md-button>
+            <span flex></span>
+            <span ng-if="error != ''" style="font-size: 17px;    color: red;">//error//</span>
+            <md-button type="submit" ng-click="sendWithoutCell($event)" md-autofocus class="md-primary md-raised">
+                امضا
+            </md-button>
+            {#            <md-button ng-click="sendWithCell($event)" class="md-primary md-raised">#}
+            {#                امضا با اس ام اس#}
+            {#            </md-button>#}
+        </md-dialog-actions>
+
+    </form>
+
+    <script type="text/javascript">
+        $('#thisispass').click();
+    </script>
+
+</md-dialog>

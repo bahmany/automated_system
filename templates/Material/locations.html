@@ -1,0 +1,136 @@
+<div ng-controller="MaterialLocationsCtrl">
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">تنظیمات</h2>
+            </div>
+
+        </div>
+    </md-toolbar>
+    <md-divider></md-divider>
+
+    <div class="spacer">
+
+        <md-tabs class="md-primary" style="min-height: 800px;">
+            <md-tab label="انبارها">
+                <md-content class="md-padding">
+                    <h2 class="md-display-1">مدیریت انبارها</h2>
+                    <div class="md-body-1">
+                        <md-button ng-click="add()">ایجاد محل جدید</md-button>
+                        <table class="table table-responsive table-condensed table-striped">
+                            <thead>
+                            <tr>
+                                <th>نام انبار</th>
+                                <th>X</th>
+                                <th>Y</th>
+                                <th>Z</th>
+                                <th>ذخیره</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in locations">
+                                <td><input type="text" ng-model="item.name"></td>
+                                <td><input type="number" ng-model="item.x"></td>
+                                <td><input type="number" ng-model="item.y"></td>
+                                <td><input type="number" ng-model="item.z"></td>
+                                <td>
+                                    <md-button class="md-raised" ng-click="postShelf(item)">ذخیره</md-button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </md-content>
+            </md-tab>
+
+            <md-tab label="تفضیل">
+                <md-content class="md-padding">
+                    <h2 class="md-display-1">معادل مراکز تفضیل در همکاران</h2>
+                    <div class="md-body-1">
+
+                        {#                        <md-table#}
+                        {##}
+                        {#                                headers-class="headerClass"#}
+                        {#                                contents-class="contentClass"#}
+                        {#                                headers="headers"#}
+                        {#                                contents="contents"#}
+                        {#                                pagination="true"#}
+                        {#                                page-count="pageItems"#}
+                        {#                                action="true"#}
+                        {#                                on-action="deleteOperation(selectedContent, $event)"#}
+                        {#                                selection="true"#}
+                        {#                                on-select="selectOperation(checked, selectedContent)"#}
+                        {#                                filter="filterValue"#}
+                        {##}
+                        {#                        >#}
+                        {#                        </md-table>#}
+
+                        <table class="table-striped table mini">
+                            <thead>
+                            <tr>
+                                <th>کد پارت</th>
+                                <th>نام همکاران</th>
+                                <th>نام واسط</th>
+                                <th>کد واسط</th>
+                                <th>عملیات</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="item in MaterialHamkaranTafzilList track by $index">
+                                <td>
+                                    <md-input-container class="md-block">
+                                        <input type="text" ng-model="item.Char3Code" required="true">
+                                    </md-input-container>
+                                </td>
+                                <td>
+                                    <md-input-container class="md-block">
+                                        <input type="text" ng-model="item.HamkaranSystemTitle" required="true">
+                                    </md-input-container>
+                                </td>
+                                <td>
+                                    <md-input-container class="md-block">
+                                        <input type="text" ng-model="item.SherkateVaset" required="true">
+                                    </md-input-container>
+                                </td>
+                                <td>
+                                    <md-input-container class="md-block">
+                                        <input type="text" ng-model="item.CodeSherkateVaset" required="true">
+                                    </md-input-container>
+                                </td>
+                                <td>
+                                    <md-button class="md-button md-raised"
+                                               ng-click="updatehamktafzcon(item, $index)">
+                                        ثبت
+                                    </md-button>
+                                    <md-button class="md-button md-raised"
+                                               ng-click="delhamktafzcon(item, $index)">
+                                        حذف
+                                    </md-button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="text-align: center">
+                                    <md-button class="md-button md-raised"
+                                               ng-click="MaterialHamkaranTafzilList.push({})">
+                                        ایجاد
+                                    </md-button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </md-content>
+            </md-tab>
+
+        </md-tabs>
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,38 @@
+<div ng-controller="EZListCtrl" id="divEZListCtrl" class="shadower">
+
+{#    <md-toolbar class="md-menu-toolbar" layout="row">#}
+{#        <md-toolbar-filler layout layout-align="center center">#}
+{#            <md-icon md-font-icon="fa fa-paste"></md-icon>#}
+{#        </md-toolbar-filler>#}
+{#        <h2 class="md-toolbar-tools">اضافه کاری های درخواستی و امضاها</h2>#}
+{#        <div flex></div>#}
+{#        <md-button class="md-raised md-primary" ng-click="new()">#}
+{#            جدید#}
+{#        </md-button>#}
+{#    </md-toolbar>#}
+
+    <div layout="row">
+        <div style="margin-left: 20px;">
+            فیلتر :
+        </div>
+        <md-checkbox aria-label="Disabled checkbox" ng-model="filter.taeed_nashodeha">
+            تایید نشده ها
+        </md-checkbox>
+        <md-checkbox aria-label="Disabled checkbox" ng-model="filter.taeed_shodeha">
+            تایید شده ها
+        </md-checkbox>
+        <md-checkbox aria-label="Disabled checkbox" ng-model="filter.draftha">
+            درفت ها
+        </md-checkbox>
+
+    </div>
+
+    <div>
+        <table id="divTable77" class="display" style="width:100%; text-align: right">
+
+
+        </table>
+    </div>
+
+
+</div>

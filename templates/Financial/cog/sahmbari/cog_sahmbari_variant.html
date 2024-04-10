@@ -1,0 +1,177 @@
+<div ng-controller="sahmVarCtrl">
+
+    <div>
+        <md-button
+                data-toggle="modal"
+                data-target="#colored-header" type="md-button"
+                class="btn btn-success btn-embossed">ایجاد
+            <div class="ripple-wrapper"></div>
+        </md-button>
+        <md-button
+                type="md-button"
+                ng-click="UpdateGL($event)"
+                class="btn btn-success btn-embossed">بروز رسانی معین از همکاران
+            <div class="ripple-wrapper"></div>
+        </md-button>
+        <md-button
+                type="md-button"
+                ng-click="getDetCode($event)"
+                class="btn btn-success btn-embossed">فراخونن
+            <div class="ripple-wrapper"></div>
+        </md-button>
+    </div>
+
+    <div class="modal fade modal-topfull" id="colored-header" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-topfull">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <md-button type="md-button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                            class="icons-office-52"></i></md-button>
+                    <h4 class="modal-title">مشخصات تسهیم</h4>
+                </div>
+
+                <form class="form-horizontal ng-pristine ng-valid" name="frmTashimVar">
+                    <div class="modal-body">
+                        <p>
+
+                            کدها می بایست معتبر باشند در غیر اینصورت امکان ثبت فراهم نخواهد بود
+                        -
+                            توجه داشته باشید تمامی معین ها بصورت پیش فرض بعنوان سربار در نظر گرفته می شوند
+                        </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">کد معین</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control input-sm"
+                                               ng-model="tashimVar.sl"
+                                               ng-model-options="{debounce:300}"
+
+                                               required type="number" placeholder="عدد 6 رقمی">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">کد معین فضیل</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control input-sm"
+                                               ng-model-options="{debounce:300}"
+                                               ng-model="tashimVar.gl" required type="number" placeholder="عدد 6 رقمی">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">عنوان معین</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control input-sm"
+                                               ng-model="tashimVar.moeenTitle"
+                                               required readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">عنوان تفضیلی</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control input-sm"
+                                               ng-model="tashimVar.tafzilTitle"
+                                               required readonly>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">مرکز تسهیم</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" ng-model="tashimVar.markazeTashim" required
+                                                tabindex="-1"
+                                                aria-hidden="true">
+                                            <option value='مواد مستقیم'>مواد مستقیم</option>
+                                            <option value='دستمزد مستقیم'>دستمزد مستقیم</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">درصد تسهیم</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control input-sm" ng-model="tashimVar.percent" required
+                                               type="number">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        {#                        <div class="row" >#}
+                        {##}
+                        {#                        </div>#}
+
+
+                    </div>
+                    <div class="modal-footer" style="text-align: left">
+                        <md-button type="md-button" ng-click="cancelTashim()"
+
+                                class="btn btn-default btn-embossed">انصراف
+                            <div class="ripple-wrapper"></div>
+                        </md-button>
+                        <md-button type="md-button" ng-click="postTashim()" class="btn btn-success btn-embossed"
+                                ng-disabled="frmTashimVar.$invalid">ثبت
+                        </md-button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="portlets ui-sortable">
+        <div class="panel">
+            <div class="panel-header md-panel-controls ui-sortable-handle">
+                <h3><i class="fa fa-table"></i> جدول تخصیص تسهیم</h3>
+
+            </div>
+            <div class="panel-content">
+
+                <div>
+                    <table class="table table-striped" dir="rtl">
+                        <thead>
+                        <tr>
+                            <th>کد معین</th>
+                            <th>عنوان معین</th>
+                            <th>کد تفضیل</th>
+                            <th>عنوان تفضیل</th>
+                            <th>مرکز هزینه</th>
+                            <th>درصد تسهیم</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in tashimVars">
+                            <td>//item.sl//</td>
+                            <td>//item.moeenTitle//</td>
+                            <td>//item.gl//</td>
+                            <td>//item.tafzilTitle//</td>
+                            <td>//item.markazeTashim//</td>
+                            <td>//item.percent//</td>
+                            <td>
+                                <a ng-click="editTashim(item)">ویرایش</a>
+                                |
+                                <a ng-click="deleteTashim(item)">حذف</a>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+

@@ -1,0 +1,125 @@
+<div ng-controller="BIAmareRoozanehCtrl">
+    <md-toolbar class="md-hue-2" style="background-color: rgba(87,87,87,0.84);">
+        <div class="md-toolbar-tools" layout="row">
+            <h5>
+                آمار روزانه</h5>
+            <div flex>
+
+            </div>
+
+            <md-button ng-click="showTables()"> نمایش جداول</md-button>
+
+        </div>
+    </md-toolbar>
+
+    <div class="shadower" style="background-color: #c9c9c9">
+
+        <div layout="row">
+            <div flex="15" class="single-amar-bar">
+                <div class="bi-single-amar">
+                    <div class="bi-single-amar-header">
+                        خروج
+                    </div>
+                    <div class="bi-single-amar-detail">
+                        <span class="sp1">//today_exit_just_number.result.toLocaleString('fa-IR')//</span>
+                        <span class="sp2">تن</span>
+                    </div>
+                    <div class="bi-single-amar-footer">
+                        <span>
+                            //today_exit_just_number.daynumber.toLocaleString('fa-IR')// //today_exit_just_number.monthname//
+                        </span>
+                    </div>
+                </div>
+                <bi-single-value amartemplateid="'6191ed5819c16c0ed4d46cc2'"></bi-single-value>
+                <bi-single-value amartemplateid="'6191edc519c16c0ed4d46cce'"></bi-single-value>
+                <bi-single-value amartemplateid="'6191eda219c16c0ed4d46cc8'"></bi-single-value>
+
+            </div>
+            <div flex="35">
+                <div class="bi-single-amar">
+                    <canvas id="today_exit_chart" style="height:300px; width:100%; margin: 5px;"></canvas>
+                </div>
+                <div class="bi-under-table" layout-margin layout-padding="">
+                    <table class="table table-bordered table-striped mini">
+                        <tbody>
+                        <tr ng-repeat="item in today_exit_chart.labels track by $index">
+                            <td style="padding: 3px;">//item//</td>
+                            <td style="padding: 3px;background-color: //today_exit_chart.datasets[0].backgroundColor[$index]//">
+                                //today_exit_chart.datasets[0].data[$index]//
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bi-single-amar">
+                    <canvas id="today_exit_chart_by_prod" style="height:300px; width:100%; margin: 5px;"></canvas>
+                </div>
+                <div class="bi-under-table" layout-margin layout-padding="">
+                    <table class="table table-bordered table-striped mini">
+                        <tbody>
+                        <tr ng-repeat="item in today_exit_chart_product.labels track by $index">
+                            <td style="padding: 3px;">//item//</td>
+                            <td style="padding: 3px;background-color: //today_exit_chart_product.datasets[0].backgroundColor[$index]//">
+                                //today_exit_chart_product.datasets[0].data[$index]//
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div flex="50">
+                <div class="bi-single-amar">
+                    <canvas id="today_exit_chart_week" style="height:300px; width:100%; margin: 5px;"></canvas>
+                </div>
+                <div class="bi-under-table" layout-margin layout-padding="">
+                    <table class="table table-bordered table-striped mini">
+                        <tbody>
+                        <tr ng-repeat="item in get_week_exit_for_chart_table.labels track by $index">
+                            <td style="padding: 3px;">//item//</td>
+                            <td style="padding: 3px;background-color: //get_week_exit_for_chart_table.datasets[0].backgroundColor[$index]//">
+                                //get_week_exit_for_chart_table.datasets[0].data[$index]//
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bi-single-amar">
+                    <canvas id="today_exit_chart_by_prod_week" style="height:300px; width:100%; margin: 5px;"></canvas>
+                </div>
+                <div class="bi-under-table" layout-margin layout-padding="">
+                    <table class="table table-bordered table-striped mini">
+                        <tbody>
+                        <tr ng-repeat="item in get_week_exit_for_chart_by_product_table.labels track by $index">
+                            <td style="padding: 3px;">//item//</td>
+                            <td style="padding: 3px;background-color: //get_week_exit_for_chart_by_product_table.datasets[0].backgroundColor[$index]//">
+                                //get_week_exit_for_chart_by_product_table.datasets[0].data[$index]//
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+        <div layout="row" layout-wrap="" layout-align="center center">
+            <bi-single-value amartemplateid="'6191ed8819c16c0ed4d46cc5'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191edb619c16c0ed4d46ccb'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191ee7b19c16c0ed4d46ce6'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191ef1919c16c0ed4d46d0e'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191efd419c16c0ed4d46d35'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191edd519c16c0ed4d46cd1'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191edee19c16c0ed4d46cd4'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191ee0819c16c0ed4d46cd7'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191ee2219c16c0ed4d46cda'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191ee3419c16c0ed4d46cdd'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191ee5c19c16c0ed4d46ce0'"></bi-single-value>
+            <bi-single-value amartemplateid="'6191ee6f19c16c0ed4d46ce3'"></bi-single-value>
+        </div>
+
+
+
+    </div>
+
+
+</div>

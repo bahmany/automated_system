@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" class="rtl" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="admin-themes-lab">
+    <meta name="author" content="themes-lab">
+    <link rel="shortcut icon" href={% static "images/favicon-16x16.png" %} type="image/png">
+    <title>Make Admin Template &amp; Builder</title>
+
+    {% include 'Dashboards/Supplement/css_script.html' %}
+
+</head>
+
+
+<body class="docs-body" dir="rtl"
+      layout="row"
+      ng-app="Supplement" ng-cloak="">
+
+
+<div flex tabindex="-1" role="main" class="layout-column flex">
+
+    <md-content md-scroll-y layout="column" flex ui-view="">
+
+    </md-content>
+    {% include "Dashboards/Supplement/footer.html" %}
+
+</div>
+
+
+</body>
+
+
+{#<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>#}
+
+
+{% include 'Dashboards/Supplement/js_scripts.html' %}
+
+
+</html>

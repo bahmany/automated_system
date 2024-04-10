@@ -1,0 +1,55 @@
+<div ng-controller="ScriptDataTablesCtrl">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            فروخوانی سرویس و کد
+        </div>
+    </md-toolbar>
+    <md-content class="shadower">
+        <h3>
+            //dataTable.name//
+            <small>//dataTable.desc//</small>
+
+        </h3>
+
+        <md-content>
+            <div class="code-editor this_task make-all-ltr">
+                <div>
+                    After Row Add
+                </div>
+
+                <textarea ui-codemirror
+                          ui-codemirror-opts="editorOptionsPython"
+                          ng-model="dataTable.exp.aftercreate">
+
+                    </textarea>
+            </div>
+
+        </md-content>
+
+
+        <md-content>
+            <div class="code-editor this_task make-all-ltr">
+                <div>
+                    before Row Add
+                </div>
+
+                <textarea ui-codemirror
+                          ui-codemirror-opts="editorOptionsPython"
+                          ng-model="dataTable.exp.beforecreate">
+                    </textarea>
+            </div>
+
+        </md-content>
+
+
+        <md-toolbar class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span flex></span>
+                <md-button class="md-primary md-raised" ng-click="updateDataTable()">ثبت</md-button>
+
+            </div>
+        </md-toolbar>
+
+
+    </md-content>
+</div>

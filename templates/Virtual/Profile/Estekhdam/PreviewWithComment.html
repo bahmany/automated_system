@@ -1,0 +1,539 @@
+{% load translators %}
+
+<div ng-controller="profilePrevWithCommentCtrl" layout="column" layout-padding class="frmPrev">
+    <div class="well well-sm">
+        <div>
+            <p>نظرات کارشناسی</p>
+
+            <div>
+                <div>
+                    <textarea name="" id="" cols="30" rows="10" ckeditor="editorOptions"
+                              ng-model="comment.body">    </textarea>
+                </div>
+                <div>
+                    <md-toolbar>
+                        <div class="md-toolbar-tools" layout-align="end center">
+                            <md-button class="md-raised" ng-click="PostComment()">ثبت نظر</md-button>
+                        </div>
+                    </md-toolbar>
+                </div>
+                <div layout="column" ng-repeat="item in commentList"
+                     style="border-bottom: solid 1px #d3d3d3">
+                    <div layout="row">
+                        <img class="md-avatar"
+                             ng-src="//item.commentWritePositionDesc.avatar//"
+                             style="  border: solid 3px white;border-radius: 72px; height: 70px;height: 70px; float: right; margin: 5px;"/>
+                        {#                    <span style="text-align: left">#}
+                        {#                        #}
+                        {#                    </span>#}
+                        <p layout-padding
+                           ng-bind-html="item.comment | to_trusted">
+
+
+                        </p>
+
+                    </div>
+                    <div style="text-align: left">
+                        <small>//item.dateOfPost | jalaliDate:'jYYYY-jMM-jDD hh:mm:ss'//</small>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <div>
+            <div ng-if="prev.Resume.pic" style="text-align: left">
+                <img class="md-avatar" style="height:70px;" ng-src="/api/v1/file/upload?q=thmum100_//prev.Resume.pic//"
+                     alt=""/>
+            </div>
+            <div class="prev-header">
+                اطلاعات شناسنامه
+            </div>
+            <div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>نام</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.InternationalCode" required>
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>نام</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.Name" required>
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>نام خانوادگی</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.Family" required>
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>نام پدر</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.FatherName">
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>تاریخ تولد</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.BirthDate" id="txtBirthDate" required>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>محل تولد</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.BirthPlace">
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>محل صدور شناسنامه</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.ShenasnamehPlace">
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>شماره شناسنامه</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.ShenasnamehCode">
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>جنسیت </label>
+                        <md-select disabled ng-model="prev.Shenasnameh.Jensiat" required="">
+                            <md-option value="مرد">مرد</md-option>
+                            <md-option value="زن">زن</md-option>
+                        </md-select>
+                    </md-input-container>
+
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>مذهب</label>
+                        <md-select disabled ng-model="prev.Shenasnameh.Mazhab">
+                            <md-option value="1">شیعه</md-option>
+                            <md-option value="2">سنی</md-option>
+                            <md-option value="3">مسیحی</md-option>
+                            <md-option value="4">سایر</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>وضعیت تاهل</label>
+                        <md-select disabled class="input-sm" ng-model="prev.Shenasnameh.Married" required>
+                            <md-option value="1">مجرد</md-option>
+                            <md-option value="2">متاهل</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>سال ازدواج</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.MarriedYear" id="txtMarriedYear">
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>شغل همسر</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.WifeJob">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>تعداد فرزندان</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.ChildAmount">
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>وضعیت خدمت</label>
+                        <md-select ng-model="prev.Shenasnameh.Soldier" required disabled>
+                            <md-option value="1">دارای کارت پایان خدمت</md-option>
+                            <md-option value="2">مشمول</md-option>
+                            <md-option value="3">غایب</md-option>
+                            <md-option value="4">خرید خدمت</md-option>
+                            <md-option value="5">معافیت پزشکی</md-option>
+                            <md-option value="6">معافیت کفالت</md-option>
+                            <md-option value="7">سایر معافیت</md-option>
+                            <md-option value="8">محصل</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>کد پستی</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.PostalCode" required>
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>تلفن منزل</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.TelHome" required>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>همراه</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.Mobile" required>
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>تلفن محل کار</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.TelWork">
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>تلفن ضروری</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.TelNec">
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>وب سایت و یا وبلاگ</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.Web">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>کشور</label>
+                        <input disabled type="text" ng-init="prev.Shenasnameh.Country = 'ایران'"
+                               ng-model="prev.Shenasnameh.Country">
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>استان</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.OstanHome">
+                    </md-input-container>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>شهر</label>
+                        <input disabled type="text" ng-model="prev.Shenasnameh.CityHome">
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>آدرس منزل</label>
+                    <input disabled type="text" ng-model="prev.Shenasnameh.HomeAddress" required>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>آدرس محل کار</label>
+                    <input disabled type="text" ng-model="prev.Shenasnameh.WorkAddress">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>آدرس ضروری</label>
+                    <input disabled type="text" ng-model="prev.Shenasnameh.NecAddress">
+                </md-input-container>
+            </div>
+        </div>
+
+        <div>
+            <div class="prev-header">
+                تحصیلات
+            </div>
+            <div>
+                <div>
+                    نوع تحصیلات
+                    //prev.Education.EducationType//
+                </div>
+                <table ng-if='prev.Education.LevelofEducation == "دارای تحصیلات دانشگاهی" '>
+                    <thead>
+                    <tr>
+                        <td>نوع مدرک</td>
+                        <td>رشته تحصیلی</td>
+                        <td>گرایش</td>
+                        <td>نوع دانشگاه</td>
+                        <td>عنوان محل تحصیل</td>
+                        <td>سال شروع</td>
+                        <td>سال پایان</td>
+                        <td>معدل کل</td>
+                        <td>کشور</td>
+                        <td>اخد مدرک</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in prev.Education.items">
+                        <td>//item.LicenseType // //item.Education//</td>
+                        <td>//item.SelectedBranch //</td>
+                        <td>//item.Gerayesh //</td>
+                        <td>//item.UniversityType //</td>
+                        <td>//item.EducationalPlaceName //</td>
+                        <td>//item.StartYear //</td>
+                        <td>//item.EndYear //</td>
+                        <td>//item.AverageOfLicense //</td>
+                        <td>//item.Country //</td>
+                        <td>//item.HasLicense //</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div ng-if='prev.Education.LevelofEducation == "دیپلم"'>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>رشته ی تحصیلی</label>
+                            <input type="text" ng-model="prev.Education.SelectedBranch" disabled>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>سال اخذ مدرک</label>
+                            <input type="text" ng-model="prev.Education.EndYear" disabled>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>معدل</label>
+                            <input type="text" ng-model="prev.Education.AverageOfLicense" disabled>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input type="text" ng-model="prev.Education.EducationalPlaceName" disabled>
+                        </md-input-container>
+                    </div>
+
+                </div>
+
+                <div ng-if="!prev.Education.LevelofEducation">
+                    هیچ سابقه تحصیلی وارد نشده است
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="prev-header">
+                زبان های خارجی
+            </div>
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>نام زبان</td>
+                        <td>سطح</td>
+                        <td>عنوان مدرک اخذ شده</td>
+                        <td>توضیحات</td>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in prev.Language.items track by $index">
+                        <td>// item.Name //</td>
+                        <td>// item.Skill //</td>
+                        <td>// item.LatestCertificateName //</td>
+                        <td>// item.Explaination //</td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="text-align: center" ng-show="!prev.Language.items.length">
+                            هیچ سابقه ای وارد نشده است
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+        <div>
+            <div class="prev-header">
+                دوره های آموزشی
+            </div>
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>نام دوره</td>
+                        <td>سال برگزاری</td>
+                        <td>موسسه</td>
+                        <td>ساعت</td>
+                        <td>عنوان گواهینامه</td>
+                        <td>تسلط</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in prev.Doreh.items track by $index">
+                        <td>// item.WorkshopName //</td>
+                        <td>// item.YearOfWorkshop //</td>
+                        <td>// item.Institute //</td>
+                        <td>// item.TimeAmount //</td>
+                        <td>// item.HaveCertificate //</td>
+                        <td>// item.KindOfKnowing //</td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" style="text-align: center" ng-show="!prev.Doreh.items.length">
+                            هیچ سابقه ای وارد نشده است
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+        <div>
+            <div class="prev-header">
+                تجربیات و مهارت ها
+            </div>
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>عنوان مهارت و یا تجربه</td>
+                        <td>درجه ی مهارت و یا آشنایی</td>
+                        <td>میزان فعالیت و آشنایی</td>
+                        <td>توضیحات</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in prev.Experience.items track by $index">
+                        <td>// item.Name //</td>
+                        <td>// item.Level //</td>
+                        <td>// item.AgeOfPracticalSkills //</td>
+                        <td>// item.Explanations //</td>
+
+
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="text-align: center" ng-show="!prev.Experience.items.length">
+                            هیچ سابقه ای وارد نشده است
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+        <div>
+            <div class="prev-header">
+                نرم افزارها
+            </div>
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>نام نرم افزار</td>
+                        <td>میزان آشنایی</td>
+                        <td>توضیحات</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in prev.Software.items track by $index">
+                        <td>// item.Name //</td>
+                        <td>// item.Level //</td>
+                        <td>// item.Explanations //</td>
+
+
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="text-align: center" ng-show="!prev.Software.items.length">
+                            هیچ سابقه ای وارد نشده است
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+        <div>
+            <div class="prev-header">
+                سوابق شغلی
+            </div>
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>سمت</td>
+                        <td>عنوان شغلی</td>
+                        <td>شرکت</td>
+                        <td>سال شرع</td>
+                        <td>سال پایان</td>
+                        <td>حقوق ماهانه</td>
+                        <td>علت ترک کار</td>
+                        <td>توضیحات بیمه</td>
+                        <td>سایر توضیحات</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in prev.Job.items track by $index">
+                        <td>// item.Name //</td>
+                        <td>// item.NameOnvan //</td>
+                        <td>// item.Company //</td>
+                        <td>// item.StartYear //</td>
+                        <td>// item.EndYear //</td>
+                        <td> //item.Salary//</td>
+                        <td> // item.CauseOfLeftingJob //</td>
+                        <td> // item.InsuranceNoandExplanation //</td>
+                        <td> // item.OtherExplanations //</td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="10" style="text-align: center" ng-show="!prev.Job.items.length">
+                            هیچ سابقه ای وارد نشده است
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+        <div>
+            <div class="prev-header">
+                رزومه
+            </div>
+            <div>
+                <div ng-if="prev.Resume.resume">
+                    <md-button ng-click="downloadResume(prev.Resume.resume)">دانلود رزومه</md-button>
+                </div>
+
+                <div ng-if="!prev.Resume.resume">
+                    رزومه ای آپلود نشده است
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

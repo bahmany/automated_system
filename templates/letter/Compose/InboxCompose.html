@@ -1,0 +1,18 @@
+{% load translators %}
+
+
+<div id="divCompose" style="background-color: white"
+     ng-controller="LetterComposeCtrl">
+
+
+    {% include 'letter/Compose/Message.html' %}
+
+</div>
+
+
+<div ui-view="recievers" id="divRec" style="position: initial;display: none"></div>
+
+<angular-filemanager id="divAtts" style="position: initial;display: none" class="filemanagerContent" thisisfor="compose"></angular-filemanager>
+
+{#<div ui-view="upload" id="divAtts" ></div>#}
+

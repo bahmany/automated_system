@@ -1,0 +1,26 @@
+<div ng-controller="CogHomeCtrl" layout="row" layout-xs="column">
+
+    <section layout="row" flex
+{#             ng-init="callIntegrity()"#}
+    >
+        <md-sidenav
+                class="md-sidenav-right margin-left left-inbox-items"
+                style="background-color: white!important;width: 150px;"
+                md-component-id="rightInboxList"
+                md-is-locked-open="$mdMedia('gt-md')"
+                id="rightInboxList"
+                {#                md-is-locked-open="$mdMedia('gt-sm')"#}
+                md-whiteframe="4">
+
+            {% include 'Financial/cog/sidebar.html' %}
+        </md-sidenav>
+        <ui-view flex>
+
+
+        </ui-view>
+    </section>
+
+
+    {#    <md-button class="btn btn-primary" ng-click="RecieveAll()">دریافت تمامی گردش های انبار و ریست نمودن بهای تمام شده#}
+    {#    </md-button>#}
+</div>

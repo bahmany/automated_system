@@ -1,0 +1,25 @@
+{% load translators %}
+
+<div style="width: {{ width }}">
+
+
+    <div
+            ngf-select="uploadFiles($files) || !({{ readonly }})"
+            data-ngf-drop="uploadFiles($files) || !({{ readonly }})"
+            class="drop-box drop-file-area clearfix"
+            data-ngf-drag-over-class="dragover"
+            data-ngf-multiple="true">
+
+        <div
+                ng-repeat="item in UploadedFiles"
+                class="pull-left well well-sm clearfix text-center"
+                style="width: 100px; height: 155px; padding: 3px; margin: 3px; overflow: hidden">
+            {% include "share/filecloud/AttsThumb.html" %}
+        </div>
+
+        <span ng-if="UploadedFiles.length == 0" style="text-overflow: ellipsis;  overflow: hidden;  width: 160px;  height: 1.2em;
+  white-space: nowrap;">{{ 'DropImageorPDFsfileshere'|translate }}</span></div>
+    <md-progress-linear ng-if="isUploading" md-mode="determinate" class="md-warn fader" value="//UploadPercent//"></md-progress-linear>
+
+    <div ngf-no-file-drop>{{ 'File Drag/Drop is not supported for this browser'|translate }}</div>
+</div>

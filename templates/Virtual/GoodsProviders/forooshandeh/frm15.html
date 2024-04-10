@@ -1,0 +1,97 @@
+<h4>حسن سابقه سازندگان</h4>
+<hr>
+<form action="" name="frm_frm15">
+
+    <div layout="column">
+
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام شرکت ارائه دهنده رضایت نامه</label>
+                    <input type="text" ng-model="provider.frm15.nameCompanyRezayat" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">کیفیت کالا  و خدمات</label>
+                    <input type="text" ng-model="provider.frm15.keifiat">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تحویل به موقع</label>
+                    <input type="text" ng-model="provider.frm15.tahvil">
+                </md-input-container>
+            </div>
+        </div>
+
+
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">بسته بندی</label>
+                    <input type="text" ng-model="provider.frm15.basteh" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">خدمات پس از فروش</label>
+                    <input type="text" ng-model="provider.frm15.khadamatePasaz">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تاریخ دریافت رضایت کار</label>
+                    <input type="text" ng-model="provider.frm15.rezayatKar">
+                </md-input-container>
+            </div>
+        </div>
+
+
+
+        <div layout-gt-xs="row">
+            <span flex></span>
+            <md-button class="md-default md-raised"
+                       ng-click="addTofrm('15')"
+                       ng-disabled="frm_frm15.$invalid">
+                اضافه به لیست
+            </md-button>
+        </div>
+
+        <div>
+            <table class="sp-table">
+                <thead>
+                <tr>
+                    <th>نام شرکت صادرکننده</th>
+                    <th>کیفیت</th>
+                    <th>تاریخ دریافت</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.frm15_list">
+                    <td>//it.nameCompanyRezayat//</td>
+                    <td>//it.keifiat//</td>
+                    <td>//it.rezayatKar//</td>
+                    <td>
+                        <md-button class="md-primary md-default" ng-click="removefrm('15',$index)">حذف</md-button>
+                    </td>
+                </tr>
+
+                <tr ng-if="provider.frm15_list.length == 0">
+                    <td colspan="4">
+                        لیست حسن سابقه خالی است
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</form>
+

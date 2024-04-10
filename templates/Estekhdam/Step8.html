@@ -1,0 +1,200 @@
+{% load staticfiles %}
+{% load sekizai_tags %}
+{% load i18n %}
+
+<fieldset>
+    <section>
+        <label class="label" style="text-align: right">لطفا حوزه یا حوزه های فعالیتی خود را انتخاب نمایید</label>
+
+        <div class="row require-jobs">
+            <div class="col col-3">
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>روابط عمومی</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>فناوری اطلاعات</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>آرشیو و اسناد فنی</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>حراست</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>مالی و حسابداری</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>تدارکات</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>تحقیق و توسعه</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>بازرگانی</label>
+
+            </div>
+            <div class="col col-3">
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>باغداری</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>خدمات</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>تحصیلداری</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>نگهداشت و انبار</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>ایمنی</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>مکانیک صنعتی</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>تدارکات</label>
+            </div>
+            <div class="col col-3">
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>اداری و امور منابع انسانی</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>برنامه ریزی و کنترل</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>واحد شیمی و آز</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>برق و الکترونیک</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>ایمنی و بهداشت HSE</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>تولید</label>
+
+            </div>
+            <div class="col col-3">
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>کنترل کیفیت</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>مکانیک</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>مکانیک خودرو</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>تاسیسات</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>سیستم ها و روش ها</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>بازرگانی</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="checkbox">
+                    <i></i>فروش</label>
+            </div>
+        </div>
+        <br>
+        <section>
+            <table>
+                <tbody>
+                <tr>
+
+                    <td>حقوق در خواستی خود را وارد نمایید :</td>
+                    <td><input type="number" ng-model="Require.Salary"></td>
+                    <td>{% trans 'rials' %}</td>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </section>
+        <br>
+        <section class="require-times">
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <label>نحوه ی همکاری را انتخاب نمایید : </label>
+                    </td>
+                    <td><label class="checkbox">
+                        <input type="checkbox">
+                        <i></i>تمام وقت</label></td>
+                    <td><label class="checkbox">
+                        <input type="checkbox">
+                        <i></i>پاره وقت</label></td>
+                    <td><label class="checkbox">
+                        <input type="checkbox">
+                        <i></i>مشاوره</label></td>
+                    <td><label class="checkbox">
+                        <input type="checkbox">
+                        <i></i>شیفتی</label></td>
+                    <td><label class="checkbox">
+                        <input type="checkbox">
+                        <i></i>سایر</label></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </section>
+</fieldset>
+
+<fieldset class="require-knowus">
+    <label class="label" style="float: right">
+        لطفا نحوه ی آشنایی با ما را مشخص نمایید
+    </label>
+    <br>
+    <br>
+
+    <div class="row">
+        <section class="col col-3">
+            <label class="checkbox">
+                <input type="checkbox" name="checkbox">
+                <i></i>روزنامه ها و جراید</label>
+        </section>
+        <section class="col col-3">
+            <label class="checkbox">
+                <input type="checkbox" name="checkbox">
+                <i></i>موتورهای جستجو</label>
+        </section>
+        <section class="col col-3">
+            <label class="checkbox">
+                <input type="checkbox" name="checkbox">
+                <i></i>سایت رسمی شرکت</label>
+        </section>
+        <section class="col col-3">
+            <label class="checkbox">
+                <input type="checkbox" name="checkbox">
+                <i></i>****</label>
+        </section>
+    </div>
+    <section>
+        <table>
+            <tbody>
+            <tr>
+                <td>چنانچه معرفی در شرکت یا **** دارید ذکر نمایید :</td>
+                <td><input type="text" ng-model="Require.Moaref"></td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>کد خانواده ****های **** را وارد نمایید : <span style="color: #d12210">(*)</span></td>
+                <td><input type="text" ng-model="Require.SataCode" ng-init="Require.SataCode=''"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+</fieldset>

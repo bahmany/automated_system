@@ -1,0 +1,44 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar class="_md _md-toolbar-transitions">
+            <div class="md-toolbar-tools">
+                <h2>نکات کیفی</h2>
+                <span flex="" class="flex"></span>
+            </div>
+        </md-toolbar>
+
+
+        <md-dialog-content>
+            <div class="md-dialog-content" style="width: 600px;" layout="column">
+                <div layout="row">
+                    <div flex="45">
+                        <md-input-container class="md-block">
+                            <label>نکته کیفی</label>
+                            <input type="text" ng-model="keifi.dalil" required>
+                        </md-input-container>
+                    </div>
+                    <div flex="45">
+                        <md-input-container class="md-block">
+                            <label>میزان کسر از موجودی</label>
+                            <input type="number" ng-model="keifi.mizan" required>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div>
+                    <md-checkbox ng-model="keifi.kasrAsMojoodi" aria-label="Checkbox 1">
+                        از آمار فروش کسر شود
+                    </md-checkbox>
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+            <md-button class="md-primary md-raised" ng-click="add()">ثبت</md-button>
+
+        </md-dialog-actions>
+
+
+    </form>
+</md-dialog>

@@ -1,0 +1,39 @@
+import pickle
+from bson import ObjectId
+from rest_framework_mongoengine.serializers import *
+from amspApp.BPMSystem.models import LunchedProcess, BigArchive
+from amspApp.CompaniesManagment.Positions.models import PositionsDocument
+from amspApp.CompaniesManagment.Processes.models import Bpmn
+from amspApp.CompaniesManagment.Processes.serializers.BpmnSerializer import BpmnSerializer
+from amspApp._Share.DynamicFieldsDocumentSerializer import DynamicFieldsDocumentSerializer
+
+
+class BigArchiveSerializer(DynamicFieldsDocumentSerializer):
+    # bpmnForCreate = serializers.CharField(label="bpmn",
+    # style={'template': 'forms/base-templates/selectAngular.html',
+    # 'cssclass': 'col-md-12', 'ngmodel': 'lunchedProcess.bpmnForCreate',
+    # 'ngoptions': 'obj.id as obj.name for obj in bpmns'}, write_only=True)
+    #
+    # name = serializers.CharField(label="name", style={'template': 'forms/base-templates/input.html',
+    #                                                   'cssclass': 'col-md-12',
+    #                                                   'ngmodel': 'lunchedProcess.name'})
+    # # bpmnName = serializers.CharField(source='bpmn.name', read_only=True)
+    # # bpmnId = serializers.CharField(source='bpmn.id', read_only=True)
+    BAMDate= serializers.DateTimeField()
+    BAMHours= serializers.FloatField()
+
+
+    def _include_additional_options(self, *args, **kwargs):
+        return self.get_extra_kwargs()
+
+
+    def _get_default_field_names(self, *args, **kwargs):
+        return self.get_field_names(*args, **kwargs)
+
+    class Meta:
+        model = BigArchive
+        depth = 1
+        extra_kwargs = {'parentProcessId': {'allow_null': True},
+                        'parentProcessName': {'allow_null': True},
+                        'prevStepName': {'allow_null': True}
+        }

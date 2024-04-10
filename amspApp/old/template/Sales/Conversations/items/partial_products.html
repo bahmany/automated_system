@@ -1,0 +1,197 @@
+<div>
+
+    <div class="shadower">
+
+
+        <div style="display: none;" id="divAddEditProduct">
+            <div layout="row">
+                مشخصات سفارش
+
+
+            </div>
+            <div>
+
+                {% load autocomplete_tags %}
+                {% AutocompleteTag modelname="selectedItem" displayKey="PartName" placeholder="انتخاب نام کالا" icon="fa-caret-square-o-left" modelOfValue1="PartName" modelOfValue2="PartCode" %}
+
+            </div>
+            <div style="font-size: 12px;font-weight: bold;" ng-if="selectedItem.PartName">
+                //selectedItem.PartName// -
+                //selectedItem.PartCode//
+                <a ng-click="removeHamkaran()">x</a>
+            </div>
+            <div class="divMiniInput" layout-gt-xs="row">
+                <md-input-container flex-gt-xs="20">
+                    <label for="">تمپر</label>
+                    <input type="number" ng-model="product.desc.temper" ng-model-options="{debounce: 500}">
+                </md-input-container>
+                <md-input-container flex-gt-xs="20">
+                    <label>سطح</label>
+                    <md-select ng-model="product.desc.sath" ng-model-options="{debounce: 500}"
+                               ng-init="product.desc.sath=0">
+                        <md-option value="0"><em>هر دو</em></md-option>
+                        <md-option value="Stone">
+                            Stone
+                        </md-option>
+                        <md-option value="Bright">
+                            Bright
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex-gt-xs="20">
+                    <label for="">ضخامت</label>
+                    <input type="number" ng-model="product.desc.zekhamat" ng-model-options="{debounce: 500}">
+                </md-input-container>
+                <md-input-container flex-gt-xs="20">
+                    <label for="">عرض</label>
+                    <input type="number" ng-model="product.desc.arz" ng-model-options="{debounce: 500}">
+                </md-input-container>
+                <md-input-container flex-gt-xs="20">
+                    <label for="">طول</label>
+                    <input type="number" ng-model="product.desc.tool" ng-model-options="{debounce: 500}">
+                </md-input-container>
+
+            </div>
+            <div class="divMiniInput" layout-gt-xs="row">
+
+                <md-input-container flex-gt-xs="20">
+                    <label for="">تعداد (کیلو/عدد)</label>
+                    <input type="number" ng-model="product.amount" ng-init="product.amount = 0">
+                </md-input-container>
+                <md-input-container flex-gt-xs="20">
+                    <label for="">قیمت واحد (ریال)</label>
+                    <input type="number" ng-model="product.fee" ng-init="product.fee = 0">
+                </md-input-container>
+                <div class="sums" flex-gt-xs="20">
+                    <br>
+                    <span for="">قیمت کل (ریال)</span> <br>
+                    <span>//::(product.amount * product.fee) | number//</span>
+                </div>
+                <md-input-container flex-gt-xs="20">
+                    <label for="">تخفیف (ریال)</label>
+                    <input type="number" ng-model="product.off" ng-init="product.off = 0">
+                </md-input-container>
+                <div class="sums" flex-gt-xs="20">
+                    <br>
+                    <label for="">قیمت نهایی (ریال)</label><br>
+                    <span>//::((product.amount * product.fee) - product.off) | number//</span>
+                </div>
+
+
+            </div>
+            <div class="divMiniInput" layout-gt-xs="row">
+                <md-input-container class="divMiniInput" flex-gt-xs="20">
+                    <label>نوع پرداخت</label>
+                    <md-select ng-model="product.paymentType">
+                        <md-option value='نقدی'>
+                            نقدی
+                        </md-option>
+                        <md-option value='چکی'>
+                            چکی
+                        </md-option>
+                        <md-option value='اعتباری ۳۰ روزه'>
+                            اعتباری ۳۰ روزه
+                        </md-option>
+                        <md-option value='اعتباری ۶۰ روزه'>
+                            اعتباری ۶۰ روزه
+                        </md-option>
+                        <md-option value='قرارداد'>
+                            قراردادی
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex-gt-xs="60">
+                    <label for="">توضیحات</label>
+                    <input type="text" ng-model="product.comment">
+                </md-input-container>
+
+                <div flex-gt-xs="20">
+                    <md-button ng-if="!(product.id)" class="md-primary md-raised" ng-click="AddToList()">
+                        اضافه به لیست
+                    </md-button>
+
+                    <md-button ng-if="product.id" class="md-primary md-raised" ng-click="AddToList()">
+                        ثبت
+                    </md-button>
+                    <md-button class="md-raised" ng-click="CancelProduct()">
+                        انصراف
+                    </md-button>
+
+                </div>
+
+            </div>
+        </div>
+        <md-divider></md-divider>
+        <div id="ProductsList">
+            <div class="tblFeesList ">
+                <div>
+                    <h5 style="padding-right: 12px; color: darkgreen;">جزئیات سفارش
+
+                        <span flex=""></span>
+
+                        <small>//::sum | number//</small>
+                        ریال
+                    </h5>
+                </div>
+                <md-progress-linear md-mode="indeterminate" ng-if="wait"></md-progress-linear>
+
+                <div
+                        ng-repeat="prod in products.results track by $index" ng-class-odd="'odd'"
+                        style="font-size: 12px;    padding: 5px;"
+                        ng-class-even="'even'">
+                    <div layout-gt-xs="row">
+                        <div layout="row" layout-align="center center">
+                            <img style="    height: 46px;
+    border-radius: 34px;
+    margin-left: 12px;" ng-src="//:: prod.avatar //" alt="//:: prod.positionName //" class="md-avatar"/>
+                        </div>
+                        <div layout-gt-xs="row" flex-gt-xs="">
+                            <div flex-gt-xs="25">
+                                <div ng-if="prod.itemID">
+                                    <div>//::prod.itemName//</div>
+                                    <div>//::prod.itemID//</div>
+                                </div>
+                                <div ng-if="prod.desc.arz">
+                                    <span tooltip="عرض">//::prod.desc.arz//</span> -
+                                    <span tooltip="سطح">//::prod.desc.sath//</span> -
+                                    <span tooltip="تمپر">//::prod.desc.temper//</span> -
+                                    <span tooltip="طول">//::prod.desc.tool//</span> -
+                                    <span tooltip="ضخامت">//::prod.desc.zekhamat//</span>
+                                </div>
+                            </div>
+                            <div flex-gt-xs="25">
+                                <div><span>تعداد:</span>//::prod.amount|number//</div>
+                                <div><span>قیمت واحد:</span>//::prod.fee|number//</div>
+                            </div>
+                            <div flex-gt-xs="25">
+                                <div><span>قیمت کل:</span>//::prod.amount*prod.fee|number//</div>
+                                <div><span>تخفیف:</span>//::prod.off|number//</div>
+                            </div>
+                            <div flex-gt-xs="25">
+                                <div><span>قیمت نهایی:</span>//::(prod.amount*prod.fee)-prod.off|number//</div>
+                                <div><span>نوع پرداخت:</span>//::prod.paymentType//</div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div layout="row">
+                        <span>تاریخ ثبت : //prod.dateOfPost  | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//</span>
+                        <span>توضیحات:</span>
+                        <div>//::prod.comment//</div>
+                        <div flex></div>
+
+{#                        <a ng-if="prod.isEditable" ng-click="editProduct(prod)">ویرایش</a>#}
+{#                        |#}
+                        <a ng-if="prod.isEditable" ng-click="deleteProduct(ev, prod)">حذف</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

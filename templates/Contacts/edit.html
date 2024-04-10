@@ -1,0 +1,93 @@
+{% load translators %}
+
+<div id="ContactModal" ng-controller="ContactModalCtrl">
+    <form>
+        <div class="modal-header">
+            <h3 class="modal-title">ویرایش / ایجاد مخاطب
+                <i ng-click="ChangeStar()" ng-if="Contact" class="fa fa-star pull-right btn-star"
+                   ng-class="{'btn-starred':Contact.extra.starred}" style="font-size: 25px;"></i>
+
+            </h3>
+        </div>
+        <div class="modal-body clearfix">
+            <div id="inputContactName">
+                <md-input-container>
+                    <label>{{"Enter Contact Name"|translate}}</label>
+                    <input ng-model="NewContact.Name" type="text" required>
+                </md-input-container>
+                <md-button ng-if="NewContact.Name" ng-click="CreateContact()" class="md-raised md-primary">ایجاد
+                </md-button>
+            </div>
+            <div id="ContactForm" style="display: none">
+                <form>
+
+
+                    <div class="row">
+                        <div>{{"Sharing Strategy"|translate}}</div>
+                        <div class="col-md-4">
+                            {% load img_with_uploader_tags %}
+                            {% ImageWithUploader modelName="Contact.extra.avatar" controllerName="ContactModalCtrl" height="100px" imageContainerSize="col-md-4 profile-pic" imageContainerOtherCss="width: 100px;height: 100px;" other="data-step='2' data-intro='upload contact profile image'" %}
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <label class="radio1" for="Option1">
+                                    <input id="Option1" ng-model="Contact.publish.privacy" type="radio" value=1>
+                                    <span></span>{{"Private"|translate}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div>
+                                <label class="radio1" for="Option2">
+                                    <input id="Option2" ng-model="Contact.publish.privacy" type="radio" value=2>
+                                    <span></span>{{"Public for current company"|translate}}
+                                </label>
+                            </div>
+                            <div>
+                                <label class="checkbox1" for="Option3">
+                                    <input id="Option3" type="checkbox"
+                                           ng-model="Contact.publish.this_companies_can_see">
+                                    <span></span>{{"Public For This Company"|translate}}
+                                </label>
+                                <label class="checkbox1" for="Option">
+                                    <input id="Option" type="checkbox"
+                                           ng-model="Contact.publish.other_companies_can_see">
+                                    <span></span>{{"Public For Other Companies"|translate}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div ng-repeat="item in Contact.fields track by $index">
+                        <div class="form-group">
+                            <label ng-click="ChangeLabel(item)" for="ctrl//$index//">//item.fieldName//</label>
+                            <input
+                                    type="text"
+                                    class="form-control underline"
+                                    id="ctrl//$index//"
+                                    ng-model="item.fieldValue"
+                                    style="//item.style//"
+                                    placeholder="//item.placeholder//"
+                                    required="//item.require//">
+                        </div>
+                    </div>
+                    <div>
+                        <md-button ng-click="AddNewField(item)" class="md-raised md-primary">
+                                    {{"Add field"|translate}}
+                        </md-button>
+                    </div>
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button ng-click="PostContact()" class="btn btn-success fa fa-save"></button>
+            <button ng-click="CancelContact()" class="btn btn-danger fa fa-times"></button>
+        </div>
+    </form>
+</div>

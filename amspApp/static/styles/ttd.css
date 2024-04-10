@@ -1,0 +1,159 @@
+.menu-item span{
+    font-size:19px!important;
+}
+
+.right-to-left{
+    direction: rtl;
+    text-align:justify;
+}
+
+.font-align-right-to-left{
+    text-align:right;
+}
+
+.direction-rtl{
+        direction: rtl!important;
+
+}
+
+a.pp_next,
+a.pp_previous ,
+div.pp_default .pp_nav .pp_pause,
+div.pp_default .pp_nav .pp_play,
+div.pp_default a.pp_arrow_next,
+div.pp_default a.pp_arrow_previous,
+div.pp_default .pp_close,
+div.pp_default .pp_expand
+{
+    font-size:0;
+}
+
+.header-customize-item a{
+    color: black!important;
+}
+
+
+.list-item{
+
+}
+
+.footer-logo{
+    height:100px;
+    direction: rtl;
+}
+
+.footer-logo img{
+height: 100%;
+  width: auto;
+}
+
+
+
+.center-justified {
+    text-align: justify!important;
+    -moz-text-align-last: center!important;
+    text-align-last: center!important;
+}
+
+.footer-article-list a{
+  font-size: 18px!important;
+  font-family: Mitra;
+
+}
+.entry-thumbnail-wrap{
+    display:none;
+}
+
+
+  .vc-custom-heading h4{
+      text-align:right;
+    word-spacing: normal;
+    letter-spacing: normal!important;
+}
+
+
+.footer-article-list li{
+  margin:0;
+  line-height:24px!important;
+}
+
+.footer-article-list ul{
+  list-style-type: disc;
+}
+
+.h4{
+    direction:rtl;
+    text-align:right;
+
+}
+.right-justified {
+    text-align: justify!important;
+    -moz-text-align-last: right!important;
+    text-align-last: right!important;
+}
+
+
+.breadcrumbs-wrap{
+    display:none;
+}
+
+
+.entry-content p{
+    text-align: justify!important;
+    -moz-text-align-last: right!important;
+    text-align-last: right!important;
+}
+
+
+.homepage-services-slider .post-entry-meta{
+display:none;
+}
+
+
+.line-height-24{
+    line-height:24px;
+}
+
+footer.main-footer-wrapper h4.widget-title{
+    margin-bottom:7px!important;
+}
+
+.entry-comments-form, .entry-comments, .entry-post-meta-wrap{
+    display:none;
+}
+
+.main-footer-wrapper .widget a{
+    color:#bababa;
+}
+
+.sc_team_member_inner{
+    background-color:#96c19b!important;
+}
+
+.line-double span{
+    font-family: BMitra!important;
+    font-style: normal;
+    word-spacing: normal;
+}
+
+.paziresh{
+    background-color: yellow;
+        color: #07544a;
+
+}
+
+.icon-search-icon{
+    font-weight: bold!important;
+    font-size: 24px;
+}
+.vc_custom_heading h4{
+    text-align:right!important;
+
+}
+.entry-thumbnail-wrap{
+    display:none;
+}
+.post-entry-meta{
+    display:none;
+}
+

@@ -1,0 +1,143 @@
+{% load translators %}
+{% load staticfiles %}
+{% load i18n %}
+
+
+<h1 class="md-title">دوره های آموزشی</h1>
+<div layout-gt-sm="column" ng-controller="step4Ctrl">
+    <div class="frame firstreg">
+        <div flex-gt-sm layout-padding>
+            <div class="toolbar">
+                دوره های آموزش سپری شده را وارد نمایید
+            </div>
+            <form name="dorehForm">
+                <md-content layout-padding>
+                    <p class="help">
+                        <md-icon md-font-icon="fa fa-info-circle"
+                                 style="    font-size: 24px;    color: rgb(97, 58, 0);">
+
+                        </md-icon>
+                        در این قسمت تمامی دوره هایی که در آن شرکت کرده اید را وارد نمایید
+                    </p>
+
+
+                    <div flex-gt-sm>
+
+                        <div layout-gt-sm="row">
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>نام دوره</label>
+                                <input type="text" ng-model="DorehItem.WorkshopName" required>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm>
+                                <!-- Spacer //-->
+                            </div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>سال برگزاری دوره</label>
+                                <input type="number" ng-model="DorehItem.YearOfWorkshop" id="txtYearOfWorkshop"
+                                       required>
+
+                                <div class="hint">مثال :‌1384
+                                </div>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm>
+                                <!-- Spacer //-->
+                            </div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>موسسه برگزار کننده</label>
+                                <input type="text" ng-model="DorehItem.Institute">
+                                </label>
+                            </md-input-container>
+
+
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>میزان ساعت</label>
+                                <input type="number" ng-model="DorehItem.TimeAmount">
+                                <div class="hint">مثلا 120
+                                </div>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm>
+                                <!-- Spacer //-->
+                            </div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>عنوان گواهینامه</label>
+                                <input type="text" ng-model="DorehItem.HaveCertificate">
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm>
+                                <!-- Spacer //-->
+                            </div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>میزان تسلط</label>
+                                <input type="text" ng-model="DorehItem.KindOfKnowing" required>
+
+                                <div class="hint">در این قسمت درباره میزان تسلط و آشنایی خود با دوره ی مورد نظر توضیحاتی
+                                    را بنویسید
+                                </div>
+                            </md-input-container>
+
+
+                        </div>
+                        <div>
+                            <md-input-container class="md-block addtolist" flex-gt-sm>
+                                <label></label>
+                                <md-button ng-disabled="dorehForm.$invalid" class="md-raised md-primary"
+                                           ng-click="AddToList(DorehItem)">
+                                    اضافه به لیست سوابق
+                                </md-button>
+
+                            </md-input-container>
+
+                        </div>
+
+                    </div>
+
+
+                    <table class="table-responsive table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td>نام دوره</td>
+                            <td>سال برگزاری</td>
+                            <td>موسسه</td>
+                            <td>ساعت</td>
+                            <td>عنوان گواهینامه</td>
+                            <td>تسلط</td>
+                            <td></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in Doreh.items track by $index">
+                            <td>// item.WorkshopName //</td>
+                            <td>// item.YearOfWorkshop //</td>
+                            <td>// item.Institute //</td>
+                            <td>// item.TimeAmount //</td>
+                            <td>// item.HaveCertificate //</td>
+                            <td>// item.KindOfKnowing //</td>
+                            <td style="text-align: left">
+                                <md-button class="md-raised" ng-click="itemEdit(item, $index)">ویرایش</md-button>
+                                <md-button class="md-raised" ng-click="Doreh.items.splice($index,1)">حذف
+                                </md-button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" style="text-align: center" ng-show="!Doreh.items.length">
+                                هیچ سابقه ای وارد نشده است
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    </md-input-container>
+                </md-content>
+
+            </form>
+            <md-toolbar>
+                <div class="md-toolbar-tools" layout-align="end center">
+                    <md-button class="md-raised" ng-click="Post('4', Doreh)">ذخیره در سوابق و مرحله ی بعد</md-button>
+
+                </div>
+            </md-toolbar>
+        </div>
+    </div>
+</div>

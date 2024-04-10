@@ -1,0 +1,43 @@
+<div ng-controller="EzReportCtrl">
+    <div ng-repeat="item in ezs" ng-class="$index % 2 == 0 ? 'even' : 'odd'" style="padding: 10px;">
+        <div layout-gt-xs="row" style="font-size: 12px; color: darkgray;">
+            <div flex="10">تاریخ</div>
+            <div flex="10">تعداد</div>
+            <div flex="40">کد پرسنلی</div>
+            <div flex>ساعات</div>
+        </div>
+        <div layout-gt-xs="row">
+            <div flex="10">//item._id | jalaliDate:'jYYYY/jMM/jDD' //</div>
+            <div flex="10">//item.tedade_personnel//</div>
+            <div flex="40" style="font-size: 13px;">
+                <span ng-repeat="ii in item.personnel_code">
+                    // ii // -
+                </span>
+            </div>
+            <div flex>
+                <table style="width: 100%" class="table table-bordered table-striped mini">
+                    <thead>
+                    <tr>
+                        <th>ساعت</th>
+                        <th>میزان</th>
+                        <th>پرسنل</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="mm in item.times">
+                        <td>//mm.title//</td>
+                        <td>//mm.count//</td>
+                        <td style="font-size: 12px;">
+                            <span ng-repeat="ee in mm.per_list">
+                                //ee.personnel_code// -
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

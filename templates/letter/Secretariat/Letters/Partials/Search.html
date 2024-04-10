@@ -1,0 +1,63 @@
+{% load translators %}
+
+        <div layout-gt-md="row">
+            <div flex-gt-md="20">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>{{ 'Start date'|translate }}</label>
+                    <input name="social"
+                           ng-model="filter.startDate"
+                           style="direction: ltr!important;"
+                           ng-pattern="/^[0-9]{4}/[0-9]{2}/[0-9]{2}$/"/>
+
+                    <div style="direction: ltr!important;" class="hint">13##/##/##</div>
+                </md-input-container>
+
+            </div>
+            <div flex-gt-md="20">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>{{ 'End date'|translate }}</label>
+                    <input name="social" ng-model="filter.endDate" style="direction: ltr!important;"
+                           ng-pattern="/^[0-9]{4}/[0-9]{2}/[0-9]{2}$/"/>
+
+                    <div style="direction: ltr!important;" class="hint">13##/##/##</div>
+                </md-input-container>
+
+            </div>
+            <div flex-gt-md="25">
+                <md-chips ng-model="filter.selectedCompanies" flex="100"
+                          md-autocomplete-snap
+                          md-transform-chip="transformCompanyChip($chip)"
+                          md-require-match="autocompleteDemoRequireMatch">
+                    <md-autocomplete
+                            md-selected-item="selectedCompanyItem"
+                            md-search-text="searchCompanyText"
+                            md-items="item in queryCompanySearch(searchCompanyText)"
+                            md-item-text="item.name"
+                            placeholder="{{ 'Search for a companies'|translate }}">
+                        <span md-highlight-text="searchCompanyText">// item.name //</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                            <span>
+                              <strong>//$chip.name//</strong>
+                            </span>
+                    </md-chip-template>
+                </md-chips>
+            </div>
+            <div flex-gt-md="35">
+                <md-input-container>
+                    <label>{{ 'Search Text'|translate }}</label>
+                    <input ng-model="filter.searchString">
+                </md-input-container>
+
+                <md-button class="md-icon-button" aria-label="mrb" ng-click="ChangeFilterStar()">
+                    <md-icon md-font-icon="fa fa-star"
+                             ng-class="{'dark-star':!filter.starred, 'star-selected':filter.starred}">
+                    </md-icon>
+                </md-button>
+            </div>
+        </div>
+        <div layout="column">
+
+            {% include 'letter/Secretariat/Letters/Partials/TagsList.html' %}
+
+        </div>

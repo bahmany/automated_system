@@ -1,0 +1,32 @@
+{% load translators %}
+<div>
+    <div class="row" id="alert-box">
+
+    </div>
+
+    <div class="row">
+        <div class="reg-form-container pull-right">
+            <span>{{ 'Forget password'|translate}} ...</span>
+            <form role="form">
+                {% csrf_token %}
+                <div class="form-content">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="forget_email"
+                               ng-model="vm.ForgetEmail" placeholder=" {{ "pleaseenteryouremail" | translate }}">
+                    </div>
+                </div>
+
+                <button   progress-button="vm.forgetpass()" class="btn btn-default btn-sm">
+                    {{ "resetmyaccount" |translate}}
+                </button>
+                &nbsp;
+                <a ui-sref="login">
+                    <button type="submit" class="btn btn-default btn-sm" ng-click="backReg()" >{{ "back to register" | translate}}
+                    </button>
+                </a>
+            </form>
+        </div>
+    </div>
+
+
+</div>

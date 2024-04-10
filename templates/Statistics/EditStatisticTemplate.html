@@ -1,0 +1,57 @@
+{% load translators %}
+
+<div flex ng-controller="statisticsEditCtrl">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            ویرایش آمار
+        </div>
+    </md-toolbar>
+    <form name="frmNewStat">
+        <div class="shadower">
+            <md-input-container class="md-block">
+                <label for="">نام آمار</label>
+                <input type="text" ng-model="statisticTemplate.name" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">واحد اندازه گیری</label>
+                <md-select ng-model="statisticTemplate.dataType" ng-required="true">
+                    <md-option value>----</md-option>
+                    <md-option value="کیلو">کیلو</md-option>
+                    <md-option value="ریال">ریال</md-option>
+                    <md-option value="تعداد">تعداد</md-option>
+                    <md-option value="درصد">درصد</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">بالاترین مقدار</label>
+                <input type="text" fcsa-number ng-model="statisticTemplate.exp.max" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="">پایین ترین مقدار</label>
+                <input type="text" fcsa-number ng-model="statisticTemplate.exp.min" ng-required="true">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label for="">توضیحات</label>
+                <input type="text" ng-model="statisticTemplate.desc" ng-required="true">
+            </md-input-container>
+
+        </div>
+        <md-toolbar class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span flex></span>
+                <md-button class="md-raised md-primary"
+                           type="submit"
+                           ng-disabled="frmNewStat.$invalid"
+                           ng-click="saveStatisticTemplate()">
+                    ذخیره
+                </md-button>
+{#                <md-button class="md-raised md-warn" ng-disabled="frmNewStat.$invalid" ng-click="publishTemplate()">#}
+{#                    انتشار#}
+{#                </md-button>#}
+
+            </div>
+        </md-toolbar>
+    </form>
+
+</div>

@@ -1,0 +1,112 @@
+{% load translators %}
+
+<div
+        layout-gt-md="row"
+        flex
+        ng-controller="SearchCtrl"
+        id="SearchCtrl">
+    <div flex-gt-md="25" flex class="myInbox">
+        <md-content>
+            <md-toolbar class="md-hue-1">
+                <div class="md-toolbar-tools">
+                    <h3>{{ 'Search'|translate }}</h3>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+            <div style="padding: 5px 10px;">
+                <div>
+
+                    <md-input-container class="md-block">
+                        <label>جستجوی کد امضا</label>
+                        <input  ng-model="searchID" style="direction: ltr" >
+
+                    </md-input-container>
+                    <md-toolbar class="md-hue-1">
+                        <div class="md-toolbar-tools">
+
+                <span flex>
+
+                </span>
+                            <md-button class="md-button md-raised md-primary" ng-click="Search()">
+                                جستجو
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+
+{#                    <div flex-gt-md="98" flex>#}
+{#                        <div class="form-group">#}
+{##}
+{#                            <input type="text" ng-model="searchID""/>#}
+{#                            <br/>#}
+{#                            <a class="btn btn-default">#}
+{#                                {{ 'do process'|translate }}#}
+{##}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            </div>
+        </md-content>
+
+
+        <md-content style="padding-top: 20px;">
+            <div layout="row" layout-align="start center" style="color: #A5A5A5;">
+                <h3>//selectedBpmn//:</h3>
+                <span flex></span>
+            </div>
+            <div class="report-filed-list" ng-repeat="itm in fieldsList" felx>
+                <label>//itm.displayName//</label> <label class="checkbox1"> <input type="checkbox"
+                                                                                    ng-model="selected[itm.name]"
+                                                                                    ng-click="ShowReport()">
+                <span></span></label>
+            </div>
+        </md-content>
+
+
+    </div>
+    <div flex-gt-md="75" flex>
+        <md-content class="shadower  bpms-diagram-container"
+                    style="float: none;margin: 0 auto;">
+
+            <div layout="row" layout-align="start center" style="color: #A5A5A5;">
+                <h3>{{ 'view table'|translate }}</h3>
+                <span flex></span>
+            </div>
+            <md-divider></md-divider>
+            <table class="table table-bordered table-striped mini">
+                <thead>
+                <tr>
+                    <th>کد</th>
+                    <th>نام فرآیند</th>
+                    <th>نام وظیفه</th>
+                    <th>انجام دهنده</th>
+                    <th>سمت</th>
+                    <th>تاریخ انجام</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="item in list track by $index">
+                    <td>//item.id//</td>
+                    <td>//item.bpmnName//</td>
+                    <td>//item.taskName//</td>
+                    <td>//item.thisPerformerName//</td>
+                    <td>//item.thisPerformerChartName//</td>
+                    <td>
+                                                            <span ng-if="item.doneDate">
+                                                //item.doneDate | jalaliDate:'jYYYY/jMM/jDD hh:mm'//
+                                                            </span>
+                        <span ng-if="!item.doneDate" style="color: red; font-weight: bold">
+                                                منتظر تایید
+                                                            </span>
+
+                    </td>
+                </tr>
+                <tr ng-if="list.length == 0">
+                    <td colspan="6" style="text-align: center">داده ای یافت نشد</td>
+                </tr>
+                </tbody>
+            </table>
+        </md-content>
+    </div>
+

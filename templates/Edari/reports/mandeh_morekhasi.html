@@ -1,0 +1,20 @@
+<div ng-controller="edariReportMandehMorekhasiCtrl">
+    <md-toolbar class="md-hue-5">
+        <div class="md-toolbar-tools">
+            <h4 md-truncate>مانده مرخصی های امسال</h4>
+
+            <div flex>
+
+            </div>
+        </div>
+    </md-toolbar>
+
+    <div class="shadower">
+
+        <div ng-if="asd.pagesArray" dir="rtl">
+            <div ng-bind-html="asd.pagesArray[0].content | to_trusted">
+
+            </div>
+        </div>
+    </div>
+</div>

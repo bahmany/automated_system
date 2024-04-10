@@ -1,0 +1,197 @@
+{% load translators %}
+{% load staticfiles %}
+
+<div ng-controller="FileUploaderController" layout-gt-sm="row">
+    <div flex="30">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                <h3>
+                    پوشه های من
+
+                </h3>
+                <span flex></span>
+                <md-button class="md-fab md-mini" ng-if="!isEditing" ng-click="OpenFolderEdit()">
+                    <md-icon md-font-icon="fa fa-plus" aria-hidden="true"></md-icon>
+
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <div ng-if="!isEditing" ui-tree data-drag-enabled="false">
+                <ol ui-tree-nodes="" ng-model="listFileFoldersJson" id="tree-root">
+                    <li ng-repeat="node in listFileFoldersJson"
+                        ui-tree-node ng-include="'nodes_renderer.html'"
+                        style="padding-left: 0px"
+                        on-finish-render="ngRepeatFinished"></li>
+                </ol>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div flex="3">
+
+    </div>
+    <div flex="67">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>فایل های من</span>
+                </h2>
+            </div>
+        </md-toolbar>
+    </div>
+
+
+    <md-content>
+
+
+        <div class="shadower">
+            <md-toolbar class="md-hue-3 mini">
+                <div class="md-toolbar-tools">
+                    <h5>
+                        آپلودر فایل - فایل ها بکشید و در زیر رها کرده و یا اینکه بروی فضای زیر کلیک کنید
+
+                    </h5>
+                </div>
+            </md-toolbar>
+            <md-divider></md-divider>
+            <div
+                    ngf-select="uploadFiles($files)"
+                    data-ngf-drop="uploadFiles($files)"
+                    class="drop-box drop-file-area clearfix"
+                    data-ngf-drag-over-class="dragover"
+                    data-ngf-multiple="true">
+
+                <div ng-repeat="item in UploadedFiles"
+                     class="pull-left well well-sm clearfix text-center"
+                     style="width: 100px; height: 155px; padding: 3px; margin: 3px; overflow: hidden">
+                    {% include "share/filecloud/AttsThumb.html" with readonly='false' %}
+                </div>
+
+                <span ng-if="UploadedFiles.length == 0">
+                   فایل ها را کشیده و در این قسمت رها نمایید
+                </span></div>
+            <md-progress-linear class="md-warn" md-mode="buffer" value="//UploadPercent//"></md-progress-linear>
+            <div ngf-no-file-drop>{{ 'File Drag/Drop is not supported for this browser'|translate }}</div>
+            {% if not dontShow %}
+                <md-toolbar class="md-hue-3">
+
+                    <div class="md-toolbar-tools">
+                        <span flex></span>
+                        <md-button class="md-raised" ng-click="CancelAttachments()">انصراف</md-button>
+                        <md-button class="md-raised md-primary" ng-click="AcceptAtts()">تایید و ضمیمه کردن</md-button>
+                    </div>
+                    {#                <span flex></span>#}
+
+                </md-toolbar>
+            {% endif %}
+        </div>
+
+
+        <div class="shadower" id="folders_contain">
+            <div layout-gt-md="row">
+                <div flex-gt-md="30">
+                    <div ng-if="isEditing" class="shadower">
+                        {% include "share/filecloud/createEditFolder.html" %}
+                    </div>
+
+
+                </div>
+                <span flex-gt-md="5"></span>
+                <div flex-gt-md="65">
+                    <md-toolbar class="md-hue-3 mini">
+                        <div class="md-toolbar-tools">
+                            <h5>
+                                فایل های من
+                            </h5>
+                        </div>
+                    </md-toolbar>
+                    <div layout-gt-sm="row" layout-wrap>
+                        <div ng-repeat="item in FolderFiles.results track by $index"
+                             class="pull-left well well-sm clearfix text-center"
+                             data-drag="true"
+                             ng-model="FolderFiles.results"
+                             jqyoui-draggable="{
+                                                 index: //$index//,
+                                                 animate:true,
+                                                 onStart:'startCallback(item, $index)',
+                                                 onStop: 'stopCallback',
+                                                 onDrag: 'dragCallback'
+                                }"
+                             data-jqyoui-options="{
+                                zIndex: 9999,
+                                placeholder: 'keep',
+                                containment: 'folders_contain',
+                                helper: 'clone',
+                                revert: 'invalid'}"
+                             style="width: 100px; height: 125px; padding: 3px; margin: 3px; overflow: hidden">
+                                <span class="content_right_head"
+                                      style="font-size: 11px;">//item.file.originalFileName//</span>
+                            <br>
+                            <img ng-src="//item.file.decodedFileName//"
+                                 style="max-width: 50px; max-height: 55px">
+                            <br>
+                            <small>
+                                // item.file.size / 1024 | number:0//kb
+                            </small>
+                            <br>
+
+                            <div class="btn-group btn-group-xs">
+                                <button class="btn btn-default btn-xs fa fa-share-alt"
+                                        tooltip="به اشتراک گذاری"></button>
+                                <button class="btn btn-default btn-xs fa fa-arrow-up"
+                                        tooltip="انتخاب"
+                                        ng-click="AddFromCloudToSelected(item)"></button>
+                                <button class="btn btn-default btn-xs fa fa-pencil"
+                                        tooltip="تغییر نام"
+                                        ng-click="EditCloudFileName(item, $index)"
+                                ></button>
+                                <button class="btn btn-default btn-xs fa fa-times-circle-o"
+                                        ng-click="RemoveFromCloud(item, $index)"
+                                        tooltip="حذف"></button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <script type="text/ng-template" id="nodes_renderer.html">
+                    <div ng-click="SelectFolder(node, $event)"
+                         ui-tree-handle
+                         style="font-size: 11px; height: 20px; overflow: hidden"
+                         class="inbox-dynamic-items inbox-dynamic-folders"
+                         data-drop="true"
+                         data-jqyoui-options
+                         ng-model="node.selected"
+                         jqyoui-droppable="{index://$index//,onDrop:'dropCallback(node, $index)',multiple:true}"
+                    >
+                        //node.name// <span ng-if="node.count != 0">(//node.count//)</span>
+
+                        <div style="max-width: 40px;display: none; font-size: 13px;margin-top: 3px; margin-left: 10px;"
+                             class="pull-left btnss">
+                            <i ng-click="EditFileFolder(node)" class="fa fa-edit other-btn"></i>
+                            <i ng-click="DeleteFileFolder(node)" class="fa fa-trash other-btn"></i>
+                        </div>
+                    </div>
+                    <ol ui-tree-nodes="" ng-model="node.children"
+                        style="padding-left: 0px;margin-right: 10px;">
+                        <li ng-repeat="node in node.children" ui-tree-node
+                            ng-include="'nodes_renderer.html'"
+                            style="padding-left: 0px">
+                        </li>
+                    </ol>
+                </script>
+
+            </div>
+
+        </div>
+
+
+    </md-content>
+    {#    <div>#}
+    {#        <button class="btn btn-default" ng-click="AcceptAtts()">{{ 'confirm'|translate}}</button>#}
+    {#        <button class="btn btn-default" ng-click="CancelAttachments()">{{ 'cancel'|translate}}</button>#}
+    {#    </div>#}
+</div>

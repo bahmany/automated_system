@@ -1,0 +1,52 @@
+{% load translators %}
+<div ng-controller="bpmnSetupCtrl" class="tablewideable">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+فرآیند :
+            //bpmn.name//
+            <span flex></span>
+            <button class="md-primary md-raised md-button" type="button"
+                    onclick="$('.tablewideable').toggleClass('screen-wide')">تمام صفحه
+            </button>
+            <md-button class="md-raised md-primary"
+                       type="button" ui-sref="process({ 'companyid': companyId})"
+                       aria-label="secs">
+                بستن فرآیند انتخابی
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class="shadower">
+        <div id="bpmn-viewer" style="height: 500px;"></div>
+
+        {% include 'companyManagement/BPMN/designer/elements/ExclusiveGatewayElement.html' %}
+        {% include 'companyManagement/BPMN/designer/elements/usertask/UserTaskElement.html' %}
+        {% include 'companyManagement/BPMN/designer/elements/TaskElement.html' %}
+        {% include 'companyManagement/BPMN/designer/elements/CallActivityElement.html' %}
+        {% include 'companyManagement/BPMN/designer/elements/ParalellGatewayElement.html' %}
+        {% include 'companyManagement/BPMN/designer/elements/servicetask/base.html' %}
+        {#        <div flex-gt-md="20">#}
+        {#        </div>#}
+    </div>
+</div>
+<link rel="stylesheet" href="/static/bower_components/angular-form-gen/angular-form-gen.min.css"/>
+<link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/css/diagram-js.css"/>
+<link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/vendor/bpmn-font/css/bpmn-embedded.css"/>
+<link rel="stylesheet" href="/static/bower_components/bpmn-modeler2/css/app.css"/>
+<script src="/static/bower_components/bpmn-modeler2/BpmnViewerApp.js"></script>
+<script src="/static/bower_components/bpmn-modeler2/bpmn-moddle.js"></script>
+<style>
+    {#    .djs-element.djs-shape:not(.djs-connection) .djs-visual > rect:nth-child(1) {#}
+    {#    fill: rgba(13, 172, 245, 0.77) !important;#}
+    {#    stroke: #084E77;#}
+    {# } #}
+    .djs-element.djs-shape:not(.djs-connection) .djs-visual > polygon:nth-child(1) {
+        fill: #fec107 !important;
+        stroke: #96740F !important;
+    }
+    .djs-element.djs-connection:not(.djs-shape) .djs-visual > path:nth-child(1) {
+        stroke: #77848C !important;
+    }
+    .djs-element.djs-shape:not(.djs-connection) .djs-visual > circle:nth-child(1) {
+        fill: #de6764 !important;
+    }
+</style>

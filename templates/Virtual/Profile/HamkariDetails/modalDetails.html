@@ -1,0 +1,63 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                //jobItem.name//
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <form name="frmJobDetail">
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div ng-bind-html="jobItem.exp | to_trusted">
+
+                </div>
+                <div ng-if="jobItem.extraFields.length > 0">
+                    <hr>
+                    <h2 class="complete-form">
+                        لطفا فرم زیر را نیز تکمیل کنید
+                    </h2>
+                    <div>
+                        <md-input-container class="md-block" ng-repeat="item in jobItem.extraFields">
+                            <label for="">//item.name//</label>
+                            <input type="text" ng-model="item.value" ng-required="item.require">
+                        </md-input-container>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </md-dialog-content>
+
+        {% if isUserRegister %}
+            <md-dialog-actions layout="row">
+
+                <span ng-if="jobItem.registered" style="color: red;">قبلا ثبت نام کرده اید</span>
+                <span flex></span>
+                <md-button ng-if="!(jobItem.registered)" class="md-raised md-primary" ng-click="confirm()"
+                           ng-disabled="frmJobDetail.$invalid">
+                    ثبت نام
+                </md-button>
+                <md-button ng-if="(jobItem.registered)" class="md-raised md-primary" ng-click="confirmCancel()">
+                    انصراف
+                </md-button>
+
+            </md-dialog-actions>
+        {% else %}
+            <md-dialog-actions layout="row">
+
+                <a ui-sref="register" style="color: red;">
+                    شما در سامانه ثبت نام نکرده اید. وارد قسمت ثبت نام شده و پس از آن به این صفحه مراجعه نمایید
+                    </a>
+
+
+            </md-dialog-actions>
+
+        {% endif %}
+    </form>
+</md-dialog>

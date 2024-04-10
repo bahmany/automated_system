@@ -1,0 +1,71 @@
+<md-dialog aria-label="Mango (Fruit)" flex="70">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                ایجاد / ویرایش پروفایل
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-font-icon="fa fa-close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <form name="frmAddConv">
+        <div layout-gt-sm="row">
+            <div layout="column" flex-gt-sm="40">
+                <md-input-container class="md-block">
+                    <label for="">جستجوی مشتریان</label>
+                    <input type="search" ng-model="searchCustomers" ng-model-options="{debounce: 500}">
+                </md-input-container>
+                <div style="max-height: 200px;min-width: 300px; overflow-y: scroll">
+                    <div
+                            ng-repeat="customer in Customers track by $index"
+                            ng-class-odd="'odd'" ng-class-even="'even'"
+
+                            ng-click="setCustomer(customer)">
+                        //customer.CustomerID//-//customer.CustomerName//
+                    </div>
+                </div>
+
+            </div>
+            <div flex-gt-sm="10">
+
+            </div>
+
+            <div layout="column" flex-gt-sm="40">
+
+                <md-input-container class="md-block">
+                    <label for="">نام مشتری</label>
+                    <input type="text" ng-model="profile.name" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label for="">کد مشتری</label>
+                    <input type="text" ng-model="profile.hamkaranCode">
+                </md-input-container>
+
+                <md-checkbox  ng-model="profile.exp.namayandegi_8_ostaan" aria-label="No Ink Effects">
+                   نمایندگی فروش ۸ استان
+                </md-checkbox>
+
+
+            </div>
+
+
+        </div>
+
+
+        <md-dialog-actions layout="row">
+
+
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="confirm()" ng-disabled="frmAddConv.$invalid">
+                ثبت
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="confirmCancel()">
+                انصراف
+            </md-button>
+
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

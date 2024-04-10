@@ -1,0 +1,117 @@
+<div ng-controller="TaminProjectCtrl">
+
+    <div id="divList">
+        <div layout="row">
+            <span flex></span>
+            <md-button class="md-fab md-mini" ng-click="new()">
+                <md-icon md-font-icon="fa fa-plus" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+        <div>
+            {% load pager_navigator_tags %}
+            {% pagerNavigatorForSpacial style="text-center" listname="taminProjects" search_ng_model="searchTaminProject" PageTo="taminProjectPageTo" %}
+        </div>
+            <div>
+        <md-progress-linear md-mode="indeterminate" ng-if="taminProjectwait"></md-progress-linear>
+    </div>
+        <div>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>نام</th>
+                    <th>سازنده</th>
+                    <th>میزان کل</th>
+                    <th>تاریخ شروع</th>
+                    <th>نوع تامین</th>
+                    <th>توضیحات</th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="item in taminProjects.results track by $index">
+                    <td>//item.projectName//</td>
+                    <td>//item.factoryName//</td>
+                    <td>//item.totalAmount//</td>
+                    <td>//item.projectStartDate//</td>
+                    <td>//item.typeOfTamin//</td>
+                    <td>//item.desc//</td>
+                    <td>
+                        <a ng-click="edit(item)">ویرایش</a> |
+                        <a ng-click="delete(item)">حذف</a>
+
+                    </td>
+                </tr>
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+    </div>
+
+
+    <div id="divEdit" style="display: none">
+        <div layout="row">
+            <span flex> </span>
+            <md-button class="md-button md-raised" ng-click="showList()"> برگشت</md-button>
+        </div>
+        <form name="frmProject">
+
+            <div layout-gt-sm="row">
+                <md-input-container flex-gt-sm="50">
+                    <label>نام پروژه</label>
+                    <input type="text" ng-model="taminProject.projectName" required>
+                </md-input-container>
+                <md-input-container flex-gt-sm="50">
+                    <label>نام سازنده/تامین کننده</label>
+                    <input type="text" ng-model="taminProject.factoryName" required>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="50">
+                <md-input-container flex-gt-sm="30">
+                    <label for="">میزان (کیلو/عدد)</label>
+                    <input type="number" ng-model="taminProject.totalAmount" required>
+                </md-input-container>
+
+                <md-input-container flex-gt-sm="30">
+                    <label for="">تاریخ شروع</label>
+                    <input type="text" ng-model="taminProject.projectStartDate"
+                           required
+                           placeholder="1399/06/05"
+                           style="direction: ltr!important;"
+
+                    >
+                </md-input-container>
+
+                <md-input-container flex-gt-sm="40">
+                    <label for="">نوع تامین کننده</label>
+                    <md-select ng-model="taminProject.typeOfTamin" required>
+                        <md-option ng-value=1>داخلی</md-option>
+                        <md-option ng-value=2>خارجی</md-option>
+                    </md-select>
+                </md-input-container>
+
+            </div>
+            <md-input-container class="md-block">
+                <label>سایر توضیحات</label>
+                <input type="text" ng-model="taminProject.desc" required>
+            </md-input-container>
+            <div layout="row">
+                <span flex></span>
+                <md-button class="md-raised md-primary" ng-click="post()" ng-disabled="frmProject.$invalid">
+                    ثبت
+                </md-button>
+                <md-button class="md-raised md-primary" ng-click="cancel()">
+                    انصراف
+                </md-button>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+

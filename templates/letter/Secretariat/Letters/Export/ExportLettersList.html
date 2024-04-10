@@ -1,0 +1,127 @@
+{% load translators %}
+
+<div ng-controller="ExportListCtrl">
+    {% include 'letter/Secretariat/Letters/Partials/ModalExportedLoader.html' with headerText=' لیست نامه های صادره' %}
+    {% include 'letter/Secretariat/Letters/Partials/ListTop.html' with headerText=' لیست نامه های صادره' %}
+
+
+    <div layout="column" class="shadower">
+
+        <div>
+
+            {% include "letter/Secretariat/Letters/Partials/Search.html" %}
+
+        </div>
+
+        <div ng-if="waitForLoading">
+            <md-progress-linear class="fader" md-mode="indeterminate"></md-progress-linear>
+        </div>
+
+        <div>
+            {% load tables_tags %}
+            {% tablePagination main_model_name="ExportletterList" table_search_watch_model_name="filter.searchString" table_go_to_page_func_name="GoToPage" table_handle_pagination_func_name="HandleTablePagination" table_info_model_name="Tablelist" %}
+        </div>
+
+        <div>
+            <table class="table mini table-has-border">
+                <thead>
+                <tr>
+                    <th>امضا</th>
+                    <th>دریافت کننده (ها)</th>
+                    <th>موضوع</th>
+                    <th>تاریخ ارسال</th>
+                    <th>ثبت کننده</th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="item in ExportletterList.results" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <td style="direction: ltr; text-align: right;">//item.letter.sign//</td>
+                    <td><span ng-repeat="itx in item.letter.company_rec">//itx.name//</span></td>
+                    <td>//item.letter.subject//</td>
+                    <td>//item.letter.exp.dateOfSent//</td>
+                    <td>//item.sender.profileName//</td>
+                    <td>
+                        <md-button class="md-icon-button md-primary" aria-label="mrb"
+                                   ng-click="ChangeStar(item);$event.stopPropagation()">
+                            <md-icon md-font-icon="fa fa-star"
+                                     ng-class="{'dark-star':!item.star, 'star-selected':item.star}">
+                            </md-icon>
+                            <md-tooltip>
+                                ستاره دار
+                            </md-tooltip>
+                        </md-button>
+
+                        <md-button ng-click="Scan(item);$event.stopPropagation()" class="md-icon-button"
+                                   aria-label="mrb">
+                            <md-icon md-font-icon="fa fa-image"
+                                     ng-class="{'dark-fa':item.scan_count==0, 'green-fa':item.scan_count != 0}">
+                            </md-icon>
+                            <md-tooltip>
+                                اسکن نامه
+                            </md-tooltip>
+                        </md-button>
+
+
+                        <md-button ng-click="Preview(item);$event.stopPropagation()" class="md-icon-button  md-primary">
+                            <md-icon md-font-icon="fa fa-download"></md-icon>
+                            <md-tooltip>
+                                دانلود
+                            </md-tooltip>
+                        </md-button>
+                        {#                        <a ng-click="Preview(item)">دانلود</a>|#}
+                        <md-button ng-click="Recieved(item);$event.stopPropagation()" class="md-icon-button md-primary">
+                            <md-icon md-font-icon="fa fa-users"
+                            ng-class="{'text-red':item.rec_count==0, 'green-fa':item.rec_count != 0}"
+                            ></md-icon>
+                            <md-tooltip>
+                                دریافت کننده های نامه
+                            </md-tooltip>
+                        </md-button>
+
+
+                        <md-button ng-click="SuspendIt(item);$event.stopPropagation()" class="md-icon-button">
+                            <md-icon md-font-icon="fa"
+                                     ng-class="{'text-red fa-pause':!item.letter.exp.export.suspended, 'green-fa fa-play':item.letter.exp.export.suspended}">
+                            </md-icon>
+                            <md-tooltip>
+                                تعلیق یا فعال
+                            </md-tooltip>
+
+                        </md-button>
+{#                        <a ng-click="SuspendIt(item)">#}
+{#                            <span ng-if="!item.letter.exp.export.suspended">تعلیق</span>#}
+{#                            <span ng-if="item.letter.exp.export.suspended" style="color: red">  تعلیق شده</span>#}
+{##}
+{##}
+{#                        </a>|#}
+                        <md-button ng-click="SendItAgain(item);$event.stopPropagation()" class="md-icon-button md-primary">
+                            <md-icon md-font-icon="fa fa-send"></md-icon>
+                            <md-tooltip>
+ارجاع                            </md-tooltip>
+                        </md-button>
+
+{#                        <a ng-click="SendItAgain(item)">ارجاع</a>|#}
+                        <md-button ng-click="previewExport(item);$event.stopPropagation()" class="md-icon-button md-primary">
+                            <md-icon md-font-icon="fa fa-envelope"></md-icon>
+                            <md-tooltip>
+مرور نامه                            </md-tooltip>
+                        </md-button>
+{#                        <a ng-click="previewExport(item)">مرور</a>|#}
+                        <md-button ng-if="item.itemMode == 5" ng-click="RemoveExportDraft(item);$event.stopPropagation()" class="md-icon-button md-primary">
+                            <md-icon md-font-icon="fa fa-trash"></md-icon>
+                            <md-tooltip>
+حذف پیش نویس                            </md-tooltip>
+                        </md-button>
+{#                        <a ng-click="RemoveExportDraft(item)">حذف پیش نویس</a>#}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+</div>

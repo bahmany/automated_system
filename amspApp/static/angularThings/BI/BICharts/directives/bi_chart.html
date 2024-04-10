@@ -1,0 +1,38 @@
+<div class="bi-single-amar">
+    <canvas id="chart_preview" style="height:200px; width:100%; margin: 5px;"></canvas>
+    <md-progress-linear md-mode="indeterminate"
+                        ng-show="is_loading_data"></md-progress-linear>
+    <div layout="row" layout-align="center center" layout-wrap>
+        <div ng-repeat="history in chart_data_history track by $index">
+
+
+            <md-button
+                    class="md-flat-button"
+                    ng-click="go_to_level($index)"
+                    style="border: 1px solid lightgray;border-radius: 5px;font-size: 12px;">
+                                <span ng-if="history.selected_label">
+                                    //history.selected_label//
+                                </span>
+                <span ng-if="!(history.selected_label)">
+                                    //history.title//
+                                </span>
+
+                <md-icon
+                        ng-if="chart_data_history.length-1 == $index"
+                        md-font-icon="fa fa-refresh"
+                        ng-class="{'fa-spin' : is_loading_data}"
+
+                ></md-icon>
+
+
+            </md-button>
+
+            <md-button class="md-icon-button"
+                       ng-if="chart_data_history.length-1!=$index">
+                <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+
+            </md-button>
+
+        </div>
+    </div>
+</div>

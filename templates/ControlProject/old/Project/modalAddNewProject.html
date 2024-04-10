@@ -1,0 +1,64 @@
+{% load translators %}
+
+<div id="modal_add_new_project" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+
+                    ایجاد و یا ویرایش پروژه
+
+                </h4>
+            </div>
+            <form id="frmPostYear" name="frmPostYear">
+                <div class="modal-body">
+                    <h1 class="md-title">
+
+                        لطفا مشخصات پروژه را وارد نمایید
+                    </h1>
+                    <div layout="column">
+
+                        <md-input-container class="md-block">
+                            <label for="">نام پروژه</label>
+                            <input type="text" ng-required="true" ng-model="project.name">
+                        </md-input-container>
+
+                        <div layout-gt-xs="row">
+                            <div flex-gt-xs="50">
+                                <md-input-container class="md-block">
+                                    <label for="">تاریخ شروع</label>
+                                    <input style="direction: ltr" ui-mask="9999/99/99 99:99" model-view-value="true" type="text" ng-required="true" ng-model="project.startDate">
+                                </md-input-container>
+
+                            </div>
+                            <div flex-gt-xs="50">
+                                <md-input-container class="md-block">
+                                    <label for="">تاریخ پایان </label>
+                                    <input style="direction: ltr" ui-mask="9999/99/99 99:99" model-view-value="true" type="text" ng-required="true" ng-model="project.endDate">
+                                </md-input-container>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal"
+                            ng-disabled="frmPostYear.$invalid"
+                            ng-click="Post()">ثبت
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

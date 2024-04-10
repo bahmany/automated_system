@@ -1,0 +1,165 @@
+{% load translators %}
+<md-toolbar id="thisisoool">
+    <div layout="row">
+        <div class="md-toolbar-tools">
+            <img style="height: 24px;" src="/static/images/lower_Rahsoon.png" alt="rahsoon.com" href="/">
+            <md-button class="md-icon-button"
+                       ng-transclude="" ng-click="openMenu()" hide-gt-md="" aria-label="Toggle Menu">
+                <md-icon md-font-icon="fa fa-navicon"></md-icon>
+
+            </md-button>
+
+
+            <span flex></span>
+
+            <md-button style="display: none;" ng-click="sendTestNotification()">ارسال</md-button>
+
+            <md-button ng-show="status_ws.status == 1" class="md-icon-button blink-fast">
+                <md-icon md-font-icon="fa fa-plug"></md-icon>
+            </md-button>
+            <md-button ng-show="status_ws.status == 2" class="md-icon-button">
+                <md-icon md-font-icon="fa fa-wifi"></md-icon>
+                <md-tooltip>//status_ws.msg//</md-tooltip>
+            </md-button>
+            <md-button ng-show="status_ws.status == 3" class="md-icon-button">
+                <md-icon md-font-icon="fa fa-wifi-slash"></md-icon>
+                <md-tooltip>//status_ws.msg//</md-tooltip>
+            </md-button>
+
+
+            <md-button class="md-icon-button" ng-click="refresh()">
+                <md-icon id="filler-icon" md-font-icon="fa fa-refresh"></md-icon>
+                <md-tooltip>بارگذاری مجدد صفحه</md-tooltip>
+            </md-button>
+
+            <md-button class="md-icon-button"
+
+                       ng-click="showNotifSidebar()">
+                <md-icon id="filler-icon" md-font-icon="fa fa-bell"></md-icon>
+                <md-icon md-font-icon="fa fa-circle" ng-class="{'blink':has_alert,'noshow':!has_alert}"
+                         style="position: absolute;left: 2px;font-size: 8px;color: red;bottom: 5px;"></md-icon>
+
+                <md-tooltip>نمایش آخرین وقایع</md-tooltip>
+            </md-button>
+
+            <md-button ng-click="logout()">
+                خروج
+
+            </md-button>
+
+
+        </div>
+
+
+    </div>
+
+
+    {#    <div class="md-toolbar-tools" layout="row"#}
+    {#         ng-init="initCurrentCompany('{{ user.current_company.id }}','{{ user.current_company.name }}')">#}
+    {##}
+    {##}
+    {##}
+    {#        <img style="height: 24px;" src="/static/images/lower_Rahsoon.png" alt="rahsoon.com" href="/">#}
+    {##}
+    {#            <md-button style="margin: 0"#}
+    {#                       class="md-icon-button"#}
+    {#                       ng-click="VVopenMenu()"#}
+    {#                       hide-gt-sm#}
+    {#                       aria-label="Toggle Menu">#}
+    {#                <md-icon md-font-icon="fa fa-navicon"></md-icon>#}
+    {#            </md-button>#}
+    {##}
+    {##}
+    {#        <span flex></span>#}
+    {##}
+    {#        {% include 'others/top-nav/avatar.html' %}#}
+    {##}
+    {#        <div layout="row">#}
+    {##}
+    {#            <md-button class="md-icon-button" ng-click="refresh()">#}
+    {#                <md-icon md-font-icon="fa fa-refresh"></md-icon>#}
+    {#            </md-button>#}
+    {##}
+    {#    <md-menu>#}
+    {#        <md-button aria-label="Open phone interactions menu" class="md-icon-button"#}
+    {#                   ng-click="openMenu($mdOpenMenu, $event)">#}
+    {##}
+    {#            <md-tooltip>#}
+    {#                نامه های جدید#}
+    {#            </md-tooltip>#}
+    {#            <span ng-if="!letterUnreadCount == 0"#}
+    {#                  style="position: absolute;color: #db0000!important;z-index: 999;right: 0;font-weight: bold;">#}
+    {#                                    <span ng-if="letterUnreadCount > 9">+</span>#}
+    {#                                             //letterUnreadCount//#}
+    {#                                                </span>#}
+    {#            <md-icon md-menu-origin md-font-icon="fa fa-envelope"></md-icon>#}
+    {##}
+    {#        </md-button>#}
+    {##}
+    {#        <md-menu-content width="4" id="menu_notif">#}
+    {#            <md-menu-item ng-if="letterUnreadCount == 0">#}
+    {#                            <span class="notification-header text-center">#}
+    {#                                نامه ی جدیدی دریافت نشده است#}
+    {#                            </span>#}
+    {#            </md-menu-item>#}
+    {#            <md-menu-item ng-repeat="item in msg | filter:{type:1}">#}
+    {#                <a ng-click="openLetter(item)">#}
+    {#                    <div class="notification">#}
+    {##}
+    {#                        <p class="lci" style="font-size: 13px!important; color: #313132">#}
+    {#                            //item.extra.subject//#}
+    {#                            <span style="font-size: 9px;">//item.dateOfPost | jalaliDateFromNow:'jYYYY/jMM/jDD - hh:mm'//</span>#}
+    {#                        </p>#}
+    {##}
+    {#                        <p class="lci" style="font-size: 10px!important;"> //item.extra.name// -#}
+    {#                            //item.extra.chart//#}
+    {#                        </p>#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#            </md-menu-item>#}
+    {#        </md-menu-content>#}
+    {##}
+    {#    </md-menu>#}
+    {##}
+    {#            <md-button class="md-fab md-mini" ng-click="OpenAvatar()" alt="{{ currentUser }}">#}
+    {#                <img ng-src="{{ userAvatar }}" class="md-image-in-button">#}
+    {#            </md-button>#}
+    {##}
+    {##}
+    {##}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+
+
+    <script type="text/ng-template" id="toast-template.html">
+        <md-toast role="alert" aria-relevant="all">
+            <span class="md-toast-text" flex>// ctrl.toastMessage.title //</span>
+            <span class="md-visually-hidden">
+    //ctrl.toastMessage.body//
+  </span>
+            <md-button class="md-highlight" href="//ctrl.toastMessage.click_action//">
+                مشاهده
+            </md-button>
+
+
+            <md-button ng-click="closeToast()">
+                تایید
+            </md-button>
+        </md-toast>
+    </script>
+
+    <script type="text/ng-template" id="toast-template-no-input.html">
+        <md-toast role="alert" aria-relevant="all">
+            <span class="md-toast-text" flex>// ctrl.toastMessage //</span>
+
+
+            <md-button ng-click="closeToast()">
+                تایید
+            </md-button>
+        </md-toast>
+    </script>
+
+
+</md-toolbar>
+

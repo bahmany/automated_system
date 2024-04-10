@@ -1,0 +1,54 @@
+{% load translators %}
+<div  layout-gt-xs="row" ng-controller="DMSManagementCtrl">
+
+    <div flex-gt-xs="30">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                مدیریت اسناد
+                <span flex></span>
+
+                <md-button class="md-fab md-mini">
+                    <a ui-sref="new-bam()">
+                        <md-icon md-font-icon="fa fa-plus"></md-icon>
+                    </a>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+
+        <div class="shadower">
+            <md-list flex>
+                <md-list-item class="md-3-line" ng-repeat="item in listDMS.results" ng-click="prepareEditDMS(item.id)">
+                    <div class="md-list-item-text">
+                        <h3 layout="row">//item.name//
+                            <small>(//item.docType//)</small>
+                            <span flex></span>
+                            کد :
+                            //item.docCode//
+                        </h3>
+                        <p layout="row">
+                            //item.latestPostDate | jalaliDate:'jYYYY/jMM/jDD'//
+                            <span flex></span>
+                            //item.docZone// - //item.docRelated//
+                        </p>
+                        <p layout="row">
+                            //item.postDate | jalaliDate:'jYYYY/jMM/jDD'//
+                            <span flex></span>
+                            //item.docFormat// - //item.docModel//
+                        </p>
+                        <div layout="row">
+                            <span flex></span>
+                            <md-button ng-click="destroyDoc(item.id)" class="md-icon-button md-warn">
+                                <md-icon md-font-icon="fa fa-trash"></md-icon>
+                            </md-button>
+                        </div>
+                        <md-divider></md-divider>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+    <div flex layout="row" layout-align="center start">
+        <ui-view flex-gt-sm="95" ></ui-view>
+    </div>
+</div>

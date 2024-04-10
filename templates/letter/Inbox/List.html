@@ -1,0 +1,32 @@
+{% load translators %}
+{% load inbox_tags %}
+<div>
+
+    <div ng-controller="InboxListCtrl" id="divList">
+
+
+
+
+
+        {% include "letter/Inbox/header2.html" %}
+        {% include "letter/Inbox/filter.html" %}
+
+{#        {% InboxHeaderList %}#}
+    <div>
+                    <md-button
+                            style="display: none"
+                            class="md-button" ng-click="createNewElastic()">
+                        convert
+                    </md-button>
+    </div>
+
+    </div>
+
+
+
+    <div ui-view="forward" id="divFor" style="position: initial; display: none">
+
+    </div>
+
+
+</div>

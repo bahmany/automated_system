@@ -1,0 +1,44 @@
+@media print {
+    * {
+        text-align: right;
+        direction: rtl;
+        color: #000000;
+    }
+
+    .amfdateperiod {
+        direction: ltr;
+    }
+
+    .panel-heading {
+        border-bottom: 1px solid #808080;
+        padding-right: 5px;
+    }
+
+    img.pull-right, div.fa.fa-plus, div.fa.fa-trash {
+        display: none;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .lbamflabel p {
+        color: #000000 !important;
+    }
+
+    input {
+        border: none !important;
+    }
+
+    label span {
+        margin-right: 10px;
+        padding-right: 10px;
+    }
+
+    table input {
+        border: none !important;
+    }
+
+
+}
+

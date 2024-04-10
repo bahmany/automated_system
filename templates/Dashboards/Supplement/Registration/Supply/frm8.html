@@ -1,0 +1,122 @@
+<h4>حق امتیاز ، لیسانس یا نمایندگی </h4>
+<hr>
+<div>
+    <div layout="column">
+
+
+        <form action="" name="form_frm8">
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">نام شركت یا **** اعطا كننده</label>
+                        <input type="text" ng-model="provider.frm8.name" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">زمینه فعالیت</label>
+                        <input type="text" ng-model="provider.frm8.zamineh">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">كشور</label>
+                        <input type="text" ng-model="provider.frm8.keshavar">
+                    </md-input-container>
+                </div>
+
+
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تلفن</label>
+                        <input type="text" ng-model="provider.frm8.tel" required>
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">عنوان لیسانس / نمایندگی</label>
+                        <input type="text" ng-model="provider.frm8.onvan">
+                    </md-input-container>
+                </div>
+                <div flex-gt-xs="3"></div>
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ دریافت</label>
+                        <input type="text" ng-model="provider.frm8.tarikh">
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout-gt-xs="row">
+                <div flex-gt-xs="">
+                    <md-input-container class="md-block">
+                        <label for="">تاریخ خاتمه اعتبار</label>
+                        <input type="text" ng-model="provider.frm8.etmam" ui-mask="9999/99/99" dir="ltr"
+>
+                    </md-input-container>
+                </div>
+
+            </div>
+
+
+            <div layout-gt-xs="row">
+                <span flex></span>
+                <md-button ng-click="addTofrm('8')"
+                           ng-disabled="form_frm8.$invalid"
+                           class="md-raised md-default">
+                    اضافه به لیست
+                </md-button>
+            </div>
+
+        </form>
+
+        <div>
+            <table class="sp-table table table-bordered">
+                <thead>
+                <tr>
+                    <th>نام</th>
+                    <th>زمینه</th>
+                    <th>کشور</th>
+                    <th>تلفن</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="it in provider.frm8_list">
+                    <td>//it.name//</td>
+                    <td>//it.zamineh//</td>
+                    <td>//it.tel//</td>
+                    <td>//it.reshteh//</td>
+                    <td>
+                        {% include "Dashboards/Supplement/Registration/Supply/fileViewTdTable.html" with nm="it" %}
+                        <a ng-click="removefrm('8',$index)">حذف</a>
+                    </td>
+                </tr>
+
+
+                <tr ng-if="provider.frm8_list.length == 0">
+                    <td colspan="5">
+                        لیست حق امتیازات خالی است
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <div>
+        <ul>توضیحات : در صورت دارا بودن حق امتیاز ، لیسانس یا نمایندگی : اسکن تمامی مستندات الزامی می باشد.
+            {% include "Dashboards/Supplement/Registration/Supply/miniUploadBtn.html" with form='8' inputid='1' label="ضمائم" %}
+        </ul>
+    </div>
+
+
+    {% include "Dashboards/Supplement/Registration/Supply/save.html" with frmname="frm_frm8" %}
+
+</div>

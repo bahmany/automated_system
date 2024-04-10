@@ -1,0 +1,39 @@
+<div ng-controller="MaterialReportBaseCtrl">
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <md-toolbar-filler layout layout-align="center center">
+                <md-icon md-font-icon="fa fa-paste"></md-icon>
+            </md-toolbar-filler>
+
+            <div>
+                <h2 class="md-toolbar-tools">گزارش</h2>
+            </div>
+
+
+        </div>
+    </md-toolbar>
+    <md-divider></md-divider>
+    <div layout="row">
+        <md-list flex-gt-lg="15"
+                 flex-gt-md="20"
+                 flex-gt-sm="18"
+                 flex-gt-xs="22">
+            <md-list-item
+                    ui-sref="material_reports_report_1">
+
+ تولید روزانه کویل قلع اندود شده
+
+            </md-list-item>
+            <md-list-item
+                    ui-sref="material_reports_report_2">
+                ورودی کلاف سیاه روزانه
+            </md-list-item>
+        </md-list>
+
+        <div flex>
+            <ui-view></ui-view>
+        </div>
+
+    </div>
+
+</div>

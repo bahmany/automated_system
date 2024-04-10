@@ -1,0 +1,62 @@
+<div ng-controller="datamodelCtrl">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+
+            <h3>
+                <small>
+                    لایه های داده ای
+                </small>
+
+                //currentBpmn.name//
+                <small>//currentBpmn.description//</small>
+            </h3>
+
+
+            <span flex></span>
+
+            <md-button class="md-mini" ui-sref="process">
+                برگشت
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <div class="shadower">
+        <div ng-repeat="form in currentBpmn.form track by $index" ng-init="getTaskDef(form, $index)">
+            <h3 style="  border-bottom: 1px solid lightgrey;
+  padding-bottom: 10px;">
+                فرم :
+                //form.taskName//
+                <small style="direction: ltr;font-size: 12px; padding-right: 25px;"> id = //form.bpmnObjID//</small>
+            </h3>
+            <table class="table table-bordered table-striped mini" style="min-width: 100%">
+                <thead>
+                <tr>
+                    <th>عنوان</th>
+                    <th>شناسه</th>
+                    <th>نوع</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="field in form.schema.fields">
+                    <td>//field.displayName//</td>
+                    <td>//field.name//</td>
+                    <td>//::convertEnglishNameToPersian(field.type)//</td>
+                    <td>
+                        <a ng-click="deleteFromCurrentForm(form, field)">حذف</a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+{#            <div ng-repeat="field in form.schema.fields" ng-class-odd="'odd'" ng-class-even="'even'">#}
+{#                نام فیلد :#}
+{#                //field.displayName//#}
+{##}
+{##}
+{#            </div>#}
+
+        </div>
+    </div>
+
+</div>

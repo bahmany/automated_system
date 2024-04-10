@@ -1,0 +1,33 @@
+<md-list-item
+        class="md-3-line low-padding" ng-class-odd="'odd'" ng-class-even="'even'"
+        ng-if="item.userID"
+        ng-repeat="item in hamkaries.results">
+    <div class="md-list-item-text" layout="column">
+        <h3>
+            //item.title//
+        </h3>
+
+        <div style="text-align: left">
+            <small>//::item.startDate | jalaliDate:'jYYYY/jMM/jDD'//</small>
+            الی
+            <small>//::item.endDate | jalaliDate:'jYYYY/jMM/jDD'//</small>
+
+        </div>
+
+        <div layout="row" layout-align="end center">
+            <md-button ng-click="DeleteHamkari(item)">حذف</md-button>
+            <md-button ui-sref="job({jobID:item.id})">ویرایش</md-button>
+            <md-button ui-sref="items({jobID:item.id})">شغل ها</md-button>
+            <md-button style="background-color: lightgreen;" ng-if="item.publish" ng-click="publish(item)">منتشر شده
+            </md-button>
+            <md-button style="background-color: lightgray;" ng-if="!item.publish" ng-click="unpublish(item)">منتشر
+                نشده
+            </md-button>
+
+
+        </div>
+
+    </div>
+
+    <md-divider></md-divider>
+</md-list-item>

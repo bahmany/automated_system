@@ -1,0 +1,111 @@
+<h4>مرحله ششم - سوابق کاری و حرفه ای : </h4>
+<hr>
+<div layout="column">
+
+    <form name="step6_form">
+
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">نام موسسه یا شرکت</label>
+                    <input type="text" ng-model="provider.step6.nameMoaseseh" required>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تاریخ شروع همکاری</label>
+                    <input type="text" ng-model="provider.step6.tarikheShoroo">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تاریخ پایان همکاری</label>
+                    <input type="text" ng-model="provider.step6.tarikhePayan">
+                </md-input-container>
+            </div>
+        </div>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">علت خاتمه همکاری</label>
+                    <input type="text" ng-model="provider.step6.elateKhatemeh">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">تعداد تشویق نامه ها</label>
+                    <input type="text" ng-model="provider.step6.tedadeTashvighNameha">
+                </md-input-container>
+            </div>
+            <div flex-gt-xs="3"></div>
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">زمینه ی فعالیت موسسه یا شرکت</label>
+                    <input type="text" ng-model="provider.step6.zaminehFaaliat">
+                </md-input-container>
+            </div>
+
+
+        </div>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs="">
+                <md-input-container class="md-block">
+                    <label for="">زمینه همکاری با موسسه یا شرکت</label>
+                    <input type="text" ng-model="provider.step6.zaminehHamkari">
+                </md-input-container>
+            </div>
+
+        </div>
+        <div layout-gt-xs="row">
+            <span flex></span>
+            <md-button class="md-default md-raised" ng-click="addToStep6()" ng-disabled="step6_form.$invalid">
+                اضافه به لیست
+            </md-button>
+        </div>
+    </form>
+    <div>
+        <table class="sp-table">
+            <thead>
+            <tr>
+                <th >نام</th>
+                <th >شروع</th>
+                <th >پایان</th>
+                <th >علت خاتمه</th>
+                <th >تعداد تشویق</th>
+                <th >زمینه فعالیت</th>
+                <th >زمینه همکاری</th>
+                <th >عملیات</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="it in provider.step6_list">
+                <td >//it.nameMoaseseh//</td>
+                <td >//it.tarikheShoroo//</td>
+                <td >//it.tarikhePayan//</td>
+                <td >//it.elateKhatemeh//</td>
+                <td >//it.tedadeTashvighNameha//</td>
+                <td >//it.zaminehFaaliat//</td>
+                <td >//it.zaminehHamkari//</td>
+                <td >
+                    <md-button class="md-primary md-default" ng-click="removeStep6($index)">حذف</md-button>
+                </td>
+            </tr>
+
+            <tr ng-if="provider.step6_list.length == 0">
+                <td colspan="8">
+                    لیست سوابق کاری خالی است
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <div>
+
+    </div>
+</div>

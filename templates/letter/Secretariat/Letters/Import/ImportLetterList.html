@@ -1,0 +1,109 @@
+{% load translators %}
+
+<div class="inbox-list" ng-controller="ImportListCtrl">
+
+    {% include 'letter/Secretariat/Letters/Partials/ListTop.html' with headerText=' لیست نامه های وارده' %}
+
+    <div layout="column" class="shadower">
+
+
+        {% include "letter/Secretariat/Letters/Partials/ModalImportedPositionListSendAgain.html" %}
+
+        {% include "letter/Secretariat/Letters/Partials/Search.html" %}
+
+
+        <div>
+
+            {% load tables_tags %}
+            {% tablePagination main_model_name="list" table_search_watch_model_name="filter.searchString" table_go_to_page_func_name="GoToPage" table_handle_pagination_func_name="Pagination" table_info_model_name="Table" %}
+
+            <md-progress-linear md-mode="indeterminate" ng-if="waitForLoading"></md-progress-linear>
+        </div>
+
+        <div layout-gt-md="row" layout-wrap layout-align="center center">
+            <div ng-repeat="item in list.results track by $index"
+                 layout="column"
+                 flex-gt-lg="45"
+                 flex="100"
+                 layout-margin
+                 style="height: 220px;padding: 5px;background-color: rgb(238,238,238);border-radius: 5px;  text-align: justify">
+                <div layout="row" style="height: 200px;overflow: hidden;">
+                    <div style="width: 165px;">
+                        <img ng-src="//item.letter.cover//" alt="//item.letter.subject//" style="height: 100%;">
+                    </div>
+                    <div flex="" style="margin: 0 9px;">
+                        <h3 style="color: green" layout="row" layout-align="start center">
+
+                            <small>
+                                موضوع نامه :‌
+                            </small>
+
+
+                            //item.letter.subject//
+
+                            <span flex></span>
+                            <small>
+                                //item.letter.sign//
+                            </small>
+
+                        </h3>
+                        <div>
+                            <small>
+                                ارسال کننده :
+                            </small>
+                            <span ng-repeat="it in item.letter.company_rec">
+                            //it.name//
+
+                        </span>
+                        </div>
+                        <div>
+                            <small>
+                                تاریخ نامه :
+                            </small>
+                            // item.letter.exp.dateOfSent // //item.letter.exp.howtorec//
+                        </div>
+                        <div>
+                            <small>
+                                تاریخ ثبت :
+                            </small>
+                            //item.dateOfObservable | jalaliDate:'jYYYY/jMM/jDD hh:mm:ss' //
+                        </div>
+                        <div>
+                            <small>
+                                ثبت کننده :
+                            </small>
+                            // item.sender.profileName // (//item.sender.chartName//)
+
+                        </div>
+                        <div>
+                            <small>
+                                دریافت کننده های رونوشت :‌
+                            </small>
+                            <span ng-repeat="it in item.letter.exp.export.hameshRecievers">
+                            //it.profileName// (//it.chartName//)
+                        </span>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div style="height: 20px;" layout="row" layout-align="center center">
+                    <md-button class="md-icon-button" aria-label="mrb"
+                               ng-click="ChangeStar(item);$event.stopPropagation()">
+                        <md-icon md-font-icon="fa fa-star"
+                                 ng-class="{'dark-star':!item.star, 'star-selected':item.star}">
+                        </md-icon>
+                    </md-button>
+                    |
+                    <md-button ui-sref="importPreview({importid: item.id})">مشاهده</md-button>
+                    |
+                    <md-button ng-click="SendAgainImported(item)">ارجاع</md-button>
+                    |
+                    <md-button ng-click="Download(item.letter.exp.cover);">دانلود کاور</md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

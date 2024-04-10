@@ -1,0 +1,70 @@
+{% load translators %}
+<div ng-controller="ExportScanCtrl">
+    <div layout="column" layout-padding>
+
+
+        <div class="col-md-11" style="float: none;margin: 0 auto;">
+            <div class="panel panel-default panel-new-default" style="border: 1px solid rgb(207,207,207)">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        تصویر نامه
+                        <a ui-sref="exportList">(بازگشت)</a>
+                    </h3>
+                    <h6>تصویر امضا شده نامه در این قسمت قرار می گیرد</h6>
+                </div>
+
+                <div class="panel-body">
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>توضیحات</label>
+                            <input ng-model="Scan.desc">
+                        </md-input-container>
+                    </div>
+
+                    <div layout-gt-sm="row">
+                        {% load fileuploader_tags %}
+                        {% FileUploader width='100%' %}
+                    </div>
+                    <div layout="row" layout-align="end center" flex="100" style="max-height: 100px">
+                        <md-button ng-click="Clear()" class="md-raised md-default">
+                            انصراف
+                        </md-button>
+                        <md-button ng-click="Post()" class="md-raised md-primary">
+                        ثبت
+                        </md-button>
+                    </div>
+
+
+                    <md-list>
+                        <md-list-item class="md-3-line" ng-repeat="item in Scans.results">
+                            <div class="md-list-item-text">
+                                <h3> // ::item.postDate | jalaliDate:'jYY/jMM/jDD - hh:mm'//</h3>
+                                <p> // ::item.desc //</p>
+                                <p>
+                                <div ng-repeat="itemxx in item.fileAddr" class="well well-sm" style="text-align: center; width: 100px; height: 125px; padding: 3px; margin: 3px; overflow: hidden; float: right">
+                                    <span class="content_right_head">//itemxx.imgInf.name//</span>
+                                    <br>
+                                    <img ng-src="//itemxx.imgLink//" style="width: 50px; height: 55px">
+                                    <br>
+                                    <small>
+                                        // ::itemxx.imgInf.size / 1024 | number:0//kb
+                                    </small>
+                                    <br>
+                                <a ng-click="Download(itemxx.imgLink)">دریافت</a>
+                                </div>
+
+                                </p>
+                            </div>
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>

@@ -1,0 +1,22 @@
+<div ng-controller="SalesProfileDetailsCtrl">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+
+                پروفایل
+                //profile.name//
+            </h2>
+            <span flex></span>
+            <a ui-sref="SalesProfile">
+                بازگشت
+            </a>
+
+        </div>
+    </md-toolbar>
+
+    <div class="shadower">
+
+        {% include "Sales/Profile/Details/profile.html" with SaleCustomerFormDetailsFormValidation=SaleCustomerFormDetailsFormValidation %}
+
+    </div>
+</div>

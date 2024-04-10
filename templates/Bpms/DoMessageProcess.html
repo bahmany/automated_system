@@ -1,0 +1,30 @@
+{% load translators %}
+<md-content
+        class="shadower col-md-6 bpms-form-container"
+        id="DoMessageProcessCtrl"
+        style="float: none;margin: 0 auto;"
+
+            ng-controller="DoMessageProcessCtrl">
+    <div layout="row" layout-align="start center" style="color: #A5A5A5;">
+        <h3>//messagePData.thisStepName //</h3>
+        <span flex></span>
+        <h6 style="text-align: left;line-height: 14px;">
+        <button class="btn btn-info fa fa-check pull-right" ng-click="completeIt()"
+                            style="margin-top: -8px;"></button></h6>
+
+    </div>
+    <md-divider></md-divider>
+<p ng-if="sendingData.formData.isDeleted">
+                    این فرایند از سیستم حذف شد
+
+                </p>
+                    <form novalidate class="form" ng-if="!sendingData.formData.isDeleted">
+                    <div fg-form
+                         fg-form-data="sendingData.formData"
+                         fg-schema="formSchema">
+                    </div>
+
+                </form>
+
+</md-content>
+

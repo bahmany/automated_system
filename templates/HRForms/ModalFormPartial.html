@@ -1,0 +1,84 @@
+{% load translators %}
+<!-- Modal -->
+<form ng-submit="Post()" name="{{ form.form_name }}" class="frmHR" id="frmHR" novalidate>
+    <div class="modal fade" id="addNewForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">ایجاد فرم جدید</h4>
+                </div>
+                <div class="modal-body">
+                    <csrf-token></csrf-token>
+                    {% csrf_token %}
+                    <fieldset>
+                        {{ form.as_div }}
+                    </fieldset>
+                    <fieldset>
+<header>
+    لیست سند های ضمیمه شده
+</header>                        <div class="row">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>نام فایل</th>
+                                    <th>حجم</th>
+                                    <th>تاریخ انتقال</th>
+                                    <th>پیش فرض</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in UploadedFiles">
+                                    <td>// item.fileName //</td>
+                                    <td>// item.fileSize //</td>
+                                    <td>// item.dateOfUpload //</td>
+                                    <td>
+                                        <input type="checkbox"
+                                               ng-model="item.default"
+                                               ng-change="ItemEnableCheckedClicked(item)"
+                                                {#                                           data-ng-model ="item.default"#}
+                                                >
+                                    </td>
+                                    <td>
+                                        <a ng-click="DeleteFile($index)" class="btn btn-default btn-xs">حذف</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <a class="btn btn-default" ng-click="AddNewFile()">جدید</a>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12 text-center">
+
+                        <button type="submit"
+                                class="btn btn-primary"
+                                id="sendForm"
+                                ng-disabled="{{ form.form_name }}.$invalid"
+                                {#                                ng-click="Post()"#}
+                                >ثبت نام <i class="fa fa-puzzle-piece sendFormIcon "></i></button>
+                        <button type="button"
+                                class="btn btn-primary"
+                                data-dismiss="modal"
+                                ng-click="One = {}">لغو<i class="fa fa-puzzle-piece sendFormIcon "></i></button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+</form>

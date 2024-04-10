@@ -1,0 +1,40 @@
+<div ng-controller="RegisteredPersonCtrl">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            افراد ثبت نام کننده در
+            <span flex>
+
+                </span>
+
+        </div>
+    </md-toolbar>
+    <div class="shadower">
+            <div>
+                {% load pager_navigator_tags %}
+                {% pagerNavigator style="text-center" listname="persons" search_ng_model="personsSearchText" PageTo="personsPageTo" %}
+            </div>
+        <div>
+             <md-progress-linear md-mode="indeterminate" ng-if="wait"></md-progress-linear>
+        </div>
+
+        <md-list>
+            <md-list-item class="md-2-line" ng-repeat="item in persons.results" ng-click="null">
+                <img ng-src="//item.profile.extra.profileAvatar.url//" class="md-avatar" alt="dd">
+                <div class="md-list-item-text" layout="column">
+                    <h3>
+                        //item.profile.extra.Name// - <small>//item.username//</small>
+                    </h3>
+                    <h4 tooltip="تاریخ ثبت شغل">//item.dateOfPost | jalaliDate:'jYYYY/jMM/jDD'//
+                    <small>//item.email//</small>
+                    </h4>
+                </div>
+                <md-button ng-click="OpenResume(item.profile)">مرور</md-button>
+                <md-button ng-class="{'back-green':item.profile.extra.seen}" ng-click="Seen(item)">مطالعه شد</md-button>
+                <md-button ng-class="{'back-green':item.profile.extra.accept}"  ng-click="Accept(item)">پذیرش</md-button>
+                <md-button ng-class="{'back-red':item.profile.extra.fail}"  ng-click="Fail(item)">مردود</md-button>
+
+
+            </md-list-item>
+        </md-list>
+    </div>
+</div>

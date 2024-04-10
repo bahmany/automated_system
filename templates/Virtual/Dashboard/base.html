@@ -1,0 +1,134 @@
+{% load translators %}
+{% load staticfiles %}
+
+
+<html lang="en" dir="rtl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+{#    <link rel="stylesheet" href={% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}>#}
+{#    <link rel="stylesheet" href={% static "bower_components/bootstrap/bootstrap-rtl.min.css" %}>#}
+    <link rel="stylesheet" href={% static "bower_components/angular-material/angular-material.min.css" %}>
+        <link rel="stylesheet" href={% static "images/open-iconic-master/font/css/open-iconic.css" %}>
+        <link rel="stylesheet" href={% static "bower_components/font-awesome/css/font-awesome.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/sweetalert/sweetalert.css" %}>
+    <style type="text/css">
+        {#        html[dir='rtl'] .md-sidenav-left, html[dir='rtl'] md-sidenav {#}
+        {#            left: auto !important;#}
+        {#            right: 0 !important;#}
+        {#        }#}
+        {##}
+        {#        html[dir='rtl'] .md-sidenav-left._md-closed, html[dir='rtl'] md-sidenav._md-closed {#}
+        {#            -webkit-transform: translate3d(100%, 0, 0);#}
+        {#            transform: translate3d(100%, 0, 0)#}
+        {#        }#}
+
+    </style>
+    <link rel="stylesheet" href={% static "bower_components/ckeditorAngularJs/ng-ckeditor.css" %}>
+    <link rel="stylesheet" href={% static "styles/hamkari/my.css" %}>
+    <link rel="stylesheet" href={% static "bower_components/angular-ui-tree-master/dist/angular-ui-tree.min.css" %}>
+
+
+</head>
+
+<body
+        ng-app="RahsoonApp"
+        ng-cloak
+        ng-controller="baseController"
+        class="docs-body"
+        layout="row">
+<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+            md-component-id="left" hide-print
+            md-is-locked-open="$mdMedia('gt-sm')">
+
+    <header class="nav-header">
+        <a ng-href="/" class="docs-logo">
+            <img src="img/icons/angular-logo.svg" alt=""/>
+
+            <h1 class="docs-logotype md-heading">Angular Material</h1>
+        </a>
+    </header>
+
+    <ul class="skip-links">
+        <li class="md-whiteframe-z2">
+            <md-button ng-click="focusMainContent($event)" href="#">Skip to content</md-button>
+        </li>
+    </ul>
+
+    <md-content flex role="navigation">
+        <ul class="docs-menu">
+            <li ng-repeat="item in leftSideMenu"
+                class="parent-list-item">
+                <menu-link section="item"></menu-link>
+
+
+                //item.name//
+            </li>
+        </ul>
+    </md-content>
+</md-sidenav>
+<div layout="column" tabIndex="-1" role="main" flex>
+    <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
+        <div class="md-toolbar-tools docs-toolbar-tools" tabIndex="-1">
+            <md-button class="md-icon-button" ng-click="openMenu()" hide-gt-sm aria-label="Toggle Menu">
+                <md-icon md-font-icon="fa fa-navicon"></md-icon>
+            </md-button>
+
+
+
+        </div>
+    </md-toolbar>
+
+ <md-content md-scroll-y layout="column" flex>
+      <div layout-padding flex="noshrink">
+
+{#          {% include 'Estekhdam/Step1.html' %}#}
+          {% include 'Estekhdam/Step1.html' %}
+          {% include 'Estekhdam/Step2.html' %}
+          {% include 'Estekhdam/Step3.html' %}
+          {% include 'Estekhdam/Step4.html' %}
+          {% include 'Estekhdam/Step5.html' %}
+          {% include 'Estekhdam/Step6.html' %}
+          {% include 'Estekhdam/Step7.html' %}
+
+
+
+
+      </div>
+
+      <div layout="row" flex="noshrink">
+        <div id="license-footer">
+          Powered by Google &copy;2014&#8211;//thisYear//.
+          Code licensed under the <a href="./license">MIT License</a>.
+          Documentation licensed under
+          <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+        </div>
+      </div>
+    </md-content>
+
+</div>
+
+
+<script src={% static "bower_components/jquery/jquery-1.11.3.min.js" %}></script>
+<script src={% static "bower_components/jquery-ui/ui/minified/jquery-ui.min.js" %}></script>
+<script src={% static "bower_components/angular/angular.min.js" %}></script>
+{#<script src={% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}></script>#}
+<script src={% static "bower_components/angular/angular-animate.min.js" %}></script>
+<script src={% static "bower_components/angular/angular-aria.min.js" %}></script>
+<script src={% static "bower_components/angular/angular-messages.min.js" %}></script>
+<script src={% static "bower_components/angular/angular-route.min.js" %}></script>
+<script src={% static "bower_components/angular-material/angular-material.min.js" %}></script>
+<script src={% static "bower_components/ui-router/release/angular-ui-router.min.js" %}></script>
+<script src={% static "bower_components/angular-dragdrop-master/src/angular-dragdrop.js" %}></script>
+<script src={% static "bower_components/angular-ui-tree-master/dist/angular-ui-tree.min.js" %}></script>
+<script src={% static "bower_components/ocLazyLoad/ocLazyLoad.min.js" %}></script>
+<script src={% static "bower_components/sweetalert/sweetalert.min.js" %}></script>
+
+
+<script src={% static "virtual/jobs.json.js" %}></script>
+
+<script src={% static "virtual/app.js" %}></script>
+
+
+</body>
+
+</html>

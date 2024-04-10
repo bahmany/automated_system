@@ -1,0 +1,35 @@
+<div ng-controller="costCalOutcomeTypesCtrl" layout="column">
+
+    {% include "CostCal/Outcome/modalAddEditOutcomeType.html" %}
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            انواع مصارف یا هزینه ها کردها
+            <span flex></span>
+
+            <md-button class="md-fab md-mini" ng-click="AddNewOutcomeType()">
+                <md-icon md-font-icon="fa fa-plus"></md-icon>
+
+            </md-button>
+        </div>
+    </md-toolbar>
+
+
+    <div>
+        <div ng-if="waitForLoading">
+            <md-progress-linear class="fader" md-mode="indeterminate"></md-progress-linear>
+        </div>
+
+        <div>
+            {% load tables_tags %}
+            {% tablePagination2 main_model_name="years" %}
+        </div>
+
+        <div class="shadower">
+
+            {% include "CostCal/Outcome/list.html" %}
+
+        </div>
+    </div>
+
+
+</div>

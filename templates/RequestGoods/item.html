@@ -1,0 +1,289 @@
+<div flex-gt-xs ng-controller="RGItemCtrl">
+    <div ng-show="allitem.exp.tamin_accepted">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                واحد تامین
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <div class="shadower" style="color: black;">
+            <div style="color: black; font-size: 12px; margin-bottom: 25px;">
+                در این قسمت زمانی که واحد تامین
+                درخواست مورد نظر را دریافت کرد می بایست در اینجا اسکن شده ی آن را قرار دهد.
+                این مرحله توسط واحد تامین صورت میگیرد
+            </div>
+
+            <div style="text-align: center">
+                <div>
+                    <img style="width: 100%" ng-src="//allitem.exp.havaleh_foroosh_file.exp.files.link//" alt="">
+
+                </div>
+                <div ng-show="!(allitem.exp.havaleh_foroosh_file)">
+                    <md-button class="md-raised"
+                               ng-click="allitem.exp.havaleh_foroosh_file = {};uploadfile(allitem.exp.havaleh_foroosh_file)">
+                        آپلود
+                        برگه ی درخواست شده
+                    </md-button>
+                </div>
+
+                <div ng-show="(pite.exp.havaleh_foroosh_file)">
+                    <md-button class="md-raised" ng-click="uploadDarkhastKharid()">ثبت و تایید</md-button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div ng-show="allitem.exp.send_tamin">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                توافق تامین و متقاضی
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <div class="shadower" style="color: black;">
+            <div style="color: black; font-size: 12px; margin-bottom: 25px;">
+                در این قسمت متقاضی و درخواست کننده به یک توافق زمانی می رسند. این توافق در سه
+                تاریخ زیر می باشد.
+                توجه نمایید که تاریخ توافق شده پس از تایید طرفین دیگر قابل ویرایش نیست.
+                بهتر است برای توافق در خصوص تاریخ ذکر شده
+                جلسه ای برگزار شود و طی صورتجلسه ای در خصوص توافق بدست آمده
+                تصمیم گیری شود.
+                تاریخ در این قسمت توسط واحد بازرگانی وارد شده و پس طی صورتجلسه یا توافقی است که با متقاضی صورت گرفته
+                است
+
+            </div>
+            <div layout-gt-sm="row">
+
+                <md-input-container flex style="font-size: 12px;">
+                    <label>تاریخ اتمام استعلام</label>
+                    <input id="ExportLetter_subject"
+                           ui-mask="9999/99/99" dir="ltr" model-view-value="true"
+                           style="direction: ltr!important;" ng-required="true"
+                           type="text" ng-model="allitem.exp.date_end"/>
+                    <div class="hint">
+                        در این تاریخ واحد تامین تمامی استعلام ها را جمع آوری می کند
+                    </div>
+                </md-input-container>
+
+
+                <md-input-container flex style="font-size: 12px;">
+                    <label>تاریخ سفارش</label>
+                    <input id="ExportLetter_subject"
+                           ui-mask="9999/99/99" dir="ltr" model-view-value="true"
+                           style="direction: ltr!important;" ng-required="true"
+                           type="text" ng-model="allitem.exp.ordering_date"/>
+                    <div class="hint">
+                        در این تاریخ استعلام ها بررسی می شوند و با تامین کننده توافق پرداخت نهایی شده و
+                        هزینه یا هزینه ها آماده می شوند
+                    </div>
+                </md-input-container>
+
+
+                <md-input-container flex style="font-size: 12px;">
+                    <label>تاریخ ورود به کارخانه</label>
+                    <input id="ExportLetter_subject"
+                           ui-mask="9999/99/99" dir="ltr" model-view-value="true"
+                           style="direction: ltr!important;" ng-required="true"
+                           type="text" ng-model="allitem.exp.schedule_date"/>
+                    <div class="hint">
+                        در این تاریخ اولین تحویل در کارخانه صورت میگیرد. اگر تحویل قرار باشد در چند مرحله یا
+                        اینکه در ازای پرداخت های
+                        مختلف باشد فقط اولین تاریخ آن در اینجا ذکر میشود و سپس مدیریت آن از طریق سیستم
+                        لجستیک صورت میگیرد.
+                    </div>
+                </md-input-container>
+
+
+            </div>
+
+
+            <div layout-gt-sm="row" style="    text-align: center;    background-color: #f9f9f9;    padding: 5px;">
+                <div flex>
+                    <h3>
+                        واحد تامین
+                    </h3>
+                    <div ng-show="!(allitem.exp.tamin_accepted)">
+                        <div>تاریخ ذکر شده در بالا پس از توافق با متقاضی توسط واحد تامین ثبت شده است</div>
+                        <md-button class="md-raised" ng-click="taminAcceptedDates()">تایید</md-button>
+                    </div>
+
+                    <div ng-show="allitem.exp.tamin_accepted">
+                        <div>
+                            تاریخ های اشاره شده پس از بررسی با متقاضی توسط واحد تامین ثبت شده و این تاریخ ها نیز
+                            توسط متقاضی مورد تایید است.
+                        </div>
+                        <div>
+                            //allitem.exp.tamin_accepted_date | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+
+                        </div>
+                        <div>
+                            <h5 style="background-color: #b1b1b1;    padding: 5px;">واحد انبار</h5>
+                            <div>
+                                لطفا برگه درخواست خرید کالا را تنظیم کرده و طبق تاریخ های اشاره شده اقدام نمایید.
+                                در قسمت تاریخ نیاز می بایست تاریخ ورود به کارخانه را ذکر نمایید.
+                                برگه درخواست پس از تنظیم توسط انبار چرخه ی مصوب خود را طی کرده و به واحد تامین ارسال
+                                خواهد شد.
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div ng-show="allitem.exp.has_three_sign">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                اظهار نظر انبار
+                <span flex></span>
+            </div>
+            <div class="shadower" style="color: black;">
+                <div style="color: black; font-size: 12px;">
+                    این قسمت توسط انباردار تکمیل می شود و پس از آن متقاضی جهت دریافت می بایست به انبار مراجعه نماید
+                </div>
+                <div>
+                    {% include "RequestGoods/table_of_goods_by_anbar.html" %}
+                </div>
+
+                <div layout-gt-sm="row" style="text-align: center;text-align: center;    padding: 9px;
+    background-color: #f9f9f9;">
+                    <div flex style="border-left: 1px solid gray"
+                         ng-show="!(allitem.exp.get_this)">
+                        <h4>توسط انبار</h4>
+                        <div>
+                            این کالا هنوز تحویل داده نشده است
+                        </div>
+                        <div>
+                            <md-button ng-click="requesterGetThis()" class="md-default md-raised">این کالا تحویل داده
+                                شد
+                            </md-button>
+                        </div>
+
+                    </div>
+                    <div flex ng-show="!(allitem.exp.send_tamin)">
+                        <h4>توسط انبار</h4>
+                        <div>
+                            این کالا در انبار وجود ندارد و می بایست خریداری شود
+                        </div>
+                        <div>
+                            <md-button ng-click="thisMustTamin()" class="md-default md-raised">اعلام به واحد تامین
+                            </md-button>
+                        </div>
+                    </div>
+                    <div flex ng-show="allitem.exp.get_this">
+                        <h4>توسط انبار</h4>
+                        <div>
+                            این کالا توسط انبار به درخواست کننده تحویل و حواله مصرف
+                            توسط متقاضی امضا شد
+
+                        </div>
+                    </div>
+                    <div flex ng-show="allitem.exp.send_tamin">
+                        <h4>توسط انبار</h4>
+                        <div>
+                            این کالا در انبار وجود ندارد و انبار درخواستی را به واحد تامین ارسال کرد.
+                            همکنون متقاضی و واحد تامین می بایست به توافقی در خصوص زمان های خرید و تحویل برسند. این
+                            فرآیند پس
+                            از بررسی با متقاضی توسط کارشناس تامین در اینجا ثبت می شود
+
+                        </div>
+                        <div>
+                            //allitem.exp.send_tamin_date | jalaliDate:'jYYYY/jMM/jDD - hh:mm'//
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </md-toolbar>
+
+    </div>
+    <div>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                درخواست کالا انبار
+                <span flex></span>
+                <md-button class="md-button md-raised" ui-sref="request-goods">
+                    برگشت
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <div style="font-size: 12px;">
+                همکاران محترم لطفا توجه داشته باشید در هنگام تنظیم درخواست می بایست درخواست هایی که
+                منجر به خرید می شوند و یا در انبار موجود نیستند را
+                بصورت جداگانه تکمیل نمایند .
+                لذا لازم است قبل از تکمیل فرم درخواست کالا اطلاعات لازم در خصوص
+                موجودی کالا از انبار و صحت آن را از واحد انبار بصورت
+                تلفنی پیگیری نمایید
+                <br>
+                توجه داشته باشید درخواست هایی دارای کالاهای موجود در انبار و کالاهایی غیر موجود در یک جا باشند توسط
+                واحد انبار رد خواهند شد
+            </div>
+            <form name="frmItems">
+                <div layout="column" flex>
+                    <div>
+                        <div>
+                            <h3 style="    border-bottom: 1px solid #c51162;color: black;margin-bottom: 0px;">
+                                مشخصات کالاهای درخواستی
+                            </h3>
+                            {% include "RequestGoods/table_of_goods.html" %}
+
+                        </div>
+
+                        <div>
+                            {% include "RequestGoods/table_for_group_kala.html" %}
+                        </div>
+                    </div>
+                </div>
+                <input type="file" id="fileUpload" style="display: none" name="fileUpload">
+
+            </form>
+
+
+            <div style="text-align: center" ng-show="draft == false">
+                <h3 style=" color: black;margin-bottom: 0px;">
+                    امضا تایید کنندگان
+                </h3>
+                <div layout="row">
+
+                    <div flex="33" layout-align="center center" class="rg-well">
+                        <div layout="column">
+                            {% include "RequestGoods/selected_poss.html" with name="request" %}
+                            {% include "RequestGoods/qrcode_btn.html" with btnLabel="امضا" signID=1 %}
+                        </div>
+                    </div>
+                    <div flex="33" layout-align="center center" class="rg-well" layout="row" style="text-align: center">
+
+                        <div layout="column">
+                            {% include "RequestGoods/selected_poss.html" with name="confirm" %}
+                            {% include "RequestGoods/qrcode_btn.html" with btnLabel="امضا" signID=2 %}
+                        </div>
+                    </div>
+                    <div flex="33" layout-align="center center" layout="row" class="rg-well" style="text-align: center">
+                        <div layout="column">
+                            {% include "RequestGoods/selected_poss.html" with name="approve" %}
+                            {% include "RequestGoods/qrcode_btn.html" with btnLabel="امضا" signID=3 %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <md-toolbar class="md-hue-3" ng-show="draft == true">
+            <div class="md-toolbar-tools">
+                <md-button
+                        ng-disabled="frmTraceCat.$invalid"
+                        class="md-button md-raised md-default"
+                        ng-click="postDraftFirstStep($event)">ذخیره درفت
+                </md-button>
+                <span flex></span>
+                <md-button
+                        ng-disabled="frmTraceCat.$invalid"
+                        class="md-button md-raised md-primary" ng-click="postStartFirstStep($event)">شروع فرآیند درخواست
+                </md-button>
+
+            </div>
+        </md-toolbar>
+    </div>
+</div>

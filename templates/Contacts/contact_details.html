@@ -1,0 +1,103 @@
+{% load translators %}
+
+<img class="md-avatar"
+     ng-src="//::item.extra.avatar//" ng-init="checkForDefaultAvatar(item)" alt=""/>
+
+
+<div class="md-list-item-text" layout="column">
+    <h3 style="color: #00009b; font-weight: bold">//GetRow1(item)//</h3>
+    <div style="line-height: 19px;">
+        <div ng-repeat="it in item.fields.slice(1, item.fields.length)" layout="row">
+            <span>//::it.fieldName// : </span>
+            <span>//::it.fieldValue//</span>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="start center">
+        <span flex></span>
+        <md-menu>
+            <md-button class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                <md-icon md-font-icon="fa fa-ellipsis-v">
+                </md-icon>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item ng-if="item.is_editable">
+                    <md-button ng-click="EditContact(item)">ویرایش</md-button>
+                </md-menu-item>
+                <md-menu-item ng-if="item.is_editable">
+                    <md-button ng-click="RemoveContact(item)">حذف</md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+        <md-menu>
+            <md-button class="md-icon-button" ng-click="GetGroupsList(item);openMenu($mdOpenMenu, $event)">
+                <md-icon md-font-icon="fa fa-group ">
+                </md-icon>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item ng-if="ContactsClickedGroupsIsLoading == true">
+                    <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                </md-menu-item>
+                <md-menu-item ng-repeat="Iitem in ContactsClickedGroups.results">
+                    <md-button ng-click="AddMemberToGroup(item.id, Iitem.id, Iitem)">
+                        <md-icon class="fa fa-check" ng-if="Iitem.checked"></md-icon>
+                        //Iitem.name//
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        <md-button class="md-icon-button" ng-click="ChangeStar(item)">
+            <md-icon md-font-icon="fa fa-star"
+                     ng-class="{'btn-starred':item.extra.starred}"
+            ></md-icon>
+        </md-button>
+    </div>
+
+    <p>
+    <div>
+        {#        <div class="pull-right btn-rec btn-group "#}
+        {#             dropdown=""#}
+        {#             is-open="mdiconstatus.isopen">#}
+        {##}
+        {#            <i class="btn-rec fa fa-ellipsis-v dropdown-toggle spacer" dropdown-toggle=""#}
+        {#               ng-disabled="disabled" aria-haspopup="true" aria-expanded="false">#}
+        {#            </i>#}
+        {##}
+        {#            <ul class="dropdown-menu" role="menu">#}
+        {#                <li ng-if="item.is_editable" ng-click="RemoveContact(item)">{{ "Delete"|translate }}<i#}
+        {#                        class="fa fa-trash pull-right  btn-rec spacer"#}
+        {#                        style="font-size: 15px;"></i></li>#}
+        {#                <li ng-if="item.is_editable" ng-click="EditContact(item)">{{ "Edit"|translate }}#}
+        {#                    <i class="fa fa-pencil pull-right btn-rec spacer"#}
+        {#                       style="font-size: 15px;"></i>#}
+        {#                </li>#}
+        {#            </ul>#}
+        {##}
+        {#        </div>#}
+        {#        <div ng-click="GetGroupsList(item)" class="btn-group ng-scope pull-right" dropdown=""#}
+        {#             is-open="status.isopen">#}
+        {#            <i class="btn-rec fa fa-group dropdown-toggle" dropdown-toggle=""#}
+        {#               ng-disabled="disabled" aria-haspopup="true" aria-expanded="false">#}
+        {#            </i>#}
+        {#            <ul class="dropdown-menu" role="menu">#}
+        {##}
+        {#                <li ng-repeat="Iitem in ContactsClickedGroups.results">#}
+        {#                    <a ng-click="AddMemberToGroup(item.id, Iitem.id, Iitem)">#}
+        {#                        <i class="fa fa-check" ng-if="Iitem.checked"></i>#}
+        {#                        //Iitem.name//#}
+        {#                    </a>#}
+        {##}
+        {##}
+        {#                </li>#}
+        {##}
+        {#                <li class="divider"></li>#}
+        {#                <li><a ng-click="AddNewGroup()">{{ "Add Group"|translate }}</a></li>#}
+        {#            </ul>#}
+        {#        </div>#}
+
+    </div>
+    </p>
+</div>
+<md-divider></md-divider>
+

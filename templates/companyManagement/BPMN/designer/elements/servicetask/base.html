@@ -1,0 +1,72 @@
+{% load translators %}
+<div id="servicetask-setup-div" style="display: none;">
+
+    <md-toolbar class="md-hue-2">
+
+        <div class="md-toolbar-tools">
+            المان :
+            //lastSelected.businessObject.name//
+        </div>
+
+    </md-toolbar>
+
+    <md-content>
+
+
+{#        <md-input-container class="md-block">#}
+{#            <label>انتخاب نوع عملیات</label>#}
+{#            <md-select ng-model="serviceTaskMode" required="">#}
+{#                <md-option><em>هیچ کدام</em></md-option>#}
+{#                <md-option ng-repeat="srv in serviceTypes" ng-value="srv.value" ng-disabled="$index === 1">#}
+{#                    //srv.name//#}
+{#                </md-option>#}
+{#            </md-select>#}
+{#        </md-input-container>#}
+
+{#        <div ng-if="serviceTaskMode == 1">#}
+            {#            {% include "companyManagement/BPMN/designer/elements/servicetask/add_new_project.html" %}#}
+
+            <div class="well well-sm make-all-ltr" >
+                <div>
+                    کد پایتون
+                </div>
+
+                <textarea ui-codemirror
+                          ui-codemirror-opts="editorOptionsPython"
+                          ng-model="pythonCode">
+
+                    </textarea>
+            </div>
+{#        </div>#}
+
+
+    </md-content>
+
+    <md-toolbar class="md-hue-2">
+
+        <div class="md-toolbar-tools">
+
+            <span flex=""></span>
+
+            <md-toolbar class="md-hue-3">
+                <div class="md-toolbar-tools">
+            <span flex>
+                </span>
+                    <md-button class="md-button"
+                               ng-click="cancelServiceTask()">انصراف
+                    </md-button>
+                    <md-button class="md-button md-raised md-primary"
+                               ng-click="saveServiceTask()">ثبت تغییرات
+                    </md-button>
+
+
+                </div>
+            </md-toolbar>
+
+
+        </div>
+
+
+    </md-toolbar>
+
+</div>

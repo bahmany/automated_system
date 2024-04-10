@@ -1,0 +1,160 @@
+<div ng-controller="TraceEntryCtrl" layout-gt-xs="row">
+
+    <div flex-gt-xs="30">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                ارجاعات
+
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <md-list flex>
+                <md-list-item style="font-size: 14px;"
+                              ng-class-odd="'odd'"
+                              ng-class-even="'even'"
+                              ng-repeat="item in userActivities track by $index"
+                              layout="row"
+                              ng-click="openItem($event, item)">
+                    <div class="md-2-line">
+                        <h5>//item.name//</h5>
+                        <p>
+                            <span style="    font-size: 13px;    border: 1px solid #abaaaa;
+    padding: 0 5px;
+    border-radius: 6px;
+        color: #982020;
+
+}">//item.source.name//</span>
+                            <span> به </span>
+                            <span style="    font-size: 13px;
+    border: 1px solid #abaaaa;
+    color: #00630b;
+    padding: 0 5px;
+    border-radius: 6px;
+}">//item.destination.name//</span>
+
+                        </p>
+                    </div>
+
+
+                </md-list-item>
+            </md-list>
+        </div>
+
+
+    </div>
+    <div flex-gt-xs="5">
+
+    </div>
+    <form name="frmTraceEntry" flex-gt-xs="">
+
+        <div flex-gt-xs>
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    ارجاع ........
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+            <div class="shadower">
+                <div class="hint">اگر از تامین باشد نیازی به کد پدر ندارد. در تمامی ارجاعات کد پدر الزامیست بجز آنجایی
+                    که برای اولین بار
+                    در چرخه قرار گرفته و وارد ارجاعات می شود
+                </div>
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs="25">
+                        <label for="">کد انبار یکپارچه</label>
+                        <input type="text" required ng-model="entry.details.codeOdoo" ng-model-options="{debounce:500}">
+                        <div class="hint">
+                            <div>
+                              نمونه کد :   00002
+                            </div>
+                            این کد می تواند کد تامین در سامانه یکپارچه بوده و یا اینکه کد رهگیری تولید شده
+                            توسط سامانه ردیابی باشد
+                            <br>
+                            این قسمت نباید خالی رها شود
+                            <br>
+                            این فیلد در دسته ی تامین بعنوان پدر در نظر گرفته می شود
+
+                        </div>
+
+                    </md-input-container>
+
+                    <div flex-gt-xs="2"></div>
+                    <md-input-container flex-gt-xs>
+                        <label for="">توضیحات</label>
+                        <input type="text" ng-model="entry.details.desc">
+                    </md-input-container>
+                </div>
+
+                <div layout="row" layout-wrap>
+                    <div flex class="has-border has-padding has-margin font-mini"><div>کد :</div><div>//odoo_res.stock.display_name//</div></div>
+                    <div flex class="has-border has-padding has-margin font-mini"><div>از :</div><div>//odoo_res.stock.partner_id[1]//</div></div>
+                    <div flex class="has-border has-padding has-margin font-mini"><div>کالا :</div><div>//odoo_res.stock.product_id[1]//</div></div>
+                    <div flex class="has-border has-padding has-margin font-mini"><div>ورود :</div><div>//odoo_res.purchase_line.date_planned//</div></div>
+                    <div flex class="has-border has-padding has-margin font-mini"><div>میزان :</div><div>//odoo_res.purchase_line.qty_received//</div></div>
+                </div>
+
+                <div layout-gt-xs="row" flex-gt-xs="">
+                    <div flex-gt-xs ng-if="entry.id" layout-gt-xs="row">
+                        <div class="hint">کد تولید شده زیر را در قسمت ایران کد در همکاران سیستم کپی نمایید</div>
+
+                    </div>
+                    <div style="    font-weight: bold;    color: green;">
+                        //entry.id//
+                    </div>
+
+                    <div flex-gt-xs>
+
+                    </div>
+                    <md-button
+                            ng-disabled="frmTraceCat.$invalid"
+                            class="md-button md-raised md-primary" ng-click="getEntryCode($event)">دریافت کد
+                    </md-button>
+                </div>
+
+                <div class="hint">
+                    لطفا کد ایجاد شده را در همکاران سیستم و قسمت ایران کد وارد و ثبت نمایید
+                </div>
+
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs="35">
+                        <label for="">کد کالای متناظر در همکاران سیستم</label>
+                        <input type="text" ng-model="searchVch" ng-model-options="{debounce:500}">
+                        <div class="hint">
+                            در این قسمت کد انبار ۱۴ رقمی همکاران سیستم وارد می شود
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-xs="row">
+                    <div flex-gt-xs="35" style="    max-height: 300px;min-height: 300px;    overflow: hidden;    overflow-y: scroll;">
+                        <div ng-repeat="item in hamk_res"
+                             ng-click="AddToCardexSelected(item)"
+                              ng-class-odd="'odd'"
+                              ng-class-even="'even'">
+                            <div layout="row" layout-wrap class="hole-cont">
+                                <div class="lbl-conainer"><span>نام کالا :</span><span>//item.PartName//</span></div>
+                                <div class="lbl-conainer"><span>کد کالا :</span><span>//item.PartCode//</span></div>
+                                <div class="lbl-conainer"><span>//item.DsVchDesc//</span><span style="padding: 0 7px;">//item.XQtyRatio//</span><span>//item.UnitName//</span></div>
+                                <div class="lbl-conainer"><span>//item.VchDate | jalaliDate:'jYYYY/jMM/jDD' //</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <md-toolbar class="md-hue-3">
+                <div class="md-toolbar-tools">
+                    <span flex></span>
+                    <md-button
+                            ng-disabled="frmTraceCat.$invalid"
+                            class="md-button md-raised md-primary" ng-click="post($event)">ارجاع
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+
+        </div>
+
+    </form>
+
+
+</div>

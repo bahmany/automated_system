@@ -1,0 +1,90 @@
+<div ng-controller="EdariBaseCtrl" layout="column">
+
+
+    <div layout="row">
+        <md-content flex="15">
+
+
+            <md-list flex style="font-size: 13px;">
+                <md-list-item ui-sref="morekhasi-saati-list" style="    border-bottom: 1px solid lightgray;">
+                    <div layout="row" layout-align="start center">
+                        <div>
+                            <md-icon md-font-icon="fa fa-clock-o" style="font-size: 22px;"></md-icon>
+
+                        </div>
+                        <div flex>
+                            مرخصی ساعتی
+                        </div>
+
+                    </div>
+                </md-list-item>
+
+                <md-list-item ui-sref="ezlist" style="    border-bottom: 1px solid lightgray;">
+                    <div layout="row">
+                        <div>
+                            <md-icon md-font-icon="fa fa-dashboard" style="font-size: 22px;"></md-icon>
+
+                        </div>
+                        <div flex style="padding-right: 5px">
+                            اضافه کاری
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+                <md-list-item ui-sref="morekhasi-roozaneh-base" style="border-bottom: 1px solid lightgray;">
+                    <div layout="row">
+                        <div>
+
+                            <md-icon md-font-icon="fa fa-users" style="font-size: 22px;">
+
+                            </md-icon>
+
+                        </div>
+                        <div flex style="padding-right: 5px">
+                            مرخصی روزانه
+
+                        </div>
+                    </div>
+                </md-list-item>
+
+
+                <md-list-item ui-sref="edari-report-base"  style="border-bottom: 1px solid lightgray;">
+                    <div layout="row">
+                        <div>
+                            <md-icon md-font-icon="fa fa-list-alt" style="font-size: 22px;"></md-icon>
+
+                        </div>
+                        <div flex style="padding-right: 5px">
+                            آمارها و گزارشات من
+
+                        </div>
+                    </div>
+                </md-list-item>
+
+                <md-list-item ui-sref="emzakonandeha">
+                    <div layout="row">
+                        <div>
+                            <md-icon md-font-icon="fa fa-list-alt" style="font-size: 22px;"></md-icon>
+
+                        </div>
+                        <div flex style="padding-right: 5px">
+                           اداری - امضا کننده ها
+                        </div>
+                    </div>
+                </md-list-item>
+
+
+            </md-list>
+
+
+        </md-content>
+
+        <div flex ui-view="">
+
+        </div>
+
+
+    </div>
+
+</div>

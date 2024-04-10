@@ -1,0 +1,282 @@
+<div ng-controller="OldHavalehForooshDetailsCtrl">
+    <div class="panel">
+        <div class="panel-header md-panel-controls ui-sortable-handle">
+            <div layout="row" layout-align="start center">
+                <span style="    font-weight: bold;    font-size: 17px;">
+                    حواله فروش
+                </span>
+
+                <span flex></span>
+                <md-button class="md-button" ng-click="next_rec()" >بعدی</md-button>
+                <md-button class="md-button" ng-click="prev_rec()" >قبلی</md-button>
+                <md-button class="md-button" ui-sref="OldHavalehForoosh" >بازگشت</md-button>
+
+            </div>
+
+        </div>
+
+                <md-button class="md-button back_btn_static" id="back_btn_static" ui-sref="HavalehForoosh" >بازگشت</md-button>
+
+
+        <div class="panel-content pagination2 table-responsive" layout="column">
+            <div layout="row">
+                <div flex="">
+                    <div style="    text-align: center;    font-size: 18px;    font-weight: bold;    padding-bottom: 13px;">
+                        مشخصات مشتری
+                    </div>
+                    <div layout-gt-xs="row"
+                         style="border-bottom: 1px solid gray;    padding-bottom: 3px;    margin-bottom: 3px;">
+                        <div flex-gt-xs><span>نام خریدار : </span><span
+                                class="thisbold ">//firstData.desc.CstmrName//</span></div>
+                        <div flex-gt-xs><span>شهر : </span><span class="thisbold ">//firstData.item.City//</span></div>
+                    </div>
+                    <div layout-gt-xs="row"
+                         style="border-bottom: 1px solid gray;    padding-bottom: 3px;    margin-bottom: 3px;">
+                        <div flex-gt-xs><span>کد خریدار : </span><span
+                                class="thisbold ">//firstData.desc.CstmrCode//</span></div>
+                        <div flex-gt-xs><span>نشانی حمل : </span><span
+                                class="thisbold ">//firstData.desc.Address//</span></div>
+                    </div>
+                    <div layout-gt-xs="row"
+                         style="border-bottom: 1px solid gray;    padding-bottom: 3px;    margin-bottom: 3px;">
+                        <div flex-gt-xs><span>تلفن همراه : </span><span
+                                class="thisbold "  dir="ltr">//firstData.desc.Mobile//</span></div>
+                        <div flex-gt-xs><span>تلفن : </span><span class="thisbold ">//firstData.desc.Tel//</span></div>
+                        <div flex-gt-xs><span>فکس : </span><span class="thisbold ">//firstData.desc.Fax//</span></div>
+                    </div>
+                </div>
+                <div flex-gt-xs="30" style="border-right: 3px solid #a7a7a7;  padding-right: 12px;">
+                    <div layout="row">
+                        <span>شماره : </span><span style="font-weight: bold">//firstData.desc.VchNo//</span>
+                        <span flex></span>
+                    </div>
+                    <div layout="row">
+                        <span>
+                        تاریخ :
+                    </span>
+
+                        <span style="font-weight: bold">
+                        //firstData.desc.VchDate | jalaliDate:'jYYYY/jMM/jDD'//
+                    </span>
+                        <span flex></span>
+                    </div>
+                    <div layout="row">
+                        <span>
+                    وضعیت :
+                    </span>
+                        <span style="font-weight: bold">
+                        //firstData.desc.StatusDesc//
+                    </span>
+                        <span flex></span>
+                    </div>
+                    <div layout="row">
+                        <span>
+                    پیش فاکتور :
+                    </span>
+                        <span style="font-weight: bold">
+                        //firstData.desc.VchBaseNo//
+                    </span>
+                        <span flex></span>
+                    </div>
+                    <div layout="row">
+                        <span>
+                            انبار :
+
+                    </span>
+                        <span style="font-weight: bold">
+                        //firstData.desc.StockName//
+                    </span>
+                        <span flex></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <style>
+                @media print {
+                    .doesnotprint {
+                        display: none;
+                    }
+
+                    .forprint{
+                        display: block!important;
+                    }
+                }
+
+
+                @page {
+
+                    margin: 1cm;
+                    size: landscape;
+                }
+
+            </style>
+            <div ng-repeat="approve in havaleh" style="    border: 2px solid black;" class="approves forprint" ng-class="{'doesnotprint':approve.canprint}">
+                <div style="padding: 4px;" layout="row">
+                    <span style="    color: blue;
+    margin-left: 20px;"
+                          ng-if="approve.positionName">توسط :  //approve.positionchartName// - //approve.positionName//</span>
+                    <span>
+                        توضیحات ایجاد کننده :
+                        //approve.reason//</span>
+                    <span ng-if="approve.positionID">//approve.positionID//</span>
+
+                    <span flex=""></span>
+
+                    <md-checkbox ng-model="approve.canprint">
+                        <i class="fa fa-print"></i>
+
+                    </md-checkbox>
+
+                </div>
+                <div class="div-table" flex-gt-sm>
+                    <div layout-gt-xs="row" class="header-of-div-table">
+                        <div class="" flex-gt-xs="5" layout-wrap="center center" layout="row">ردیف</div>
+                        <div class="" flex-gt-xs="15" layout-wrap="center center" layout="row">کد کالا</div>
+                        <div class="" flex-gt-xs="25" layout-wrap="center center" layout="row">مشخصات کالا</div>
+                        <div class="" flex-gt-xs="5" layout-wrap="center center" layout="row">واحد کالا</div>
+                        <div class="" flex-gt-xs="5" layout-wrap="center center" layout="row">مقدار سفارش اولیه</div>
+                        <div class="" flex-gt-xs="10" layout-wrap="center center" layout="row">مقدار مورد تایید</div>
+                        <div class="" flex-gt-xs="10" layout-wrap="center center" layout="row">مقدار باقی مانده</div>
+                        <div class="" flex-gt-xs="25" layout-wrap="center center" layout="row">سایر</div>
+                    </div>
+                    <div layout-gt-xs="row" ng-repeat="item in approve.item.items">
+                        <div class="" flex-gt-xs="5" layout-wrap="center center" layout="row">//$index+1//</div>
+                        <div class="" flex-gt-xs="15" layout-wrap="center center" layout="row">//item.PartCode//</div>
+                        <div class="" flex-gt-xs="25" layout-wrap="center center" layout="row">//item.PartName//</div>
+                        <div class="" flex-gt-xs="5" layout-wrap="center center" layout="row">//item.UnitName//</div>
+                        <div class="" flex-gt-xs="5" layout-wrap="center center" layout="row">//item.Qty//</div>
+                        <div class="" flex-gt-xs="10" layout-wrap="center center" layout="row"
+                             style="font-weight: bold;color: green;">//item.AQty//
+                        </div>
+                        <div class="" flex-gt-xs="10" layout-wrap="center center" layout="row">//item.MQty//</div>
+                        <div class="" flex-gt-xs="25" layout-wrap="center center" layout="column">
+                            <div> تاریخ تحویل : //item.tarikheTahvil//
+                                |
+                                <a ng-click="changeTarikheTahvil(approve, item)">تغییر</a>
+                            </div>
+                            <div>
+                                //item.karbord//کاربرد مصرف مشتری :
+                                |
+                                <a ng-click="changeKarbod(approve, item)">تغییر</a>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div layout-gt-sm="row"
+                     style=" border: 1px solid #7f7f82;    margin-top: 15px;    margin-bottom: 0px;">
+                    <div flex-gt-sm="" layout-align="center center"
+                         style="border-left: 1px solid  #7f7f82;padding: 10px; text-align: center;">
+                        <div layout="row" layout-align="center center">صادر کننده - فروش</div>
+                        <div layout="row" layout-align="center center">
+                            {% include "Sales/HavalehForoosh/qrcode_btn.html" with btnLabel="امضا" signID=1 %}
+
+                        </div>
+                        <div>
+                            <md-checkbox ng-model="approve.item.ersaleFactor"
+                                         ng-change="ersaleFactorApply(approve, approve.item.ersaleFactor)">
+                                ارسال فاکتور
+                            </md-checkbox>
+                        </div>
+                    </div>
+
+                    <div flex-gt-sm="" layout-align="center center"
+                         style="border-left: 1px solid  #7f7f82;padding: 10px; text-align: center;">
+                        <div layout="row" layout-align="center center">حسابداری فروش</div>
+                        <div layout="row" layout-align="center center">
+                            {% include "Sales/HavalehForoosh/qrcode_btn.html" with btnLabel="امضا" signID=2 %}
+                        </div>
+                    </div>
+
+                    <div flex-gt-sm="" layout-align="center center"
+                         style="border-left: 1px solid  #7f7f82;padding: 10px; text-align: center;">
+                        <div layout="row" layout-align="center center">
+                            رییس فروش /
+                            مدیر بازرگانی
+                        </div>
+                        <div layout="row" layout-align="center center">
+                            {% include "Sales/HavalehForoosh/qrcode_btn.html" with btnLabel="امضا" signID=3 %}
+                        </div>
+                    </div>
+
+                    <div flex-gt-sm="" layout-align="center center"
+                         style="border-left: 1px solid  #7f7f82;padding: 10px; text-align: center;">
+                        <div layout="row" layout-align="center center">مدیر مالی</div>
+                        <div layout="row" layout-align="center center">
+                            {% include "Sales/HavalehForoosh/qrcode_btn.html" with btnLabel="تولید بلامانع است" signID=4 %}
+                            {% include "Sales/HavalehForoosh/qrcode_btn_nochange.html" with btnLabel="خروج بلامانع است" signID=6 %}
+                        </div>
+                    </div>
+
+                    <div flex-gt-sm="" layout-align="center center"
+                         style="border-left: 1px solid  #7f7f82;padding: 10px; text-align: center;">
+                        <div layout="row" layout-align="center center">مدیر عامل</div>
+                        <div layout="row" layout-align="center center">
+                            {% include "Sales/HavalehForoosh/qrcode_btn.html" with btnLabel="تولید بلامانع است" signID=5 %}
+                            {% include "Sales/HavalehForoosh/qrcode_btn_nochange.html" with btnLabel="خروج بلامانع است" signID=7 %}
+                        </div>
+{#                        <md-checkbox ng-model="approve.item.tolidBela"#}
+{#                                     ng-change="tolidBelaApply(approve, approve.item.tolidBela)">#}
+{#                            تولید بلامانع است#}
+{#                        </md-checkbox>#}
+{#                        <md-checkbox ng-model="approve.item.khroojBela"#}
+{#                                     ng-change="approve.item.tolidBela = approve.item.khroojBela;khroojBelaApply(approve, approve.item.khroojBela)">#}
+{#                            خروج بلامانع است#}
+{#                        </md-checkbox>#}
+                    </div>
+
+
+                </div>
+
+                {% include "Sales/HavalehForoosh/approveTalks.html" %}
+
+
+            </div>
+
+
+            <div>
+                <md-button ng-if="thisHavalehHasFinished == false" class="md-raised md-primary"
+                           ng-click="startNewActivity()">
+                    ادامه سفارش
+                </md-button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="addNewConv.tmpl.html">
+        <md-dialog>
+            <div id="addConv">
+                <div>
+                    <h3>گفتگو</h3>
+                </div>
+                <form name="frmConv">
+                    <div>
+                        <textarea ckeditor="publicEditorOptions"
+                                  required
+                                  ng-model="conv.comment">
+                            </textarea>
+                    </div>
+                    <div layout="row">
+                        <span flex></span>
+                        <md-button ng-disabled="frmConv.$invalid || isPosting" class="md-primary md-raised"
+                                   ng-click="postConv(VchHdrId)">ثبت
+                        </md-button>
+
+                        <md-button ng-if="conv.id" ng-click="cancelConv()">انصراف</md-button>
+                    </div>
+
+                </form>
+            </div>
+        </md-dialog>
+
+    </script>
+
+
+</div>

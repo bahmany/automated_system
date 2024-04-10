@@ -1,0 +1,133 @@
+<div ng-controller="TraceTypesCtrl" layout-gt-xs="row">
+
+
+    <div flex-gt-xs="30">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                انواع ردیابی
+                <span flex></span>
+                <md-button class="md-fab md-mini" ng-click="new()">
+                    <md-icon md-font-icon="fa fa-plus"></md-icon>
+
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div class="shadower">
+            <md-list flex>
+                <md-list-item style="font-size: 14px;"
+                              ng-class-odd="'odd'"
+                              ng-class-even="'even'"
+                              ng-repeat="item in tracetypes.results track by $index"
+                              layout="row"
+                              ng-click="editItem($event, item)">
+                    <div class="md-2-line">
+                        <h5>//item.name//</h5>
+                        <p>//item.source.name// به //item.destination.name//</p>
+                    </div>
+                    <div flex>
+
+                    </div>
+                    <md-button class="md-icon-button" ng-click="remove($index)">
+                        <md-icon class="fa fa-trash"></md-icon>
+                    </md-button>
+
+                </md-list-item>
+            </md-list>
+        </div>
+
+
+    </div>
+
+    <div flex-gt-xs="5">
+
+    </div>
+    <form name="frmTraceType" flex>
+
+        <div flex-gt-xs>
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+            <div class="shadower">
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs="">
+                        <label for="">نام</label>
+                        <input type="text" ng-model="tracetype.name" required>
+                    </md-input-container>
+                </div>
+                <div layout-gt-xs="row">
+                    <md-input-container flex-gt-xs>
+                        <label>منبع</label>
+                        <md-select ng-model="tracetype.source" required>
+                            <md-option ng-repeat="item in srcs" ng-value="item.id">//item.name//</md-option>
+
+
+                        </md-select>
+                    </md-input-container>
+
+                    <div flex-gt-xs="5"></div>
+
+                    <md-input-container flex-gt-xs>
+                        <label>مقصد</label>
+                        <md-select ng-model="tracetype.destination" required>
+                            <md-option ng-repeat="item in dests" ng-value="item.id">//item.name//</md-option>
+
+                        </md-select>
+                    </md-input-container>
+
+                </div>
+
+                <div>
+                    <div>
+                        <div>
+                            افراد مجاز :
+                        </div>
+                        <select-position ng-model="selectedPosition">
+
+                        </select-position>
+                        <div layout-gt-xs="row">
+                            <span flex></span>
+                            <md-button class="md-button md-raised" ng-click="addToPermittedList()">اضافه به لیست
+                            </md-button>
+                        </div>
+
+
+                        <div ng-repeat="item in tracetype.permittedUsers  track by $index" layout-gt-xs="row"
+                             layout-align="start center">
+                            <img ng-src="//item.avatar//" style="height: 40px; border-radius: 50%; margin-left: 12px;"
+                                 alt="" class="avatar">
+                            <div flex-gt-xs="">
+                                // item.profileName// ( //item.chartName// )
+                            </div>
+
+                            <span flex></span>
+                            <md-button class="md-icon-button" ng-click="removeFromList($index)">
+                                <md-icon class="fa fa-trash"></md-icon>
+                            </md-button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <md-toolbar class="md-hue-3">
+                <div class="md-toolbar-tools">
+                    <span flex></span>
+                    <md-button
+                            ng-disabled="frmTraceType.$invalid"
+                            class="md-button md-raised md-primary" ng-click="post($event)">ثبت
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+
+        </div>
+
+    </form>
+
+</div>

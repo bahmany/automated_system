@@ -1,0 +1,18 @@
+{% load translators %}
+{#<div class="contact-container">#}
+    {% load pager_navigator_tags %}
+    {% pagerNavigator style="text-center" listname="Contacts" search_ng_model="SearchText" PageTo="ContactsPageTo" %}
+
+
+
+            <md-list-item class="md-3-line" ng-repeat="item in Contacts.results" ng-click="null">
+                        {% include "Contacts/contact_details.html" %}
+            </md-list-item>
+{#        </md-list>#}
+{#    </md-content>#}
+{#    <div class="clearfix back-white-contact pagination-centered" ng-repeat="item in Contacts.results">#}
+{#        {% include "Contacts/contact_details.html" %}#}
+{#    </div>#}
+
+
+{#</div>#}

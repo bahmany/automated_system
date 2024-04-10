@@ -1,0 +1,94 @@
+{% load translators %}
+
+<div class="reg_fist_main_container login" ng-controller="loginCtrl" layout="column">
+    <h1>ورود متقاضیان همکاری</h1>
+    <hr style="width: 90%">
+    <form name="frmLogin" id="frmLogin">
+        <div layout="row">
+            <p class="help">
+                <md-icon md-font-icon="fa fa-info-circle"
+                         style="font-size: 24px;color: rgb(97, 58, 0);">
+                </md-icon>
+                متقاضی گرامی <br/> *
+                چنانچه قبلا در سامانه ثبت نام کرده اید می توانید نام کاربری و رمز عبور خود را وارد نموده و
+                در غیر
+                اینصورت ثبت نام کنید
+                <br/>
+                *
+                در صورتی که نام کاربری و رمز عبور خود را فراموش کرده اید می توانید با زدن دگمه ی فراموشی رمز
+                عبور
+                وارد
+                سیستم شوید <br/>
+                *
+                چنانچه قبلا ثبت نام کرده اید از فراموشی رمز عبور نیز نمی توانید اطلاعات خود را
+                دریافت کنید لطفا مجددا ثبت نام نمایید
+
+
+            </p>
+        </div>
+        <div layout="column">
+            <md-input-container class="md-block" flex-gt-sm id="secStartYear">
+                <label>نام کاربری</label>
+                <input type="text"
+                       ng-model="loginInf.username"
+                       id="txtUsrname"
+                       name="username"
+                       required>
+
+                <div ng-if="errors.username" style="color: red!important;">
+                    <p ng-repeat="it in errors.username">//it|translate//</p>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm id="secStartYear">
+                <label>رمز عبور</label>
+                <input type="password"
+                       ng-model="loginInf.password"
+                       id="password"
+                       name="password"
+                       required>
+            </md-input-container>
+            <div ng-if="errors.password" style="color: red!important;">
+                <p ng-repeat="it in errors.password">//it|translate//</p>
+            </div>
+        </div>
+        <div layout="column" layout-gt-sm="row" layout-align="end center">
+            {#            <img  ng-src="//imgCaptcha//" alt=""/>#}
+            {#            <md-input-container class="md-block" flex-gt-sm id="secStartYear">#}
+            {#                <label>من روبوت نیستم</label>#}
+            {##}
+            {#                <input type="text"#}
+            {#                       ng-model="loginInf.captcha"#}
+            {#                       id="txtCaptcha"#}
+            {#                       required>#}
+            {#            </md-input-container>#}
+            {{ form.captcha }}
+
+            <a class="btn" ng-click="refreshCaptcha()">
+                <i class="fa fa-refresh"></i>
+            </a>
+            {#            {{ form.captcha }}#}
+            <div flex></div>
+
+            <md-button
+                    ng-disabled="frmLogin.$invalid"
+                    class="md-raised md-primary" ng-click="doLogin()">
+                ورود به سامانه
+            </md-button>
+
+        </div>
+        <div ng-if="errors.captcha" style="color: red!important;">
+            <p ng-repeat="it in errors.captcha">//it|translate//</p>
+        </div>
+
+    </form>
+    <div layout="row" style="border-top: 1px solid #C0BDBD;margin-left: 30px;margin-right: 30px;">
+        <md-button class="md-raised md-success" ng-click="Register()">
+            ثبت نام
+        </md-button>
+        <div flex></div>
+        <md-button ui-sref="forget">
+            فراموشی رمز عبور
+        </md-button>
+    </div>
+</div>
+

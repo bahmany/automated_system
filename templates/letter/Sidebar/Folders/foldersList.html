@@ -1,0 +1,50 @@
+{% load translators %}
+
+<!-- Nested node template -->
+<script type="text/ng-template" id="nodes_renderer.html">
+
+    <div ui-tree-handle layout="row"
+         data-drag="true"
+         class="inbox-dynamic-items"
+         data-jqyoui-options="{
+                                zIndex: 9999,
+                                placeholder: 'keep',
+                                helper: 'clone',
+                                appendTo:'#body-container',
+                                revert: 'invalid'}"
+         jqyoui-draggable="{
+                        placeholder:'keep',
+                        animate:true}"
+         ng-model="node"
+         ng-click="SelectFolder(node);$event.stopPropagation();">
+
+        <i class="fa fa-bars" style="font-size: 10px; padding-left: 6px; padding-top: 6px;"></i>
+        <span style="font-weight: normal">//node.title//</span>
+        <span flex></span>
+        <span>
+            <i ng-click="editFolderModal(node);$event.stopPropagation();" class="fa fa-edit other-btn btnss" style="display: none; font-size: 14px; font-weight: normal;padding-left: 2px; padding-right: 2px;"></i>
+            <i ng-click="deleteFolder(node);$event.stopPropagation();" class="fa fa-trash other-btn btnss" style="display: none; font-size: 14px; font-weight: normal;padding-left: 2px; padding-right: 2px;"></i>
+        </span>
+        <span id="inbox_dyna_//node.id//" style="font-size: 14px; font-weight: normal;padding-left: 10px; padding-right: 10px;" ></span>
+
+    </div>
+    <div ui-tree-nodes="" ng-model="node.children" style="padding-left:0;     font-size: 15px;  font-weight: normal; padding-right: 10px" >
+        <div ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer.html'">
+        </div>
+    </div>
+</script>
+
+
+<div ui-tree data-drag-enabled="false" layout="column">
+    <div ui-tree-nodes="" ng-model="treedata" id="tree-root" layout="column">
+
+        <div ng-repeat="node in treedata" ui-tree-node ng-include="'nodes_renderer.html'"
+            on-finish-render="ngRepeatFinished"></div>
+
+        <div ng-if="treedata.length == 0" style="text-align: justify" >
+            {{ 'No folder created - add folders to organize you letters'|translate}}
+        </div>
+
+
+    </div>
+</div>
